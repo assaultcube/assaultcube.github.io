@@ -1,0 +1,11 @@
+This folder contains all of the files on the 
+AssaultCube website, except the following:
+
+	./schemas
+	./transformations
+	./favicon.ico
+	
+	Plus any "dollar underscore" directories
+	and all files within.
+
+

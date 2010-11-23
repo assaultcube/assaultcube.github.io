@@ -1,0 +1,29 @@
+/* Additional "Download" CSS file for assault.cubers.net */
+
+/* Written by:	Rabid Viper Productions */
+/* Created:	June 2010 */
+
+#donate {
+margin-top : 15px;
+}
+#dllinks {
+padding : 15px 0px;
+margin : auto auto;
+text-align : center;
+font-size : 14px;
+}
+#dllinks td {
+padding : 0px 30px;
+vertical-align : text-bottom;
+}
+#dllinks td a:link, #dllinks td a:visited {
+text-decoration : none;
+}
+#dllinks td a:hover, #dllinks td a:active {
+text-decoration : underline;
+}
+.dlstats {
+float : right;
+padding : 5px;
+font-size : 16px;
+}
