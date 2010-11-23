@@ -1,12 +1,12 @@
-This folder contains all of the files on the 
-AssaultCube website, except the following:
+This folder contains all of the files on the main-part
+of the AssaultCube website, except the following:
 
 	./schemas
 	./transformations
 	./favicon.ico
-	
-	Plus any "dollar underscore" directories
-	and all files within.
+
+	Any "dollar underscore" directories
+	and all files within them.
 
 This folder does/will not contain:
 
@@ -14,9 +14,9 @@ This folder does/will not contain:
 	* The wiki
 	* The masterserver
 
-Any AssaultCube documentation should be added to ./docs
-Upon any AC releases, simply copy/paste this folder 
-into AC and delete this file.
+Any AssaultCube documentation should be added to ./htdocs/docs 
+from now on. Upon any AC releases, simply copy/paste 
+the ./htdocs/docs folder into the release. No changes necessary.
 
 AC Developers:
    Before changing ANY files within these folders, PLEASE
