@@ -17,3 +17,10 @@ This folder does/will not contain:
 Any AssaultCube documentation should be added to ./docs
 Upon any AC releases, simply copy/paste this folder 
 into AC and delete this file.
+
+AC Developers:
+   Before changing ANY files within these folders, PLEASE
+   ensure you've asked flowtron or RandumKiwi about any possible
+   issues that will occur, should you make changes to these files.
+
+   DO NOT TOUCH ANYTHING UNTIL YOU HAVE!
