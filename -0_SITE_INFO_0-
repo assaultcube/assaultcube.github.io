@@ -8,4 +8,12 @@ AssaultCube website, except the following:
 	Plus any "dollar underscore" directories
 	and all files within.
 
+This folder does/will not contain:
 
+	* The forum
+	* The wiki
+	* The masterserver
+
+Any AssaultCube documentation should be added to ./docs
+Upon any AC releases, simply copy/paste this folder 
+into AC and delete this file.
