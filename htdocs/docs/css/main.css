@@ -1,10 +1,14 @@
-/* Main CSS file for assault.cubers.net */
+/* Main CSS file for assault.cubers.net					*/
 
-/* Written by:	Rabid Viper Productions */
-/* Created:	June 2010 */
+/* Written by:	Rabid Viper Productions					*/
+
+/* You may be able to redistribute this content under specific 		*/
+/* conditions. Please read the licensing information, available		*/
+/* at http://assault.cubers.net/docs/license.html for the 		*/
+/* conditions that would apply to what you may be redistributing.	*/
 
 body {
-margin : 0px;
+margin : 0;
 background : url(../images/bodybg.png) repeat-y center bottom;
 background-color : #222222;
 font-family : Verdana, Arial, Helvetica, sans-serif;
@@ -20,13 +24,12 @@ a:hover, a:active {
 text-decoration : none;
 color : #c0c0c0;
 }
-
-h4 { 
-	margin: 24px 0px 12px 0px;
-	padding: 4px 8px;
+h4 {
+margin : 24px 0 12px 0;
+padding : 4px 8px;
 }
 #container {
-margin : 0px auto 0px auto;
+margin : 0 auto 0 auto;
 width : 880px;
 }
 #logo {
@@ -34,14 +37,14 @@ position : absolute;
 padding-left : 4px;
 }
 #menubar {
-margin : 0px auto 0px auto;
+margin : 0 auto 0 auto;
 padding-top : 81px;
 padding-bottom : 1px;
 background : url(../images/cla-rvsf.png) no-repeat right top;
 border-bottom : 1px solid #555555;
 text-align : left;
 font-size : 14px;
-white-space: nowrap;
+white-space : nowrap;
 }
 #menubar a:link, #menubar a:visited {
 font-weight : bold;
@@ -52,7 +55,7 @@ text-decoration : none;
 color : #c0c0c0;
 }
 #main {
-padding : 0px 5px;
+padding : 0 5px;
 padding-bottom : 10px;
 margin-top : 15px;
 margin-bottom : 15px;
@@ -79,15 +82,15 @@ padding : 4px;
 text-align : center;
 }
 .dottedline {
-margin : 0px;
+margin : 0;
 border-bottom : 2px dotted #555555;
-line-height : 0px;
+line-height : 0;
 }
 #howdoi {
 float : right;
 clear : right;
 margin-top : 10px;
-padding : 0px 5px;
+padding : 0 5px;
 height : 340px;
 width : 210px;
 background-color : #101010;
@@ -106,12 +109,12 @@ margin-top : 10px;
 text-align : left;
 }
 h2 {
-margin : 0px;
+margin : 0;
 padding-top : 10px;
 text-align : center;
 }
 h3 {
-margin : 0px;
+margin : 0;
 padding-top : 5px;
 text-align : center;
 font-size : 18px;
@@ -154,7 +157,7 @@ margin-top : 5px;
 list-style-type : square;
 }
 .errormain {
-padding : 0px 5px;
+padding : 0 5px;
 padding-bottom : 25px;
 margin-top : 15px;
 background-color : #101010;
@@ -162,10 +165,10 @@ text-align : center;
 font-size : 13px;
 }
 .code {
-font-family : Courier New, Courier, monospace;
+font-family : "Courier New", Courier, monospace;
 }
 .table1 {
-text-align: center;
+text-align : center;
 }
 .table1 tr td {
 vertical-align : text-top;
@@ -181,11 +184,11 @@ vertical-align : text-top;
 text-align : left;
 }
 .releasedate {
-	font-size: 75%;
+font-size : 75%;
 }
 .resources td {
-padding: 4px 16px 2px 4px;
-margin: 0px;
+padding : 4px 16px 2px 4px;
+margin : 0;
 width : 150px;
 vertical-align : text-top;
 }
@@ -195,7 +198,7 @@ clear : right;
 width : 210px;
 height : 180px;
 margin-top : 10px;
-padding : 0px 5px;
+padding : 0 5px;
 background-color : #101010;
 text-align : left;
 font-size : 13px;
@@ -212,51 +215,51 @@ font-size : 10px;
 font-style : italic;
 text-decoration : underline;
 }
-.adsensefooter { 
+.adsensefooter {
 width : 640px;
 text-align : center;
 }
 .footer1ad {
-margin : 0px 25px;
+margin : 0 25px;
 }
 .footer2ad {
-margin : 0px 25px;
+margin : 0 25px;
 }
 .adsense160x600 {
-margin : 0px 30px;
+margin : 0 30px;
 float : right;
 clear : right;
 }
 .creditscredits {
-	color: #141414;
+color : #141414;
 }
 .creditsdiv {
-/*background-color: #000000;*/
-border: 0px solid #323232;
-width: 600px;
+border : 0 solid #323232;
+width : 600px;
 }
 .creditsbox {
-border: 1px solid #323232;
-margin: 4px 16px;
-padding: 4px;
-min-width: 150px;
+border : 1px solid #323232;
+margin : 4px 16px;
+padding : 4px;
+min-width : 150px;
 }
 .creditsxob {
-border: 1px solid #323232;
-margin: 4px 28px 4px 0px;;
-padding: 4px;
-min-width: 150px;
+border : 1px solid #323232;
+margin : 4px 28px 4px 0;
+padding : 4px;
+min-width : 150px;
 }
 .creditstab {
-background-color: #000000;
-table-layout: fixed;
-empty-cells: show;
+background-color : #000000;
+table-layout : fixed;
+empty-cells : show;
 }
 .creditstda {
-background-color: #141414;
-padding: 3px 6px; 
+background-color : #141414;
+padding : 3px 6px;
 }
 .creditstdb {
-background-color: #0C0C0C;
-padding: 3px 6px; 
+background-color : #0c0c0c;
+padding : 3px 6px;
 }
+
