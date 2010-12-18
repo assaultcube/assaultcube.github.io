@@ -1,4 +1,4 @@
-/* Main "docs" css file for the AssaultCube documentation.		*/
+/* Main "docs" CSS file for the AssaultCube documentation.		*/
 
 /* Written by:	Rabid Viper Productions					*/
 
@@ -36,11 +36,11 @@ margin-top : 5px;
 text-align : left;
 font-size : 10px;
 }
-#donatedocs a:link, #author a:visited {
+#donatedocs a:link, #donatedocs a:visited {
 text-decoration : none;
 font-style : italic;
 }
-#donatedocs a:hover, #author a:active {
+#donatedocs a:hover, #donatedocs a:active {
 text-decoration : underline;
 }
 #breadcrumb {
@@ -48,10 +48,6 @@ margin-bottom : 20px;
 }
 .license1 {
 padding : 0px 40px;
-}
-.speechmarks {
-font-size : 20px;
-font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 h4 {
 padding : 0px;
