@@ -1,11 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /$_DATA_STORAGE/
-Disallow: /cup/
-Disallow: /forum/
-Disallow: /wiki/
-Disallow: /oldforum/
-Disallow: /w/
 Disallow: /errors/
 Disallow: /releasenotes/
 Disallow: /uninstallnotes/
