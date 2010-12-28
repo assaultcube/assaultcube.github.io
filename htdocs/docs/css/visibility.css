@@ -25,3 +25,13 @@ visibility : hidden;
 #docsheader {
 visibility : hidden;
 }
+.docswarn {
+visibility : visible;
+padding : 5px;
+margin-top : 15px;
+background-color : #101010;
+font-size : 13px;
+clear : both;
+width : auto;
+height : auto;
+}

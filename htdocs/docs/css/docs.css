@@ -54,3 +54,9 @@ padding : 0px;
 margin : 5px 0px;
 font-size : 16px;
 }
+.docswarn {
+visibility : hidden;
+width : 0px;
+height : 0px;
+}
+
