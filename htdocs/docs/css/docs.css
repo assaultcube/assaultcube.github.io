@@ -15,17 +15,11 @@ background-color : #101010;
 font-size : 13px;
 clear : both;
 }
-.docsbreadcrumb {
-visibility : visible;
-}
 #docsheader {
 float: right;
 font-size : 18px;
 margin-top : 75px;
 visibility : visible;
-}
-#donatedocs {
-font-size : 10px;
 }
 #donatedocs {
 float : left;
@@ -46,18 +40,17 @@ text-decoration : underline;
 #breadcrumb {
 margin-bottom : 20px;
 }
-.license1 {
-padding : 0px 40px;
-}
 h4 {
 padding : 0px;
 margin : 5px 0px;
 font-size : 16px;
 }
 .docswarn {
-visibility : hidden;
-width : 0px;
-height : 0px;
+padding : 5px;
+margin-top : 15px;
+background-color : #101010;
+font-size : 13px;
+clear : both;
 }
 .adsensefooter {
 clear : both;
