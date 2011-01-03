@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="robots" content="NOODP">
+    <meta name="description" content="Official documentation of the game AssaultCube @ http://assault.cubers.net/">
+    <meta name="author" content="Rabid Viper Productions">
+    <meta name="copyright" content="You may be able to redistribute this content under specific conditions.
+    Please read the licensing information, available @ http://assault.cubers.net/docs/license.html for the
+    conditions that would apply to what you may be redistributing.">
+    <title>AssaultCube Documentation :: F.A.Q'S</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/docs.css">
+    <!--#include virtual="/SSI-HTML/docs/invisibility.html" -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <style type="text/css">
+      li {
+        font-weight : bold;
+      }
+      .ans {
+        margin-left : 20px;
+        list-style : none;
+        padding-bottom : 15px;
+        font-weight : normal;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="docsheader">
+        AssaultCube Documentation
+      </div>
+      <div id="logo">
+        <a href="index.html"><img src="images/aclogo.png"
+        alt="AssaultCube" width="193px" height="81px"></a>
+      </div>
+      <div id="menubar">
+	<!--#include virtual="/SSI-HTML/docs/navigation_box_docs.html" -->
+	&nbsp;
+      </div>
+      <!--#include virtual="/SSI-HTML/docs/docswarn.html" -->
+      <div class="docsmain">
+	<h2>F.A.Q'S</h2>
+        <div id="breadcrumb">
+          <a href="index.html">Documentation Index</a> / F.A.Q'S
+        </div>
+        <p>
+          Only frequently asked questions are answered on this page. If you've looked through the
+          rest of the official documentation and still can't find the answer you need, you might like 
+          to try <a href="http://wiki.cubers.net/ac/Special:Search">searching the wiki</a> and the 
+          <a href="http://forum.cubers.net/search.php">forums</a>, and if you still can't find the
+          answer, post a thread on the forum explaining your situation.
+        </p>
+        <ul>
+          <li>
+            On the scoreboard, I've noticed the words "ping" and "pj", what are these?
+          </li>
+          <li class="ans" id="01">
+            PJ means packet jump. Information about what these are is covered in the 
+            <a href="interface.html#scoreboard">interface part</a> of the readme.
+          </li>
+          <li>
+            Why do some players become semi-visible (transparent), stand still and start saluting?
+          </li>
+          <li class="ans" id="02">
+            This is because of network <a href="http://en.wikipedia.org/wiki/Lag">lag</a>. 
+            The AssaultCube server hasn't recieved a response from the player who is saluting for too long
+            and so the AssaultCube server has temporarally turned that player into a "ghost" that can't be 
+            shot (but don't worry, they can't shoot you either). This "ghost" player will eventually, either
+            disconnect, or their connection will catch-up and they will return to play.
+          </li>
+          <li>
+            Why is a players name on the scoreboard red in colour?
+          </li>
+          <li class="ans" id="03">
+            This is because they're an administrator for this server. This means they know a password to that server,
+            probably because they own/run the server, or are a friend of the person who owns/runs the server. As they
+            have administrator access, they're able to do whatever they like on their server. Administrators can overide 
+            any votes initiated by normal players.
+          </li>
+          <li>
+            I experience some motion sickness... is there any way around this?
+          </li>
+          <li class="ans" id="04">
+            Try increasing your <b>Field of View</b> or resolution. You can change these settings through the 
+            "<b>Settings</b>" &#187; "<b>Video settings</b>" menu.
+          </li>
+          <li>
+            What's a good way to get a lot of points, fast?
+          </li>
+          <li class="ans" id="05">
+            Try honing your skills into "<a href="basics.html#gib">gibbing</a>" your enemies instead of 
+            just normal fragging. You get given 2 frags for gibbing an enemy with a knife or sniper-headshot.
+            Using grenades are also a great way for gibbing more than one enemy at once, but are only worth 1 frag.
+          </li>
+          <li>
+	    I seem to get strange walls appear out of nowhere on maps with far-away areas. How do I fix this?
+          </li>
+          <li class="ans" id="06">
+            This is a graphics glitch caused by low "minlod". In AssaultCube, type: <b>/minlod 250</b> to set minlod
+            to the maximum. You might like to try a lower value than 250 if you find this setting causes considerable
+            graphical lag for you.
+          </li>
+          <li>
+            Why doesn't AssaultCube have a feature that I've seen in a different game (example: Counter-Strike, etc.)?
+          </li>
+          <li class="ans" id="07">
+            Firstly, AssaultCube is not a Counter-Strike (etc.) clone! The quicker you understand this, 
+            the sooner you will be able to defeat your opponents with ease.
+          </li>
+          <li class="ans" id="08">
+            Secondly, just because a feature is available in some other game, it does not mean we have to implement it 
+            here. There are several reasons we might not add it, it might not suit the game style that AssaultCube has,
+            it might not fit-in with the CUBE engine, etc. The best thing to do, is request it on our
+            <a href="http://sourceforge.net/tracker/?group_id=123597&atid=697092">feature request</a> page and we may 
+            consider it.
+          </li>
+          <li>
+            I shoot at players/bots, but NONE of my shots seem to hit them. What's going on?
+          </li>
+          <li class="ans" id="09">
+            This is an error caused by bad graphics cards. If you're able to, the best thing to do first is
+            <a href="graphicsdrivers.html">update your graphics drivers</a> in an attempt to fix it permanently.
+            <br>If this isn't possible or doesn't work, the next thing to try is changing your resolution <b>WITHIN</b>
+            AssaultCube. You can change the resolution through the "<b>Settings</b>" &#187; "<b>Video settings</b>"
+            menu.
+            <br>In most cases, this should be enough to fix it. For the new resolutions, first try setting the resolution
+            to be the same as your native resolution, if that doesn't work, next try 1024x768 (and then 800x600, then 640x480).
+          </li>
+          <li>
+            Why are my settings wiped everytime I start AssaultCube?
+          </li>
+          <li class="ans" id="10">
+            This is because you need to enable write-access to your "AssaultCube home folder":
+            <ul>
+              <li><a href="http://support.microsoft.com/kb/308419#4">Changing access permissions on Windows</a></li>
+              <li><a href="https://help.ubuntu.com/community/FilePermissions#Changing%20Permissions">Changing access permissions on Linux</a></li>
+            </ul>
+            Although it is not recommended because of security reasons, as a last resort, you may try running AssaultCube
+            as administrator/root to fix this issue:
+            <ul>
+              <li><a href="http://support.microsoft.com/kb/305780">Run as administrator on Windows</a></li>
+              <li><a href="https://help.ubuntu.com/community/RootSudo#Graphical%20sudo">Run as root using "gksudo" on Linux</a></li>
+            </ul>
+          </li>
+          <li>
+            Where is my "AssaultCube home folder"?
+          </li>
+          <li class="ans" id="11">
+            Your home folder is either:
+            <ul>
+              <li style="font-weight : normal;">On Linux or Mac based systems: <i>~/.assaultcube_</i>
+              <li style="font-weight : normal;">On Windows based systems: <i>My Documents &#187; AssaultCube_</i>
+            </ul>
+            Note 1: There will always be a version number appended to the end of the folder name. 
+            <br>Note 2: In Linux/Mac, ~/ stands for "/home/YOUR_USERNAME". 
+          </li>
+        </ul>
+      </div>
+      <div id="author">
+        <a href="license.html">&copy; Copyright, Rabid Viper Productions</a>
+      </div>
+      <div id="donatedocs">
+        <a href="http://sourceforge.net/project/project_donations.php?group_id=123597">
+          We would be grateful for any donations considered towards AssaultCube
+        </a>
+      </div>
+      <!--#include virtual="/SSI-HTML/adsense_footer.html" -->
+    </div>
+  </body>
+</html>
