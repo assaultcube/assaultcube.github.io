@@ -11,11 +11,27 @@
     <title>AssaultCube Documentation</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/docs.css">
+    <!-- The next line is part of google site search -->
+    <link rel="stylesheet" type="text/css" href="http://www.google.com/cse/style/look/minimalist.css">
     <!--#include virtual="/SSI-HTML/docs/invisibility.html" -->
     <link rel="shortcut icon" href="images/favicon.ico">
     <style type="text/css">
       ul {
         list-style-type : upper-roman;
+      }
+      /* These last definitions are CSS for Google site search */
+      .gsc-control-cse {
+        border : 3px solid #555555;
+        padding: 0px;
+        padding : 5px 0px;
+      }
+      #cse {
+        margin : auto auto;
+        width : 98%;
+        padding : 5px;
+      }
+      .gsc-clear-button {
+        padding-right : 5px;
       }
     </style>
   </head>
@@ -123,6 +139,11 @@
           <li><a href="history.html">AssaultCubes history</a> - A changelog on this games development.</li>
           <li><a href="team.html">The Team</a> - Check out the team (Rabid Viper Productions), that developed AssaultCube.</li>
         </ul>
+        <h2>Participate in the Community</h2>
+        <p>
+          If you're curious about how to participate in the community, then take a look here:
+          <a href="http://assault.cubers.net/community.html">http://assault.cubers.net/community.html</a>
+        </p>
         <h2>Help?!</h2>
         <p>
           If you need some help with anything at all, please first search through the <a href="/docs">official documentation</a>.
@@ -136,31 +157,19 @@
         </p>
         <p>
           You may use the below Google Site Search, to search the forums, wiki and site, all at once:
-        </p>       
+        </p>
         <!-- Start: Google site search -->
-        <div id="cse" style="width: 100%;">Loading</div>
+        <div id="cse">Loading</div>
         <script src="http://www.google.com/jsapi" type="text/javascript"></script>
         <script type="text/javascript">
-          google.load('search', '1', {language : 'en', style : google.loader.themes.MINIMALIST});
+          google.load('search', '1', {language : 'en'});
           google.setOnLoadCallback(function() {
             var customSearchControl = new google.search.CustomSearchControl('002115558306000528295:qtyxjvpm2xa');
             customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
             customSearchControl.draw('cse');
           }, true);
         </script>
-        <style type="text/css">
-          .gsc-control-cse {
-            border : 3px solid #555555;
-            padding : 5px;
-            margin : auto auto;
-          }
-        </style>
         <!-- End: Google site search -->
-        <h2>Participate in the Community</h2>
-        <p>
-          If you're curious about how to participate in the community, then take a look here:
-          <a href="http://assault.cubers.net/community.html">http://assault.cubers.net/community.html</a>
-        </p>
       </div>
       <div id="author">
         <a href="license.html">&copy; Copyright, Rabid Viper Productions</a>
