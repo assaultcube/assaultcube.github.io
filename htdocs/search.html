@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="robots" content="NOODP">
+    <meta name="description" content="Use Google Site Search to find stuff from this site.">
+    <meta name="author" content="Rabid Viper Productions">
+    <meta name="copyright" content="You may be able to redistribute this content under specific conditions.
+    Please read the licensing information, available @ http://assault.cubers.net/docs/license.html for the
+    conditions that would apply to what you may be redistributing.">
+    <title>AssaultCube - Search</title>
+    <link rel="stylesheet" type="text/css" href="docs/css/main.css">
+    <link rel="shortcut icon" href="docs/images/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="Development Blog News (RSS 2.0)" href="http://forum.cubers.net/syndication.php?fid=8&amp;limit=5">
+    <link rel="alternate" type="application/atom+xml" title="Development Blog News (Atom 1.0)" href="http://forum.cubers.net/syndication.php?fid=8&amp;limit=5&amp;type=atom1.0">
+    <!-- This code is part of google site search -->
+    <link rel="stylesheet" type="text/css" href="http://www.google.com/cse/style/look/minimalist.css">
+    <style type="text/css">
+      .gsc-control-cse {
+        border : 3px solid #555555;
+        padding: 0px;
+        padding : 5px 0px;
+      }
+      #cse {
+        margin : auto auto;
+        width : 98%;
+        padding : 5px;
+      }
+      .gsc-clear-button {
+        padding-right : 5px;
+      }
+    </style>
+    <!-- End of code for part of google site search -->
+  </head>
+  <body>
+    <div id="container">
+      <!--#include virtual="/SSI-HTML/navigation_box.html" -->
+      <div class="errormain" style="text-align : left;">
+	<h2>Search</h2>
+        <p>
+          You may use the below Google Site Search, to search the forums, wiki and site, all at once:
+        </p>
+        <!-- Start: Google site search -->
+        <div id="cse">Loading</div>
+        <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+        <script type="text/javascript">
+          google.load('search', '1', {language : 'en'});
+          google.setOnLoadCallback(function() {
+            var customSearchControl = new google.search.CustomSearchControl('002115558306000528295:qtyxjvpm2xa');
+            customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+            customSearchControl.draw('cse');
+          }, true);
+        </script>
+        <!-- End: Google site search -->
+      </div>
+      <!--#include virtual="/SSI-HTML/adsense_footer.html" -->
+    </div>
+  </body>
+</html>
