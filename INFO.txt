@@ -33,3 +33,14 @@ AC Developers:
    how things work, before you change files for the first time.
 
    DO NOT TOUCH ANYTHING UNTIL YOU HAVE!
+
+LIST OF FILES TO CHANGE UPON NEW RELEASES:
+==========================================
+ * Update ./htdocs/SSI-HTML/download_box.html
+ * Update ./htdocs/download.html
+ * Update "docswarning" with the location of the new versions
+   current docfiles at ./htdocs/SSI-HTML/docs/docswarn.html
+ * Check/Update ./htdocs/index.html if any AC specifications have changed.
+ * Add new ./htdocs/uninstallnotes webpage.
+ * Add new ./htdocs/releasenotes webpage.
+

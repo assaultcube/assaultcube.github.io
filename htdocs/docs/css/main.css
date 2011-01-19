@@ -229,36 +229,3 @@ margin : 0 30px;
 float : right;
 clear : right;
 }
-.creditscredits {
-color : #141414;
-}
-.creditsdiv {
-border : 0 solid #323232;
-width : 600px;
-}
-.creditsbox {
-border : 1px solid #323232;
-margin : 4px 16px;
-padding : 4px;
-min-width : 150px;
-}
-.creditsxob {
-border : 1px solid #323232;
-margin : 4px 28px 4px 0;
-padding : 4px;
-min-width : 150px;
-}
-.creditstab {
-background-color : #000000;
-table-layout : fixed;
-empty-cells : show;
-}
-.creditstda {
-background-color : #141414;
-padding : 3px 6px;
-}
-.creditstdb {
-background-color : #0c0c0c;
-padding : 3px 6px;
-}
-
