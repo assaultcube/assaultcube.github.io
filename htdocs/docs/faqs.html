@@ -42,10 +42,10 @@
       </div>
       <!--#include virtual="/SSI-HTML/docs/docswarn.html" -->
       <div class="docsmain">
-	<h2>F.A.Q'S</h2>
-        <div id="breadcrumb">
-          <a href="index.html">Documentation Index</a> / F.A.Q'S
+        <div id="gohome">
+          <a href="index.html">Go to documentation index &#8629;</a>
         </div>
+	<h2>F.A.Q'S</h2>
         <p>
           Only frequently asked questions are answered on this page. If you've looked through the
           rest of the official documentation and still can't find the answer you need, you might like 
@@ -148,7 +148,7 @@
             Where is my "AssaultCube home folder"?
           </li>
           <li class="ans">
-            The "AssaultCube home folder" is used to save all of your AssaultCube settings and maps.
+            The "AssaultCube home folder" is used to save all of your AssaultCube screenshots, settings and maps.
             You may also use this directory to add new content to the game found elsewhere, such as 
             <a href="http://www.akimbo.in/forum">Akimbo</a> or <a href="http://quadropolis.us/taxonomy/term/24">Quadropolis</a>.
             <br>Your home folder is either:
@@ -167,6 +167,21 @@
             referencing those configuration files. But don't worry, there's an easy fix. Try typing the command 
             <span class="code">/resetcfg 1</span> and then restart AssaultCube. If this doesn't work however, consult the
             <a href="index.html#helpmeplease">Help?!</a> section of the documentation.
+          </li>
+          <li id="n12">
+            My mouse clicks are delayed when trying to fire rapidly in Linux
+          </li>
+          <li class="ans">
+            This is a common problem on Linux and isn't specific to AssaultCube. You'll need to edit your
+            xorg.conf and set the value of <i>Emulate3Buttons</i> to OFF.
+          </li>
+          <li id="n13">
+            Why does aiming seem difficult?
+          </li>
+          <li class="ans">
+            Sometimes, your operating system has "mouse acceleration" activated, which can make aiming difficult, so
+            you may need to turn this off. Another common problem is that the sensors on some "cheap" optical mice
+            tend to miss detecting quick movements.
           </li>
         </ul>
       </div>

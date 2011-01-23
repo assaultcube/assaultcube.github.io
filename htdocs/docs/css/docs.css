@@ -37,8 +37,12 @@ font-style : italic;
 #donatedocs a:hover, #donatedocs a:active {
 text-decoration : underline;
 }
-#breadcrumb {
-margin-bottom : 20px;
+#gohome {
+text-align : right;
+position : absolute;
+width : 870px;
+font-family : "Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size : 11px;
 }
 h4 {
 padding : 0px;
