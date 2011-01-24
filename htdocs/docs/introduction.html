@@ -14,9 +14,19 @@
     <!--#include virtual="/SSI-HTML/docs/invisibility.html" -->
     <link rel="shortcut icon" href="images/favicon.ico">
     <style type="text/css">
-      td.td1 {
-        vertical-align : top;
-        padding : 0px;
+      .weps1 {
+        float : right;
+        padding-left : 10px;
+        clear : both;
+        border-right : 1px solid #555555;
+      }
+      .weps2 {
+        margin : 20px 0px;
+        clear : both;
+        border-top : 2px solid #555555;
+      }
+      .td2 {
+        */ for weapon stats table /*
       }
     </style>
   </head>
@@ -74,134 +84,198 @@
         <p>
           There are eight weapons available for you to frag &amp; gib your enemies with:
         </p>
-        <table id="guns">
+        <div class="weps2">
+          <img src="images/weapon_knife.jpg" alt="Knife" class="weps1">
+          <b>Swiss Tech Combat Blade DR-88</b><br>
+          A sharp and swift blade. It's your last resort when you run out of ammo, as well as your best friend
+          in humiliating snipers and campers. "Slash" with this weapon &amp; you'll gain two frags, instead of one.
+        </div>
+        <div class="weps2">
+          <img src="images/weapon_pistol.jpg" alt="Pistol" class="weps1">
+          <b>Mk-77 Semi-Automatic Pistol</b><br>
+          Your basic sidearm. A powerful secondary weapon, yet typically less effective at range.
+          The small magazine size is something you need to keep an eye on. The <a href="#akimbo">akimbo</a>
+          power-up makes this weapon twice as deadly and much more fun!
+        </div>
+        <div class="weps2">
+          <img src="images/weapon_assault.jpg" alt="Assault rifle" class="weps1">
+          <b>MTP-57 Assault Rifle</b><br>
+          The large caliber deals a substantial amount of damage, with a surprising amount of recoil. 
+          A long barrel ensures accuracy even at high range. 
+          It can become difficult to control when shooting bursts of more than three bullets.
+        </div>
+        <div class="weps2">
+          <img src="images/weapon_sniper.jpg" alt="Sniper rifle" class="weps1">
+          <b>Precision Tech AD-81 Sniper Rifle</b><br>
+          Semi-Automatic Sniper rifle, equipped with a 2x scope. The large caliber can do a frightful amount of damage. 
+          Though naturally most accurate when used with the scope, the highly ergonomic design allows the experienced shooter 
+          to operate it from the hip as well.
+          <br>
+          Not recommended on it's own for hand-to-hand combat, since it can take some time 
+          to recock the weapon. Shots to the head from this weapon produce a "headshot" instead of a frag,
+          which counts for two frags, instead of one. Headshots also cause three times as much damage.
+        </div>
+        <div class="weps2">
+          <img src="images/weapon_subgun.jpg" alt="Sub-machine gun" class="weps1">
+          <b>A-ARD/10 Sub-machine Gun</b><br>
+          This weapon releases a deadly spray of bullets at a high rate of fire.
+          However, due to the short barrel and small caliber,
+          its man-stopping power is limited, and effectiveness ceases at longer ranges. Like the Assault Rifle,
+          its accuracy gets worse the longer your bursts.
+        </div>
+        <div class="weps2">
+          <img src="images/weapon_shotgun.jpg" alt="Shotgun" class="weps1">
+          <b>V-19 Combat Shotgun</b><br>
+          A 7-round semi-automatic shotgun.
+          <br>This powerful weapon can shred your opponents to pieces - if you're close enough.
+        </div>
+        <div class="weps2">
+          <img src="images/weapon_carbine.jpg" alt="Carbine" class="weps1">
+          <b>TMP-M&amp;A Carbine</b><br>
+          The perfect weapon for the most accurate shooter. Faster than a sniper rifle and more deadly than an automatic;
+          just make sure you're pointing it in the right direction. Its 10-round magazine will let you dispose
+          of five unarmoured opponents before you need to reload.
+        </div>
+        <div class="weps2">
+          <img src="images/weapon_grenade.jpg" alt="Grenade" class="weps1">
+          <b>SAL-T3 Grenade</b><br>
+          This grenade is your friend in mid range fights. Its timer is adjusted to two seconds which makes it quite 
+          useful for quick responses to your enemies fire bursts. Kills from this weapon produce a "gib" instead of a 
+          frag.
+        </div>
+        <h3>Weapon statistics</h3>
+        <p>
+          The below statistics should give an indication on how each weapon can be used in AssaultCube.<br>
+          Mouse-over each column to see what the acronym means (example: RTD means "reload time delay").
+        </p>
+        <table id="gunstats">
           <tr>
-            <td>
-              <img src="images/weapon_knife.jpg" alt="Knife">
-            </td>
-            <td class="td1">
-              <b>Swiss Tech Combat Blade DR-88</b><br>
-              A sharp and swift blade. It's your last resort when you run out of ammo, as well as your best friend
-              in humiliating snipers and campers. "Slash" with this weapon &amp; you'll gain two frags, instead of one.
-            </td>
+              <!-- Check the table in ./source/src/server.h under "guninfo" for up-to-date weapon statistics -->
+            <td style="width : 230px; text-decoration : underline;">Weapon</td>
+              <!-- Convert ms to seconds to make things simpler -->
+            <td class="td2"><span title="Reload time delay (seconds)" class="titletext">RTD</span></td>
+            <td class="td2"><span title="Attack time delay (seconds)" class="titletext">ATD</span></td>
+            <td class="td2"><span title="Maximum damage per shot" class="titletext">MDPS</span</td>
+            <td class="td2"><span title="Shots that have been fired, spread out over a distance. Scoped-in sniper rifle is exempt."
+            class="titletext">Spread</span></td>
+            <td class="td2"><span title="Magazine size" class="titletext">MS</td>
+              <!-- SPM needs to account for ATD, MS & RTD -->
+            <td class="td2"><span title="Shots per minute" class="titletext">SPM</td>
+              <!-- MDPM needs to account for MDPS, ATD, MS & RTD -->
+            <td class="td2"><span title="Maximum damage per minute" class="titletext">MDPM</td>
+              <!-- Check the table in ./source/src/server.h under "ammostats"
+                   for up-to-date weapon statistics on these last 3 columns. -->
+            <td class="td2"><span title="Extra ammo per-pickup" class="titletext">EAPP</td>
+            <td class="td2"><span title="Ammo quantity on spawn" class="titletext">AQOS</td>
+              <!-- When updating this column, ensure you add magazine size on top of the
+                   "MAR" you find in the "ammostats" table in ./source/src/server.h -->
+            <td class="td2"><span title="Maximum ammo quantity" class="titletext">MAQ</td>
           </tr>
           <tr>
-            <td>
-              <img src="images/weapon_pistol.jpg" alt="Pistol">
-            </td>
-            <td class="td1">
-              <b>Mk-77 Semi-Automatic Pistol</b><br>
-              Your basic sidearm. A powerful secondary weapon, yet typically less effective at range.
-              The small magazine size is something you need to keep an eye on. The <a href="#akimbo">akimbo</a>
-              power-up makes this weapon twice as deadly and much more fun!
-            </td>
+            <td>Swiss Tech Combat Blade DR-88</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td>
-              <img src="images/weapon_assault.jpg" alt="Assault rifle">
-            </td>
-            <td class="td1">
-              <b>MTP-57 Assault Rifle</b><br>
-              The large caliber deals a substantial amount of damage, with a surprising amount of recoil. 
-              A long barrel ensures accuracy even at high range. 
-              It can become difficult to control when shooting bursts of more than three bullets.
-            </td>
+            <td>Mk-77 Semi-Automatic Pistol</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td>
-              <img src="images/weapon_sniper.jpg" alt="Sniper rifle">
-            </td>
-            <td>
-              <b>Precision Tech AD-81 Sniper Rifle</b><br>
-              Semi-Automatic Sniper rifle, equipped with a 2x scope. The large caliber can do a frightful amount of damage. 
-              Though naturally most accurate when used with the scope, the highly ergonomic design allows the experienced shooter 
-              to operate it from the hip as well.
-              <br>
-              Not recommended on it's own for hand-to-hand combat, since it can take some time 
-              to recock the weapon. Shots to the head from this weapon produce a "headshot" instead of a frag,
-              which counts for two frags, instead of one. Headshots also cause three times as much damage.
-            </td>
+            <td>MTP-57 Assault Rifle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td>
-              <img src="images/weapon_subgun.jpg" alt="Sub-machine gun">
-            </td>
-            <td class="td1">
-              <b>A-ARD/10 Sub-machine Gun</b><br>
-              This weapon releases a deadly spray of bullets at a high rate of fire.
-              However, due to the short barrel and small caliber,
-              its man-stopping power is limited, and effectiveness ceases at longer ranges. Like the Assault Rifle,
-              its accuracy gets worse the longer your bursts.
-            </td>
+            <td>Precision Tech AD-81 Sniper Rifle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td>
-              <img src="images/weapon_shotgun.jpg" alt="Shotgun">
-            </td>
-            <td class="td1">
-              <b>V-19 Combat Shotgun</b><br>
-              7-round semi-automatic shotgun. This powerful weapon can shred your opponents to pieces -
-              if you're close enough.
-            </td>
-          </tr>    
+            <td>A-ARD/10 Submachine Gun</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
           <tr>
-            <td>
-              <img src="images/weapon_carbine.jpg" alt="Carbine">
-            </td>
-            <td class="td1">
-              <b>TMP-M&A Carbine</b><br>
-              The perfect weapon for the most accurate shooter. Faster than a sniper rifle and more deadly than an automatic;
-              just make sure you're pointing it in the right direction. Its 10-round magazine will let you dispose
-              of five unarmoured opponents before you need to reload.
-            </td>
-          </tr> 
+            <td>V-19 Combat Shotgun</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
           <tr>
-            <td>
-              <img src="images/weapon_grenade.jpg" alt="Grenade">
-            </td>
-            <td class="td1">
-              <b>SAL-T3 Grenade</b><br>
-              This grenade is your friend in mid range fights. Its timer is adjusted to two seconds which makes it quite 
-              useful for quick responses to your enemies fire bursts. Kills from this weapon produce a "gib" instead of a 
-              frag.
-            </td>
+            <td>TMP-M&amp;A Carbine</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>SAL-T3 Grenade</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </table>
-
-<h3>Weapon statistics</h3>
-<table id="gunstats" cellspacing="0">
-        <thead>
-            <tr>
-                <td rowspan="1" colspan="1">Weapon</td><td rowspan="1" colspan="1">Damage</td><td rowspan="1" colspan="1">Attackdelay</td><td rowspan="1" colspan="1">RPS</td><td rowspan="1" colspan="1">Dmg/sec</td><td rowspan="1" colspan="1">Reload</td><td rowspan="1" colspan="1">Magsize</td><td rowspan="1" colspan="1">Base</td><td rowspan="1" colspan="1">Max</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td rowspan="1" colspan="1">Swiss Tech Combat Blade DR-88</td><td rowspan="1" colspan="1">50</td><td rowspan="1" colspan="1">500ms</td><td rowspan="1" colspan="1">2</td><td rowspan="1" colspan="1">100</td><td rowspan="1" colspan="1">-</td><td rowspan="1" colspan="1">-</td><td rowspan="1" colspan="1">-</td><td rowspan="1" colspan="1">-</td>
-            </tr>             
-            <tr>
-                <td rowspan="1" colspan="1">Mk-77 Semi-Automatic Pistol</td><td rowspan="1" colspan="1">18</td><td rowspan="1" colspan="1">160ms</td><td rowspan="1" colspan="1">6.3</td><td rowspan="1" colspan="1">113</td><td rowspan="1" colspan="1">1400ms</td><td rowspan="1" colspan="1">8</td><td rowspan="1" colspan="1">32</td><td rowspan="1" colspan="1">80</td>
-            </tr>             
-            <tr>
-                <td rowspan="1" colspan="1">MTP-57 Assault Rifle</td><td rowspan="1" colspan="1">24</td><td rowspan="1" colspan="1">120ms</td><td rowspan="1" colspan="1">8.3</td><td rowspan="1" colspan="1">200</td><td rowspan="1" colspan="1">2000ms</td><td rowspan="1" colspan="1">20</td><td rowspan="1" colspan="1">60</td><td rowspan="1" colspan="1">80</td>
-            </tr>            
-            <tr>
-                <td rowspan="1" colspan="1">Precision Tech AD-81 Sniper Rifle</td><td rowspan="1" colspan="1">80</td><td rowspan="1" colspan="1">1500ms</td><td rowspan="1" colspan="1">0.7</td><td rowspan="1" colspan="1">53</td><td rowspan="1" colspan="1">1950ms</td><td rowspan="1" colspan="1">5</td><td rowspan="1" colspan="1">20</td><td rowspan="1" colspan="1">20</td>
-            </tr>            
-            <tr>
-                <td rowspan="1" colspan="1">A-ARD/10 Submachine Gun</td><td rowspan="1" colspan="1">15</td><td rowspan="1" colspan="1">80ms</td><td rowspan="1" colspan="1">12.5</td><td rowspan="1" colspan="1">188</td><td rowspan="1" colspan="1">1650ms</td><td rowspan="1" colspan="1">30</td><td rowspan="1" colspan="1">90</td><td rowspan="1" colspan="1">120</td>
-            </tr>             
-            <tr>
-                <td rowspan="1" colspan="1">V-19 Combat Shotgun</td><td rowspan="1" colspan="1">105</td><td rowspan="1" colspan="1">1000ms</td><td rowspan="1" colspan="1">1</td><td rowspan="1" colspan="1">105</td><td rowspan="1" colspan="1">2400ms</td><td rowspan="1" colspan="1">7</td><td rowspan="1" colspan="1">28</td><td rowspan="1" colspan="1">28</td>
-            </tr>             
-            <tr>
-                <td rowspan="1" colspan="1">TMP-M&A Carbine</td><td rowspan="1" colspan="1">60</td><td rowspan="1" colspan="1">720ms</td><td rowspan="1" colspan="1">1.4</td><td rowspan="1" colspan="1">83</td><td rowspan="1" colspan="1">1800ms</td><td rowspan="1" colspan="1">10</td><td rowspan="1" colspan="1">30</td><td rowspan="1" colspan="1">40</td>
-            </tr>               
-            <tr>
-                <td rowspan="1" colspan="1">SAL-T3 Grenade</td><td rowspan="1" colspan="1">200</td><td rowspan="1" colspan="1">650ms</td><td rowspan="1" colspan="1">1.5</td><td rowspan="1" colspan="1">308</td><td rowspan="1" colspan="1">-</td><td rowspan="1" colspan="1">-</td><td rowspan="1" colspan="1">0</td><td rowspan="1" colspan="1">3</td>
-            </tr>            
-        </tbody>
-    </table>
 <p>
         Every player spawns with three weapons.
 
