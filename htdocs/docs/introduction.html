@@ -14,6 +14,13 @@
     <!--#include virtual="/SSI-HTML/docs/invisibility.html" -->
     <link rel="shortcut icon" href="images/favicon.ico">
     <style type="text/css">
+      table, tr, td {
+        border : 1px dotted #555555;
+        border-collapse : collapse;
+        vertical-align : top;
+        text-align : center;
+        padding : 5px;
+      }
       .weps1 {
         float : right;
         padding-left : 10px;
@@ -25,8 +32,11 @@
         clear : both;
         border-top : 2px solid #555555;
       }
-      .td2 {
-        */ for weapon stats table /*
+      .itm1 {
+        float : left;
+        padding-right : 10px;
+        clear : both;
+        border-left : 1px solid #555555;
       }
     </style>
   </head>
@@ -40,19 +50,19 @@
         alt="AssaultCube" width="193px" height="81px"></a>
       </div>
       <div id="menubar">
-	<!--#include virtual="/SSI-HTML/docs/navigation_box_docs.html" -->
-	&nbsp;
+	    <!--#include virtual="/SSI-HTML/docs/navigation_box_docs.html" -->
+	    &nbsp;
       </div>
       <!--#include virtual="/SSI-HTML/docs/docswarn.html" -->
       <div class="docsmain">
         <div id="gohome">
           <a href="index.html">Go to documentation index &#8629;</a>
         </div>
-	<h2>Introduction to AssaultCube</h2>
-	<p>
-	  AssaultCube has a simple theme; two teams on a single battle ground. There's no story, just on-going
-	  destruction &amp; ownage.
-	</p>
+        <h2>Introduction to AssaultCube</h2>
+        <p>
+          AssaultCube has a simple theme; two teams on a single battle ground. There's no story, just on-going
+          destruction &amp; ownage.
+        </p>
         <img src="images/flag_cla.jpg" alt="CLA" style="float : right; margin : 25px 5px 5px 10px;">
         <div id="cla" style="font-size : 15px; font-weight : bold;">Team CLA: The Cubers Liberation Army</div>
         <div style="text-align : justify;">
@@ -82,7 +92,10 @@
         <br>
         <h3 id="weapons">Weapons</h3>
         <p>
-          There are eight weapons available for you to frag &amp; gib your enemies with:
+          There are eight weapons available for you to frag &amp; gib your enemies with.
+          Every player spawns with the standard outfitting of three weapons: a knife, a pistol &amp; a primary weapon.
+          Grenades must be picked up along the way. To change your primary weapon, press B for the weapons menu and select the one you want.
+          Next time you spawn, you will spawn with that weapon.
         </p>
         <div class="weps2">
           <img src="images/weapon_knife.jpg" alt="Knife" class="weps1">
@@ -113,7 +126,7 @@
           <br>
           Not recommended on it's own for hand-to-hand combat, since it can take some time 
           to recock the weapon. Shots to the head from this weapon produce a "headshot" instead of a frag,
-          which counts for two frags, instead of one. Headshots also cause three times as much damage.
+          which causes instant death and counts for two frags, instead of one.
         </div>
         <div class="weps2">
           <img src="images/weapon_subgun.jpg" alt="Sub-machine gun" class="weps1">
@@ -146,126 +159,128 @@
         <h3>Weapon statistics</h3>
         <p>
           The below statistics should give an indication on how each weapon can be used in AssaultCube.<br>
-          Mouse-over each column to see what the acronym means (example: RTD means "reload time delay").
+          Mouse-over each acronym in the left-row to understand what it means.
         </p>
         <table id="gunstats">
-          <tr>
-              <!-- Check the table in ./source/src/server.h under "guninfo" for up-to-date weapon statistics -->
-            <td style="width : 230px; text-decoration : underline;">Weapon</td>
-              <!-- Convert ms to seconds to make things simpler -->
-            <td class="td2"><span title="Reload time delay (seconds)" class="titletext">RTD</span></td>
-            <td class="td2"><span title="Attack time delay (seconds)" class="titletext">ATD</span></td>
-            <td class="td2"><span title="Maximum damage per shot" class="titletext">MDPS</span</td>
-            <td class="td2"><span title="Shots that have been fired, spread out over a distance. Scoped-in sniper rifle is exempt."
-            class="titletext">Spread</span></td>
-            <td class="td2"><span title="Magazine size" class="titletext">MS</td>
-              <!-- SPM needs to account for ATD, MS & RTD -->
-            <td class="td2"><span title="Shots per minute" class="titletext">SPM</td>
-              <!-- MDPM needs to account for MDPS, ATD, MS & RTD -->
-            <td class="td2"><span title="Maximum damage per minute" class="titletext">MDPM</td>
-              <!-- Check the table in ./source/src/server.h under "ammostats"
-                   for up-to-date weapon statistics on these last 3 columns. -->
-            <td class="td2"><span title="Extra ammo per-pickup" class="titletext">EAPP</td>
-            <td class="td2"><span title="Ammo quantity on spawn" class="titletext">AQOS</td>
-              <!-- When updating this column, ensure you add magazine size on top of the
-                   "MAR" you find in the "ammostats" table in ./source/src/server.h -->
-            <td class="td2"><span title="Maximum ammo quantity" class="titletext">MAQ</td>
-          </tr>
-          <tr>
+          <tr style="text-align : center;">
+            <!-- Check the table in ./source/src/server.h under "guninfo" for up-to-date weapon statistics -->
+            <td style="border-left : 1px solid #101010; border-top : 1px solid #101010;">&nbsp;</td>
             <td>Swiss Tech Combat Blade DR-88</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
             <td>Mk-77 Semi-Automatic Pistol</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
             <td>MTP-57 Assault Rifle</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
             <td>Precision Tech AD-81 Sniper Rifle</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
             <td>A-ARD/10 Submachine Gun</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
             <td>V-19 Combat Shotgun</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>TMP-M&amp;A Carbine</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
+            <td>TMP-M&A Carbine</td>
             <td>SAL-T3 Grenade</td>
+          </tr>
+          <tr>
+            <!-- Convert milliseconds to seconds to make things simpler -->
+            <td><span title="Reload time delay (seconds)" class="titletext">RTD</span></td>
             <td></td>
             <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <!-- Convert milliseconds to seconds to make things simpler -->
+            <td><span title="Attack time delay (seconds)" class="titletext">ATD</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span title="Maximum damage per shot" class="titletext">MDPS</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span title="Percentage that shots spread out over a distance. Scoped-in sniper rifle is exempt." class="titletext">SPREAD</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span title="Magazine size" class="titletext">MS</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <!-- SPM needs to account for ATD, MS & RTD -->
+            <td><span title="Shots per minute" class="titletext">SPM</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <!-- MDPM needs to account for MDPS, ATD, MS & RTD -->
+            <td><span title="Maximum damage per minute" class="titletext">MDPM</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <!-- Check table in ./source/src/server.h under "ammostats" for up-to-date weapon stats on these last 3 columns -->
+            <td><span title="Extra ammo per-pickup" class="titletext">EAPP</span></td>
+            <td>-</td>
+            <td>20</td>
+            <td>40</td>
+            <td>10</td>
+            <td>60</td>
+            <td>14</td>
+            <td>15</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <!-- For AQOS, ensure you add magazine size on top of the "MAR" you find in the "ammostats" table in ./source/src/server.h -->
+            <td><span title="Ammo quantity on spawn" class="titletext">AQOS</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span title="Maximum ammo quantity" class="titletext">MAQ</span></td>
             <td></td>
             <td></td>
             <td></td>
@@ -276,243 +291,181 @@
             <td></td>
           </tr>
         </table>
-<p>
-        Every player spawns with three weapons.
-
-        Knife and pistol are the standard outfitting of every player, grenades must be picked up.
-        You can chose the primary weapon you want to use in the weapon menu (Hotkey: B).
-    </p>
-<p>
-        The next time you spawn, you will be given the primary weapon you chose.
-    </p>
-<h2>Items</h2>
-<p>
-        These are items you can pickup during the game to further your fragging ability:
-    </p>
-<table class="items">
-        <tr>
-            <td width="140" rowspan="1" colspan="1"><img src="images/item_ammobox.jpg" alt="Ammobox"/></td>
-            <td rowspan="1" colspan="1">
-                <b>Ammobox</b><br clear="none"/>
-                <p>
-                    This box supplies ammunition for the primary weapons. The exact contents are:
-                </p>
-                <ul>
-                    <li>40 rounds for the assault rifle.</li>
-                    <li>10 rounds for the sniper rifle.</li>
-                    <li>60 rounds for the sub-machine gun.</li>
-                    <li>14 shells for the shotgun.</li>
-                    <li>15 rounds for the carbine.</li>
-                </ul>
-                <p>
-                    It respawns after 4, 6 or 8 seconds, depending on the number of players in the server.
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td rowspan="1" colspan="1"><img src="images/item_pistolclips.jpg" alt="Pistol Clips"/></td>
-            <td rowspan="1" colspan="1">
-                <b>Pistol Magazine</b><br clear="none"/>
-                <p>
-                    This item adds 16 bullets to your pistol. It has the same respawn behavior as the ammobox.
-                </p>          
-            </td>
-        </tr>            
-        <tr>
-            <td rowspan="1" colspan="1"><img src="images/item_akimbo.jpg" alt="Akimbo" id="akimbo"/></td>
-            <td rowspan="1" colspan="1">
-                <b>Akimbo</b><br clear="none"/>
-                <p>
-                    Collecting this item lets you fire with two pistols for 30 seconds. Make sure you take advantage of the crazy firing rate.
-                    It has been reported that the respawn time is about one minute.
-                </p>          
-            </td>
-        </tr>         
-        <tr>
-            <td rowspan="1" colspan="1"><img src="images/item_health.jpg" alt="Health"/></td>
-            <td rowspan="1" colspan="1">
-                <b>Health</b><br clear="none"/>
-                <p>
-                    This sweet health pack cures your damaged body with 33hp. The respawn time for health packs is between 10 and 20 seconds, 
-                    depending on the number of players.
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td rowspan="1" colspan="1"><img src="images/item_helmet.jpg" alt="Helmet"/></td>
-            <td rowspan="1" colspan="1">
-                <b>Armour</b><br clear="none"/>
-                <p>
-                    Helmet pickups give you 25 points of protection.
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td rowspan="1" colspan="1"><img src="images/item_kevlar.jpg" alt="Kevlar"/></td>
-            <td rowspan="1" colspan="1">
-                <p>
-                    Kevlar pickups give you 50 points of protection. The more armour you have, the more damage it absorbs; between 16% and 41%. Armour respawns every 20 seconds.
-                </p>
-            </td>
-        </tr>            
-        <tr>
-            <td rowspan="1" colspan="1"><img src="images/item_grenade.jpg" alt="Grenades"/></td>
-            <td rowspan="1" colspan="1">
-                <b>Grenade</b><br clear="none"/>
-                <p>
-                    Grab this to get one grenade fitted to your pocket. Grenades take 8 seconds to respawn.
-                </p>
-            </td>
-        </tr>                  
-    </table>
-<h2 id="gamemodes">Game modes</h2>
-<p>
-      AssaultCube offers 10 different multi-player game modes (5 free-for-all, 3 team based and 4 flag based (3 of which are team based)), 
-	  3 single-player game modes and 1 mode for co-operative map editing.
-      Information about co-operative editing can be found in <a href="mapediting4.html#co-op" shape="rect">Map editing: Tips</a>.
-    </p>
-	<p>
-      You can vote for any of these multi-player modes by using the menu. This can be found by pressing ESC while connected in-game.
-    </p>
-    <h3 id="ffa">Multi-player free-for-all modes</h3> 
-	<p>
-	  With these modes, your aim is to frag everyone else! More suited to smaller games.
-	</p>
-	<ul>
-		<li>
-            <b>Deathmatch (2)</b><br clear="none"/>
-            No teams, it's everyone for themselves!
-        </li>
-        <li>
-            <b>Survivor (3)</b><br clear="none"/>
-            Round based combat, everyone for themselves. 
-            If you die, you will have to wait until the end of the round until you can spawn again. 
-            The round ends when all enemies are dead.
-        </li>
-        <li>
-            <b>Pistol Frenzy (6)</b><br clear="none"/>
-            A deathmatch mode with Pistols as the main weapon (no primary weapons). Grenades and knives are also present in this mode.
-            Make sure <b>you</b> get to the Akimbo first.
-        </li>
-        <li>
-            <b>Last Swiss Standing (9)</b><br clear="none"/>
+        <h3>Item pickups</h3>
+        <div class="weps2">
+          <img src="images/item_ammobox.jpg" alt="Ammobox" class="itm1">
+          <b>Ammobox</b><br>
+          This box supplies ammunition for the primary weapons.
+          To find out the exact contents, read the <span title="Extra ammo per-pickup" class="titletext">EAPP</span>
+          line in the weapon stats above.<br><br>
+          The time it takes to respawn this item depends on the amount of players in the match at that time:<br>
+          1-2 players = 8 seconds<br>
+          3-4 players = 6 seconds<br>
+          5+ players = 4 seconds
+        </div>
+        <div class="weps2">
+          <img src="images/item_pistolmag.jpg" alt="Pistol magazine" class="itm1">
+          <b>Pistol magazine</b><br>
+          This item supplies ammunition for the pistol.
+          To find out the exact contents, read the <span title="Extra ammo per-pickup" class="titletext">EAPP</span>
+          line in the weapon stats above.<br><br>
+          The time it takes to respawn this item depends on the amount of players in the match at that time:<br>
+          1-2 players = 8 seconds<br>
+          3-4 players = 6 seconds<br>
+          5+ players = 4 seconds
+        </div>
+        <div class="weps2">
+          <img src="images/item_akimbo.jpg" alt="Akimbo" id="akimbo" class="itm1">
+          <b>Akimbo</b><br>
+          This item lets you fire with two pistols for 30 seconds.<br>
+          Make sure you take advantage of the crazy firing rate!<br><br>
+          This item respawns every 60 seconds.
+        </div>
+        <div class="weps2">
+          <img src="images/item_health.jpg" alt="Health" class="itm1">
+          <b>Health</b><br>
+          This sweet health pack cures your damaged body with 33hp.<br><br>
+          The time it takes to respawn this item depends on the amount of players in the match at that time:<br>
+          1-2 players = 20 seconds<br>
+          3-4 players = 15 seconds<br>
+          5+ players = 10 seconds
+        </div>
+        <div class="weps2">
+          <img src="images/item_helmet.jpg" alt="Helmet" class="itm1">
+          <b>Helmet armour</b><br>
+          Helmet armour pickups give you 25 points of protection. 
+          The more armour you have, the more damage it absorbs; between 16% and 41%.<br><br>
+          This item respawns every 25 seconds.
+        </div>
+        <div class="weps2">
+          <img src="images/item_kevlar.jpg" alt="Kevlar" class="itm1">
+          <b>Kevlar armour</b><br>
+          Kevlar armour pickups give you 50 points of protection. 
+          The more armour you have, the more damage it absorbs; between 16% and 41%.<br><br>
+          Kevlar armour respawns every 25 seconds.
+        </div>
+        <div class="weps2">
+          <img src="images/item_grenade.jpg" alt="Grenades" class="itm1">
+          <b>Grenade</b><br>
+          Grab this to get a single grenade fitted to your pocket. In 
+          <span title="Last Swiss Standing" class="titletext">LSS</span> mode, all grenade spawns fit 2 grenades to your pocket.
+          Also in LSS mode, pistol magazine pickups turn into grenades.<br><br>
+          The time it takes to respawn this item depends on the amount of players in the match at that time:<br>
+          1-2 players = 9 seconds<br>
+          3-4 players = 8 seconds<br>
+          5+ players = 7 seconds
+        </div>
+        <h3 id="gamemodes">Game modes</h3>
+        <p>
+          AssaultCube offers 10 different multi-player game modes (5 free-for-all, 3 team based and 4 flag based (3 of which are team based)), 
+          3 single-player game modes and 1 mode for <a href="mapediting4.html#co-op">co-operative map editing</a>.
+        </p>
+        <p>
+          You can vote for any of these multi-player modes by using the menu. This can be found by pressing ESC while connected in-game.
+          After choosing a mode, you will then be asked to choose a map available in the list provided.
+        </p>
+        <h4 id="ffa">Multi-player free-for-all modes</h4>
+	    <span>
+    	  With these modes, your aim is to frag anyone &amp; everyone! They're more suited for smaller games.
+	    </span>
+        <ul>
+	      <li>
+            <b>Deathmatch</b>: No teams, it's everyone for themselves!
+          </li>
+          <li>
+            <b>Survivor</b>:
+            No teams, it's everyone for themselves! Survivor is a round based combat, so if
+            you die, you will need to wait until the end of the round before you can respawn.
+            The round ends when no enemies are left alive.
+          </li>
+          <li>
+            <b>Pistol Frenzy</b>:
+            A deathmatch mode with pistols as the main weapon (no primary weapons). Grenades and knives are also present in this mode.
+            Make sure YOU get to the akimbo first!
+          </li>
+          <li>
+            <b>Last Swiss Standing</b>:
             Survive the battle with the help of your knife. Grenades are also present in this mode. 
             If you die, you will have to wait until the end of the round until you can spawn again.
-        </li>
-        <li>
-            <b>One Shot, One Kill (10)</b><br clear="none"/>
-            Each team member starts with 1hp, a sniper rifle, a knife and no pickups.<br clear="none"/>
-            Survive with your sniper, or humiliate with your swiss steel.<br clear="none"/>
-            If you die, you will have to wait until the end of the round until you can spawn again.
-        </li>
-    </ul>
-	
-	<h3 id="teammodes">Multi-player team modes</h3>
-	<p>Don't frag your team mates! More suited to bigger games!</p>
-	<ul>
-        <li>
-            <b>Team Deathmatch (0)</b><br clear="none"/>
-            Two teams fight each other. The team that has the most frags at the end of the game wins.
-        </li>
-		<li>
-            <b>Team Survivor (4)</b><br clear="none"/>
-            Round based team combat. If you die, you will have to wait until the end of the round until you can spawn again. 
-            The round will end when all members from one team are dead.
-        </li>
-		<li>
-            <b>Team One Shot, One Kill (11)</b><br clear="none"/>
-            Each team member starts with 1hp, a sniper rifle, a knife and no pickups.<br clear="none"/>
+            All pistol pickups turn into grenades and grenade pickups fit 2 grenades to your pocket.
+          </li>
+          <li>
+            <b>One Shot, One Kill</b>:
+            Each player starts with 1hp, a sniper rifle, a knife and no pickups.
             Survive with your sniper, or humiliate with your swiss steel.
-            If you die, you will have to wait until the end of the round until you can spawn again. 
+            If you die, you will need to wait until the end of the round before you can spawn again.
+            The round ends when no enemies are left alive.
+          </li>
+        </ul>
+        <h4 id="teammodes">Multi-player team modes</h4>
+        <span>Don't frag your team mates! Most suited to bigger games!</span>
+        <ul>
+          <li>
+            <b>Team Deathmatch</b>:
+            Two teams fight each other. The team that has the most frags at the end of the game wins.
+          </li>
+          <li>
+            <b>Team Survivor</b>:
+            Two team in round based combat. If you die, you will have to wait until the end of the round until you can spawn again.
+            The round will end when all members from one team are dead.
+          </li>
+          <li>
+            <b>Team One Shot, One Kill</b>:
+            Each team member starts with 1hp, a sniper rifle, a knife and no pickups.
+            Survive with your sniper, or humiliate with your swiss steel.
+            If you die, you will have to wait until the end of the round until you can spawn again.
             The round ends when all members from one team are dead. 
-        </li>
-	</ul>
-	
-		
-		
-	<h3 id="flagmodes">Multi-player flag modes</h3>
-	<p>Suited best to large games (6+ players), these modes provide special tactics and ways to score and win the game!</p>
-	<ul>
-	  <li>
-	    <b>Hunt the Flag (13)</b><br clear="none"/>
-	    Find the enemy flag, frag the flag bearer and collect the flag to score. If no-one's holding your flag, the score won't count,
-	    so be sure to protect your own flag bearer! If the flag bearer collects the enemy flag, they gain a 1 point bonus.
-	</li>
-	<li>
-	    <b>Team Keep the Flag (14)</b><br clear="none"/>
-	    There is only one flag. Grab the flag and keep it, you'll score 1 flag point for every 15 seconds you keep the flag. 
-	    Be sure to protect your team's flag bearer!
-	</li>
-	<li>
-	    <b>Keep the Flag (15)</b><br clear="none"/>
-	    There is only one flag, and everybody will want it. If you have it, be careful, because everyone else will want to destroy you!
-	    Score one point for every fifteen seconds you can hold the flag, if you can manage that long!
-	</li>
-    <li>
-        <b>Capture The Flag (5)</b><br clear="none"/>
-        Two teams fight each other. Steal the enemy team's flag and bring it back to your base to score.
-        If your team's flag has gone, someone will have to go and recover it first.<br clear="none"/>
-        Note: there is a special <a href="images/ctf-hud.jpg" target="_blank" shape="rect">HUD</a> for the ctf mode.
-    </li>
-	</ul>
-
-    <p>
-      After choosing the mode, you may choose the map you would like to vote upon too.
-    </p>
-    <p>
-      Note: The numbers within brackets shown above, are to specify the number of the mode. 
-      If you don't understand what the numbers are for, it's best just to ignore this sentence and those numbers.
-    </p>
-    <h3>Single-player bot modes</h3>
-    <p>
-      AssaultCube comes with bots to offer singleplayer gaming. To start a botmatch, press ESC and navigate to <i>Singleplayer</i>.
-      There you can choose the mode, skill, number of bots and the map to play on.
-    </p>
-    <p>
-      Please keep in mind that AssaultCube's main approach is multi-player gaming, so the bots may lack certain features.
-    </p>
-    <ul>
-      <li>
-        <b>Bot Team Deathmatch (7)</b><br clear="none"/>
-        Two teams made up of bots and yourself fight each other to the death. The team with the most frags at the end
-        of the round wins.
-      </li>
-      <li>
-        <b>Bot Deathmatch (8)</b><br clear="none"/>
-        It's every man and A.I. for themselves! Dismantle those bots!
-      </li>
-      <li>
-        <b>Bot One Shot, One Kill (12)</b><br clear="none"/>
-        You and the bots start with 1hp, a sniper rifle, a knife and no pickups.<br clear="none"/>
-        Survive with your sniper, or humiliate with your swiss steel.
-      </li>
-    </ul>
-    <p>
-      Note: The numbers within brackets shown above, are to specify the number of the mode. 
-      If you don't understand what the numbers are for, it's best just to ignore this sentence and those numbers.
-    </p>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          </li>
+	    </ul>
+	    <h4 id="flagmodes">Multi-player flag modes</h4>
+	    <p>Suited best to large games (6+ players), these modes provide special tactics and ways to score and win the game!</p>
+	    <ul>
+	      <li>
+	        <b>Hunt the Flag</b>:
+	        Find the enemy flag, frag the flag bearer and collect the flag to score. If no-ones holding your flag, the score won't count,
+	        so be sure to protect your own flag bearer! If the flag bearer collects the enemy flag, they gain an extra bonus point.
+          </li>
+	      <li>
+            <b>Team Keep the Flag</b>:
+	        There is only one flag. Grab the flag and keep it, you'll score 1 flag point for every 15 seconds you keep the flag. 
+	        Be sure to protect your teams flag bearer!
+          </li>
+	      <li>
+	        <b>Keep the Flag</b>:
+	        There is only one flag, and everybody will want it. If you have it, be careful, because everyone else will want to frag you
+            to stop you scoring!
+            Score one point for every fifteen seconds you can hold the flag, if you can manage that long!
+          </li>
+          <li>
+            <b>Capture The Flag</b>:
+            Two teams fight each other. Steal the enemy teams flag and bring it back to your base to score.
+            If your teams flag has gone, someone will have to go and recover it first.
+            Note: there is a special <a href="images/ctf-hud.jpg">HUD</a> for the CTF mode.
+          </li>
+	    </ul>
+        <h4>Single-player bot modes</h4>
+        <p>
+          AssaultCube comes with bots to offer singleplayer gaming. To start a botmatch, press ESC and navigate to <i>Singleplayer</i>.
+          There you can choose the mode, skill, number of bots and the map to play on.<br>
+          Please keep in mind that AssaultCube's main approach is multi-player gaming, so the bots may lack certain features, such as 
+          human intelligence.
+        </p>
+        <ul>
+          <li>
+            <b>Bot Team Deathmatch</b>:
+            Two teams made up of bots and yourself fight each other to the death. The team with the most frags at the end
+            of the round wins.
+          </li>
+          <li>
+            <b>Bot Deathmatch</b>:
+            It's every man and A.I. for themselves! Dismantle those bots!
+          </li>
+          <li>
+            <b>Bot One Shot, One Kill</b>:
+            You and the bots start with 1hp, a sniper rifle, a knife and no pickups.
+            Survive with your sniper, or humiliate with your swiss steel.
+          </li>
+        </ul>
       </div>
       <div id="author">
         <a href="license.html">&copy; Copyright, Rabid Viper Productions</a>
