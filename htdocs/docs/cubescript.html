@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="robots" content="NOODP">
+    <meta name="author" content="Rabid Viper Productions">
+    <meta name="copyright" content="You may be able to redistribute this content under specific conditions.
+    Please read the licensing information, available @ http://assault.cubers.net/docs/license.html for the
+    conditions that would apply to what you may be redistributing.">
+    <title>AssaultCube Documentation :: Introducing CubeScript</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/docs.css">
+    <!--#include virtual="/SSI-HTML/docs/invisibility.html" -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+  </head>
+  <body>
+    <div id="container">
+      <div id="docsheader">
+        AssaultCube Documentation
+      </div>
+      <div id="logo">
+        <a href="index.html"><img src="images/aclogo.png"
+        alt="AssaultCube" width="193px" height="81px"></a>
+      </div>
+      <div id="menubar">
+	<!--#include virtual="/SSI-HTML/docs/navigation_box_docs.html" -->
+	&nbsp;
+      </div>
+      <!--#include virtual="/SSI-HTML/docs/docswarn.html" -->
+      <div class="docswarn">
+        <b style="color : #750000;">NOTE:</b> This page of the documentation has been quickly converted from 
+        <a href="http://actiongame.svn.sourceforge.net/viewvc/actiongame/tags/v01_10_04/docs/README.html?revision=5882">AssaultCubes old 
+        README</a> and has not yet been checked properly for mistakes/weird stylying/invalid markup/inconsistancies/etc.
+        We're on it though, check back soon!
+      </div>
+      <div class="docsmain">
+        <div id="gohome">
+          <a href="index.html">Go to documentation index &#8629;</a>
+        </div>
+	<h2>Introducing CubeScript</h2>
+	
+	<!-- Remember to remove docwarning when fixed up! -->
+
+
+<p>
+      Cube's console language is similar to console languages of other games (e.g. Quake), but is a bit more powerful in
+      that it is almost a full programming language.
+    </p>
+<p>
+      What is similar to quake is the basic command structure: commands consist of the command itself, followed by any
+      number of arguments seperated by whitespace. you can use "" to quote strings with whitespace in them (such as the
+      actions in bind/alias), and whereever a command is required you can also use ; to sequence multiple commands in one.
+    </p>
+<p>
+      What is new compared to quake is that you can evaluate aliases and expressions. You can substitute the value of an
+      alias as an argument by prefixing it with a "$" sign, i.e.: <span class="code">echo The current value of x is $x</span>
+      You can even substitute
+      the values of console variables this way, i.e $fov gives the current fov. Some aliases are set automatically, for
+      example $arg1 to $argN are set if you supply arguments when you execute an alias.
+    </p>
+<p>
+      There are two alternative ways to "" to quote a string: () and []. They work in the same way as "", with the difference
+      that they can be nested infinitely, and that they may contain linefeeds (useful for larger scripts). () is different
+      from [] in that it evaluates the commands contained in it _before_ it evaluates the surrounding command, and substitutes
+      the results. () bracketed strings are called expressions, and combined with some commands made especially for
+      "programming", you have a minimal language. See the <a href="reference.xml#section_CubeScript" shape="rect">reference</a>
+      for information about those commands.
+    </p>
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div id="author">
+        <a href="license.html">&copy; Copyright, Rabid Viper Productions</a>
+      </div>
+      <div id="donatedocs">
+        <a href="http://sourceforge.net/project/project_donations.php?group_id=123597">
+          We would be grateful for any donations considered towards AssaultCube
+        </a>
+      </div>
+      <!--#include virtual="/SSI-HTML/adsense_footer.html" -->
+    </div>
+  </body>
+</html>

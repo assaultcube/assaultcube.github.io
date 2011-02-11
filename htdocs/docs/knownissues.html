@@ -7,7 +7,7 @@
     <meta name="copyright" content="You may be able to redistribute this content under specific conditions.
     Please read the licensing information, available @ http://assault.cubers.net/docs/license.html for the
     conditions that would apply to what you may be redistributing.">
-    <title>AssaultCube Documentation :: HTML TITLE HERE</title>
+    <title>AssaultCube Documentation :: Known issues</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/docs.css">
     <!--#include virtual="/SSI-HTML/docs/invisibility.html" -->
@@ -27,25 +27,54 @@
 	&nbsp;
       </div>
       <!--#include virtual="/SSI-HTML/docs/docswarn.html" -->
+      <div class="docswarn">
+        <b style="color : #750000;">NOTE:</b> This page of the documentation has been quickly converted from 
+        <a href="http://actiongame.svn.sourceforge.net/viewvc/actiongame/tags/v01_10_04/docs/README.html?revision=5882">AssaultCubes old 
+        README</a> and has not yet been checked properly for mistakes/weird stylying/invalid markup/inconsistancies/etc.
+        We're on it though, check back soon!
+      </div>
       <div class="docsmain">
         <div id="gohome">
           <a href="index.html">Go to documentation index &#8629;</a>
         </div>
-	<h2>PAGE TITLE HERE</h2>
+	<h2>Known issues</h2>
+	
+	<!-- Remember to remove docwarning when fixed up! -->
+
+
+<h2>
+      General issues
+    </h2>
+<ul>
+      <li>
+        AssaultCube may crash on Linux or Mac OSX because of buggy nVidia drivers.
+      </li>
+      <li>
+        The bots needs improving.
+      </li>  
+    </ul>
+<h2>
+      First-run issues
+    </h2>
+<p>
+      These are issues that only ever happen on the 1st load of AssaultCube and dissapear on the 2nd load.
+    </p>
+<ul>
+      <li>
+         It takes a bit longer than normal to load due to shadows.dat files being generated.
+      </li>
+      <li>
+        If you bypass pressing "apply" in the quick setup menu, AssaultCube will not attempt to enable 
+        stencil shadows until it is restarted. However, if your graphics card is not sufficiently powerful, 
+        AssaultCube will not enable stencil shadows by default either. 
+        However, they can be forced on in the "Video settings" menu.
+      </li>
+    </ul>
 
 
 
-        <pre>
-	  AFTER COPYING THIS FILE TO "./htdocs/docs" AND RENAMING IT, YOU'LL NEED TO CHANGE
-	  THE FOLLOWING ON THIS TEMPLATE BEFORE DELETING THIS TEXT AND WRITING YOUR OWN CONTENT:
 
-	     * The HTML title (Written as "HTML TITLE HERE" in this page).
-	     * The page title (Written as "PAGE TITLE HERE" in this page).
-	     
-	  REMEMBER TO READ "./INFO.txt" FOR EXTRA INFORMATION THAT MIGHT NOT BE HELD HERE.
-	  ONLY index.html AND team.html OF THE DOCS ARE TO HAVE DESCRIPTION TAGS, LET GOOGLE MAKE
-	  ITS OWN MIND UP ABOUT DESCRIBING THE OTHER PAGES!
-        </pre>
+
 
 
 
