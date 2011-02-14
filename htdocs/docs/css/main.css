@@ -8,7 +8,7 @@
 /* conditions that would apply to what you may be redistributing.	*/
 
 body {
-margin : 0;
+margin : 0px;
 background : url(../images/bodybg.png) repeat-y center bottom;
 background-color : #222222;
 font-family : Verdana, Arial, Helvetica, sans-serif;
@@ -22,7 +22,7 @@ color : #909090;
 }
 a:hover, a:active {
 text-decoration : none;
-color : #c0c0c0;
+color : #C0C0C0;
 }
 h4 {
 margin : 24px 0 12px 0;
@@ -52,7 +52,7 @@ color : #909090;
 text-decoration : none;
 }
 #menubar a:hover, #menubar a:active {
-color : #c0c0c0;
+color : #C0C0C0;
 }
 #main {
 padding : 0 5px;

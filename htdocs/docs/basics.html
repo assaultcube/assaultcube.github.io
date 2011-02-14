@@ -39,6 +39,7 @@
           <a href="index.html">Go to documentation index &#8629;</a>
         </div>
 	<h2>The basics</h2>
+	<img src="images/attackfromback.jpg" style="float : right; margin : 10px; border : 2px solid #555555;">
 	<p>
 	  The game objectives of AssaultCube are simple and straight-forward:
 	</p>
@@ -51,29 +52,48 @@
           There are also <a href="introduction.html#flagmodes">flag-based modes</a>,
           which have other, more exciting objectives.
         </p>
+        <br>
         <h4 id="controls">
           Controls
         </h4>
         <p>
           After knowing the controls, most things in AssaultCube are relatively straight forward.
           Press <b>W</b> to move forwards and then move your mouse around to change 
-          directions. Left-click when aimed at an enemy to attack them.
+          directions.
         </p>
         <p>
-          Here is a list of all the other controls:
+          Left-click when aimed at an enemy to attack them.
         </p>
-        <table style="width : 425px; float : left; margin-bottom : 25px;">
+        <p>
+          Below is a list of all the other controls (map editing controls are <a href="mapediting1.html#controls">here</a>).
+        </p>
+        <p>
+          You can also assign custom keys to specific weapons by using the keybinding menu
+          in-game.
+          This can be found by pressing ESCAPE and then navigating to: Settings &rArr; Input controls.
+        </p>
+        <table style="width : 870px; clear : both;">
           <tr>
-            <td style="width : 150px; text-decoration : underline;">Control</td>
-            <td style="width : 300px; text-decoration : underline;">Function</td>
+            <td style="width : 140px; text-decoration : underline;">Control</td>
+            <td style="width : 290px; text-decoration : underline;">Function</td>
+            <td rowspan="17" style="width : 10px; border-top : 1px solid #101010; border-bottom : 1px solid #101010;">&nbsp;</td>
+            <td style="width : 140px; text-decoration : underline;">Control</td>
+            <td style="width : 290px; text-decoration : underline;">Function</td>
           </tr>
           <tr>
             <td>ESC</td>
             <td>Main menu</td>
+            <td>Left mouse click</td>
+            <td>Attack</td>
           </tr>
           <tr>
             <td>W</td>
             <td>Move forward</td>
+            <td rowspan="2">Right mouse click</td>
+            <td rowspan="2">
+              Quick nade throw
+              <br>(scope-in when using the sniper rifle)
+            </td>
           </tr>
           <tr>
             <td>S</td>
@@ -82,133 +102,82 @@
           <tr>
             <td>A</td>
             <td>Move left</td>
-          </tr>
-          <tr>
-            <td>D</td>
-            <td>Move right</td>
-          </tr>
-          <tr>
-            <td>Space bar</td>
-            <td>Jump</td>
-          </tr>
-          <tr>
-            <td>Left SHIFT</td>
-            <td>Crouch</td>
-          </tr>
-          <tr>
-            <td>B</td>
-            <td>Change weapon menu</td>
-          </tr>
-          <tr>
-            <td>R</td>
-            <td>Reload</td>
-          </tr>
-          <tr>
-            <td>G</td>
-            <td>Quick grenade throw</td>
-          </tr>
-          <tr>
-            <td>Left ALT</td>
-            <td>Mini-map</td>
-          </tr>
-          <tr>
-            <td>TAB</td>
-            <td>Scoreboard</td>
-          </tr>
-          <tr>
-            <td>T</td>
-            <td>Chat / Console</td>
-          </tr>
-          <tr>
-            <td>Y</td>
-            <td>Team-chat</td>
-          </tr>
-          <tr>
-            <td>V</td>
-            <td>Voice-com menu</td>
-          </tr>
-          <tr>
-            <td>Backspace</td>
-            <td>Drop the flag</td>
-          </tr>
-        </table>
-        <table style="width : 425px; float : right; margin-bottom : 25px;">
-          <tr>
-            <td style="width : 150px; text-decoration : underline;">Control</td>
-            <td style="width : 300px; text-decoration : underline;">Function</td>
-          </tr>
-          <tr>
-            <td>Left mouse click</td>
-            <td>Attack</td>
-          </tr>
-          <tr>
-            <td style="height : 56px;">Right mouse click</td>
-            <td>
-              Quick nade throw
-              <br>(scope-in when using the sniper rifle)
-            </td>
-          </tr>
-          <tr>
             <td>Mousewheel scroll</td>
             <td>Cycle through weapons</td>
           </tr>
           <tr>
+            <td>D</td>
+            <td>Move right</td>
             <td>Center mouse click</td>
             <td>Knife</td>
           </tr>
           <tr>
+            <td>Space bar</td>
+            <td>Jump</td>
             <td>1</td>
             <td>Primary weapon</td>
           </tr>
           <tr>
+            <td>Left SHIFT</td>
+            <td>Crouch</td>
             <td>2</td>
             <td>Pistol</td>
           </tr>
           <tr>
+            <td>B</td>
+            <td>Change weapon menu</td>
             <td>3</td>
             <td>Grenades (if available)</td>
           </tr>
           <tr>
+            <td>R</td>
+            <td>Reload</td>
             <td>4</td>
             <td>Knife</td>
           </tr>
           <tr>
+            <td>G</td>
+            <td>Quick grenade throw</td>
             <td>F1</td>
             <td>Vote yes</td>
           </tr>
           <tr>
+            <td>Left ALT</td>
+            <td>Mini-map</td>
             <td>F2</td>
             <td>Vote no</td>
           </tr>
           <tr>
+            <td>TAB</td>
+            <td>Scoreboard</td>
             <td>F10</td>
             <td>Download last recorded server demo</td>
           </tr>
           <tr>
+            <td>T</td>
+            <td>Chat / Console</td>
             <td>F11</td>
             <td>Extend the console size</td>
           </tr>
           <tr>
+            <td>Y</td>
+            <td>Team-chat</td>
             <td>F12</td>
             <td>Generate screenshot</td>
           </tr>
           <tr>
+            <td>V</td>
+            <td>Voice-com menu</td>
             <td>(Keypad) -</td>
             <td>Scroll up through console messages</td>
           </tr>
           <tr>
+            <td>Backspace</td>
+            <td>Drop the flag</td>
             <td>(Keypad) +</td>
             <td>Scroll down through console messages</td>
           </tr>
         </table>
-        <p>
-          You can find a list of controls used in map editing <a href="mapediting1.html#controls">here</a>.
-        </p>
-        <p>
-          You can also assign custom keys to specific weapons by using the keybinding menu
-          in-game.
-          <br>This can be found by pressing ESCAPE and then navigating to: Settings &rArr; Input controls.
-        </p>
         <h4>
           Starting a single-player game
         </h4>
@@ -221,9 +190,12 @@
         </h4>
         <p>
           Press ESC and choose <i>Multiplayer &rArr; Join a server</i>.
-          The masterserver will be queried and provide you with a list of servers.
+          The masterserver will be queried and provide you with a list of servers, like shown below.
           This list of servers then gets saved in <i>config/servers.cfg</i> for next time.
         </p>
+        <div style="text-align : center;">
+          <img src="images/retrieveservers.jpg">
+        </div>
         <p>
           If the <a href="interface.html#hud">console</a> says "master server
           not replying", then that means your client failed to download the list of servers
@@ -234,9 +206,6 @@
           then enter a valid IP or DNS name of a server &amp; the port number
           (and optionally a password, if the server uses one).
         </p>
-
-
-
 
 
 
@@ -302,7 +271,7 @@
                 Choosing a weapon
             </h2>
             <p>
-                <img style="float: right; margin-left: 10px; margin-bottom: 5px;" src="pics/weaponselect.jpg"
+                <img style="float: right; margin-left: 10px; margin-bottom: 5px;" src="images/weaponselect.jpg"
                     alt="Weapon Selection" />
                 To select a primary weapon, press B to show the weapon menu (you can also find this
                 menu inside of the settings menu).<br clear="none" />
@@ -328,7 +297,7 @@
                 You can find out more about the weapons <a href="introduction.html#weapons">
                     here</a>.
             </p>
-            <img style="float: right; margin-left: 10px;" src="pics/smallminimap.jpg" alt="Minimap" />
+            <img style="float: right; margin-left: 10px;" src="images/smallminimap.jpg" alt="Minimap" />
             <h2 style="margin-top: 30px;">
                 Orientation
             </h2>
