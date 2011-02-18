@@ -39,7 +39,7 @@
           <a href="index.html">Go to documentation index &#8629;</a>
         </div>
 	<h2>The basics</h2>
-	<img src="images/attackfromback.jpg" style="float : right; margin : 10px; border : 2px solid #555555;">
+	<img src="images/attackfromback.jpg" style="float : right; margin : 10px; border : 2px solid #555555;" alt="Bang bang!">
 	<p>
 	  The game objectives of AssaultCube are simple and straight-forward:
 	</p>
@@ -52,10 +52,9 @@
           There are also <a href="introduction.html#flagmodes">flag-based modes</a>,
           which have other, more exciting objectives.
         </p>
-        <br>
-        <h4 id="controls">
+        <h3 id="controls">
           Controls
-        </h4>
+        </h3>
         <p>
           After knowing the controls, most things in AssaultCube are relatively straight forward.
           Press <b>W</b> to move forwards and then move your mouse around to change 
@@ -70,7 +69,7 @@
         <p>
           You can also assign custom keys to specific weapons by using the keybinding menu
           in-game.
-          This can be found by pressing ESCAPE and then navigating to: Settings &rArr; Input controls.
+          This can be found by pressing ESCAPE and then navigating to: Settings &#8658; Input controls.
         </p>
         <table style="width : 870px; clear : both;">
           <tr>
@@ -178,158 +177,145 @@
             <td>Scroll down through console messages</td>
           </tr>
         </table>
-        <h4>
-          Starting a single-player game
-        </h4>
-        <p>
-          Starting a single-player game is simple. Press ESC, navigate to <b>Singleplayer</b>, then choose
-          the mode, bot skill, amount of enemies and the map. Then, a game with computer-bot enemies will start immediately.
-        </p>
-        <h4>
+        <br>
+        <h3>
           Joining a multiplayer game
-        </h4>
+        </h3>
         <p>
-          Press ESC and choose <i>Multiplayer &rArr; Join a server</i>.
-          The masterserver will be queried and provide you with a list of servers, like shown below.
-          This list of servers then gets saved in <i>config/servers.cfg</i> for next time.
+          Press ESC and choose <i>Multiplayer &#8658; Join a server</i>.
         </p>
         <div style="text-align : center;">
-          <img src="images/retrieveservers.jpg">
+          <img src="images/serverbrowser.jpg" alt="The serverbrowser">
         </div>
         <p>
+          The masterserver will be queried and provide you with a list of servers, like the image above.
+          This list of servers then gets saved in <i>config/servers.cfg</i> for next time.
           If the <a href="interface.html#hud">console</a> says "master server
           not replying", then that means your client failed to download the list of servers
           to play upon, and you will need to click on "<b>Force serverlist update</b>" until it updates.
+        </p>
+        <p>
+          If you wish, you can sort the server browser using your left/right keys. Press F1 in this menu
+          to see other available options.
         </p>
         <p>
           Alternatively, you can connect to a server directly by using the <i>Custom connect</i> menu and
           then enter a valid IP or DNS name of a server &amp; the port number
           (and optionally a password, if the server uses one).
         </p>
+        <table style="float : right; margin : 10px 0px 0px 15px; font-size : 10px;">
+          <tr>
+            <td>
+              <img src="images/spmenu.jpg" alt="SP menu">
+              <br>The single-player menu.
+            </td>
+          </tr>
+          <tr style="border-right : 1px solid #101010; border-left : 1px solid #101010;">
+            <td>
+              &nbsp;
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img src="images/settingsmenu.jpg" alt="Settings menu">
+              <br>The settings menu.
+            </td>
+          </tr>
+          <tr style="border-right : 1px solid #101010; border-left : 1px solid #101010;">
+            <td>
+              &nbsp;
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img src="images/weaponselect.jpg" alt="Weapons menu">
+              <br>The weapons menu.
+            </td>
+          </tr>
+        </table>
+        <h3 style="margin-top : 30px;">
+          Starting a single-player game
+        </h3>
+        <p>
+          Starting a single-player game is simple. Press ESC, navigate to <b>Singleplayer</b>, then choose
+          the mode, bot skill, amount of enemies and the map. Then, a game with computer-bot enemies will start immediately.
+        </p>
+        <h3 style="margin-top : 30px;">
+          Changing settings
+        </h3>
+        <p>
+          Most important setting changes can actually be changed from within the menus. So,
+          press <b>ESC</b> and then <b>Settings</b>. There are many important settings in
+          this menu that can be changed, including changing your name and team. Look in there
+          for what you need.
+        </p>
+        <p>
+          There are other settings which can't be found inside the menu. These settings
+          can be changed via the <a href="interface.html#console">console</a>. Check out the
+          <a href="reference.xml">reference</a> to find out about those settings and how they can be changed.
+        </p>
+        <p>
+          To find out how settings are saved, <a href="faqs.html#n14">read here</a>.
+        </p>
+        <h3 style="margin-top : 30px;">
+          Choosing a weapon
+        </h3>
+        <p>
+          To select a primary weapon, press B to show the weapon menu.
+          Through this menu you'll be able to choose any of the five 
+          <a href="introduction.html#weapons">primary weapons</a>.
+        </p>
+        <p>
+          You will then receive the weapon when you next respawn. 
+          If you want the weapon straight away, type <span class="code">/suicide</span>
+        </p>
+        <p>
+          You can select between your primary weapon, pistol/akimbo, grenade or knife
+          by selecting them using the keys 1-4, or by scrolling through them with your mouse.
+          Pressing G or right click will throw a grenade.
+        </p>
+        <p>
+          <b>Quick nade throw</b>: If you want to throw a grenade and then quickly switch
+          back to your normal weapon, press and hold the right mouse button and then let go
+          to throw the grenade. After throwing the grenade (if you clicked and held it) then
+          it will switch back to your normal weapon.
+        </p>
+        <img style="float: right; margin-right: 10px; margin-top : 20px; border : 2px solid #555555;" src="images/smallminimap.jpg" alt="Minimap">
+        <h3 style="margin-top: 30px;">
+          Orientation
+        </h3>
+        <p>
+          If you can't find your way around the map, you can use the mini-map in the top-right
+          corner of your screen (see right). Also, a bigger version of the map can be shown
+          by pressing <b>ALT</b>.
+        </p>
+        <p>
+          To learn more about the mini-map, see <a href="interface.html#minimap">here</a>.
+        </p>
+        <h3>
+          Scoreboard
+        </h3>
+        <p>
+          To see the scoreboard, press <b>TAB</b>. More information about the scoreboard 
+          can be found <a href="interface.html#scoreboard">here</a>.
+        </p>
+        <h4 style="padding-top : 25px;">
+          Talking/Chatting
+        </h3>
+        <p>
+          If you want to say something to other players, it's very simple. Just press <b>T</b>
+          to bring up the console where you can type whatever you would like.
+        </p>
+        <p>
+          If you want to make sure what you say is said only to the players on your team (if
+          in a team mode), then press <b>U</b>. This will bring up the console with a <i>%</i>
+          sign in-front of it. The <i>%</i> sign is what is needed infront of <i>ANYTHING</i>
+          you say to make it be seen <i>ONLY</i> by your team.
+        </p>
+
+<!--- TBC -->
 
 
-
-<!-- TBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCC -->
-
-
-
-
-
-
-
-
-
-
-            <h2>
-                Changing settings
-            </h2>
-            <p>
-                Most important setting changes can actually be changed from within the menus. So,
-                press <b>ESC</b> and then <b>Settings</b>. There are many important settings in
-                this menu that can be changed, including changing your name and team. Look in there
-                for what you need.
-            </p>
-            <p>
-                There are of course other settings which can't be found inside the menu. These settings
-                can be changed via the console. Check out the <a href="reference.xml">
-                    reference</a> to find out about those settings and how they can be changed.
-            </p>
-            <h2>
-                How settings are saved
-            </h2>
-            <p>
-                There is a file called <i>defaults.cfg</i> in the <i>config</i> directory. When
-                you run AssaultCube for the first time it will execute this file. Once you quit
-                AssaultCube, the default settings and your changes created upon them during the
-                course of the game (and settings from your autoexec.cfg) will be stored in <i>config/saved.cfg</i>.
-                If you want to reset your settings to default values just delete <i>config/saved.cfg</i>.
-                Alternatively, you can delete it using the menus, by pressing ESCAPE and going into:
-                Settings ⇒ Reset all settings.
-            </p>
-            <p>
-                If there are commands that you would like executed every time AssaultCube starts,
-                you can insert these scripting commands into <i>config/autoexec.cfg</i>.
-            </p>
-            <p>
-                When AssaultCube is started, it will check for the file <i>config/init.cfg</i>.
-                If it does not exist then AssaultCube assumes this is the first time you have ran
-                AssaultCube and will prompt you with the "quick setup" menu. This contains settings
-                for you to change that are important for running AssaultCube. Such as screen resolution,
-                mouse sensitivity, nickname, etc. When you press "OK", then AssaultCube will restart
-                to allow those settings to take effect. The <i>config/init.cfg</i> file saves settings
-                that can only be changed before AssaultCube runs, so when AssaultCube first starts,
-                it will execute those settings.
-            </p>
-            <p>
-                Note for linux users: Config files get saved in the hidden directory <i>.assaultcube/config</i>
-                in your users home directory.
-            </p>
-            <p>
-                Note for windows users: Config files get saved in a directory in your "My Documents" folder.
-            </p>
-            <h2>
-                Choosing a weapon
-            </h2>
-            <p>
-                <img style="float: right; margin-left: 10px; margin-bottom: 5px;" src="images/weaponselect.jpg"
-                    alt="Weapon Selection" />
-                To select a primary weapon, press B to show the weapon menu (you can also find this
-                menu inside of the settings menu).<br clear="none" />
-                This menu will give you the option to pick any of the four primary weapons (Assault
-                rifle, Sniper rifle, Sub-machine gun, Shotgun).
-            </p>
-            <p>
-                The next time respawn, you will start with the weapon that you selected from this
-                menu.
-            </p>
-            <p>
-                You can also select between your primary weapon, pistol/akimbo, grenade or knife
-                by selecting them using the keys 1-4, or by scrolling through them with your mouse.
-                Also, G will throw a grenade.
-            </p>
-            <p>
-                <b>Quick nade throw</b>: If you want to throw a grenade and then quickly switch
-                back to your normal weapon, press and hold the right mouse button and then let go
-                to throw the grenade. After throwing the grenade (if you clicked and held it) then
-                it will switch back to your normal weapon.
-            </p>
-            <p>
-                You can find out more about the weapons <a href="introduction.html#weapons">
-                    here</a>.
-            </p>
-            <img style="float: right; margin-left: 10px;" src="images/smallminimap.jpg" alt="Minimap" />
-            <h2 style="margin-top: 30px;">
-                Orientation
-            </h2>
-            <p>
-                If you can't find your way around the map, you can use the mini-map in the top-right
-                corner of your screen (see right). Also, a bigger version of the map can be shown
-                by pressing <b>ALT</b>.
-            </p>
-            <p>
-                To learn more about the mini-map, see <a href="interface.html#minimap">
-                    here</a>.
-            </p>
-            <h2 style="margin-top: 25px;">
-                Scoreboard
-            </h2>
-            <p>
-                You can see the scoreboard by pressing <b>TAB</b>. More information about the scoreboard
-                can be found <a href="interface.html#scoreboard">here</a>.
-            </p>
-            <h2>
-                Talking/Chatting
-            </h2>
-            <p>
-                If you want to say something to other players, it's very simple. Just press <b>T</b>
-                to bring up the console where you can type what you would like to the other players.
-            </p>
-            <p>
-                If you want to make sure what you say is said only to the players on your team (if
-                in a team mode), then press <b>U</b>. This will bring up the console with a <i>%</i>
-                sign in-front of it. The <i>%</i> sign is what is needed infront of <i>ANYTHING</i>
-                you say to make it be seen <i>ONLY</i> by your team.
-            </p>
             <h2 id="gib">
                 Gibs
             </h2>
