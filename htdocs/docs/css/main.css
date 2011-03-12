@@ -125,6 +125,7 @@ list-style-type : square;
 .titletext {
 border-bottom : 1px dashed;
 cursor : help;
+display : inline;
 }
 #author {
 float : right;
