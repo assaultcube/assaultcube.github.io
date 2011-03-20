@@ -44,19 +44,20 @@
 
 
             <p>
-                <a href="mapediting1.html#sparkles" shape="rect">Entities</a> are shown as blue
-                sparkly dots when in edit mode (the nearest one will show as orange). They are used for adding non-geometry/texture items,
+                <a href="mapediting1.html#sparkles" shape="rect">Entities</a> are shown as colour-coded
+                sparkly dots when in edit mode (the nearest one will show blue). They are used for adding non-geometry/texture items,
                 such as:
             </p>
+			<!-- see entities.cpp: ~ line 173: void renderentities(): for colours, more accurately renderparticles.cpp: ~ line 251: static struct parttype -->
             <ul>
-                <li><a href="#light" shape="rect">Lights</a> </li>
-                <li><a href="#pickup" shape="rect">Item pickups</a> </li>
-                <li><a href="#spawn" shape="rect">Spawn points</a> </li>
-                <li><a href="#models" shape="rect">Mapmodels</a> </li>
-                <li><a href="#ctf" shape="rect">CTF flags</a> </li>
-                <li><a href="#clips" shape="rect">Clips</a> </li>
-                <li><a href="#ladders" shape="rect">Ladders</a> </li>
-                <li><a href="#sounds" shape="rect">Map sounds</a> </li>
+                <li><a href="#light" shape="rect">Lights</a> in white</li>
+                <li><a href="#pickup" shape="rect">Item pickups</a> in red (weaponry) or yellow (armour/health)</li>
+                <li><a href="#spawn" shape="rect">Spawn points</a> in green</li>
+                <li><a href="#models" shape="rect">Mapmodels</a> in magenta (like sounds)</li>
+                <li><a href="#ctf" shape="rect">CTF flags</a> in turquoise</li>
+                <li><a href="#clips" shape="rect">Clips</a> in grey (like ladders)</li>
+                <li><a href="#ladders" shape="rect">Ladders</a> in grey (like clips)</li>
+                <li><a href="#sounds" shape="rect">Map sounds</a> in magenta (like models)</li>
             </ul>
             <p>
                 Each of these entities will be explained soon. All entities are added by the <b>/newent</b>
