@@ -12,6 +12,12 @@
     <link rel="stylesheet" type="text/css" href="css/docs.css">
     <!--#include virtual="/SSI-HTML/docs/invisibility.html" -->
     <link rel="shortcut icon" href="images/favicon.ico">
+    <style type="text/css">
+    ul {
+      margin-left : -20px;
+      list-style-type : square;
+    }
+    </style>
   </head>
   <body>
     <div id="container">
@@ -27,99 +33,76 @@
 	&nbsp;
       </div>
       <!--#include virtual="/SSI-HTML/docs/docswarn.html" -->
-      <div class="docswarn">
-        <b style="color : #750000;">NOTE:</b> This page of the documentation has been quickly converted from 
-        <a href="http://actiongame.svn.sourceforge.net/viewvc/actiongame/tags/v01_10_04/docs/README.html?revision=5882">AssaultCubes old 
-        README</a> and has not yet been checked properly for mistakes/weird stylying/invalid markup/inconsistancies/etc.
-        We're on it though, check back soon!
-      </div>
       <div class="docsmain">
         <div id="gohome">
           <a href="index.html">Go to documentation index &#8629;</a>
         </div>
 	<h2>Player skins</h2>
-	
-	<!-- Remember to remove docwarning when fixed up! -->
-
-
-
-
-<p> 
-   The AssaultCube playmodel is originally created by: Darren <i>“HitmanDaz[MT]”</i> Pattenden. Under the license given by
-   him, you may use these models/skins for personal use only... i.e. Not for commercial use, and if edited, you should license 
-   them in the same way, rather than adding your own license to them.
-</p>
-<p>
-   This page covers implementation/use of the playerskin, not how to edit a playerskin. To learn how to edit a playerskin, 
-   please refer elsewhere. <b>Note:</b> You can use <b>/packages/models/playermodels/skin.jpg</b> as a template to make a new playerskin.
-</p>
-<h2>Nickname skins</h2>
-<p>
-   A new feature of AssaultCube v1.0 allows you to have custom skins for particular players. This is great if you have, for 
-   example, a friend in the game, that you want to be able to always recognise easily (so you can go kick his ass!)
-</p>
-<p>
-   This feature works on nickname recognition. If player <b>foobar</b> exists, and there is a skin with the name <b>foobar</b>, then it will
-   load that skin for the player with that name.
-</p>
-<p>
-   To implement this, navigate to the folder: <b>/packages/models/playermodels/custom</b> <br clear="none" />
-   You will need to add your playerskin into this folder and then name it as below: <br clear="none" />
-   <i>(Note: Nicknames and filenames are case sensitive)</i>
-</p>
-<ul>
-  <li>
-    <b>[nickname]</b><i>_ffa.jpg</i> - This will make AssaultCube load your playerskin for the name you specified if playing a non-team mode. 
-    If this file is missing, then AssaultCube will use either the CLA or the RVSF file.
-  </li>
-  <li>
-    <b>[nickname]</b><i>_cla.jpg</i> - This will make AssaultCube load your playerskin for the name you specified if the player is on team CLA.
-  </li>
-  <li>
-    <b>[nickname]</b><i>_rvsf.jpg</i> - This will make AssaultCube load your playerskin for the name you specified if the player is on team RVSF.
-  </li>
-</ul>
-<h2>Key-word nickname skins</h2>
-<p>
-   You can also make the playerskin look for key words in the nickname instead, this is especially useful if you want all of your clan
-   to display the same skin (i.e. you could make AssaultCube search for your clan tag <b>Z!P</b> and make all players with that word	
-   display the skin you specify).
-</p>
-<p>
-   To implement this, navigate to the folder: <b>/packages/models/playermodels/custom</b> <br clear="none" />
-   You will need to add your playerskin into this folder and then name it as below: <br clear="none" />
-   <i>(Note: Nicknames and filenames are case sensitive, also note how there are _2_ underscores!)</i>
-</p>
-<ul>
-  <li>
-    <b>[keyword]</b><i>__ffa.jpg</i> - This will make AssaultCube load your playerskin for the key word you specified if playing a non-team mode. 
-    If this file is missing, then AssaultCube will use either the CLA or the RVSF file.
-  </li>
-  <li>
-    <b>[keyword]</b><i>__cla.jpg</i> - This will make AssaultCube load your playerskin for the key word you specified if the player is on team CLA.
-  </li>
-  <li>
-    <b>[keyword]</b><i>__rvsf.jpg</i> - This will make AssaultCube load your playerskin for the key word you specified if the player is on team RVSF.
-  </li>
-</ul>
-<h2>File replacement</h2>
-<p>
-   There is also of course, file replacement, where you would replace the already existing skin file with your new skin, so that anybody with the skin
-   that you replaced, would now appear with your new skin (i.e. named the same). This is not recommended, but if you do decide to do this, 
-   it is best implemented as a <a href="mods.html">mod</a>.
-</p>
-
-
-
-
-
-
-
-
-
-
-
-
+        <p>
+          This page covers implementation/use of custom playerskins (not how to create/edit a custom playerskin).
+          To learn how to edit a playerskin, please refer elsewhere.<br>
+          <b>Note:</b> You can use <span class="code" style="font-weight : bold;">./packages/models/playermodels/skin.jpg</span>
+          as a template for a new playerskin.
+        </p>
+	<p>
+          The AssaultCube playermodel/playerskin was originally created by Darren <i>“HitmanDaz[MT]”</i> Pattenden.
+        </p>
+        <p>
+          Under the <a href="http://actiongame.svn.sourceforge.net/viewvc/actiongame/trunk/ac/packages/models/playermodels/license.txt">license</a>
+          provided by him, you may use these models/skins for personal use only (i.e. NOT for commercial use).
+          This also means any derivatives/modifications you make MUST also be licensed to ONLY allow personal use. We recommend
+          including the <span class="code" style="font-weight : bold;">./packages/models/playermodels/license.txt</span>
+          file whenever you redistribute a new player skin.
+        </p>
+        <h4>Single-name nickname skins</h4>
+        <p>
+          Single-name nickname skins allow you to assign <b>ONE</b> specific skin to <b>ONE</b> specific players name.
+          This is great if you have for example, an advisary in the game that you want to be able to always recognise
+          easily so you can specifically target them.
+        </p>
+        <p>
+          To implement this, add your new skin file into the folder: <b>./packages/models/playermodels/custom</b> and then 
+          name it like the below (note: nicknames and filenames are case sensitive).
+        </p>
+        <ul>
+          <li>
+            <b>[nickname]</b><i>_ffa.jpg</i> (for non-team modes. If this file is missing, one of the CLA or RVSF files will be automatically used).
+          </li>
+          <li>
+            <b>[nickname]</b><i>_cla.jpg</i> (For team CLA).
+          </li>
+          <li>
+            <b>[nickname]</b><i>_rvsf.jpg</i> (for team RVSF).
+          </li>
+        </ul>
+        <h4>Multi-name nickname skins</h4>
+        <p>
+          Multi-name nickname skins search for key words in a nickname instead. This is especially useful if you want
+          all of your clan to display the same skin, rather than a single person.
+        </p>
+        <p>
+          To implement this, add your new skin file into the folder: <b>./packages/models/playermodels/custom</b> and then 
+          name it like the below (note: nicknames and filenames are case sensitive. Also note how there are <u>*TWO*</u>
+          underscores, not one!)
+        </p>
+        <ul>
+          <li>
+            <b>[nickname]</b><i>__ffa.jpg</i> (for non-team modes. If this file is missing, one of the CLA or RVSF files will be automatically used).
+          </li>
+          <li>
+            <b>[nickname]</b><i>__cla.jpg</i> (For team CLA).
+          </li>
+          <li>
+            <b>[nickname]</b><i>__rvsf.jpg</i> (for team RVSF).
+          </li>
+        </ul>
+        <h4>File replacement</h4>
+        <p>
+          Some players prefer file replacement, where you simply replace the already existing skin file with your new skin,
+          this way, anybody using the same skin that you replaced, would now appear with your new skin.
+          This isn't recommended - if you do decide to do this however, it is best to implement it as a <a href="mods.html">mod</a>
+          so that none of your previous files are missing.
+        </p>
       </div>
       <div id="author">
         <a href="license.html">&copy; Copyright, Rabid Viper Productions</a>
