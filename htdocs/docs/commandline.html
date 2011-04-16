@@ -298,30 +298,6 @@
                         Add timestamp to every console log line.
                     </td>
                 </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="codecommandline">--demofilenameformat=</span>FORMAT
-                    </td>
-                    <td>
-                        Changes the format used for saving demos (if -W is used). See <a href="reference.xml#identifier_demonameformat">demonameformat</a>.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="codecommandline">--demotimestampformat=</span>FORMAT
-                    </td>
-                    <td>
-                        Changes the timestamp format used for saving demos (if -W is used). See <a href="reference.xml#identifier_demotimeformat">demotimeformat</a>.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="codecommandline">--demotimelocal=</span>0||1
-                    </td>
-                    <td>
-                        Changes whether timestamps are converted to localtime or use UTC when saving demos (if -W is used). See <a href="reference.xml#identifier_demotimelocal">demotimelocal</a>.
-                    </td>
-                </tr>
 
             </table>
 
@@ -490,8 +466,7 @@
                     </td>
                     <td>
                         Sets the server to register itself against masterserver M.
-                        M is the base url of the master server and has to end in a / and without a http:// prefix, 
-                        the default is masterserver.cubers.net/cgi-bin/AssaultCube.pl/.
+                        M is the base url of the master server, the default is -mmasterserver.cubers.net.
                         If you want your server to be private and not report to the masterserver, use -mlocalhost.
                     </td>
                 </tr>
@@ -501,7 +476,7 @@
                     </td>
                     <td>
                         Sets the server password to PASS. Only clients
-                        that use the command "/connect <i>IP PORT PASS</i>" will be able to connect.
+                        who know the password will be able to connect.
                     </td>
                 </tr>
                 <tr>
@@ -534,7 +509,7 @@
                 </tr> 
                 <tr>
                     <td style="text-align: center;vertical-align: top">
-                        <span class="codecommandline">-r</span>C
+                        <span class="codecommandline">-r</span>f
                     </td>
                     <td>
                         Sets the <a href="server.html#maprotation" shape="rect">
@@ -566,6 +541,15 @@
                     <td>
                         Sets the forbidden words file. The default is
                         <span class="code">-gconfig/forbidden.cfg</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="codecommandline">-E</span>f
+                    </td>
+                    <td>
+                        Sets the killmessages file. The default is
+                        <span class="code">-gconfig/killmessages.cfg</span>
                     </td>
                 </tr>
                 <tr>
@@ -792,6 +776,30 @@
                         log messages to be printed, including the server configuration files (after parsing). Using this
                         switch twice will also enable logging of DEBUG messages. Be careful:
                         the logfile will contain all content from serverpwd.cfg.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="codecommandline">--demofilenameformat=</span>FORMAT
+                    </td>
+                    <td>
+                        Changes the format used for saving demos (if -W is used). See <a href="reference.xml#identifier_demonameformat">demonameformat</a>.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="codecommandline">--demotimestampformat=</span>FORMAT
+                    </td>
+                    <td>
+                        Changes the timestamp format used for saving demos (if -W is used). See <a href="reference.xml#identifier_demotimeformat">demotimeformat</a>.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="codecommandline">--demotimelocal=</span>LOCAL
+                    </td>
+                    <td>
+                        Changes whether timestamps are converted to localtime (LOCAL set to 1) or use UTC (LOCAL set to 0; default) when saving demos (if -W is used). See <a href="reference.xml#identifier_demotimelocal">demotimelocal</a>.
                     </td>
                 </tr>
             </table>
