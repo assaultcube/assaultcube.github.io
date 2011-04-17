@@ -26,8 +26,7 @@
         text-align : center;
         background-color : #0C0C0C;
         vertical-align: top;
-        font-family : "Courier New", Courier, monospace;
-        font-size : 18px;
+        font-size : 15px;
       }
       .c2 {
         background-color : #0C0C0C;
@@ -35,8 +34,7 @@
       .c3 {
         text-align : center;
         vertical-align: top;
-        font-family : "Courier New", Courier, monospace;
-        font-size : 18px;
+        font-size : 15px;
       }
     </style>
   </head>
@@ -141,7 +139,7 @@
             </td>
             <td class="c2">
               Sets the desired screen width to <span class="code">X</span>.
-              The default is <span class="code">-w1024</span>.
+              The default is <span class="code">-w1024</span>
             </td>
           </tr>
           <tr>
@@ -150,7 +148,7 @@
             </td>
             <td>
               Sets the desired screen height to <span class="code">Y</span>.
-              The default is <span class="code">-h768</span>.
+              The default is <span class="code">-h768</span>
             </td>
           </tr>
           <tr>
@@ -255,202 +253,188 @@
             <td class="c3">-T</td>
             <td>Tags a timestamp to each line of text output to the console.</td>
           </tr>
+          <tr>
+            <td class="c1">-d</td>
+            <td class="c2">
+              This starts the executable file for the AssaultCube CLIENT, as an AssaultCube SERVER instead.
+              You don't need this parameter if you're using the server executable. There is no need to use
+              this argument unless you know what you're doing.
+            </td>
+          </tr>
         </table>
         <h2 id="serverswitch" style="padding-top : 20px;">Arguments for the AssaultCube server</h2>
         <p>
           These arguments are specifically for the servers launcher, not the client. All of the arguments are case-sensitive!
         </p>
+        <table>
+          <tr>
+            <td class="head01">Argument</td>
+            <td class="head01">Description</td>
+          </tr>
+          <tr>
+            <td class="c1">-u<b>N</b></td>
+            <td class="c2">
+              Sets the up-stream bandwidth (per player) to <span class="code">N</span> bytes per second.
+              Only set this argument if you know what you're doing, as specifying a incorrect value is
+              worse than not specifying it.
+            </td>
+          </tr>
+          <tr>
+            <td id="serverdesc" class="c3">-n<b>S</b></td>
+            <td>
+              Sets the server description that shows in the server list.
+              Make sure you keep it short, otherwise it'll become truncated, example: -n"Fruity: Bananas & Cherry"
+            </td>
+          </tr>
+          <tr>
+            <td class="c1">-n1<b>S</b></td>
+            <td class="c2">
+              Sets a prefix for the server description that remains when the server description is changed using the
+              <a href="http://assault.cubers.net/docs/reference.xml#identifier_serverdesc" class="code">/serverdesc</a>
+              command. A prefix AND/OR suffix MUST be specified for the <span class="code">/serverdesc</span> command to work.
+            </td>
+          </tr>
+          <tr>
+            <td class="c3">-n2<b>S</b></td>
+            <td>
+              Sets a suffix for the server description that remains when the server description is changed using the
+              <a href="http://assault.cubers.net/docs/reference.xml#identifier_serverdesc" class="code">/serverdesc</a>
+              command. A suffix AND/OR prefix MUST be specified for the <span class="code">/serverdesc</span> command to work.
+            </td>
+          </tr>
+          <tr>
+            <td class="c1">-i<b>IP</b></td>
+            <td class="c2">
+              Binds the AssaultCube server to a single IP address. This option is only of use for servers that have multiple
+              IP addresses. Don't use this unless you know what you're doing.
+            </td>
+          </tr>
+            <td class="c3">-f<b>PORT</b></td>
+            <td>
+              The AssaultCube server uses 2 ports (UDP), the default ports are 28763 and 28764.
+              You need to use different ports if you want to run several servers on the same IP address.
+              This argument allows you to bind the AssaultCube server to other ports.
+              For example: <span class="code">-f9000</span> would run a server on ports 9000 and 9001.
+            </td>
+          </tr>
+          <tr>
+            <td class="c1">-N<b>ID</b>
+            <td class="c2">
+              Sets the log identity to ID. By default, the log identity is 'IP[port]'.
+              <br>On Linux systems, the log identity is used for the syslog to identify server log entries.
+              <br>On Windows and Apple systems, the log identity is used to create the server log filename.
+            </td>
+          </tr>
+          <tr>
+            <td class="c3">-F<b>n</b></td>
+            <td>
+              Sets the syslog facility to <span class="code">n</span>.
+              Values from 0 to 7 are allowed, to make use of the facilities "local0" through to "local7".
+              By default, local6 is used. For further information, read the documentation of your installed syslog daemon.
+            </td>
+          </tr>
+          <tr>
+            <td class="c1">-T</td>
+            <td class="c2">Tags a timestamp to each line of text output to the console/log files.</td>
+          </tr>
+          <tr>
+            <td class="c3">-LF<b>n</b></td>
+            <td>
+              Sets the level of logging to <span class="code">n</span> for logging to file.
+              On Linux systems, this argument enables ADDITIONAL logging, as Linux systems already log to syslog.
+              <br>The following levels can be selected:<br><br>
+              <table>
+                <tr>
+                  <td>0</td><td>DEBUG</td><td>Logs all messages.</td>
+                </tr>
+                <tr>
+                  <td>1</td><td>VERBOSE</td>
+                  <td>
+                    Logs all messages of level VERBOSE and above
+                    <br>This is the same as using the <span class="code">-V</span> argument.
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td><td>INFO</td>
+                  <td>Logs all messages of level INFO and above.<br>This is the default on Windows/Mac.</td>
+                </tr>
+                <tr>
+                  <td>3</td><td>WARNING</td><td>Log only messages of level WARNING and above.</td>
+                </tr>
+                <tr>
+                  <td>4</td><td>ERROR</td><td>Log only messages of level ERROR.</td>
+                </tr>
+                <tr>
+                  <td>5</td><td>NONE</td><td>Don't log to file. This is the default on Linux systems.</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="c1">-LS<b>n</b></td>
+            <td class="c2">
+              Sets the level of logging to <span class="code">n</span> for logging to syslog.
+              This argument is ignored on non-Linux systems.
+              The following levels can be selected:<br><br>
+              <table>
+                <tr>
+                  <td>0</td><td>DEBUG</td><td>Logs all messages.</td>
+                </tr>
+                <tr>
+                  <td>1</td><td>VERBOSE</td>
+                  <td>
+                    Logs all messages of level VERBOSE and above
+                    <br>This is the same as using the <span class="code">-V</span> argument.
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td><td>INFO</td>
+                  <td>Logs all messages of level INFO and above.<br>This is the default for Linux.</td>
+                </tr>
+                <tr>
+                  <td>3</td><td>WARNING</td><td>Log only messages of level WARNING and above.</td>
+                </tr>
+                <tr>
+                  <td>4</td><td>ERROR</td><td>Log only messages of level ERROR.</td>
+                </tr>
+                <tr>
+                  <td>5</td><td>NONE</td><td>Don't log to syslog. This is the default on Windows/Mac systems.</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="c3">-m<b>URL</b></td>
+            <td>
+              Forces the server to register with the URL of a different masterserver. When using this argument, you need to
+              exclude the protocol at the beginning (i.e. add everything BUT <span class="code">http://</span> on to the argument).
+              <br>The default is <span class="code">-massault.cubers.net</span>
+              <br>If you want your server to be hidden and not report to the masterserver, use <span class="code">-mlocalhost</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="c1">-p<b>PASSWD</b></td>
+            <td class="c2">
+              Sets the password of the server PASSWD. Only clients that know the password will be able to connect.
+              Clients will be required to append the password to the end of the
+              <a href="reference.xml#identifier_connect">connect</a> command.
+            </td>
+          </tr>
+          <tr>
+            <td class="c3">-c<b>N</b>
+            <td>
+              Sets the maximum number of players that can play on the server to N (default 6).
+              If extra players try to connect they will receive a "server full" error message.
+            </td>
+          </tr>
+
+
+
+<!-- REMEMBER TO DELETE THE DOC WARNING WHEN DONE -->
 
 
 
 
-	<!-- Remember to remove docwarning when fixed up! -->
-
-
-
-            <table>
-                <tr>
-                    <td style="text-align: center;vertical-align: top;" width="120">
-                        <span class="code">-d</span>
-                    </td>
-                    <td>
-                        This starts an AssaultCube client binary as a dedicated server. The
-                        default is a non-dedicated server with only a single client in graphical mode. 
-                        See the <a href="server.html" shape="rect">Server Section</a>. 
-                        You don't need this parameter, if you're using the server binary.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-u</span>N
-                    </td>
-                    <td>
-                        Sets the server upstream bandwidth (per player) to N bytes per
-                        second. only set this parameter if you know what you are doing, specifying a wrong
-                        value is worse than not specifying it at all.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span id="serverdesc" class="code">-n</span>S
-                    </td>
-                    <td>
-                        Sets the server description, for people pinging the server. This usually does not need to 
-                        be set if you have a descriptive domain name already, but if you set it, keep it short 
-                        as it may otherwise be truncated, i.e. -nBobsInstagibServer
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-n1</span>S
-                    </td>
-                    <td>
-                        Sets a server description prefix.
-                    </td>
-                </tr>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-n2</span>S
-                    </td>
-                    <td>
-                        Sets a server description suffix.
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        To enable the admin to temporarily change the server description, a server description prefix 
-                        and/or suffix needs to be set. If the admin executes the command <span class="code">/serverdesc DESC</span>, 
-                        the server description will be changed to "prefixDESCsuffix". 
-                        At the end of the game, the default server description (set by 
-                        <span class="code"><a href="#serverdesc">-n</a></span>) is restored automatically.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-i</span>IP
-                    </td>
-                    <td>
-                        Sets the server ip to IP. This option is only useful
-                        for people running servers on machines with multiple network interfaces.
-                        Only use this switch if you really know, what you are doing.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-f</span>PORT
-                    </td>
-                    <td>
-                        Sets the server base port to PORT. An AC server always uses 2 UDP ports: PORT &amp; PORT+1.
-                        The default ports are 28763 and 28764. You need to use different ports, if you want to
-                        run several servers on the same machine (with one IP address). For example, use
-                        <span class="code">-f28765</span> for a second server.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-N</span>ID
-                    </td>
-                    <td>
-                        Sets the log identity to ID. By default, the log identity is 'IP[port]'. On linux systems,
-                        the log identity is used for the syslog to identify server log entries. On windows and
-                        apple systems, the log identity is used to create the server logfile filename.
-         </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-F</span>n
-                    </td>
-                    <td>
-                        Sets the syslog facility to n. Values from 0 to 7 are allowed to use the facilities
-                        local0..local7. By default, local6 is used. For further information, check the
-                        documentation of your installed syslog daemon.
-         </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-T</span>
-                    </td>
-                    <td>
-                        Add timestamps to every line of the console and file logs. 
-         </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-LF</span>n
-                    </td>
-                    <td>
-                        Sets the logging level for file logs to level <i>n</i>. On linux systems, this switch can be used to enable (additional) file logging.<br clear="none" />
-                        The following levels can be selected:
-                        <table>
-                        <tr><td>0</td>
-                        <td>DEBUG: logs all messages</td></tr>
-                        <tr><td>1</td>
-                        <td>VERBOSE: logs all messages of level VERBOSE and above (same as console log, when using the -V switch)</td></tr>
-                        <tr><td>2</td>
-                        <td>INFO: logs all messages of level INFO and above (same as console without -V switch), default on windows or mac systems</td></tr>
-                        <tr><td>3</td>
-                        <td>WARNING: log only messages of level WARNING and above</td></tr>
-                        <tr><td>4</td>
-                        <td>ERROR: log only messages of level ERROR</td></tr>
-                        <tr><td>5 (or above)</td>
-                        <td>do not log to file (default on linux systems)</td></tr>
-                        </table>
-         </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-LS</span>n
-                    </td>
-                    <td>
-                        Sets the logging level for syslog logging to level <i>n</i>. This switch is ignored on non-linux systems.<br clear="none" />
-                        The following levels can be selected:
-                        <table>
-                        <tr><td>0</td>
-                        <td>DEBUG: logs all messages</td></tr>
-                        <tr><td>1</td>
-                        <td>VERBOSE: logs all messages of level VERBOSE and above (same as console log, when using the -V switch)</td></tr>
-                        <tr><td>2</td>
-                        <td>INFO: logs all messages of level INFO and above (same as console without -V switch), default</td></tr>
-                        <tr><td>3</td>
-                        <td>WARNING: log only messages of level WARNING and above</td></tr>
-                        <tr><td>4</td>
-                        <td>ERROR: log only messages of level ERROR</td></tr>
-                        <tr><td>5 (or above)</td>
-                        <td>do not log to syslog</td></tr>
-                        </table>
-         </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-m</span>M
-                    </td>
-                    <td>
-                        Sets the server to register itself against masterserver M.
-                        M is the base url of the master server, the default is -mmasterserver.cubers.net.
-                        If you want your server to be private and not report to the masterserver, use -mlocalhost.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-p</span>PASS
-                    </td>
-                    <td>
-                        Sets the server password to PASS. Only clients
-                        who know the password will be able to connect.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-c</span>N
-                    </td>
-                    <td>
-                        Sets the maximum number of players that can play on
-                        this server to N (default 6). If more players try to connect they will get a "server
-                        full" message.
-                    </td>
-                </tr>
                 <tr>
                     <td style="text-align: center;vertical-align: top">
                         <span class="code">-x</span>M
@@ -632,7 +616,7 @@
                     </td>
                     <td>
                         Restricts voting for a map/mode to admins. Mapname and modenumber (if
-                        specified) are separated by '#'. This switch can be used several times.
+                        specified) are separated by '#'. This argument can be used several times.
                         Example: -Aac_desert#13
                     </td>
                 </tr>
@@ -704,7 +688,7 @@
                         prefix, the (encoded) time, game mode and map. To set a path without filename prefix, use
                         <span class="code">-Wpath/</span>. A prefix without path can be set by <span class="code">
                         -Wprefix</span>. The server owner has to take precautions that the demo files don't fill up the
-                        filesystem - especially, if permanent demo recording is also enabled (switch '-D').
+                        filesystem - especially, if permanent demo recording is also enabled (argument '-D').
                     </td>
                 </tr> 
                 <tr>
@@ -736,7 +720,7 @@
                     <td>
                         Sets the server to verbose mode. This enables additional
                         log messages to be printed, including the server configuration files (after parsing). Using this
-                        switch twice will also enable logging of DEBUG messages. Be careful:
+                        argument twice will also enable logging of DEBUG messages. Be careful:
                         the logfile will contain all content from serverpwd.cfg.
                     </td>
                 </tr>
