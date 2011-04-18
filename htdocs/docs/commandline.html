@@ -22,6 +22,13 @@
         font-weight : bold;
         text-decoration : underline;
       }
+      .verttxt {
+        text-align : center; 
+        font-weight : bold;
+        font-size : 14px;
+        vertical-align: middle;
+        padding : 10px;
+      }
       .c1 {
         text-align : center;
         background-color : #0C0C0C;
@@ -130,10 +137,14 @@
         </p>
         <table>
           <tr>
+            <td>&nbsp;</td>
             <td class="head01">Argument</td>
             <td class="head01">Description</td>
           </tr>
           <tr>
+            <td rowspan="8" class="verttxt">
+             G<br>R<br>A<br>P<br>H<br>I<br>C<br>A<br>L
+            </td>
             <td class="c1">
               -w<b>X</b>
             </td>
@@ -194,6 +205,52 @@
             </td>
           </tr>
           <tr>
+            <td rowspan="3" class="verttxt">
+              O<br>N<br><br>L<br>A<br>U<br>N<br>C<br>H
+            </td>
+            <td class="c1">--loadmap=<b>FILE</b></td>
+            <td class="c2">
+              Forces AssaultCube to load the map named <span class="code">FILE</span> when launched.
+            </td>
+          </tr>
+          <tr>
+            <td class="c3">--loaddemo=<b>FILE</b></td>
+            <td>Forces AssaultCube to playback the demo named <span class="code">FILE</span> when launched.
+          </tr>
+          <tr>
+            <td class="c1">-e<b>"C"</b></td>
+            <td class="c2">
+              Executes the command <span class="code">C</span> on launch (i.e. -e"echo hello"). Refer to the 
+              <a href="reference.xml">CubeScript command reference</a> for a list of all possible commands.
+            </td>
+          </tr>
+          <tr>
+            <td rowspan="4" class="verttxt">
+              M<br>O<br>D<br>D<br>I<br>N<br>G
+            </td>
+            <td class="c3">--init</td>
+            <td>
+              Executes the init script before starting the graphics and sound subsystems (recommended).
+              By default, the file <i>./config/init.cfg</i> is used. This can be overriden by setting
+              <span class="code">--init=yourfile.cfg</span>
+            </td>
+          </tr>
+          <tr>
+            <td id="mods" class="c1">--mod=<b>PATH</b></td>
+            <td class="c2">
+              Adds the specified path to the list of directories to be searched when loading resources.
+              Use this to "MOD" the game in a clean way without having to place/replace files in the main directory.
+              <br>See the <a href="mods.html">custom mods</a> page for more information.
+            </td>
+          </tr>
+          <tr>
+            <td class="c3">--home=<b>PATH</b></td>
+            <td>
+              Specifies the <a href="faqs.html#n10">AssaultCube home folder</a>.
+              <br>AssaultCube will write custom settings and files to this directory (recommended).
+            </td>
+          </tr>
+          <tr>
             <td class="c1">-m<b>URL</b></td>
             <td class="c2">
               Sets the client to update its serverlist from the URL of a different masterserver. When using this argument, you need to
@@ -202,54 +259,9 @@
             </td>
           </tr>
           <tr>
-            <td class="c3">-e<b>"C"</b></td>
-            <td>
-              Executes the command <span class="code">C</span> at startup (i.e. -e"echo hello"). Refer to the 
-              <a href="reference.xml">CubeScript command reference</a> for a list of all possible commands.
+            <td rowspan="4" class="verttxt">
+              M<br>I<br>S<br>C
             </td>
-          </tr>
-          <tr>
-            <td class="c1">--init</td>
-            <td class="c2">
-              Executes the init script before starting the graphics and sound subsystems (recommended).
-              By default, the file <i>./config/init.cfg</i> is used. This can be overriden by setting
-              <span class="code">--init=yourfile.cfg</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="c3">--version</td>
-            <td>Prints out the version number (example: 1.104) instead of running AssaultCube.</td>
-          </tr>
-          <tr>
-            <td class="c1">--protocol</td>
-            <td class="c2">Prints out the protocol number (example: 1140) instead of running AssaultCube.</td>
-          </tr>
-          <tr>
-            <td id="mods" class="c3">--mod=<b>PATH</b></td>
-            <td>
-              Adds the specified path to the list of directories to be searched when loading resources.
-              Use this to "MOD" the game in a clean way without having to place/replace files in the main directory.
-              <br>See the <a href="mods.html">custom mods</a> page for more information.
-            </td>
-          </tr>
-          <tr>
-            <td class="c1">--home=<b>PATH</b></td>
-            <td class="c2">
-              Specifies the <a href="faqs.html#n10">AssaultCube home folder</a>.
-              <br>AssaultCube will write custom settings and files to this directory (recommended).
-            </td>
-          </tr>
-          <tr>
-            <td class="c3">--loadmap=<b>FILE</b></td>
-            <td>
-              Forces AssaultCube to load the map named <span class="code">FILE</span> when launched.
-            </td>
-          </tr>
-          <tr>
-            <td class="c1">--loaddemo=<b>FILE</b></td>
-            <td class="c2">Forces AssaultCube to playback the demo named <span class="code">FILE</span> when launched.
-          </tr>
-          <tr>
             <td class="c3">-T</td>
             <td>Tags a timestamp to each line of text output to the console.</td>
           </tr>
@@ -261,25 +273,38 @@
               this argument unless you know what you're doing.
             </td>
           </tr>
+          <tr>
+            <td class="c3">--version</td>
+            <td>Prints out the version number (example: 1.104) instead of running AssaultCube.</td>
+          </tr>
+          <tr>
+            <td class="c1">--protocol</td>
+            <td class="c2">Prints out the protocol number (example: 1140) instead of running AssaultCube.</td>
+          </tr>
         </table>
         <h2 id="serverswitch" style="padding-top : 20px;">Arguments for the AssaultCube server</h2>
         <p>
           These arguments are specifically for the servers launcher, not the client. All of the arguments are case-sensitive!
         </p>
         <table>
-          <tr>
+            <td>&nbsp;</td>
             <td class="head01">Argument</td>
             <td class="head01">Description</td>
           </tr>
           <tr>
-            <td class="c1">-u<b>N</b></td>
-            <td class="c2">
-              Sets the up-stream bandwidth (per player) to <span class="code">N</span> bytes per second.
-              Only set this argument if you know what you're doing, as specifying a incorrect value is
-              worse than not specifying it.
+            <td class="verttxt">
+              S<br>I<br>Z<br>E
+            </td>
+            <td class="c3">-c<b>N</b></td>
+            <td>
+              Sets the maximum number of players that can play on the server to N (default 6).
+              If extra players try to connect they will receive a "server full" error message.
             </td>
           </tr>
           <tr>
+            <td class="verttxt" rowspan="4">
+              N<br>A<br>M<br>I<br>N<br>G
+            </td>
             <td id="serverdesc" class="c3">-n<b>S</b></td>
             <td>
               Sets the server description that shows in the server list.
@@ -302,7 +327,19 @@
               command. A suffix AND/OR prefix MUST be specified for the <span class="code">/serverdesc</span> command to work.
             </td>
           </tr>
+
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">-o</span>N
+                    </td>
+                    <td>
+                        Sets the server's "message of the day" (MOTD).
+                    </td>
+                </tr>
           <tr>
+            <td class="verttxt" rowspan="2">
+              I<br>P<br><br>&amp;<br><br>P<br>O<br>R<br>T
+            </td>
             <td class="c1">-i<b>IP</b></td>
             <td class="c2">
               Binds the AssaultCube server to a single IP address. This option is only of use for servers that have multiple
@@ -316,6 +353,98 @@
               This argument allows you to bind the AssaultCube server to other ports.
               For example: <span class="code">-f9000</span> would run a server on ports 9000 and 9001.
             </td>
+          </tr>
+          <tr>
+            <td class="verttxt" rowspan="2">
+              P<br>R<br>I<br>V<br>A<br>T<br>I<br>S<br>I<br>N<br>G
+            </td>
+            <td class="c1">-p<b>PASSWD</b></td>
+            <td class="c2">
+              Sets the password of the server PASSWD. Only clients that know the password will be able to connect.
+              Clients will be required to append the password to the end of the
+              <a href="reference.xml#identifier_connect">connect</a> command.
+            </td>
+          </tr>
+          <tr>
+            <td class="c3">-m<b>URL</b></td>
+            <td>
+              Forces the server to register with the URL of a different masterserver. When using this argument, you need to
+              exclude the protocol at the beginning (i.e. add everything BUT <span class="code">http://</span> on to the argument).
+              <br>The default is <span class="code">-massault.cubers.net</span>
+              <br>If you want your server to be hidden and not report to the masterserver, use <span class="code">-mlocalhost</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="verttxt" rowspan="2">
+              A<br>D<br>M<br>I<br>N<br>I<br>S<br>T<br>R<br>A<br>T<br>O<br>R
+            </td>
+            <td>-x<b>M</b></td>
+            <td>
+              Sets the <a href="server.html#serveradmin">administrator</a> password.
+              If you don't want your commandline to contain the password, or if you need 
+              more than one admin password, use the file "config/serverpwd.cfg".
+            </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">-P</span>S
+                    </td>
+                    <td>
+                        Sets the required role to call specific votes. The two possible player roles are 'player' and 'admin'.
+                        'S' is a string of characters to set vote role requirements per vote type. A lower case character
+                        enables the vote call for normal players, an upper case character sets the vote call to require an
+                        admin. If a character does not appear in the string, the default setting is used.<br clear="none" />
+                        The following votes can be adjusted:
+                        <table>
+                        <tr><td>k</td>
+                        <td>kick players</td></tr>
+                        <tr><td>b</td>
+                        <td>ban players (and remove bans)</td></tr>
+                        <tr><td>m</td>
+                        <td>change mastermode (open/private)</td></tr>
+                        <tr><td>f</td>
+                        <td>force a player to the other team</td></tr>
+                        <tr><td>a</td>
+                        <td>enable/disable autoteam</td></tr>
+                        <tr><td>s</td>
+                        <td>shuffle the teams</td></tr>
+                        <tr><td>r</td>
+                        <td>record a demo of the next game (if autorecording is disabled)</td></tr>
+                        <tr><td>c</td>
+                        <td>clear all demos on server</td></tr>
+                        <tr><td>d</td>
+                        <td>change server description</td></tr>
+                        <tr><td>e</td>
+                        <td>vote for coopedit mode</td></tr>
+                        <tr><td>p</td>
+                        <td>vote for a gamemode that is not supported by the map (default: no one can)</td></tr>
+                        <tr><td>w</td>
+                        <td>vote to kick/ban for "weak" reasons, i.e, the other player is not obviously lagging, nor teamkilling, nor spamming, nor cheating (as far as the server can detect it)</td></tr>
+                        </table>
+                        For example: -PbmA enables ban &amp; mastermode to be voted by normal players but
+                        only admins can change autoteam. The '-P' parameter can be used several times on the commandline.
+                        For example, '-Pb -Pm -PA' is equivalent to '-PbmA'.
+                        The default settings are: "fkBMasRCDEw".
+                    </td>
+                </tr> 
+
+                <tr>
+            <td class="verttxt" rowspan="6">
+              L<br>O<br>G<br>G<br>I<br>N<br>G
+            </td>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">-V</span>
+                    </td>
+                    <td>
+                        Sets the server to verbose mode. This enables additional
+                        log messages to be printed, including the server configuration files (after parsing). Using this
+                        argument twice will also enable logging of DEBUG messages. Be careful:
+                        the logfile will contain all content from serverpwd.cfg.
+                    </td>
+                </tr>
+          <tr>
+            <td class="c1">-T</td>
+            <td class="c2">Tags a timestamp to each line of text output to the console/log files.</td>
           </tr>
           <tr>
             <td class="c1">-N<b>ID</b>
@@ -332,10 +461,6 @@
               Values from 0 to 7 are allowed, to make use of the facilities "local0" through to "local7".
               By default, local6 is used. For further information, read the documentation of your installed syslog daemon.
             </td>
-          </tr>
-          <tr>
-            <td class="c1">-T</td>
-            <td class="c2">Tags a timestamp to each line of text output to the console/log files.</td>
           </tr>
           <tr>
             <td class="c3">-LF<b>n</b></td>
@@ -403,48 +528,176 @@
               </table>
             </td>
           </tr>
-          <tr>
-            <td class="c3">-m<b>URL</b></td>
-            <td>
-              Forces the server to register with the URL of a different masterserver. When using this argument, you need to
-              exclude the protocol at the beginning (i.e. add everything BUT <span class="code">http://</span> on to the argument).
-              <br>The default is <span class="code">-massault.cubers.net</span>
-              <br>If you want your server to be hidden and not report to the masterserver, use <span class="code">-mlocalhost</span>
+            <td class="verttxt" rowspan="4">
+              T<br>H<br>R<br>E<br>S<br>H<br>O<br>L<br>D<br>S
             </td>
-          </tr>
-          <tr>
-            <td class="c1">-p<b>PASSWD</b></td>
-            <td class="c2">
-              Sets the password of the server PASSWD. Only clients that know the password will be able to connect.
-              Clients will be required to append the password to the end of the
-              <a href="reference.xml#identifier_connect">connect</a> command.
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">-k</span>N
+                    </td>
+                    <td>
+                        Sets the kick threshold. If a players score drops
+                        below it, he will be kicked automatically (default: -5).
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">-kA</span>N
+                    </td>
+                    <td>
+                        Sets the kick threshold (in seconds) for the "Away From Keyboard" autokick.
+                        This autokick happens only if the server is OPEN (not PRIVATE and not MATCH),
+                        there are more than 4 players in the game, and affects mainly the teammode games.
+                        The server assumes chatting people and spectators as AFK.
+                        If the value is set less than 30, the AFK autokick is disabled. (default: 45).
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">-kB</span>N
+                    </td>
+                    <td>
+                        Sets the minutes a banned player will stay banned on the server (default: 20).
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">-y</span>N
+                    </td>
+                    <td>
+                        Sets the ban threshold. If a players score drops
+                        below it, he will be banned automatically (default: -6).
+                    </td>
+                </tr>
+                <tr>
+            <td rowspan="3" class="verttxt">
+              M<br>A<br>P<br>S
             </td>
-          </tr>
-          <tr>
-            <td class="c3">-c<b>N</b>
-            <td>
-              Sets the maximum number of players that can play on the server to N (default 6).
-              If extra players try to connect they will receive a "server full" error message.
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">-A</span>map
+                    </td>
+                    <td>
+                        Restricts voting for a map/mode to admins. Mapname and modenumber (if
+                        specified) are separated by '#'. This argument can be used several times.
+                        Example: -Aac_desert#13
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">-M</span>S
+                    </td>
+                    <td>
+                        Sets the required role for sendmap actions. The two possible player roles are 'player' and 'admin'.
+                        'S' is a string of characters to set role requirements per action type. A lower case character
+                        enables the sendmap action for normal players, an upper case character sets the sendmap action to require an
+                        admin. If a character does not appear in the string, the default setting is used.<br clear="none" />
+                        The following sendmap actions can be adjusted:
+                        <table>
+                        <tr><td>c</td>
+                        <td>create new map (initial map upload)</td></tr>
+                        <tr><td>u</td>
+                        <td>update existing map (with same or newer revision)</td></tr>
+                        <tr><td>r</td>
+                        <td>revert existing map to older revision</td></tr>
+                        <tr><td>d</td>
+                        <td>delete map (default: no one can)</td></tr>
+                        </table>
+                        For example: -MCuD enables updating maps for normal players but
+                        only admins can create or delete maps. The '-M' parameter can be used several times on the commandline.
+                        For example, '-MC -Mu -MD' is equivalent to '-MCuD'.
+                        The default settings are: "CRU".<br clear="none" />
+                        Note: Only maps in the 'incoming' folder are affected. Maps in 'official' and 'servermaps' are treated <i>read only</i>.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">-Z</span>i
+                    </td>
+                    <td>
+                        Sets the incoming limit of maps in MegaBytes being sent to the server. If the the size of all maps in the 'incoming' 
+                        folder exceeds this limit new maps will be rejected (default: -Z10).
+                    </td>
+                </tr>
+                <tr>
+            <td rowspan="6" class="verttxt">
+              D<br>E<br>M<br>O<br>S
             </td>
-          </tr>
-
-
-
-<!-- REMEMBER TO DELETE THE DOC WARNING WHEN DONE -->
-
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">-D</span>n
+                    </td>
+                    <td>
+                        Sets the maximum number of recorded demos to be held in server RAM.
+                        Every game will be recorded. The recorded demos will be held in RAM. By default, up to 5 demos will be kept.
+                        To disable automatic demo recording, set the number to 0.
+                        The oldest demo will be deleted automatically if necessary, to allow recording of further demos.
+                        To change the default of 5 demos in RAM, you can add the number of demos to the parameter,
+                        e.g. <span class="code">-D5</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">-D</span>I
+                    </td>
+                    <td>
+                        Limit the demo downloading to intermission (it doubles the intermission time if someone is downloading a demo).
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">-W</span>f
+                    </td>
+                    <td>
+                        Sets a path (and optional filename prefix) to write all recorded demos to. The example
+                        <span class="code">-Wserverdemos/mydemo</span> would save all demos to the directory
+                        'serverdemos' and prefix the filenames with 'mydemo'. The filename will contain the (optional)
+                        prefix, the (encoded) time, game mode and map. To set a path without filename prefix, use
+                        <span class="code">-Wpath/</span>. A prefix without path can be set by <span class="code">
+                        -Wprefix</span>. The server owner has to take precautions that the demo files don't fill up the
+                        filesystem - especially, if permanent demo recording is also enabled (argument '-D').
+                    </td>
+                </tr> 
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">--demofilenameformat=</span>FORMAT
+                    </td>
+                    <td>
+                        Changes the format used for saving demos (if -W is used). See <a href="reference.xml#identifier_demonameformat">demonameformat</a>.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">--demotimestampformat=</span>FORMAT
+                    </td>
+                    <td>
+                        Changes the timestamp format used for saving demos (if -W is used). See <a href="reference.xml#identifier_demotimeformat">demotimeformat</a>.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top">
+                        <span class="code">--demotimelocal=</span>LOCAL
+                    </td>
+                    <td>
+                        Changes whether timestamps are converted to localtime (LOCAL set to 1) or use UTC (LOCAL set to 0; default) when saving demos (if -W is used). See <a href="reference.xml#identifier_demotimelocal">demotimelocal</a>.
+                    </td>
+                </tr>
 
 
 
                 <tr>
+            <td rowspan="9" class="verttxt">
+              C<br>H<br>A<br>N<br>G<br>E<br><br>C<br>F<br>G<br><br>F<br>I<br>L<br>E<br>P<br>A<br>T<br>H<br>S
+            </td>
                     <td style="text-align: center;vertical-align: top">
-                        <span class="code">-x</span>M
+                        <span class="code">-C</span>f
                     </td>
                     <td>
-                        Sets the <a href="server.html#serveradmin" shape="rect">
-                        admin</a> password. If you don't want your commandline to contain the password, or if you need
-                        more than one admin password, use the file "config/serverpwd.cfg".
+                        Reads commandline arguments from a file. For example, 
+                        <span class="code">-Cconfig/servercmdline.txt</span> will read arguments from that file.
+                        Only one parameter per line is allowed. Empty lines, and any text after '//' will be ignored.
+                        The file is only read once at server startup; changing the file's content will not affect a running server.
+                        See config/servercmdline.txt for additional info. No file is read by default.
                     </td>
                 </tr>
+
                 <tr>
                     <td style="text-align: center;vertical-align: top">
                         <span class="code">-X</span>f
@@ -522,176 +775,12 @@
                         is given on the commandline ('-o').
                     </td>
                 </tr>
+
+
                 <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-o</span>N
-                    </td>
-                    <td>
-                        Sets the server's "message of the day" (MOTD).
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-k</span>N
-                    </td>
-                    <td>
-                        Sets the kick threshold. If a players score drops
-                        below it, he will be kicked automatically (default: -5).
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-kA</span>N
-                    </td>
-                    <td>
-                        Sets the kick threshold (in seconds) for the "Away From Keyboard" autokick.
-                        This autokick happens only if the server is OPEN (not PRIVATE and not MATCH),
-                        there are more than 4 players in the game, and affects mainly the teammode games.
-                        The server assumes chatting people and spectators as AFK.
-                        If the value is set less than 30, the AFK autokick is disabled. (default: 45).
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-kB</span>N
-                    </td>
-                    <td>
-                        Sets the minutes a banned player will stay banned on the server (default: 20).
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-y</span>N
-                    </td>
-                    <td>
-                        Sets the ban threshold. If a players score drops
-                        below it, he will be banned automatically (default: -6).
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-P</span>S
-                    </td>
-                    <td>
-                        Sets the required role to call specific votes. The two possible player roles are 'player' and 'admin'.
-                        'S' is a string of characters to set vote role requirements per vote type. A lower case character
-                        enables the vote call for normal players, an upper case character sets the vote call to require an
-                        admin. If a character does not appear in the string, the default setting is used.<br clear="none" />
-                        The following votes can be adjusted:
-                        <table>
-                        <tr><td>k</td>
-                        <td>kick players</td></tr>
-                        <tr><td>b</td>
-                        <td>ban players (and remove bans)</td></tr>
-                        <tr><td>m</td>
-                        <td>change mastermode (open/private)</td></tr>
-                        <tr><td>f</td>
-                        <td>force a player to the other team</td></tr>
-                        <tr><td>a</td>
-                        <td>enable/disable autoteam</td></tr>
-                        <tr><td>s</td>
-                        <td>shuffle the teams</td></tr>
-                        <tr><td>r</td>
-                        <td>record a demo of the next game (if autorecording is disabled)</td></tr>
-                        <tr><td>c</td>
-                        <td>clear all demos on server</td></tr>
-                        <tr><td>d</td>
-                        <td>change server description</td></tr>
-                        <tr><td>e</td>
-                        <td>vote for coopedit mode</td></tr>
-                        <tr><td>p</td>
-                        <td>vote for a gamemode that is not supported by the map (default: no one can)</td></tr>
-                        <tr><td>w</td>
-                        <td>vote to kick/ban for "weak" reasons, i.e, the other player is not obviously lagging, nor teamkilling, nor spamming, nor cheating (as far as the server can detect it)</td></tr>
-                        </table>
-                        For example: -PbmA enables ban &amp; mastermode to be voted by normal players but
-                        only admins can change autoteam. The '-P' parameter can be used several times on the commandline.
-                        For example, '-Pb -Pm -PA' is equivalent to '-PbmA'.
-                        The default settings are: "fkBMasRCDEw".
-                    </td>
-                </tr> 
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-A</span>map
-                    </td>
-                    <td>
-                        Restricts voting for a map/mode to admins. Mapname and modenumber (if
-                        specified) are separated by '#'. This argument can be used several times.
-                        Example: -Aac_desert#13
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-M</span>S
-                    </td>
-                    <td>
-                        Sets the required role for sendmap actions. The two possible player roles are 'player' and 'admin'.
-                        'S' is a string of characters to set role requirements per action type. A lower case character
-                        enables the sendmap action for normal players, an upper case character sets the sendmap action to require an
-                        admin. If a character does not appear in the string, the default setting is used.<br clear="none" />
-                        The following sendmap actions can be adjusted:
-                        <table>
-                        <tr><td>c</td>
-                        <td>create new map (initial map upload)</td></tr>
-                        <tr><td>u</td>
-                        <td>update existing map (with same or newer revision)</td></tr>
-                        <tr><td>r</td>
-                        <td>revert existing map to older revision</td></tr>
-                        <tr><td>d</td>
-                        <td>delete map (default: no one can)</td></tr>
-                        </table>
-                        For example: -MCuD enables updating maps for normal players but
-                        only admins can create or delete maps. The '-M' parameter can be used several times on the commandline.
-                        For example, '-MC -Mu -MD' is equivalent to '-MCuD'.
-                        The default settings are: "CRU".<br clear="none" />
-                        Note: Only maps in the 'incoming' folder are affected. Maps in 'official' and 'servermaps' are treated <i>read only</i>.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-Z</span>i
-                    </td>
-                    <td>
-                        Sets the incoming limit of maps in MegaBytes being sent to the server. If the the size of all maps in the 'incoming' 
-                        folder exceeds this limit new maps will be rejected (default: -Z10).
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-D</span>n
-                    </td>
-                    <td>
-                        Sets the maximum number of recorded demos to be held in server RAM.
-                        Every game will be recorded. The recorded demos will be held in RAM. By default, up to 5 demos will be kept.
-                        To disable automatic demo recording, set the number to 0.
-                        The oldest demo will be deleted automatically if necessary, to allow recording of further demos.
-                        To change the default of 5 demos in RAM, you can add the number of demos to the parameter,
-                        e.g. <span class="code">-D5</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-D</span>I
-                    </td>
-                    <td>
-                        Limit the demo downloading to intermission (it doubles the intermission time if someone is downloading a demo).
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-W</span>f
-                    </td>
-                    <td>
-                        Sets a path (and optional filename prefix) to write all recorded demos to. The example
-                        <span class="code">-Wserverdemos/mydemo</span> would save all demos to the directory
-                        'serverdemos' and prefix the filenames with 'mydemo'. The filename will contain the (optional)
-                        prefix, the (encoded) time, game mode and map. To set a path without filename prefix, use
-                        <span class="code">-Wpath/</span>. A prefix without path can be set by <span class="code">
-                        -Wprefix</span>. The server owner has to take precautions that the demo files don't fill up the
-                        filesystem - especially, if permanent demo recording is also enabled (argument '-D').
-                    </td>
-                </tr> 
-                <tr>
+            <td class="verttxt" rowspan="3">
+              M<br>I<br>S<br>C
+            </td>
                     <td style="text-align: center;vertical-align: top">
                         <span class="code">-SW</span>
                     </td>
@@ -701,63 +790,20 @@
                         is started directly from the windows service manager.
                     </td>
                 </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-C</span>f
-                    </td>
-                    <td>
-                        Reads commandline arguments from a file. For example, 
-                        <span class="code">-Cconfig/servercmdline.txt</span> will read arguments from that file.
-                        Only one parameter per line is allowed. Empty lines, and any text after '//' will be ignored.
-                        The file is only read once at server startup; changing the file's content will not affect a running server.
-                        See config/servercmdline.txt for additional info. No file is read by default.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">-V</span>
-                    </td>
-                    <td>
-                        Sets the server to verbose mode. This enables additional
-                        log messages to be printed, including the server configuration files (after parsing). Using this
-                        argument twice will also enable logging of DEBUG messages. Be careful:
-                        the logfile will contain all content from serverpwd.cfg.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">--demofilenameformat=</span>FORMAT
-                    </td>
-                    <td>
-                        Changes the format used for saving demos (if -W is used). See <a href="reference.xml#identifier_demonameformat">demonameformat</a>.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">--demotimestampformat=</span>FORMAT
-                    </td>
-                    <td>
-                        Changes the timestamp format used for saving demos (if -W is used). See <a href="reference.xml#identifier_demotimeformat">demotimeformat</a>.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;vertical-align: top">
-                        <span class="code">--demotimelocal=</span>LOCAL
-                    </td>
-                    <td>
-                        Changes whether timestamps are converted to localtime (LOCAL set to 1) or use UTC (LOCAL set to 0; default) when saving demos (if -W is used). See <a href="reference.xml#identifier_demotimelocal">demotimelocal</a>.
-                    </td>
-                </tr>
+
+          <tr>
+            <td class="c1">-u<b>N</b></td>
+            <td class="c2">
+              Sets the up-stream bandwidth (per player) to <span class="code">N</span> bytes per second.
+              Only set this argument if you know what you're doing, as specifying a incorrect value is
+              worse than not specifying it.
+            </td>
+          </tr>
+
+
+
+
             </table>
-
-
-
-
-
-
-
-
-
 
 
 
