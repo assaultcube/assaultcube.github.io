@@ -7,6 +7,7 @@
       b) Ensure you add your new argument into the correct category, then, expand the 
          "rowspan" on that category by one. Otherwise, set up a new category using existing ones as templates.
       c) Please keep to the style provided and make your instructions 'n00b' friendly, thanks.
+      d) Add an "id" to each new argument, with the arguments switch, so it can be easily linked to, if need be.
     -->
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="robots" content="NOODP">
@@ -146,7 +147,7 @@
             <td rowspan="8" class="verttxt">
              G<br>R<br>A<br>P<br>H<br>I<br>C<br>A<br>L
             </td>
-            <td class="c1">
+            <td class="c1" id="-w">
               -w<b>X</b>
             </td>
             <td class="c2">
@@ -155,7 +156,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c3">
+            <td class="c3" id="-h">
               -h<b>Y</b>
             </td>
             <td>
@@ -164,14 +165,14 @@
             </td>
           </tr>
           <tr>
-            <td class="c1">-t</td>
+            <td class="c1" id="-t">-t</td>
             <td class="c2">
               Forces AssaultCube to run in "window" mode (turns fullscreen off).
               <br>You can explicitly force fullscreen mode by using <span class="code">-t1</span>
             </td>
           </tr>
           <tr>
-            <td class="c3">-z<b>N</b></td>
+            <td class="c3" id="-z">-z<b>N</b></td>
             <td>
               Sets the precision of the <a href="http://en.wikipedia.org/wiki/Z-buffering">z-buffer</a>
               to <span class="code">N</span> bits.
@@ -179,27 +180,27 @@
             </td>
           </tr>
           <tr>
-            <td class="c1">-b<b>N</b></td>
+            <td class="c1" id="-b">-b<b>N</b></td>
             <td class="c2">Sets the <a href="http://en.wikipedia.org/wiki/Color_depth">colour depth</a>
             to <span class="code">N</span> bits per pixel
             (example: <span class="code">-b16</span> would set the colour depth to 16-bits).</td>
           </tr>
           <tr>
-            <td class="c3">-s<b>N</b></td>
+            <td class="c3" id="-s">-s<b>N</b></td>
             <td>
               Sets the stencil buffer precision to <span class="code">N</span> bits.
               <br>This needs to be either 8 to enable shadowing effects, or 0 to turn it off (the default).
             </td>
           </tr>
           <tr>
-            <td class="c1">-a<b>N</b></td>
+            <td class="c1" id="-a">-a<b>N</b></td>
             <td class="c2">
               Sets <a href="http://en.wikipedia.org/wiki/Spatial_anti-aliasing#Super_Sampling_.2F_Full-scene_anti-aliasing">full-scene
               anti-aliasing</a> to <span class="code">N</span> samples (example: <span class="code">-a4</span> is 4x).
             </td>
           </tr>
           <tr>
-            <td class="c3">-v<b>N</b></td>
+            <td class="c3" id="-v">-v<b>N</b></td>
             <td>
               Enables <a href="http://en.wikipedia.org/wiki/Screen_tearing#V-sync">v-sync</a> if <span class="code">N</span> is greater 0.
               If <span class="code">N</span> equals -1 then system defaults will be used.
@@ -209,17 +210,17 @@
             <td rowspan="3" class="verttxt">
               O<br>N<br><br>L<br>A<br>U<br>N<br>C<br>H
             </td>
-            <td class="c1">--loadmap=<b>FILE</b></td>
+            <td class="c1" id="--loadmap">--loadmap=<b>FILE</b></td>
             <td class="c2">
               Forces AssaultCube to load the map named <span class="code">FILE</span> when launched.
             </td>
           </tr>
           <tr>
-            <td class="c3">--loaddemo=<b>FILE</b></td>
+            <td class="c3" id="--loaddemo">--loaddemo=<b>FILE</b></td>
             <td>Forces AssaultCube to playback the demo named <span class="code">FILE</span> when launched.
           </tr>
           <tr>
-            <td class="c1">-e<b>"C"</b></td>
+            <td class="c1" id="-e">-e<b>"C"</b></td>
             <td class="c2">
               Executes the command <span class="code">C</span> on launch (i.e. -e"echo hello"). Refer to the 
               <a href="reference.xml">CubeScript command reference</a> for a list of all possible commands.
@@ -229,7 +230,7 @@
             <td rowspan="4" class="verttxt">
               M<br>O<br>D<br>D<br>I<br>N<br>G
             </td>
-            <td class="c3">--init</td>
+            <td class="c3" id="--init">--init</td>
             <td>
               Executes the init script before starting the graphics and sound subsystems (recommended).
               By default, the file <i>./config/init.cfg</i> is used. This can be overriden by setting
@@ -237,7 +238,7 @@
             </td>
           </tr>
           <tr>
-            <td id="mods" class="c1">--mod=<b>PATH</b></td>
+            <td id="--mod" class="c1">--mod=<b>PATH</b></td>
             <td class="c2">
               Adds the specified path to the list of directories to be searched when loading resources.
               Use this to "MOD" the game in a clean way without having to place/replace files in the main directory.
@@ -245,14 +246,14 @@
             </td>
           </tr>
           <tr>
-            <td class="c3">--home=<b>PATH</b></td>
+            <td class="c3" id="--home">--home=<b>PATH</b></td>
             <td>
               Specifies the <a href="faqs.html#n10">AssaultCube home folder</a>.
               <br>AssaultCube will write custom settings and files to this directory (recommended).
             </td>
           </tr>
           <tr>
-            <td class="c1">-m<b>URL</b></td>
+            <td class="c1" id="-m_(client)">-m<b>URL</b></td>
             <td class="c2">
               Sets the client to update its serverlist from the URL of a different masterserver. When using this argument, you need to
               exclude the protocol at the beginning (i.e. add everything BUT <span class="code">http://</span> on to the argument).
@@ -263,11 +264,11 @@
             <td rowspan="4" class="verttxt">
               M<br>I<br>S<br>C
             </td>
-            <td class="c3">-T</td>
+            <td class="c3" id="-T_(client)">-T</td>
             <td>Tags a timestamp to each line of text output to the console.</td>
           </tr>
           <tr>
-            <td class="c1">-d</td>
+            <td class="c1" id="-d">-d</td>
             <td class="c2">
               This starts the executable file for the AssaultCube CLIENT, as an AssaultCube SERVER instead.
               You don't need this argument if you're using the server executable. There is no need to use
@@ -275,11 +276,11 @@
             </td>
           </tr>
           <tr>
-            <td class="c3">--version</td>
+            <td class="c3" id="--version">--version</td>
             <td>Prints out the version number (example: 1.104) instead of running AssaultCube.</td>
           </tr>
           <tr>
-            <td class="c1">--protocol</td>
+            <td class="c1" id="--protocol">--protocol</td>
             <td class="c2">Prints out the protocol number (example: 1140) instead of running AssaultCube.</td>
           </tr>
         </table>
@@ -296,7 +297,7 @@
             <td class="verttxt">
               S<br>I<br>Z<br>E
             </td>
-            <td class="c1">-c<b>N</b></td>
+            <td class="c1" id="-c">-c<b>N</b></td>
             <td class="c2">
               Sets the maximum number of players that can play on the server to N (default 6).
               If extra players try to connect they will receive a "server full" error message.
@@ -306,14 +307,14 @@
             <td class="verttxt" rowspan="4">
               N<br>A<br>M<br>I<br>N<br>G
             </td>
-            <td id="serverdesc" class="c3">-n<b>S</b></td>
+            <td class="c3" id="-n">-n<b>S</b></td>
             <td>
               Sets the server description that shows in the server list.
               Make sure you keep it short, otherwise it'll become truncated, example: -n"Fruity: Bananas & Cherry"
             </td>
           </tr>
           <tr>
-            <td class="c1">-n1<b>S</b></td>
+            <td class="c1" id="-n1">-n1<b>S</b></td>
             <td class="c2">
               Sets a prefix for the server description that remains when the server description is changed using the
               <a href="http://assault.cubers.net/docs/reference.xml#identifier_serverdesc" class="code">/serverdesc</a>
@@ -321,7 +322,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c3">-n2<b>S</b></td>
+            <td class="c3" id="-n2">-n2<b>S</b></td>
             <td>
               Sets a suffix for the server description that remains when the server description is changed using the
               <a href="http://assault.cubers.net/docs/reference.xml#identifier_serverdesc" class="code">/serverdesc</a>
@@ -329,7 +330,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c1">-o<b>N</b></td>
+            <td class="c1" id="-o">-o<b>N</b></td>
             <td class="c2">
               Sets the servers MOTD (message of the day), which appears on the clients console after they connect to the server.
             </td>
@@ -338,13 +339,13 @@
             <td class="verttxt" rowspan="2">
               I<br>P<br><br>&amp;<br><br>P<br>O<br>R<br>T
             </td>
-            <td class="c3">-i<b>IP</b></td>
+            <td class="c3" id="-i">-i<b>IP</b></td>
             <td>
               Binds the AssaultCube server to a single IP address. This option is only of use for servers that have multiple
               IP addresses. Don't use this unless you know what you're doing.
             </td>
           </tr>
-            <td class="c1">-f<b>PORT</b></td>
+            <td class="c1" id="-f">-f<b>PORT</b></td>
             <td class="c2">
               The AssaultCube server uses 2 ports (UDP), the default ports are 28763 and 28764.
               You need to use different ports if you want to run several servers on the same IP address.
@@ -356,7 +357,7 @@
             <td class="verttxt" rowspan="2">
               P<br>R<br>I<br>V<br>A<br>T<br>I<br>S<br>I<br>N<br>G
             </td>
-            <td class="c3">-p<b>PASSWD</b></td>
+            <td class="c3" id="-p">-p<b>PASSWD</b></td>
             <td>
               Sets the password of the server PASSWD. Only clients that know the password will be able to connect.
               Clients will be required to append the password to the end of the
@@ -364,7 +365,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c1">-m<b>URL</b></td>
+            <td class="c1" id="-m">-m<b>URL</b></td>
             <td class="c2">
               Forces the server to register with the URL of a different masterserver. When using this argument, you need to
               exclude the protocol at the beginning (i.e. add everything BUT <span class="code">http://</span> on to the argument).
@@ -376,7 +377,7 @@
             <td class="verttxt" rowspan="2">
               A<br>D<br>M<br>I<br>N<br>I<br>S<br>T<br>R<br>A<br>T<br>O<br>R
             </td>
-            <td class="c3">-x<b>PASSWD</b></td>
+            <td class="c3" id="-x">-x<b>PASSWD</b></td>
             <td>
               Sets the <a href="server.html#serveradmin">administrator</a> password to <span class="code">PASSWD</span>.
               If you don't want your commandline to contain the password, or if you need 
@@ -388,7 +389,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c1">-P<b>fkbMASRCDEPw</b></td>
+            <td class="c1" id="-P">-P<b>fkbMASRCDEPw</b></td>
             <td class="c2">
               Sets whether the role required to call a specific vote belongs to a "player" or an "administrator".
               The characters <span class="code">fkbMASRCDEPw</span> are used to set these requirements. <br>A lower-case character
@@ -428,7 +429,7 @@
             <td class="verttxt" rowspan="6">
               L<br>O<br>G<br>G<br>I<br>N<br>G
             </td>
-            <td class="c3">-V</td>
+            <td class="c3" id="-V">-V</td>
             <td>
               Verbose mode. This enables additional log messages to be printed, including the server configuration files after parsing.
               Using this argument twice will also enable logging of DEBUG messages. Be careful as your logs will show everything in your
@@ -436,11 +437,11 @@
             </td>
           </tr>
           <tr>
-            <td class="c1">-T</td>
+            <td class="c1" id="-T">-T</td>
             <td class="c2">Tags a timestamp to each line of text output to the console/log files.</td>
           </tr>
           <tr>
-            <td class="c3">-N<b>ID</b>
+            <td class="c3" id="-N">-N<b>ID</b>
             <td>
               Sets the log identity to <span class="code">ID</span> . By default, the log identity is 'IP[port]'.
               <br>On Linux systems, the log identity is used for the syslog to identify server log entries.
@@ -448,7 +449,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c1">-F<b>n</b></td>
+            <td class="c1" id="-F">-F<b>n</b></td>
             <td class="c2">
               Sets the syslog facility to <span class="code">n</span>.
               Values from 0 to 7 are allowed, to make use of the facilities "local0" through to "local7".
@@ -456,7 +457,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c3">-LF<b>n</b></td>
+            <td class="c3" id="-LF">-LF<b>n</b></td>
             <td>
               Sets the level of logging to <span class="code">n</span> for logging to file.
               On Linux systems, this argument enables ADDITIONAL logging, as Linux systems already log to syslog.
@@ -489,7 +490,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c1">-LS<b>n</b></td>
+            <td class="c1" id="-LS">-LS<b>n</b></td>
             <td class="c2">
               Sets the level of logging to <span class="code">n</span> for logging to syslog.
               This argument is ignored on non-Linux systems.
@@ -524,21 +525,21 @@
             <td class="verttxt" rowspan="4">
               T<br>H<br>R<br>E<br>S<br>H<br>O<br>L<br>D<br>S
             </td>
-            <td class="c3">-k<b>N</b></td>
+            <td class="c3" id="-k">-k<b>N</b></td>
             <td>
               Sets the kick threshold to <span class="code">N</span>. If a players score drops below it,
               he will be kicked automatically. The default is -5, all negative values DO require a minus sign.
             </td>
           </tr>
           <tr>
-            <td class="c1">-y<b>N</b></td>
+            <td class="c1" id="-y">-y<b>N</b></td>
             <td class="c2">
               Sets the ban threshold to <span class="code">N</span>. If a players score drops below it,
               he will be banned automatically. The default is -6, all negative values DO require a minus sign.
             </td>
           </tr>
           <tr>
-            <td class="c3">-kA<b>N</b></td>
+            <td class="c3" id="-kA">-kA<b>N</b></td>
             <td>
               Sets the threshold (in seconds) for the "<span class="titletext" title="Away from keyboard">AFK</span>"
               auto-kick to <span class="code">N</span>. The server won't auto-kick if:
@@ -553,7 +554,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c1">-kB<b>N</b></td>
+            <td class="c1" id="-kB">-kB<b>N</b></td>
             <td class="c2">
               Sets the amount of minutes a banned player will remain banned from the server to
               <span class="code">N</span><br>The default is 20 minutes.
@@ -563,7 +564,7 @@
             <td rowspan="3" class="verttxt">
               M<br>A<br>P<br>S
             </td>
-            <td class="c3">-A<b>mapname</b></td>
+            <td class="c3" id="-A">-A<b>mapname</b></td>
             <td>
               Restricts voting for a particular map (or mode for that map, if specified) to administrators.
               To <i>only</i> restrict a particular mode on the map, but not the map itself, add the 
@@ -573,7 +574,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c1">-M<b>curd</b></td>
+            <td class="c1" id="-M">-M<b>curd</b></td>
             <td class="c2">
               Sets whether the role required to sendmap belongs to a "player" or an "administrator".
               The characters <span class="code">curd</span> are used to set these requirements.
@@ -599,7 +600,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c3">-Z<b>i</b></td>
+            <td class="c3" id="-Z">-Z<b>i</b></td>
             <td>
               Sets the size limit (in megabytes) for maps being uploaded to the "incoming" folder to <span class="code">i</span>.
               Any map being uploaded exceeding this limit, will be rejected. The default is 10 megabytes.
@@ -609,7 +610,7 @@
             <td rowspan="6" class="verttxt">
               D<br>E<br>M<br>O<br>S
             </td>
-            <td class="c1">-D<b>n</b></td>
+            <td class="c1" id="-D">-D<b>n</b></td>
             <td class="c2">
               All games DO record demos (which can't be disabled). This argument however, sets the maximum number of recorded demos
               to be held in the servers RAM at a time to <span class="code">n</span>.
@@ -621,13 +622,13 @@
             </td>
           </tr>
           <tr>
-            <td class="c3">-DI</td>
+            <td class="c3" id="-DI">-DI</td>
             <td>
               Limit downloading of demos until the intermission (this will increase the intermission time if someone is downloading a demo).
             </td>
           </tr>
           <tr>
-            <td class="c1">-W<b>f</b></td>
+            <td class="c1" id="-W">-W<b>f</b></td>
             <td class="c2">
               Sets the path (and optionally, the filename prefix) to write recorded demos to from RAM. 
               As an example: <span class="code">-Wserverdemos/mydemo</span> would save all demos to the
@@ -639,7 +640,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c3">--demofilenameformat=<b>s</b></td>
+            <td class="c3" id="--demofilenameformat">--demofilenameformat=<b>s</b></td>
             <td>
               Changes the format used for saving demos (if the <span class="code">-W</span> argument
               is used) to <span class="code">s</span>.
@@ -647,7 +648,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c1">--demotimestampformat=<b>s</b></td>
+            <td class="c1" id="--demotimestampformat">--demotimestampformat=<b>s</b></td>
             <td class="c2">
               Changes the timestamp format used for saving demos (if the <span class="code">-W</span> argument
               is used) to <span class="code">s</span>.
@@ -655,7 +656,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c3">--demotimelocal=<b>s</b></td>
+            <td class="c3" id="--demotimelocal">--demotimelocal=<b>s</b></td>
             <td>
               Changes whether timestamps are converted to localtime (if <span class="code">s</span> is set to 1)
               or to use UTC (if <span class="code">s</span> is set to 0 - this is the default) when saving demos 
@@ -667,7 +668,7 @@
             <td rowspan="9" class="verttxt">
               C<br>H<br>A<br>N<br>G<br>E<br><br>C<br>F<br>G<br><br>F<br>I<br>L<br>E<br>P<br>A<br>T<br>H<br>S
             </td>
-            <td class="c1">-C<b>f</b></td>
+            <td class="c1" id="-C">-C<b>f</b></td>
             <td class="c2">
               Reads commandline arguments from a file (no files are read by default).
               For example, <span class="code">-Cconfig/servercmdline.txt</span>
@@ -678,49 +679,49 @@
               <br>See ./config/servercmdline.txt for additional info.
             </td>
           </tr>
-            <td class="c3">-X<b>f</b></td>
+            <td class="c3" id="-X">-X<b>f</b></td>
             <td>
               Changes the location of the administrator password file.
               <br>The default is: <span class="code">-Xconfig/serverpwd.cfg</span>
             </td>
           </tr>
           <tr>
-            <td class="c1">-r<b>f</b></td>
+            <td class="c1" id="-r">-r<b>f</b></td>
             <td class="c2">
               Changes the location of the <a href="server.html#maprotation">map rotation</a> file.
               <br>The default is: <span class="code">-rconfig/maprot.cfg</span>
             </td>
           </tr>
           <tr>
-            <td class="c3">-B<b>f</b></td>
+            <td class="c3" id="-B">-B<b>f</b></td>
             <td>
               Changes the location of the IP blacklist file.
               <br>The default is: <span class="code">-Bconfig/serverblacklist.cfg</span>
             </td>
           </tr>
           <tr>
-            <td class="c1">-K<b>f</b></td>
+            <td class="c1" id="-K">-K<b>f</b></td>
             <td class="c2">
               Changes the location of the nickname blacklist file.
               <br>The default is: <span class="code">-Kconfig/nicknameblacklist.cfg</span>
             </td>
           </tr>
           <tr>
-            <td class="c3">-g<b>f</b></td>
+            <td class="c3" id="-g">-g<b>f</b></td>
             <td>
               Changes the location of the forbidden words file.
               <br>The default is: <span class="code">-gconfig/forbidden.cfg</span>
             </td>
           </tr>
           <tr>
-            <td class="c1">-E<b>f</b></td>
+            <td class="c1" id="-E">-E<b>f</b></td>
             <td class="c2">
               Changes the location of the kill messages file.
               <br>The default is: <span class="code">-gconfig/killmessages.cfg</span>
             </td>
           </tr>
           <tr>
-            <td class="c3">-I<b>f</b></td>
+            <td class="c3" id="-I">-I<b>f</b></td>
             <td>
               Changes the location of the "serverinfo text" filename prefix.
               The server automatically adds "_en.txt" as a suffix to complete the filename.
@@ -728,12 +729,12 @@
             </td>
           </tr>
           <tr>
-            <td class="c1">-O<b>f</b></td>
+            <td class="c1" id="-O">-O<b>f</b></td>
             <td class="c2">
               Changes the location of the MOTD (message of the day) filename prefix.
               The server automatically adds "_en.txt" as a suffix to complete the filename.
               <br>The default is: <span class="code">-Oconfig/motd</span>
-              <br>The MOTD will only be read from a file if the <span class="code">-o</span>
+              <br>The MOTD will only be read from a file if the <a href="#-o" class="code">-o</a>
               argument hasn't been specified.
             </td>
           </tr>
@@ -741,7 +742,7 @@
             <td class="verttxt" rowspan="2">
               M<br>I<br>S<br>C
             </td>
-            <td class="c3">-SW<b>r</b></td>
+            <td class="c3" id="-SW">-SW<b>r</b></td>
             <td>
               Starts the server as Microsoft Windows service and sets the name of the windows service
               that should be used to <span class="code">r</span>.
@@ -749,7 +750,7 @@
             </td>
           </tr>
           <tr>
-            <td class="c1">-u<b>N</b></td>
+            <td class="c1" id="-u">-u<b>N</b></td>
             <td class="c2">
               Sets the up-stream bandwidth (per player) to <span class="code">N</span> bytes per second.
               Only set this argument if you know what you're doing, as specifying a incorrect value is
