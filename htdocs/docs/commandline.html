@@ -570,11 +570,15 @@
             </td>
             <td class="c3" id="-A">-A<b>mapname</b></td>
             <td>
-              Restricts voting for a particular map (or mode for that map, if specified) to administrators.
+              Restricts voting for a particular map, mode, or mode for a map to administrators.
               To <i>only</i> restrict a particular mode on the map, but not the map itself, add the 
               <a href="reference.xml#identifier_mode">mode number</a> to the end of it, separated by a '#'. 
+              If you don't specify a map, then administrator status will be required to vote any game in the given mode.
               This argument can be used several times.
               <br><br>Example: -Aac_desert#13 would restrict mode 13 on ac_desert.
+              <br> -Aac_shine restricts map ac_shine
+              <br> -A#11 restricts mode 11 (tosok) with any map
+              
             </td>
           </tr>
           <tr>
