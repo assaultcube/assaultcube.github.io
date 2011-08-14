@@ -10,8 +10,19 @@
     <title>AssaultCube Documentation :: Licensing information</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/docs.css">
+    <link rel="stylesheet" type="text/css" href="css/fancytable.css">
     <!--#include virtual="/SSI-HTML/docs/invisibility.html" -->
     <link rel="shortcut icon" href="images/favicon.ico">
+    <style type="text/css">
+      table, tr, td {
+        text-align : left;
+      }
+      .head01 {
+        text-align : center;
+        font-weight : bold;
+        text-decoration : underline;
+      }
+    </style>
   </head>
   <body>
     <div id="container">
@@ -47,8 +58,9 @@
         <ul>
           <li><a href="#entirepackage">The entire AssaultCube package</a></li>
           <li><a href="#webdocs">AssaultCube website and documentation</a></li>
+          <li><a href="#specificfile">A specific file in the AssaultCube package</a></li>
         </ul>
-        <p><!-- temporary until better page is created! -->
+        <p>
           For anything else, please check in your ./docs/package_copyrights.txt file and any individual *.txt files
           or *.cfg files within AssaultCube to see if permission is granted to redistribute that data. If no permission
           is found, you MUST assume that the data is COPYRIGHT and you are NOT allowed to redistribute that data outside
@@ -156,6 +168,25 @@
           </li>
         </ul>
         <div class="dottedline"></div>
+        <h4 id="specificfile">A specific file in the AssaultCube package</h4>
+        <p>
+          Not every file is listed here, if you're unable to find the license for a specific file here, you'll need
+          to look through the AssaultCube package carefully to see if you're able to find the license there.
+          If no license is specified, you MUST assume that the data is COPYRIGHT and you are NOT allowed to 
+          redistribute that data outside of an UNMODIFIED AssaultCube package(s).
+        </p>
+        <table>
+          <tr>
+            <td class="head01">Filename</td>
+            <td class="head01">Link to license</td>
+          </tr>
+          <tr>
+            <td>./packages/audio/misc/pickup_armour.ogg</td>
+            <td>
+              <a href="http://actiongame.svn.sourceforge.net/viewvc/actiongame/trunk/ac/packages/audio/misc/pickup_armour.ogg_license.txt">Online</a> /
+              <a href="../packages/audio/misc/pickup_armour.ogg_license.txt">Offline</a></td>
+          </tr>
+        </table>
       </div>
       <div id="author">
         <a href="license.html">&copy; Copyright, Rabid Viper Productions</a>
