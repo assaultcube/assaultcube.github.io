@@ -17,11 +17,6 @@
       table, tr, td {
         text-align : left;
       }
-      .head01 {
-        text-align : center;
-        font-weight : bold;
-        text-decoration : underline;
-      }
     </style>
   </head>
   <body>
@@ -175,16 +170,31 @@
           If no license is specified, you MUST assume that the data is COPYRIGHT and you are NOT allowed to 
           redistribute that data outside of an UNMODIFIED AssaultCube package(s).
         </p>
+        <p>
+          For filenames in this list, the <span class="code">./</span> means the base of the AssaultCube package.
+          Where a <span class="code">*</span> is shown, this is a wildcard, meaning every file in that directory is
+          covered by the license.
+        </p>
         <table>
           <tr>
+            <td class="head01">Filename</td>
+            <td class="head01">Link to license</td>
+            <!-- Expand this rowspan, for every row added -->
+            <td rowspan="2" style="width : 10px; border-top : 1px solid #101010; border-bottom : 1px solid #101010;">&nbsp;</td>
             <td class="head01">Filename</td>
             <td class="head01">Link to license</td>
           </tr>
           <tr>
             <td>./packages/audio/misc/pickup_armour.ogg</td>
             <td>
-              <a href="http://actiongame.svn.sourceforge.net/viewvc/actiongame/trunk/ac/packages/audio/misc/pickup_armour.ogg_license.txt">Online</a> /
-              <a href="../packages/audio/misc/pickup_armour.ogg_license.txt">Offline</a></td>
+              <a href="http://actiongame.svn.sourceforge.net/viewvc/actiongame/trunk/ac/packages/audio/misc/pickup_armour.ogg_license.txt">Online</a>
+              / <a href="../packages/audio/misc/pickup_armour.ogg_license.txt">Offline</a>
+            </td>
+            <td>./packages/crosshairs/*</td>
+            <td>
+              <a href="http://actiongame.svn.sourceforge.net/viewvc/actiongame/trunk/ac/packages/crosshairs/license.txt">Online</a>
+              / <a href="../packages/crosshairs/license.txt">Offline</a>
+            </td>
           </tr>
         </table>
       </div>
