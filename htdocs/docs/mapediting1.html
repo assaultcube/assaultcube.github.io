@@ -16,6 +16,7 @@
     <style type="text/css">
       table, tr, td {
         text-align : left;
+        vertical-align : middle;
       }
     </style>
   </head>
@@ -83,8 +84,27 @@
               <b>Entity sparkles</b><br>
               <p>
                 These are shown as coloured sparkly dots. They are known as "entities", which will be explained later 
-                <a href="mapediting3.html">here</a>. Note: The sparkly of the nearest entity will show up blue.
-              </p>                        
+                <a href="mapediting3.html">here</a>. Each entity is colour coded:
+              </p>
+              <ul>
+                <li>The nearest entity will be blue.</li>
+                <li><a href="mapediting3.html#light">Light entities</a> will be white.</li>
+                <li>
+                  <a href="mapediting3.html#pickup">Item pickups</a> will be red
+                  (for weapons) or yellow (for armour/health).
+                </li>
+                <li><a href="mapediting3.html#spawn">Spawn points</a> will be green.</li>
+                <li>
+                  <a href="mapediting3.html#models">Mapmodels</a> and 
+                  <a href="mapediting3.html#sounds">map sounds</a> will be magenta.
+                </li>
+                <li><a href="mapediting3.html#ctf">CTF flags</a> will be turquoise.</li>
+                <li>
+                  <a href="mapediting3.html#clips">Clip boxes</a> and 
+                  <a href="mapediting3.html#ladders">ladders</a> will be grey.
+                </li>
+                <li><a href="mapediting3.html#sounds">Map sounds</a> in magenta (like models)</li>
+              </ul>
             </td>
           </tr>
           <tr>
@@ -92,8 +112,8 @@
             <td>
               <b>"Nearest entity" text</b><br>
               <p>
-                This is the white writing along the bottom. It will tell you the location of the closest entity and its properties.<br>
-                <b>Note:</b> As mentioned above, the nearest entity sparkly will show up blue.
+                This is the white writing along the bottom. It will tell you the location of the closest entity and its properties.
+                <b>Note:</b> The sparkly of the nearest entity will show up blue.
               </p>                        
             </td>
           </tr>
@@ -116,6 +136,16 @@
                 These boxes will be shown where clip entities are used and depict the total size of the clip.
                 These clip boxes stop players passing through, however, still allow grenades to pass.
                 See the <a href="mapediting3.html#clips">clips section</a> on the entities page for more information.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td><img src="images/editmode-arrow.jpg" alt="Playerstart arrows"></td>
+            <td>
+              <b>Playerstart arrows</b><br>
+              <p>
+                These arrows show up for any entity that is a "playerstart". This is to help you judge the correct
+                direction for each player to face when they spawn.
               </p>
             </td>
           </tr>
