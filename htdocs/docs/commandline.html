@@ -68,7 +68,7 @@
         </div>
 	<h2>Command line arguments</h2>
 	<p>
-	  When you launch AssaultCube, you're able to pass what is known as "arguments" or "switches"
+	  When you launch AssaultCube, you're able to pass what are known as "arguments" or "switches"
 	  to the launcher, which will force particular settings to occur when AssaultCube runs.
 	</p>
 	<p>
@@ -197,7 +197,7 @@
           <tr>
             <td class="c3" id="client-v">-v<b>N</b></td>
             <td>
-              Enables <a href="http://en.wikipedia.org/wiki/Screen_tearing#V-sync">v-sync</a> if <span class="code">N</span> is greater 0.
+              Enables <a href="http://en.wikipedia.org/wiki/Screen_tearing#V-sync">v-sync</a> if <span class="code">N</span> is greater than 0.
               If <span class="code">N</span> equals -1 then system defaults will be used.
             </td>
           </tr>
@@ -248,9 +248,9 @@
             </td>
           </tr>
           <tr>
-            <td class="c1" id="client-m">-m<b>URL</b></td>
+            <td class="c1" id="client-m">-m<b>HOSTNAME/IP</b></td>
             <td class="c2">
-              Sets the client to update its serverlist from the URL of a different masterserver. When using this argument, you need to
+              Sets the client to update its serverlist from the hostname or IP address of a different masterserver. When using this argument, you need to
               exclude the protocol at the beginning (i.e. add everything BUT <span class="code">http://</span> on to the argument).
               <br>The default is <span class="code">-massault.cubers.net</span>
             </td>
@@ -328,7 +328,7 @@
           <tr>
             <td class="c1" id="server-o">-o<b>N</b></td>
             <td class="c2">
-              Sets the servers MOTD (message of the day), which appears on the clients console after they connect to the server.
+              Sets the servers MOTD (message of the day), which appears on the client's console after they connect to the server.
             </td>
           </tr>
           <tr>
@@ -362,9 +362,9 @@
             </td>
           </tr>
           <tr>
-            <td class="c1" id="server-m">-m<b>URL</b></td>
+            <td class="c1" id="server-m">-m<b>HOSTNAME/IP</b></td>
             <td class="c2">
-              Forces the server to register with the URL of a different masterserver. When using this argument, you need to
+              Forces the server to register with the hostname or IP address of a different masterserver. When using this argument, you need to
               exclude the protocol at the beginning (i.e. add everything BUT <span class="code">http://</span> on to the argument).
               <br>The default is <span class="code">-massault.cubers.net</span>
               <br>If you want your server to be hidden and not report to the masterserver, use <span class="code">-mlocalhost</span>
@@ -390,7 +390,7 @@
             <td class="c2">
               Sets whether the role required to call a specific vote belongs to a "player" or an "administrator".
               The characters <span class="code">fkbMASRCDEPw</span> are used to set these requirements. <br>A lower-case character
-              enables normal players to call that vote, where-as an upper-case character will only allow an administrator to call
+              enables normal players to call that vote, whereas an upper-case character will only allow an administrator to call
               the vote. <br>If a character doesn't appear, then the defaults for that setting will be used.<br><br>
               <table>
                 <tr>
@@ -430,8 +430,8 @@
             <td class="c3" id="server-V">-V</td>
             <td>
               Verbose mode. This enables additional log messages to be printed, including the server configuration files after parsing.
-              Using this argument twice will also enable logging of DEBUG messages. Be careful as your logs will show everything in your
-              serverpwd.cfg file.
+              Using this argument twice will also enable logging of DEBUG messages. Be careful as your logs will show a part-obscured version
+              of the serverpwd.cfg file.
             </td>
           </tr>
           <tr>
@@ -522,7 +522,7 @@
           </tr>
           <tr>
             <td class="c3" id="server-l">-l</td>
-            <td>Disables periodic logging of the games current status/score (enabled by default).</td>
+            <td>Disables periodic logging of the game's current status/score (enabled by default).</td>
           </tr>
           <tr>
             <td class="verttxt" rowspan="4">
@@ -586,7 +586,7 @@
             <td>
               Sets whether the role required to sendmap belongs to a "player" or an "administrator".
               The characters <span class="code">curd</span> are used to set these requirements.
-              <br>A lower-case character enables normal players to do the listed sendmap action, where-as 
+              <br>A lower-case character enables normal players to do the listed sendmap action, whereas 
               an upper-case character will only allow an administrator to do the listed sendmap action.
               If a character doesn't appear, then the defaults for that setting will be used.
               <table>
@@ -603,8 +603,8 @@
               For example: -MCuD enables updating maps for normal players, but only admins can create or delete maps.
               The '-M' argument can be used several times on the commandline. For example: '-MC -Mu -MD' is equivalent to '-MCuD'.
               <br>Note: Only maps in the "incoming" folder are affected. Maps in the "official" and "servermaps" folders are
-              treated as <i>read only</i>. Also note, that deleting maps is disabled for BOTH players and admins by default, to enable
-              deletion of maps, you MUST use this argument to do so.
+              treated as <i>read only</i>. Also note that deleting maps is disabled for BOTH players AND admins by default; to enable
+              deletion of maps, you MUST use this argument.
             </td>
           </tr>
           <tr>
@@ -644,7 +644,7 @@
               <br>Demo filenames will contain the (optional) prefix, the (encoded) time, game mode and map.
               To set a path without filename prefix, ensure you add a '/' to the end of this argument.
               <br>The server owner has to take precautions that demo files don't fill up the file system, 
-              as demos can become quite large (sometimes up to 2 megabytes).
+              as demos can become quite large (sometimes over 2 megabytes).
             </td>
           </tr>
           <tr>
@@ -682,8 +682,8 @@
               For example, <span class="code">-Cconfig/servercmdline.txt</span>
               will read arguments from that file. Only one argument per line is allowed in the file.
               Empty lines, and any text after '//' in the file gets ignored.
-              The file is only read once at server startup, so changing the files content will not affect a
-              running server, you would need to restart it.
+              The file is only read once at server startup, so changing the file's content will not affect a
+              running server; you would need to restart it.
               <br>See ./config/servercmdline.txt for additional info.
             </td>
           </tr>
