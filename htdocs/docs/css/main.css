@@ -157,6 +157,22 @@ font-size : 13px;
 margin-top : 5px;
 list-style-type : square;
 }
+#socialmedia {
+float : right;
+clear : right;
+width : 220px;
+height : 175px;
+margin-top : 10px;
+background-color : #101010;
+text-align : left;
+font-size : 13px;
+}
+#socialmedia p {
+text-align : center;
+padding : 0px;
+margin : 0px;
+margin-top : 5px;
+}
 .errormain {
 padding : 0 5px;
 padding-bottom : 25px;
