@@ -167,11 +167,9 @@ background-color : #101010;
 text-align : left;
 font-size : 13px;
 }
-#socialmedia p {
+#socialmedia div {
 text-align : center;
-padding : 0px;
-margin : 0px;
-margin-top : 5px;
+padding : 3px;
 }
 .errormain {
 padding : 0 5px;
