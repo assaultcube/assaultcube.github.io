@@ -1,0 +1,317 @@
+/* Main CSS file for the ../reference.xml document.			*/
+
+/* Written by:	Rabid Viper Productions					*/
+/* Special thanks to Adrian 'driAn' Henke for the original document	*/
+/* that all these XML-related files are based upon.			*/
+
+/* You may be able to redistribute this content under specific 		*/
+/* conditions. Please read the licensing information, available		*/
+/* at http://assault.cubers.net/docs/license.html for the 		*/
+/* conditions that would apply to what you may be redistributing.	*/
+
+
+/* MAIN DOCUMENT */
+.docsmain {
+clear : none;
+float : left;
+width : 720px;
+}
+#gohome {
+width : 720px;
+}
+/* CONTENTS PANEL */
+.commandlist {
+margin-top : 15px;
+font-size : 17px;
+text-align : center;
+padding : 5px 0px;
+font-family : "Trebuchet MS", Arial, Helvetica, sans-serif;
+color : #FFFFFF;
+border : solid 2px #00303D;
+background-color : #101010;
+float : right;
+clear : right;
+width : 136px;
+}
+div#contentspanel {
+margin-top : 10px;
+float : right;
+clear : right;
+width : 140px;
+word-wrap : break-word;
+margin-left : 10px;
+font-family : "Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size : 10px;
+text-align : left;
+background-color : #101010;
+}
+div#contentspanel div.sectiontitle {
+padding-left : 10px;
+height : 20px;
+background-color : #252525;
+border-top : solid 1px #000000;
+border-bottom : solid 1px #000000;
+font-size : 14px;
+font-weight : bold;
+margin : 0px;
+line-height : 20px;
+white-space : nowrap;
+}
+div#contentspanel ul {
+list-style-type : none;
+padding : 0px;
+margin : 0px;
+padding : 5px;
+}
+div#contentspanel a {
+text-decoration : none;
+color : #E0E0E0;
+}
+div#contentspanel div.identifiers a {
+display : block;
+position : relative;
+width : 121px;
+overflow : hidden;
+}
+div#contentspanel div.identifiers a:hover {
+width : 128px;
+color : black;
+font-size : 12px;
+border : solid 1px #000000;
+padding : 0px;
+text-align : center;
+background-color : #666666;
+}
+/* TOP-OF-PAGE CATEGORY LIST */
+#categorylist {
+margin : 0px;
+margin-top : 5px;
+padding : 0px;
+padding-bottom : 20px;
+}
+#categorylist li {
+display : inline;
+list-style-type : none;
+font-size : 13px;
+padding-right: 20px;
+}
+
+
+/* fix positioned menu */
+
+div#topbutton a
+{
+	visibility: visible;
+	position: fixed;
+	padding: 5px 10px;
+	right: 20px;
+	bottom: 10px;
+	font-size: 12px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-decoration: none;	
+	border: solid 2px black;
+	background-color: #444444;	
+	color: Black;
+}
+
+body > div#topbutton a /* broken browsers will ignore this and therefore keep the menu hidden */
+{
+	visibility: visible;
+}
+
+div#topbutton a:hover
+{
+	background-color: #666666;
+}
+
+
+/* identifier */
+
+div.section div.identifier
+{
+	padding: 0 0 10px 0;
+	margin: 0 0 0 20px;
+}
+
+/* display name */
+
+div.section div.identifier div.displayname
+{
+	font-family: Courier New, Sans-Serif;
+	margin: 1em 0 1em -20px;
+}
+
+div.section div.identifier div.displayname a
+{
+	color: #007190;
+	text-decoration: none;
+}
+
+/* command arguments */
+
+div.section div.identifier div.argumentDescriptions
+{
+	margin: 10px 0 0 0;
+	padding: 0;
+}
+
+div.section div.identifier div.argumentDescriptions table
+{
+	margin: 0;
+	padding: 0;
+	border-collapse: collapse;
+	width : 100%;
+
+}
+
+div.section div.identifier div.argumentDescriptions table td
+{
+	border: solid 1px #777777;
+}
+
+div.section div.identifier div.argumentDescriptions table th
+{
+	font-weight: normal;
+	color: #000000;
+	padding : 2px 3px;
+	background-color: #666666;
+	border: solid 1px #444444;
+}
+
+div.section div.identifier div.argumentDescriptions table tr td.token
+{
+	font-style: italic;
+	width: 65px;
+}
+
+div.section div.identifier div.argumentDescriptions table tr td.description
+{
+	width: 300px;
+}
+
+div.section div.identifier div.argumentDescriptions table tr td.values
+{
+	
+}
+
+/* variable value */
+
+div.section div.identifier div.valueDescription
+{
+	margin: 10px 0 0 0;
+	padding: 0;
+}
+
+div.section div.identifier div.valueDescription table
+{
+	margin: 0;
+	padding: 0;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+div.section div.identifier div.valueDescription table td
+{
+	border: solid 1px #777777;
+}
+
+div.section div.identifier div.valueDescription table th
+{
+	font-weight: normal;
+	color: #333333;
+	background-color: #777777;
+	border: solid 1px #777777;
+}
+
+div.section div.identifier div.valueDescription table tr td.token
+{
+	font-style: italic;
+	width: 65px;
+}
+
+div.section div.identifier div.valueDescription table tr td.description
+{
+}
+
+div.section div.identifier div.valueDescription table tr td.values
+{
+	width: 200px;
+}
+
+div.section div.identifier div.valueDescription table tr td.range
+{
+	width: 50px;
+}
+
+div.section div.identifier div.valueDescription table tr td.defaultValue
+{
+	text-align: right;
+	width: 50px;
+}
+
+/* remarks */
+
+div.section div.identifier div.remarks
+{
+	margin: 10px 0 0 0;
+	padding: 0;
+}
+
+div.section div.identifier div.remarks div.remark
+{
+	margin: 10px 0 0 0;
+}
+
+/* references */
+
+div.section div.identifier div.references
+{
+    margin: 10px 0 0 0;
+	padding: 0;
+}
+
+
+div.section div.identifier div.references a.internal
+{
+	font-family: Courier New, Sans-Serif;
+	text-decoration: none;
+}
+
+div.section div.identifier div.references a.external
+{
+	
+}
+
+div.section div.identifier div.references span.none
+{
+	
+}
+
+/* examples */
+
+div.section div.identifier div.examples
+{
+    margin: 0;
+    padding : 0;
+}
+
+div.section div.identifier div.examples div.code
+{
+    margin: 10px 0 10px 0;
+    padding: 0;
+}
+
+div.section div.identifier div.examples div.exampleExplanation
+{
+    margin: 0;
+    padding: 0;
+}
+
+
+/* return value */
+
+div.section div.identifier div.return
+{
+}
+
