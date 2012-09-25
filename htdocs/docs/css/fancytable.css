@@ -8,9 +8,9 @@
 /* conditions that would apply to what you may be redistributing.	*/
 
 table, tr, td {
-  border : 1px dotted #555555;
-  border-collapse : collapse;
-  vertical-align : top;
-  text-align : center;
-  padding : 5px;
+border : #555555 dotted 1px;
+border-collapse : collapse;
+vertical-align : top;
+text-align : center;
+padding : 5px;
 }

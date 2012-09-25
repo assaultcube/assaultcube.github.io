@@ -11,13 +11,13 @@
 margin-top : 15px;
 }
 #dllinks {
-padding : 15px 0px;
+padding : 15px 0;
 margin : auto auto;
 text-align : center;
 font-size : 14px;
 }
 #dllinks td {
-padding : 0px 30px;
+padding : 0 30px;
 vertical-align : text-bottom;
 }
 #dllinks td a:link, #dllinks td a:visited {

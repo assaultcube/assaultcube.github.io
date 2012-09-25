@@ -8,7 +8,7 @@
 /* conditions that would apply to what you may be redistributing.	*/
 
 .docsmain {
-padding : 0px 5px;
+padding : 0 5px;
 padding-bottom : 25px;
 margin-top : 15px;
 background-color : #101010;
@@ -16,7 +16,7 @@ font-size : 13px;
 clear : both;
 }
 #docsheader {
-float: right;
+float : right;
 font-size : 18px;
 margin-top : 75px;
 visibility : visible;
@@ -45,8 +45,8 @@ font-family : "Trebuchet MS", Arial, Helvetica, sans-serif;
 font-size : 11px;
 }
 h4 {
-padding : 0px;
-margin : 5px 0px;
+padding : 0;
+margin : 5px 0;
 font-size : 16px;
 }
 .docswarn {

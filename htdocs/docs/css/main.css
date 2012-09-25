@@ -8,8 +8,8 @@
 /* conditions that would apply to what you may be redistributing.	*/
 
 body {
-margin : 0px;
-background : url(../images/bodybg.png) repeat-y center bottom;
+margin : 0;
+background : url('../images/test.png') bottom center repeat-y;
 background-color : #222222;
 font-family : Verdana, Arial, Helvetica, sans-serif;
 color : #909090;
@@ -22,7 +22,7 @@ color : #909090;
 }
 a:hover, a:active {
 text-decoration : none;
-color : #C0C0C0;
+color : #c0c0c0;
 }
 h4 {
 margin : 24px 0 12px 0;
@@ -40,7 +40,7 @@ padding-left : 4px;
 margin : 0 auto 0 auto;
 padding-top : 81px;
 padding-bottom : 1px;
-background : url(../images/cla-rvsf.png) no-repeat right top;
+background : url('../images/cla-rvsf.png') top right no-repeat;
 border-bottom : 1px solid #555555;
 text-align : left;
 font-size : 14px;
@@ -52,7 +52,7 @@ color : #909090;
 text-decoration : none;
 }
 #menubar a:hover, #menubar a:active {
-color : #C0C0C0;
+color : #c0c0c0;
 }
 #main {
 padding : 0 5px;
