@@ -9,7 +9,7 @@
 
 body {
 margin : 0;
-background : url('../images/test.png') bottom center repeat-y;
+background : url('../images/bodybg.png') top center repeat-y;
 background-color : #222222;
 font-family : Verdana, Arial, Helvetica, sans-serif;
 color : #909090;
