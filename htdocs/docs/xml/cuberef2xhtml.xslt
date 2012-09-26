@@ -87,7 +87,7 @@
               that its a bit more powerful because it is almost a full programming language.
             </p>
             <p>
-              Commands consist of the command itself, followed by any number of arguments separated by whitespace. You can:
+              CubeScript consists of the command itself, followed by any number of arguments separated by whitespace. You can:
             </p>
             <!-- Try to keep these examples very, very simple... -->
             <ul>
@@ -128,17 +128,15 @@
                   <xsl:value-of select="t:description"/>
                 </p>
                 <div class="dottedline"></div>
-                <h3>
-                  CATEGORIES:
-                </h3>
+                <h3>CATEGORIES:</h3>
                 <ul id="categorylist">
                   <xsl:for-each select="t:sections/t:section">
-                    <xsl:sort select="@sortindex[not(../../@sort) or ../../@sort = 'true' or ../../@sort = '1']"/>
+                    <xsl:sort select="@sortindex[not(../../@sort) or ../../@sort = 'true' or ../../@sort = '1']" />
                     <li>
                       <a>
                         <xsl:attribute name="href">
                           <xsl:text>#section_</xsl:text>
-                          <xsl:value-of select="translate(@name, ' ', '_')"/>
+                          <xsl:value-of select="translate(@name, ' ', '_')" />
                         </xsl:attribute>
                         <xsl:value-of select="@name"/>
                       </a>
@@ -421,8 +419,7 @@
               </xsl:for-each>
             </xsl:if>
           </div>
-          <div id="footer"></div>
-        </div>
+        &#160;</div>
       </body>
     </html>
   </xsl:template>
