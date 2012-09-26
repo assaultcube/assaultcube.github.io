@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  To turn this XML document into a "docs.cfg" that can be read by the AssaultCube engine, simply
+  uncomment the below xml-stylesheet. Then comment the xml-stylesheet below that one. Save your changes.
+  Then refresh this XML document in your web browser and copy/paste the output into ./config/docs.cfg
+
+  <?xml-stylesheet type="text/xsl" href="xml/cuberef2cubescript.xslt"?>
+-->
+<?xml-stylesheet type="text/xsl" href="xml/cuberef2xhtml.xslt"?>
+
+<!-- 
+  You may be able to redistribute this content under specific conditions.
+  Please read the licensing information, available @ http://assault.cubers.net/docs/license.html for the
+  conditions that would apply to what you may be redistributing.
+-->
+
+<cuberef xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://assault.cubers.net/docs/xml"
+name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuberef.xsd">
+
   <!--
-    To turn this XML document into a "docs.cfg" that can be read by the AssaultCube engine, simply
-    uncomment the below xml-stylesheet. Then comment the xml-stylesheet below that one. Save your changes.
-    Then refresh this XML document in your web browser and copy/paste the output into ./config/docs.cfg
-
-    <?xml-stylesheet type="text/xsl" href="xml/cuberef2cubescript.xslt"?>
+    Sections available: General, Gameplay, Game modes, Visuals, Heads-Up Display, Sound
+                        Server commands, Editing, Editing configs, Menus, Ingame Reference, TODO
   -->
-  <?xml-stylesheet type="text/xsl" href="xml/cuberef2xhtml.xslt"?>
-  <!-- 
-    You may be able to redistribute this content under specific conditions.
-    Please read the licensing information, available @ http://assault.cubers.net/docs/license.html for the
-    conditions that would apply to what you may be redistributing.
-  -->
-  <cuberef xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://assault.cubers.net/docs/xml"
-  name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuberef.xsd">
-
-    <!--
-      Sections available: General, Gameplay, Game modes, Visuals, Heads-Up Display, Sound
-                          Server commands, Editing, Editing configs, Menus, Ingame Reference, TODO
-    -->
-    <sections sort="true">
+  <sections sort="true">
     <section name="CubeScript" sortindex="00">
       <description>This section describes identifiers that are closely related to the CubeScript language.</description>
       <identifiers sort="true">
 
         <command name="&lt;f">
-          <description>
-            Compares if a particular floating-point value is smaller than another floating-point value.
-          </description>
+          <description>Compares if a particular floating-point value is smaller than another floating-point value.</description>
           <return token="F" description="(true)1||0(false)"/>
           <arguments>
             <argument token="A" description="The first value."/>
@@ -36,9 +36,7 @@
         </command>
 
         <command name="&lt;=f">
-          <description>
-            Compares if a particular floating-point value is less than or equal to another floating-point value.
-          </description>
+          <description>Compares if a particular floating-point value is less than or equal to another floating-point value.</description>
           <return token="F" description="(true)1||0(false)"/>
           <arguments>
             <argument token="A" description="The first value."/>
@@ -55,54 +53,55 @@
           </arguments>
         </command>
 
-<command name="&gt;f">
-					<description>Determines if a floating-point value is greater than a second floating-point value.</description>
-					<return token="F" description="(true)1||0(false)"/>
-					<arguments>
-						<argument token="A" description="the first value"/>
-						<argument token="B" description="the second value"/>
-					</arguments>
-				</command>
+        <command name="&gt;f">
+          <description>Determines if the first floating-point value is greater than the second floating-point value.</description>
+          <return token="F" description="(true)1||0(false)"/>
+          <arguments>
+            <argument token="A" description="the first value"/>
+            <argument token="B" description="the second value"/>
+          </arguments>
+        </command>
 
-				<command name="&gt;=f">
-					<description>Determines if a floating-point value is greater than or equal to a second floating-point value.</description>
-					<return token="F" description="(true)1||0(false)"/>
-					<arguments>
-						<argument token="A" description="the first value"/>
-						<argument token="B" description="the second value"/>
-					</arguments>
-				</command>
+        <command name="&gt;=f">
+          <description>Determines if the first floating-point value is greater than or equal to the second floating-point value.</description>
+          <return token="F" description="(true)1||0(false)"/>
+          <arguments>
+            <argument token="A" description="the first value"/>
+            <argument token="B" description="the second value"/>
+          </arguments>
+        </command>
 
-				<command name="!=f">
-					<description>Determines if a floating-point value is not equal to a second floating-point value.</description>
-					<return token="F" description="(true)1||0(false)"/>
-					<arguments>
-						<argument token="A" description="the first value"/>
-						<argument token="B" description="the second value"/>
-					</arguments>
-				</command>
+        <command name="!=f">
+          <description>Determines if the first floating-point value is not equal to the second floating-point value.</description>
+          <return token="F" description="(true)1||0(false)"/>
+          <arguments>
+            <argument token="A" description="the first value"/>
+            <argument token="B" description="the second value"/>
+          </arguments>
+        </command>
 
-				<command name="result">
-					<description>sets the result value of a CubeScript block</description>
-					<arguments>
-						<argument token="R" description="the result"/>
-					</arguments>
+        <command name="result">
+          <description>Sets the result value of a CubeScript block.</description>
+          <arguments>
+            <argument token="R" description="the result"/>
+          </arguments>
           <references>
             <identifierReference identifier="execute"/>
             <identifierReference identifier="return"/>
           </references>
-				</command>
+        </command>
 
+        <!-- FIXME: Obviously incorrect? Bad copy/paste! -->
         <command name="return">
-					<description>sets the result value of a CubeScript block</description>
-					<arguments>
-						<argument token="R" description="the result"/>
-					</arguments>
+          <description>Sets the result value of a CubeScript block.</description>
+          <arguments>
+            <argument token="R" description="the result"/>
+          </arguments>
           <references>
             <identifierReference identifier="execute"/>
             <identifierReference identifier="result"/>
           </references>
-				</command>
+        </command>
 
         <command name="execute">
           <description>Executes the specified string as CubeScript.</description>
@@ -117,22 +116,22 @@
           </examples>
         </command>
 
-				<command name="push">
-					<description>Temporarily redefines the value of an alias.</description>
-					<arguments>
-						<argument token="N" description="alias name"/>
-						<argument token="A" description="action"/>
-					</arguments>
-					<examples>
-						<example>
-							<code><![CDATA[p = 1; push p 2; echo $p]]></code>
-							<explanation>Output: 2</explanation>
-						</example>
-					</examples>
-					<references>
-						<identifierReference identifier="pop"/>
-					</references>
-				</command>
+        <command name="push">
+          <description>Temporarily redefines the value of an alias.</description>
+          <arguments>
+            <argument token="N" description="alias name"/>
+            <argument token="A" description="action"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[p = 1; push p 2; echo $p]]></code>
+              <explanation>Output: 2</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="pop"/>
+          </references>
+        </command>
 
 				<command name="getalias">
 					<description>return the value of the alias</description>
@@ -7263,37 +7262,34 @@ Output:
 					<description>shows the settings of edithide (sparklies)</description>
 				</command>
 
-				<command name="setedithide">
-					<description>hides the list of entity types you set. pass 1 for light, 2 for spawn, or use "playerstart".</description>
-					<arguments>
-  						<argument token="L" description="list of types to hide"/>
-					</arguments>
-					<remarks>
-						<remark>pass light or 1, playerstart or 2. Call [setedithide 1 10] to just hide all lights and mapmodels.</remark>
-						<remark>Or [setedithide [3 4 5 6 7 8 9 12 13]] for all the clips, ammo, nades, health, helmet, armour, akimbo, ladder, and flag.</remark>
-						<remark>Reversly just use [1 2 10 11 13 14 15 16] to hide light, spawn, mapmodel, ladder, sound, clip, plclip.</remark>
-						<remark>Only shown entity types are potential 'closest entity'.</remark>
-					</remarks>
+        <command name="setedithide">
+          <description>Hides the list of entity types you set. Pass 1 for light, 2 for spawn, or use "playerstart".</description>
+          <arguments>
+            <argument token="L" description="list of types to hide"/>
+          </arguments>
+          <remarks>
+            <remark>Pass light or 1, playerstart or 2. Call [setedithide 1 10] to just hide all lights and mapmodels.</remark>
+            <remark>Or [setedithide [3 4 5 6 7 8 9 12 13]] for all the clips, ammo, nades, health, helmet, armour, akimbo, ladder, and flag.</remark>
+            <remark>Reversly just use [1 2 10 11 13 14 15 16] to hide light, spawn, mapmodel, ladder, sound, clip, plclip.</remark>
+            <remark>Only shown entity types are potential 'closest entity'.</remark>
+          </remarks>
+        </command>
 
-				</command>
+        <command name="seteditshow">
+          <description>Hides all but the single entity type you give. Pass 1 for light, 2 for spawn, or use [playerstart].</description>
+          <arguments>
+            <argument token="T" description="type to show exclusively"/>
+          </arguments>
+          <remarks>
+            <remark>Just run [seteditshow model] and see just the model entities.</remark>
+            <remark>The other entity types are ignored as closestentity too.</remark>
+            <remark>other call forms may use the numerical item type</remark>
+          </remarks>
+        </command>
 
-				<command name="seteditshow">
-					<description>hides all but the single entity type you give. pass 1 for light, 2 for spawn, or use [playerstart].</description>
-					<arguments>
-  						<argument token="T" description="type to show exclusively"/>
-					</arguments>
-					<remarks>
-						<remark>Just run [seteditshow model] and see just the model entities.</remark>
-						<remark>The other entity types are ignored as closestentity too.</remark>
-						<remark>other call forms may use the numerical item type</remark>
-					</remarks>
-
-				</command>
-
-			</identifiers>
-		</section>
-		<!-- TODO Section Ends -->
-
-	</sections>
+      </identifiers>
+    </section>
+    <!-- "TODO" Section Ends -->
+  </sections>
+  <description>&#160; <!-- For testing purposes, please leave this intact--></description>
 </cuberef>
-
