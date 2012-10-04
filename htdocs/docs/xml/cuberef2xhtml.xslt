@@ -419,7 +419,7 @@
               </xsl:for-each>
             </xsl:if>
           </div>
-        &#160;</div>
+        </div>
       </body>
     </html>
   </xsl:template>
