@@ -25,9 +25,11 @@
   </xsl:variable>
 
   <xsl:template match="/t:cuberef">
-    <xsl:text>// This CubeScript has been automatically generated from AssaultCubes reference.xml file.</xsl:text>
+    <xsl:text>// This CubeScript file has been automatically generated from AssaultCube's ./docs/reference.xml</xsl:text>
     <xsl:value-of select="$newline"/>
-    <xsl:text>// To auto-generate this file yourself, please carefully read the comment at the top of reference.xml</xsl:text>
+    <xsl:text>// DO NOT MODIFY THIS FILE - Instead, modify ./docs/reference.xml and generate this file automatically.</xsl:text>
+    <xsl:value-of select="$newline"/>
+    <xsl:text>// To generate this file automatically, please carefully read the comment at the top of reference.xml</xsl:text>
     <xsl:value-of select="$newline"/>
     <xsl:value-of select="$newline"/>
 
