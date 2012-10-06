@@ -7,7 +7,7 @@
   <?xml-stylesheet type="text/xsl" href="xml/cuberef2cubescript.xslt"?>
 -->
 
-<!-- 
+<!--
   You may be able to redistribute this content under specific conditions.
   Please read the licensing information, available @ http://assault.cubers.net/docs/license.html for the
   conditions that would apply to what you may be redistributing.
@@ -32,7 +32,7 @@
 
   Identifiers
     * An identifier represents a command, variable or an alias that is available through CubeScript.
-    * Identifiers must be unique across sections (i.e. don't double-up!) 
+    * Identifiers must be unique across sections (i.e. don't double-up!)
     * Avoid documenting CubeScript in ./config/*  (such as those in default.cfg) that aren't important.
 
   Description
@@ -44,7 +44,7 @@
     * Write restricted integer values in the way of 0..3 (0 to 3) and 1..* (0 to 'infinite').
     * If no restrictions apply to values, specify the pseudo data type.
     * If the meaning of the arguments depends on other arguments, create multiple identifiers
-      with the name containing the depending argument. Example: 'newent type v1 v2 v3 v4' depends 
+      with the name containing the depending argument. Example: 'newent type v1 v2 v3 v4' depends
       on the type, therefore it's split to 'newent light', 'newent ammo', etc.
 
   Remarks
@@ -1885,7 +1885,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Takes a screenshot.</description>
           <remarks>
             <remark>
-              Screenshots are saved to "screenshots/[date]_[time]_[map]_[mode].[ext]", 
+              Screenshots are saved to "screenshots/[date]_[time]_[map]_[mode].[ext]",
               where [ext] is the image type selected.
             </remark>
           </remarks>
@@ -3021,7 +3021,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="clearignored">
           <description>Clear list of ignored players.</description>
           <arguments>
-            <argument token="A" description="optional client number"/>
+            <argument token="A" description="client number, or -1 to clear the whole list"/>
           </arguments>
           <remarks>
             <remark>Omit the client number to clear the whole list.</remark>
@@ -3041,7 +3041,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="clearmuted">
           <description>Clear list of muted players.</description>
           <arguments>
-            <argument token="A" description="optional client number"/>
+            <argument token="A" description="client number, or -1 to clear the whole list"/>
           </arguments>
           <remarks>
             <remark>Omit the client number to clear the whole list.</remark>
