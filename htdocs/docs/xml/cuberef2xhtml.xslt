@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:t="http://assault.cubers.net/docs/xml">
+<xsl:transform version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:t="http://assault.cubers.net/docs/xml">
 <!-- 
   This file transforms the ../reference.xml document into an XHTML webpage.
 
@@ -13,7 +13,7 @@
   conditions that would apply to what you may be redistributing.
 -->
 
-  <xsl:output method="html" omit-xml-declaration="yes" encoding="utf-8" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"/>
+  <xsl:output method="html" omit-xml-declaration="yes" encoding="utf-8" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
 
   <xsl:template match="t:key">
     <i>
@@ -287,14 +287,14 @@
                           <xsl:for-each select="t:examples/t:example">
                             <p>
                               Example:
-                              <div class="code">
+                              <span class="code">
                                 <xsl:value-of select="t:code"/>
-                              </div>
+                              </span>
                               <xsl:if test="t:explanation">
                                 <xsl:for-each select="t:explanation">
-                                <div class="exampleExplanation">
+                                <span class="exampleExplanation">
                                   <xsl:value-of select="."/>
-                                </div>
+                                </span>
 								</xsl:for-each>
                               </xsl:if>
                             </p>
