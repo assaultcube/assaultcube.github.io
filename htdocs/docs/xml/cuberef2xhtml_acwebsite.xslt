@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- START: CHANGED FROM cuberef2xhthml.xslt -->
+  <!DOCTYPE xsl:stylesheet [ 
+    <!ENTITY docswarnssi SYSTEM "../../SSI-HTML/docs/docswarn.html">
+    <!ENTITY navigation_box_docsssi SYSTEM "../../SSI-HTML/docs/navigation_box_docs.html">
+  ]>
+<!-- END: CHANGED FROM cuberef2xhthml.xslt -->
 <xsl:transform version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:t="http://assault.cubers.net/docs/xml">
 <!-- 
   This file transforms the ../reference.xml document into an XHTML webpage.
@@ -58,6 +64,9 @@
         <link rel="stylesheet" href="css/main.css" />
         <link rel="stylesheet" href="css/docs.css" />
         <link rel="stylesheet" href="css/referencexml.css" />
+        <!-- START: CHANGED FROM cuberef2xhthml.xslt -->
+          <link rel="stylesheet" type="text/css" href="css/invisibility.css" />
+        <!-- END: CHANGED FROM cuberef2xhthml.xslt -->
         <link rel="shortcut icon" href="images/favicon.ico" />
       </head>
       <body>
@@ -70,8 +79,14 @@
             alt="AssaultCube" width="193px" height="81px" /></a>
           </div>
           <div id="menubar">
+            <!-- START: CHANGED FROM cuberef2xhthml.xslt -->
+              &navigation_box_docsssi;
+            <!-- END: CHANGED FROM cuberef2xhthml.xslt -->
             &#160;
           </div>
+        <!-- START: CHANGED FROM cuberef2xhthml.xslt -->
+            &docswarnssi;
+        <!-- END: CHANGED FROM cuberef2xhthml.xslt -->
           <div class="docsmain">
             <div id="gohome">
               <a href="index.html">Go to documentation index &#8629;</a>
