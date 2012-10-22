@@ -93,31 +93,45 @@
             <ul style="list-style-type : square;">
               <li>
                 Use <span class="code">""</span> to quote strings that have whitespace within them.
-                <ul><li>Example: <span class="code">alias thegrass "is greener"</span></li></ul>
+                <ul><li>Input example: <span class="code">alias grass "is greener"</span></li></ul>
               </li>
               <li>
-                Use <span class="code">;</span> to sequence multiple commands into one.
-                <ul><li>Example: <span class="code">alias thegrass "is greener"; alias thesky "is blue"</span></li></ul>
-              </li>
-              <li>
-                Use <span class="code">$</span> to capture the value of a variable/alias/backeted-string as an argument for a command.
+                Use <span class="code">$</span> to capture the value of a variable/alias/bracketed-string as an argument for a command.
                 <ul>
-                  <li>Example: <span class="code">echo "The grass" $thegrass</span></li>
-                  <li>Example: <span class="code">echo "Your FOV is" $fov</span></li>
+                  <li>Input example: <span class="code">echo "The grass" $grass</span></li>
+                  <li>Output: <span class="code">The grass is greener</span></li>
+                  <li>Input example: <span class="code">echo "Your FOV is" $fov</span></li>
+                  <li>Output: <span class="code">Your FOV is 90.0</span></li>
                 </ul>
               </li>
               <li>
-                You can use the automatically-set aliases of <span class="code">$arg1</span>
-                (.. and <span class="code">$arg2</span>, <span class="code">$arg3</span>, etc) in your scripts. 
-                <ul><li>Example: <span class="code">if thegrass $arg1 [ echo "This grass is too green" ]</span></li></ul>
+                Use <span class="code">;</span> to sequence multiple commands into one.
+                <ul>
+                  <li>Input example: <span class="code">alias grass "is yellow"; echo "The grass" $grass</span></li>
+                  <li>Output: <span class="code">The grass is yellow</span></li>
+                </ul>
               </li>
               <li>
-                You can also use <span class="code">()</span> or <span class="code">[]</span> to quote strings.
-                The brackets/square-brackets are allowed to be nested infinitely and may contain linefeeds.
-                Brackets <span class="code">()</span> evaluate commands contained in it, before it evaluates the surrounding command.
+                You can also use <span class="code">()</span> or <span class="code">[]</span> to quote strings (i.e. instead of "").
+                These can be nested infinitely and may contain linefeeds.
+                The normal brackets <span class="code">()</span> are special, as they evaluate commands contained within them,
+                before evaluating the surrounding command.
                 <ul>
-                  <li>Example: <span class="code">alias thegrass [ alias thegrass2 [ alias thegrass3 "is greener" ] ]</span></li>
-                  <li>Example: <span class="code">alias thegrass [ if (= $arg1 "is greener") [ echo "is too green" ] ]</span></li>
+                  <li>Input example: <span class="code">alias 4x2 (* 2 (+ 1 3))</span></li> 
+                  <li>Input command: <span class="code">echo $4x2</span></li>
+                  <li>Output: <span class="code">8</span></li>
+                  <li>Input example: <span class="code">alias grass [ is greener ]</span></li>
+                </ul>
+              </li>
+              <li>
+                Lastly, you can use the automatically-set aliases of <span class="code">$arg1</span>
+                (.. and <span class="code">$arg2</span>, <span class="code">$arg3</span>, etc) in your scripts. 
+                <ul>
+                  <li>Input example: <span class="code">alias grass [ if (= $arg1 1) [ echo "The grass is green" ] [ if (= $arg1 2) [ echo "The grass is yellow" ] ] ]</span></li>
+                  <li>Input command: <span class="code">grass 1</span></li>
+                  <li>Output: <span class="code">The grass is green</span></li>
+                  <li>Input command: <span class="code">grass 2</span></li>
+                  <li>Output: <span class="code">The grass is brown</span></li>
                 </ul>
               </li>
             </ul>
