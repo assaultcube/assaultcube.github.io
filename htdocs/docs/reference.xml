@@ -1655,7 +1655,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="clearservers">
-				</command>
+        </command>
 
         <variable name="browsefiledesc">
           <description>Toggles getting descriptive text from CGZ or DMO files in menudirlist.</description>
@@ -1787,8 +1787,34 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="A" description="the command" valueNotes="string, usually an alias"/>
           </arguments>
           <references>
+            <identifierReference identifier="editbind"/>
+            <identifierReference identifier="specbind"/>
             <identifierReference identifier="megabind"/>
             <identifierReference identifier="onrelease"/>
+          </references>
+        </command>
+
+        <command name="editbind">
+          <description>Similar to bind, but is only active while editing, where it overrides the regular bind for the specified key.</description>
+          <arguments>
+            <argument token="K" description="the key to bind" valueNotes="string"/>
+            <argument token="A" description="the command" valueNotes="string, usually an alias"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="bind"/>
+            <identifierReference identifier="specbind"/>
+          </references>
+        </command>
+
+        <command name="specbind">
+          <description>Similar to bind, but is only active while spectating, where it overrides the regular bind for the specified key.</description>
+          <arguments>
+            <argument token="K" description="the key to bind" valueNotes="string"/>
+            <argument token="A" description="the command" valueNotes="string, usually an alias"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="bind"/>
+            <identifierReference identifier="editbind"/>
           </references>
         </command>
 
@@ -1984,7 +2010,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <examples>
             <example>
               <code><![CDATA[echo (getEngineState)
-						]]></code>
+            ]]></code>
             </example>
           </examples>
         </command>
@@ -3440,15 +3466,15 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <example>
               <code><![CDATA[showtime = [
 	if (> $lastgametimeupdate 0) [
-		gmr = (- $gametimemaximum (+ $gametimecurrent (- (millis) $lastgametimeupdate)))
-		gsr = (div $gmr 1000)
-		gts = (mod $gsr 60)
-		if (< $gts 10) [ gts = (concatword 0 $gts) ] [ ]
-		gtm = (div $gsr 60)
-		if (< $gtm 10) [ gtm = (concatword 0 $gtm) ] [ ]
-		echo (concatword $gtm : $gts) remaining
+    gmr = (- $gametimemaximum (+ $gametimecurrent (- (millis) $lastgametimeupdate)))
+    gsr = (div $gmr 1000)
+    gts = (mod $gsr 60)
+    if (< $gts 10) [ gts = (concatword 0 $gts) ] [ ]
+    gtm = (div $gsr 60)
+    if (< $gtm 10) [ gtm = (concatword 0 $gtm) ] [ ]
+    echo (concatword $gtm : $gts) remaining
 	] [
-		echo gametime not updated yet
+    echo gametime not updated yet
 	]
 	      ]]]></code>
             </example>
@@ -3546,9 +3572,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Maximum time span between player animation and the playback of the footstep sound</description>
           <remarks>
             <remark>
-						If the footstep sound would be played immediately when entering the radius of the other player, it would
-						not be synchronous to the player model animation.
-					</remark>
+            If the footstep sound would be played immediately when entering the radius of the other player, it would
+            not be synchronous to the player model animation.
+            </remark>
           </remarks>
           <value token="T" description="time span" minValue="5" maxValue="4000" defaultValue="15"/>
         </variable>
@@ -3770,12 +3796,12 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description><![CDATA[switches between map edit mode and normal.]]></description>
           <remarks>
             <remark>
-						In map edit mode you can select bits of the map by clicking or dragging your crosshair on the floor
-						or ceiling (using the "attack" identifier, normally MOUSE1), then use the identifiers below to
-						modify the selection. While in edit mode, normal physics and collision don't apply (clips), and key repeat is ON.
-						Note that if you fly outside the map, cube still renders the world as if you were standing on the floor
-						directly below the camera.
-					</remark>
+            In map edit mode you can select bits of the map by clicking or dragging your crosshair on the floor
+            or ceiling (using the "attack" identifier, normally MOUSE1), then use the identifiers below to
+            modify the selection. While in edit mode, normal physics and collision don't apply (clips), and key repeat is ON.
+            Note that if you fly outside the map, cube still renders the world as if you were standing on the floor
+            directly below the camera.
+            </remark>
             <remark>Hotkey E</remark>
           </remarks>
           <references>
@@ -3788,11 +3814,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description><![CDATA[Changes the texture on current selection by browsing through a list of textures directly shown on the cubes.]]></description>
           <remarks>
             <remark>
-						Default keys are the six keys above the cursor keys, which each 2 of them cycle one type (and numpad 7/4 for upper).
-					</remark>
+            Default keys are the six keys above the cursor keys, which each 2 of them cycle one type (and numpad 7/4 for upper).
+            </remark>
             <remark>
-						The way this works is slightly strange at first, but allows for very fast texture assignment. All textures are in 3 individual lists for each type (both wall kinds treated the same), and each time a texture is used, it is moved to the top of the list. So after a bit of editing, all your most frequently used textures will come first when pressing these keys, and the most recently used texture is set immediately when you press the forward key for the type. These lists are saved with the map. make a selection (including wall bits) and press these keys to get a feel for what they do.
-					</remark>
+            The way this works is slightly strange at first, but allows for very fast texture assignment. All textures are in 3 individual lists for each type (both wall kinds treated the same), and each time a texture is used, it is moved to the top of the list. So after a bit of editing, all your most frequently used textures will come first when pressing these keys, and the most recently used texture is set immediately when you press the forward key for the type. These lists are saved with the map. make a selection (including wall bits) and press these keys to get a feel for what they do.
+            </remark>
           </remarks>
           <arguments>
             <argument token="T" description="an integer denoting the type" valueNotes="0 (floor), 1 (lower or wall), 2 (ceiling), 3 (upper wall)"/>
@@ -3823,8 +3849,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>makes the current selection all solid (i.e. wall) or all non-solid.</description>
           <remarks>
             <remark>
-						This operation retains floor/ceiling heights/textures while swapping between the two. Default keys f and g respectively.
-					</remark>
+            This operation retains floor/ceiling heights/textures while swapping between the two. Default keys f and g respectively.
+            </remark>
           </remarks>
           <arguments>
             <argument token="B" description="an integer denoting the solid-ness" valueNotes="0 (non-solid), 1..* (solid)"/>
@@ -3845,19 +3871,19 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Marks the current selection as a heightfield.</description>
           <remarks>
             <remark>
-						marks the current selection as a heightfield, with T being floor or ceiling, as above.
-						A surface marked as heightfield will use the vdelta values (see below) of its 4 corners to create a sloped surface.
-						To mark a heightfield as normal again (ignoring vdelta values, set or not) use "solid 0".
-						Default keys are h (floor) and i (ceiling).
-					</remark>
+            marks the current selection as a heightfield, with T being floor or ceiling, as above.
+            A surface marked as heightfield will use the vdelta values (see below) of its 4 corners to create a sloped surface.
+            To mark a heightfield as normal again (ignoring vdelta values, set or not) use "solid 0".
+            Default keys are h (floor) and i (ceiling).
+            </remark>
             <remark>
-						Heightfields should be made the exact size that is needed, not more not less.
-						The most important reason for this is that cube automatically generates "caps" (side-faces for heightfields)
-						only on the borders of the heightfield. This also means if you have 2 independent heightfields accidentally
-						touch each other, you will not get correct caps. Also, a heightfield is slightly slower to render than a
-						non-heightfield floor or ceiling. Last but not least, a heightfield should have all the same baseheight
-						(i.e. the height determined by a normal editheight operation) to get correct results.
-					</remark>
+            Heightfields should be made the exact size that is needed, not more not less.
+            The most important reason for this is that cube automatically generates "caps" (side-faces for heightfields)
+            only on the borders of the heightfield. This also means if you have 2 independent heightfields accidentally
+            touch each other, you will not get correct caps. Also, a heightfield is slightly slower to render than a
+            non-heightfield floor or ceiling. Last but not least, a heightfield should have all the same baseheight
+            (i.e. the height determined by a normal editheight operation) to get correct results.
+            </remark>
           </remarks>
           <references>
             <identifierReference name="vdelta" identifier="vdelta"/>
@@ -3871,14 +3897,14 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>changes the vdelta value of the current selection</description>
           <remarks>
             <remark>
-						Note that unlike all other editing functions, this function doesn't affect a cube, but its top-left vertex
-						(market by the dot in the editing cursor). So to edit a N * M heightfield, you will likely have to edit
-						the vdelta of (N+1) * (M+1) cubes, i.e. you have to select 1 row and 1 column more in the opposite direction
-						of the red dot to affect all the vertices of a heightfield of a given size (try it, it makes sense :)
-					</remark>
+            Note that unlike all other editing functions, this function doesn't affect a cube, but its top-left vertex
+            (market by the dot in the editing cursor). So to edit a N * M heightfield, you will likely have to edit
+            the vdelta of (N+1) * (M+1) cubes, i.e. you have to select 1 row and 1 column more in the opposite direction
+            of the red dot to affect all the vertices of a heightfield of a given size (try it, it makes sense :)
+            </remark>
             <remark>
-						A floor delta offsets vertices to beneath the level set by editheight (and a ceil delta to above). Delta offsets have a precision of a quarter of a unit, however you should use non-unitsize vertices only to touch other such vertices. Default keys are 8 and 9 to decrease/increase the vdelta.
-					</remark>
+            A floor delta offsets vertices to beneath the level set by editheight (and a ceil delta to above). Delta offsets have a precision of a quarter of a unit, however you should use non-unitsize vertices only to touch other such vertices. Default keys are 8 and 9 to decrease/increase the vdelta.
+            </remark>
           </remarks>
           <arguments>
             <argument token="N" description="vdelta value"/>
@@ -3889,17 +3915,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Makes the current selection into a "corner".</description>
           <remarks>
             <remark>
-						Currently there is only one type of corner (a 45 degree one), only works on a single unit (cube) at a time.
-						It can be positioned either next to 2 solid walls or
-						in the middle of 2 higher floorlevels and 2 lower ones forming a diagonal (and similar with ceiling).
-					</remark>
+            Currently there is only one type of corner (a 45 degree one), only works on a single unit (cube) at a time.
+            It can be positioned either next to 2 solid walls or
+            in the middle of 2 higher floorlevels and 2 lower ones forming a diagonal (and similar with ceiling).
+            </remark>
             <remark>
-						In both cases, the corner will orient itself automatically depending on its neighbours, behaviour with other
-						configurations than the 2 above is unspecified. Since the latter configuration generates possibly 2 floor and
-						2 ceiling levels, up to 4 textures are used: for example for the 2 floors the higher one will of the cube
-						itself, and the lower one of a neighbouring low cube. You can make bigger corners at once by
-						issuing "corner" on grid aligned 2x2/4x4/8x8 selections, with equal size solid blocks next to them.
-					</remark>
+            In both cases, the corner will orient itself automatically depending on its neighbours, behaviour with other
+            configurations than the 2 above is unspecified. Since the latter configuration generates possibly 2 floor and
+            2 ceiling levels, up to 4 textures are used: for example for the 2 floors the higher one will of the cube
+            itself, and the lower one of a neighbouring low cube. You can make bigger corners at once by
+            issuing "corner" on grid aligned 2x2/4x4/8x8 selections, with equal size solid blocks next to them.
+            </remark>
           </remarks>
           <defaultKeys>
             <key alias="K"/>
@@ -3917,9 +3943,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Sets the number of megabytes used for the undo buffer.</description>
           <remarks>
             <remark>
-						undo's work for any size areas, so the amount of undo steps per megabyte is more for small areas
-						than for big ones (a megabyte fits 280 undo steps on a 16x16 area, but only 4 steps on a 128x128 area).
-					</remark>
+            undo's work for any size areas, so the amount of undo steps per megabyte is more for small areas
+            than for big ones (a megabyte fits 280 undo steps on a 16x16 area, but only 4 steps on a 128x128 area).
+            </remark>
           </remarks>
           <arguments>
             <argument token="N" description="number of megabytes, default is 1" valueNotes="integer"/>
@@ -3947,10 +3973,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Pastes a previously copied selection.</description>
           <remarks>
             <remark>
-						To paste a selection back requires a same size selection at the destination location. If it is not the same
-						size the selection will be resized automatically prior to the paste operation (with the red dot as anchor),
-						which is easier for large selections.
-					</remark>
+            To paste a selection back requires a same size selection at the destination location. If it is not the same
+            size the selection will be resized automatically prior to the paste operation (with the red dot as anchor),
+            which is easier for large selections.
+            </remark>
             <remark>hotkey v</remark>
           </remarks>
         </command>
@@ -3982,11 +4008,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Repeats the last texture edit throughout the map.</description>
           <remarks>
             <remark>
-						The way it works is intuitive: simply edit any texture anywhere, then using "replace" will replace
-						all textures throughout the map in the same way (taking into account whether it was a floor/wall/ceil/upper too).
-						If the there was more than one "old" texture in your selection, the one nearest to the red dot is used.
-						This operation can't be undone.
-					</remark>
+            The way it works is intuitive: simply edit any texture anywhere, then using "replace" will replace
+            all textures throughout the map in the same way (taking into account whether it was a floor/wall/ceil/upper too).
+            If the there was more than one "old" texture in your selection, the one nearest to the red dot is used.
+            This operation can't be undone.
+            </remark>
           </remarks>
         </command>
 
@@ -3994,9 +4020,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Adds a new entity</description>
           <remarks>
             <remark>
-						(x,y) is determined by the current selection (the red dot corner) and z by the camera height, of said type.
-						Type is a string giving the type of entity, such as "light", and may optionally take values (depending on the entity).
-					</remark>
+            (x,y) is determined by the current selection (the red dot corner) and z by the camera height, of said type.
+            Type is a string giving the type of entity, such as "light", and may optionally take values (depending on the entity).
+            </remark>
           </remarks>
           <arguments>
             <argument token="type" description="the entity type" valueNotes="light, sound, clip, plclip, playerstart, pistol, ammobox, grenades, health, armour, akimbo, mapmodel, ladder, ctf-flag, helmet"/>
@@ -4059,12 +4085,12 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Adds a map model to the map (i.e. a rendered md2/md3 model which you collide against but has no behaviour or movement)</description>
           <remarks>
             <remark>
-						The mapmodel identifier is the desired map model which is defined by the 'mapmodel' command. The order in which
-						the mapmodel is placed in the map config file defines the mapmodel identifier.
-						The map texture refers to a texture which is defined by the 'texture' command, if omitted the
-						models default skin will be used. The 'mapmodel' and 'texture' commands are placed in the map config normally.
-						Mapmodels are more expensive than normal map geometry, so do not use insane amounts of them to replace normal geometry.
-					</remark>
+            The mapmodel identifier is the desired map model which is defined by the 'mapmodel' command. The order in which
+            the mapmodel is placed in the map config file defines the mapmodel identifier.
+            The map texture refers to a texture which is defined by the 'texture' command, if omitted the
+            models default skin will be used. The 'mapmodel' and 'texture' commands are placed in the map config normally.
+            Mapmodels are more expensive than normal map geometry, so do not use insane amounts of them to replace normal geometry.
+            </remark>
           </remarks>
           <arguments>
             <argument token="N" description="The mapmodel identifier" valueNotes="Integer"/>
@@ -4087,9 +4113,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Adds a ladder entity.</description>
           <remarks>
             <remark>
-						Note that this entity is used for physics only, to create a visual ladder you
-						will need to add a mapmodel entity too.
-					</remark>
+            Note that this entity is used for physics only, to create a visual ladder you
+            will need to add a mapmodel entity too.
+            </remark>
           </remarks>
           <references>
             <identifierReference name="newent mapmodel" identifier="newent mapmodel"/>
@@ -4103,16 +4129,16 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Adds a sound entity.</description>
           <remarks>
             <remark>
-						Will play map-specific sound so long as the player is within the radius.
-						However, only up to the max uses allowed for N (specified in the mapsound command) will play, even if the player is within the radius of more N sounds than the max.
-						By default (size 0), the sound is a point source. Its volume is maximal at the entity's location, and tapers off to 0 at the radius. If size is specified,
-						the volume is maximal within the specified size, and only starts tapering once outside this distance. Radius is always defined as distance from the entity's location,
-						so a size greater than or equal to the radius will just make a sound that is always max volume within the radius, and off outside.
-					</remark>
+            Will play map-specific sound so long as the player is within the radius.
+            However, only up to the max uses allowed for N (specified in the mapsound command) will play, even if the player is within the radius of more N sounds than the max.
+            By default (size 0), the sound is a point source. Its volume is maximal at the entity's location, and tapers off to 0 at the radius. If size is specified,
+            the volume is maximal within the specified size, and only starts tapering once outside this distance. Radius is always defined as distance from the entity's location,
+            so a size greater than or equal to the radius will just make a sound that is always max volume within the radius, and off outside.
+            </remark>
             <remark>
-						A sound entity can be either ambient or non-ambient. Ambient sounds have no specific direction, they are 'just there'. Non-ambient sounds however appear to come from a specific direction (stereo panning).
-						If S is set to 0, the sound is a single point and will therefore be non-ambient. However if S is greater than 0, the sound will be ambient as it covers a specified area instead of being a single point.
-					</remark>
+            A sound entity can be either ambient or non-ambient. Ambient sounds have no specific direction, they are 'just there'. Non-ambient sounds however appear to come from a specific direction (stereo panning).
+            If S is set to 0, the sound is a single point and will therefore be non-ambient. However if S is greater than 0, the sound will be ambient as it covers a specified area instead of being a single point.
+            </remark>
           </remarks>
           <references>
             <identifierReference identifier="mapsound"/>
@@ -4130,8 +4156,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>Defines a clipping box against which the player will collide.</remark>
             <remark>
-						Use this clip type to clip visible obstacles like fences or the gas tank. If you only want to prevent a player from entering an area, use plclip instead.
-					</remark>
+            Use this clip type to clip visible obstacles like fences or the gas tank. If you only want to prevent a player from entering an area, use plclip instead.
+            </remark>
           </remarks>
           <arguments>
             <argument token="Z" description="elevation above the ground" valueNotes="integer"/>
@@ -4153,8 +4179,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>Defines a clipping box against which (only) the player will collide.</remark>
             <remark>
-						Use this clip type to define no-go areas for players without visible obstacles, for example to prevent players from walking on a wall.
-					</remark>
+            Use this clip type to define no-go areas for players without visible obstacles, for example to prevent players from walking on a wall.
+            </remark>
             <remark>Nades will not be affected by this clip type.</remark>
           </remarks>
           <arguments>
@@ -4215,15 +4241,15 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Saves the current map.</description>
           <remarks>
             <remark>
-						savemap makes a versioned backup (mapname_N.BAK) if a map by that name already exists.
-						If the name argument is omitted, it is saved under the current map name.
-					</remark>
+            savemap makes a versioned backup (mapname_N.BAK) if a map by that name already exists.
+            If the name argument is omitted, it is saved under the current map name.
+            </remark>
             <remark>
-						Where you store a map depends on the complexity of what you are creating: if its a single
-						map (maybe with its own .cfg) then the "base" package is the best place. If its multiple maps
-						or a map with new media (textures etc.) its better to store it in its own package (a directory under "packages"),
-						which makes distributing it less messy.
-					</remark>
+            Where you store a map depends on the complexity of what you are creating: if its a single
+            map (maybe with its own .cfg) then the "base" package is the best place. If its multiple maps
+            or a map with new media (textures etc.) its better to store it in its own package (a directory under "packages"),
+            which makes distributing it less messy.
+            </remark>
           </remarks>
           <references>
             <identifierReference name="map" identifier="map"/>
@@ -4252,10 +4278,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Enlarges the current map.</description>
           <remarks>
             <remark>
-						This command will make the current map 1 power of two bigger.
-						So a size 6 map (64x64 units) will become a size 7 map (128x128),
-						with the old map in the middle (from 32-96) and the new areas solid.
-					</remark>
+            This command will make the current map 1 power of two bigger.
+            So a size 6 map (64x64 units) will become a size 7 map (128x128),
+            with the old map in the middle (from 32-96) and the new areas solid.
+            </remark>
           </remarks>
           <references>
             <identifierReference name="newmap" identifier="newmap"/>
@@ -4266,10 +4292,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Reduces the world size by 1.</description>
           <remarks>
             <remark>
-						This command will make the current map 1 power of two smaller.
-						So a size 7 map (128x128) will become a 6 size map (64x64 units), by removing 32 cubes from each side.
-						The area to be removed needs to be empty (= all solid).
-					</remark>
+            This command will make the current map 1 power of two smaller.
+            So a size 7 map (128x128) will become a 6 size map (64x64 units), by removing 32 cubes from each side.
+            The area to be removed needs to be empty (= all solid).
+            </remark>
           </remarks>
         </command>
 
@@ -4323,8 +4349,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Choose another 'closest ent'.</description>
           <remarks>
             <remark>
-						Use this, when two entities are placed in exactly the same location.
-					</remark>
+            Use this, when two entities are placed in exactly the same location.
+            </remark>
           </remarks>
         </command>
 
@@ -4358,8 +4384,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <remarks>
             <remark>
-						To rotate clockwise, use a positive number of steps. Note, that only quadratic selections can be rotated by 90 degrees.
-					</remark>
+            To rotate clockwise, use a positive number of steps. Note, that only quadratic selections can be rotated by 90 degrees.
+            </remark>
           </remarks>
         </command>
 
@@ -4387,15 +4413,15 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Sets the global water level for the map.</description>
           <remarks>
             <remark>
-						Every cube that has a lower floor than the water level will be rendered with a nice wavy
-						water alpha texture. Water physics will be applied to any entity located below it.
-					</remark>
+            Every cube that has a lower floor than the water level will be rendered with a nice wavy
+            water alpha texture. Water physics will be applied to any entity located below it.
+            </remark>
             <remark>
-						Performance notes: water is rendered for a whole square encapsulating all visible water areas
-						in the map (try flying above the map in edit mode to see how). So the most efficient water is
-						a single body of water, or multiple water areas that are mostly not visible from each other.
-						Players can influence how accurate the water is rendered using the "watersubdiv" command (map config).
-					</remark>
+            Performance notes: water is rendered for a whole square encapsulating all visible water areas
+            in the map (try flying above the map in edit mode to see how). So the most efficient water is
+            a single body of water, or multiple water areas that are mostly not visible from each other.
+            Players can influence how accurate the water is rendered using the "watersubdiv" command (map config).
+            </remark>
           </remarks>
           <arguments>
             <argument token="H" description="the water level" valueNotes="integer"/>
@@ -4422,9 +4448,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Toggles between showing what parts of the scenery are rendered.</description>
           <remarks>
             <remark>
-						Shows what parts of the scenery are rendered using what size cubes, and outputs some statistics about it.
-						This can give map editors hints as to what architecture to align, textures to change, etc.
-					</remark>
+            Shows what parts of the scenery are rendered using what size cubes, and outputs some statistics about it.
+            This can give map editors hints as to what architecture to align, textures to change, etc.
+            </remark>
           </remarks>
         </command>
 
@@ -4432,9 +4458,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Turns occlusion culling on and off.</description>
           <remarks>
             <remark>
-						The reason one may want to turn it off is to get an overview of the map from above,
-						without having all occluded bits stripped out.
-					</remark>
+            The reason one may want to turn it off is to get an overview of the map from above,
+            without having all occluded bits stripped out.
+            </remark>
           </remarks>
         </command>
 
@@ -4442,13 +4468,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Makes a slope out of the current selection.</description>
           <remarks>
             <remark>
-						The selection must be a heightfield before this command can be used.
-						The steps specify the slope with the red vertex as left-top,
-						i.e. "slope 1 2" will make a slope that increases just 1 step from left to right,
-						and is slightly steeper from top to bottom. "slope -6 0" decreases steeply from left to right,
-						and does not slope at all from top to bottom. Note that like the vdelta command,
-						an increasing vdelta goes further away from the player, regardless of floor or ceiling.
-					</remark>
+            The selection must be a heightfield before this command can be used.
+            The steps specify the slope with the red vertex as left-top,
+            i.e. "slope 1 2" will make a slope that increases just 1 step from left to right,
+            and is slightly steeper from top to bottom. "slope -6 0" decreases steeply from left to right,
+            and does not slope at all from top to bottom. Note that like the vdelta command,
+            an increasing vdelta goes further away from the player, regardless of floor or ceiling.
+            </remark>
           </remarks>
           <arguments>
             <argument token="X" description="x delta step" valueNotes="integer"/>
@@ -4460,12 +4486,12 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Makes an arch out of the current selection.</description>
           <remarks>
             <remark>
-						The selection must be a heightfield before this command can be used.
-						Will make the arch in the long direction, i.e when you have 6x2 cubes selected, the arch will span 7 vertices.
-						Optionally, sidedelta specifies the delta to add to the outer rows of vertices in the other direction,
-						i.e. give the impression of an arch that bends 2 ways (try "arch 2" on an selection of at least 2 thick to see the effect).
-						Not all arch sizes are necessarily available, see config/prefabs.cfg.
-					</remark>
+            The selection must be a heightfield before this command can be used.
+            Will make the arch in the long direction, i.e when you have 6x2 cubes selected, the arch will span 7 vertices.
+            Optionally, sidedelta specifies the delta to add to the outer rows of vertices in the other direction,
+            i.e. give the impression of an arch that bends 2 ways (try "arch 2" on an selection of at least 2 thick to see the effect).
+            Not all arch sizes are necessarily available, see config/prefabs.cfg.
+            </remark>
           </remarks>
           <arguments>
             <argument token="S" description="side delta (optional)"/>
@@ -4488,9 +4514,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Generates a perlin noise landscape in the current selection.</description>
           <remarks>
             <remark>
-						Keep the seed the same to create multiple perlin areas which fit with each other,
-						or use different numbers if to create alternative random generations.
-					</remark>
+            Keep the seed the same to create multiple perlin areas which fit with each other,
+            or use different numbers if to create alternative random generations.
+            </remark>
           </remarks>
           <arguments>
             <argument token="S" description="the scale, frequency of the features" valueNotes="default is 10"/>
@@ -4504,7 +4530,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>
             This command is similar to addselection although "select" resets all selections.
-					</remark>
+            </remark>
           </remarks>
           <references>
             <identifierReference name="addselection" identifier="addselection"/>
@@ -4577,10 +4603,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Registers a sound.</description>
           <remarks>
             <remark>
-						This command returns the sound number, which is assigned from 0 onwards,
-						and which can be used with "sound" command. If the sound was already registered,
-						its existing index is returned. registersound does not actually load the sound, this is done on first play.
-					</remark>
+            This command returns the sound number, which is assigned from 0 onwards,
+            and which can be used with "sound" command. If the sound was already registered,
+            its existing index is returned. registersound does not actually load the sound, this is done on first play.
+            </remark>
             <remark>See for example config/sounds.cfg.</remark>
           </remarks>
           <references>
@@ -4686,9 +4712,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
           <remarks>
             <remark>
-						All menu commands placed after newmenu (i.e. menuitem, menuitemcheckbox, etc) are added
-						into the menu until another "newmenu" command is specified.
-					</remark>
+            All menu commands placed after newmenu (i.e. menuitem, menuitemcheckbox, etc) are added
+            into the menu until another "newmenu" command is specified.
+            </remark>
           </remarks>
           <arguments>
             <argument token="N" description="The name of the menu"/>
@@ -4699,13 +4725,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Creates a new menuitem.</description>
           <remarks>
             <remark>
-						Upon activating the menuitem, the associated command will be executed.
-						(See config/menus.cfg for examples). If the command argument is omitted,
-						then it will be set to the same value as the description. If -1 is specified
-						instead of the command to execute, then no command is executed when activating the item.
-						If the rollover option is used, the menuitem will execute that command when selecting (but not activating)
-						the menuitem.
-					</remark>
+            Upon activating the menuitem, the associated command will be executed.
+            (See config/menus.cfg for examples). If the command argument is omitted,
+            then it will be set to the same value as the description. If -1 is specified
+            instead of the command to execute, then no command is executed when activating the item.
+            If the rollover option is used, the menuitem will execute that command when selecting (but not activating)
+            the menuitem.
+            </remark>
             <remark>(Note: To activate the menu item, select it, and either: Click, press SPACE or press ENTER/Return).</remark>
           </remarks>
           <references>
@@ -4729,8 +4755,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Creates a new menuitem with variable content.</description>
           <remarks>
             <remark>
-						Like 'menuitem', but the menuitem description will be the result of an evaluation, everytime the menu gets displayed.
-					</remark>
+            Like 'menuitem', but the menuitem description will be the result of an evaluation, everytime the menu gets displayed.
+            </remark>
           </remarks>
           <references>
             <identifierReference identifier="newmenu"/>
@@ -4801,10 +4827,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Displays the specified menu.</description>
           <remarks>
             <remark>
-						The menu allows the user to pick an item with the cursor keys.
-						Upon pressing return, the associated action will be executed.
-						Pressing ESC will cancel the menu.
-					</remark>
+            The menu allows the user to pick an item with the cursor keys.
+            Upon pressing return, the associated action will be executed.
+            Pressing ESC will cancel the menu.
+            </remark>
           </remarks>
           <arguments>
             <argument token="N" description="the name of a previously defined menu"/>
@@ -4893,9 +4919,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Executes the specified command in the command line history.</description>
           <remarks>
             <remark>
-						For example, binding "history 1" to a key allows you to quickly repeat the last
-						command typed in (useful for placing many identical entities etc.)
-					</remark>
+            For example, binding "history 1" to a key allows you to quickly repeat the last
+            command typed in (useful for placing many identical entities etc.)
+            </remark>
           </remarks>
           <arguments>
             <argument token="N" description="the N'th command from the history"/>
@@ -4917,9 +4943,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Sets how many typed console commands to store.</description>
           <remarks>
             <remark>
-						This value sets how many command lines to store in memory, everytime a command is entered
-						it gets store so it can be recalled using the "/" key along with the arrow keys to scroll back and forth through the list.
-					</remark>
+            This value sets how many command lines to store in memory, everytime a command is entered
+            it gets store so it can be recalled using the "/" key along with the arrow keys to scroll back and forth through the list.
+            </remark>
           </remarks>
           <value token="N" description="Total of stored commands" minValue="0" maxValue="10000" defaultValue="1000"/>
         </variable>
@@ -5137,8 +5163,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Sets the size of your crosshair.</description>
           <remarks>
             <remark>
-						The crosshair is turned off entirely if the size is set to 0.
-					</remark>
+            The crosshair is turned off entirely if the size is set to 0.
+            </remark>
           </remarks>
           <value token="N" description="the crosshair size" minValue="0" maxValue="50" defaultValue="15"/>
         </variable>
@@ -5147,8 +5173,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Turns on or off crosshair effects.</description>
           <remarks>
             <remark>
-						When on, the crosshair will go grey when the weapon is reloading, orange when health is 50 or red when is 25.
-					</remark>
+            When on, the crosshair will go grey when the weapon is reloading, orange when health is 50 or red when is 25.
+            </remark>
           </remarks>
           <value token="B" description="Turns the effects on (1) or off (0)" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
@@ -5454,11 +5480,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Sets the team display mode.</description>
           <remarks>
             <remark>
-						In mode 0 team display is disabled
-						In mode 1 players will be rendered with a colored vest to make the teams distinguishable.
-						In mode 2 almost the whole suit of the players will be colored. These display modes are only
-						applied in team gameodes.
-					</remark>
+            In mode 0 team display is disabled
+            In mode 1 players will be rendered with a colored vest to make the teams distinguishable.
+            In mode 2 almost the whole suit of the players will be colored. These display modes are only
+            applied in team gameodes.
+            </remark>
           </remarks>
           <value token="N" description="the team display mode" minValue="0" maxValue="2" defaultValue="1" valueNotes="0 (none), 1 (color vests), 2 (color skins)"/>
         </variable>
@@ -5519,11 +5545,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Determines whether dynamic shadows and lights are rendered, provided just incase they slow your fps down too much.</description>
           <remarks>
             <remark>
-						With radius you can specify the radius of a dynamic light,
-						smaller to maybe gain some speed (0 is off entirely),
-						or bigger to see the effect of dynamic shadows more dramatically
-						(try shooting it past some pillars that have a dark area on the other side... or use the "gamespeed" variable).
-					</remark>
+            With radius you can specify the radius of a dynamic light,
+            smaller to maybe gain some speed (0 is off entirely),
+            or bigger to see the effect of dynamic shadows more dramatically
+            (try shooting it past some pillars that have a dark area on the other side... or use the "gamespeed" variable).
+            </remark>
           </remarks>
           <value token="R" description="the radius of a dynamic light" minValue="0" maxValue="32" defaultValue="16"/>
         </variable>
@@ -5532,10 +5558,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Determines the subdivision of the water surface in maps.</description>
           <remarks>
             <remark>
-						Must be a power of 2: 4 is the default, 8 is recommended for people on slow machines,
-						2 is nice for fast machines, and 1 is quite OTT. See "waterlevel" (edit reference)
-						on how to add water to your own levels.
-					</remark>
+            Must be a power of 2: 4 is the default, 8 is recommended for people on slow machines,
+            2 is nice for fast machines, and 1 is quite OTT. See "waterlevel" (edit reference)
+            on how to add water to your own levels.
+            </remark>
           </remarks>
           <value token="N" description="the subdivisioin value" minValue="1" maxValue="64" defaultValue="4"/>
         </variable>
@@ -5831,9 +5857,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Plays the specified sound.</description>
           <remarks>
             <remark>
-						See config/sounds.cfg for default sounds, and use registersound to register your own.
-						For example, sound 0 and  sound (registersound "aard/jump") both play the standard jump sound.
-					</remark>
+            See config/sounds.cfg for default sounds, and use registersound to register your own.
+            For example, sound 0 and  sound (registersound "aard/jump") both play the standard jump sound.
+            </remark>
           </remarks>
           <arguments>
             <argument token="S" description="the sound to play" valueNotes="string, see config/sounds.cfg"/>
@@ -5897,8 +5923,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Each subsequent played sound's gain-value is scaled by this percentage.</description>
           <remarks>
             <remark>
-						This lowers the gain of the sounds before they are mixed, this might be useful in cases when the mixer has problems with too high gain values.
-					</remark>
+            This lowers the gain of the sounds before they are mixed, this might be useful in cases when the mixer has problems with too high gain values.
+            </remark>
           </remarks>
           <value token="N" description="percentage" minValue="0" maxValue="100" defaultValue="100"/>
         </variable>
@@ -5988,10 +6014,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>An identifier represents a command or variable. The new identifier</remark>
             <remark>
-						The name may contain spaces to create a "multipart" identifier documentation
-						that can be used to describe a complex argument as a single pseudo identifier,
-						look at the examples.
-					</remark>
+            The name may contain spaces to create a "multipart" identifier documentation
+            that can be used to describe a complex argument as a single pseudo identifier,
+            look at the examples.
+            </remark>
           </remarks>
           <examples>
             <example>
@@ -6022,9 +6048,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>An argument represents either a command argument or a variable value.</remark>
             <remark>
-						The last argument of an identifier can be flagged as variable-length
-						to indicate that it represents an unknown number of arguments.
-					</remark>
+            The last argument of an identifier can be flagged as variable-length
+            to indicate that it represents an unknown number of arguments.
+            </remark>
           </remarks>
           <references>
             <identifierReference identifier="docident"/>
@@ -6074,12 +6100,12 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Outputs a list of yet undocumented identifiers (commands,variables, etc)</description>
           <remarks>
             <remark>
-						If the one argument is omitted, only the builtin identifiers will be listed. Therefore specify the argument
-						other identifiers like aliases should be included too.
-					</remark>
+            If the one argument is omitted, only the builtin identifiers will be listed. Therefore specify the argument
+            other identifiers like aliases should be included too.
+            </remark>
             <remark>
-						Note that the list also includes identifiers that contain the substrings "TODO" or "UNDONE" in their documentation.
-					</remark>
+            Note that the list also includes identifiers that contain the substrings "TODO" or "UNDONE" in their documentation.
+            </remark>
           </remarks>
           <references>
             <identifierReference identifier="docident"/>
@@ -6122,9 +6148,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Writes out a base XML documentation reference containing templates for the builtin identifiers.</description>
           <remarks>
             <remark>
-						The generated reference is written to "docs/autogenerated_base_reference.xml" by default.
-						The three arguments can be changed later on in the generated XML document.
-					</remark>
+            The generated reference is written to "docs/autogenerated_base_reference.xml" by default.
+            The three arguments can be changed later on in the generated XML document.
+            </remark>
           </remarks>
           <references>
             <identifierReference identifier="docident"/>
@@ -6159,26 +6185,26 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
     <!-- Server Commands Section Starts -->
     <section name="Server commands" sortindex="08">
       <description>
-				This section lists commands used by the client that communicate to the server. Most are used for server administration.
-				Also see the "mode" section and the "map" command which also communicate to the server.
-			</description>
+        This section lists commands used by the client that communicate to the server. Most are used for server administration.
+        Also see the "mode" section and the "map" command which also communicate to the server.
+    	</description>
       <identifiers sort="true">
 
         <command name="serverdesc">
           <description>
-						If the server was run with -n1 and -n2 arguments (prefix and suffix of descriptive title)
-						a serveradmin can set a user-defined server description with this command, if it wasn't this command results
-						in "invalid vote". This title will only stay until the next map is loaded.
-					</description>
+            If the server was run with -n1 and -n2 arguments (prefix and suffix of descriptive title)
+            a serveradmin can set a user-defined server description with this command, if it wasn't this command results
+            in "invalid vote". This title will only stay until the next map is loaded.
+        	</description>
           <arguments>
             <argument token="D" description="description"/>
           </arguments>
           <remarks>
             <remark>
-						If, for example, the server was run with -n"Fred's Server" -n1"Fred's " -n2" Server",
-						then you could call "/serverdesc [pWn4g3 TOSOK]" and it would show up as "Fred's pWn4g3 TOSOK Server"
-						in the serverbrowser.
-					</remark>
+            If, for example, the server was run with -n"Fred's Server" -n1"Fred's " -n2" Server",
+            then you could call "/serverdesc [pWn4g3 TOSOK]" and it would show up as "Fred's pWn4g3 TOSOK Server"
+            in the serverbrowser.
+            </remark>
           </remarks>
         </command>
 
@@ -6279,9 +6305,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="N" description="" minValue="0" maxValue="1" defaultValue="0"/>
           <remarks>
             <remark>
-						'weights' are the sort criteria with the highest priority. Favourites categories can change the weights.
-						Use 'showweights' to debug problems with serverbrowser sorting.
-					</remark>
+            'weights' are the sort criteria with the highest priority. Favourites categories can change the weights.
+            Use 'showweights' to debug problems with serverbrowser sorting.
+            </remark>
           </remarks>
         </variable>
 
@@ -6320,9 +6346,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Calls a vote on the server.</description>
           <remarks>
             <remark>
-						This command is wrapped by aliases for better usability and is used to action votes such as ban, kick, etc.
-						See config/admin.cfg for actual uses.
-					</remark>
+            This command is wrapped by aliases for better usability and is used to action votes such as ban, kick, etc.
+            See config/admin.cfg for actual uses.
+            </remark>
           </remarks>
           <arguments>
             <argument token="T" description="Vote type" valueNotes="value"/>
@@ -6350,9 +6376,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="shuffleteams">
           <description>
-						Shuffles the teams. The server will attempt to restore balance, but the result may
-						be less that optimal, and there are certainly better ways to keep teams balanced.
-					</description>
+            Shuffles the teams. The server will attempt to restore balance, but the result may
+            be less that optimal, and there are certainly better ways to keep teams balanced.
+        	</description>
           <references>
             <identifierReference identifier="forceteam"/>
             <identifierReference identifier="forceme"/>
@@ -6386,9 +6412,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Sets the mastermode for the server.</description>
           <remarks>
             <remark>
-						If the mastermode is set to 'private', no more clients can join the server.
-						Default is 'open' which allows anyone to join the server.
-					</remark>
+            If the mastermode is set to 'private', no more clients can join the server.
+            Default is 'open' which allows anyone to join the server.
+            </remark>
           </remarks>
           <references>
             <identifierReference identifier="setadmin"/>
@@ -6414,13 +6440,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Sends a map to the server.</description>
           <remarks>
             <remark>
-						During coop edit, the current map gets saved to file and sent to the server.
-						Other players can use 'getmap' to download it.
-					</remark>
+            During coop edit, the current map gets saved to file and sent to the server.
+            Other players can use 'getmap' to download it.
+            </remark>
             <remark>
-						When not in edit mode, the map will not be saved. The new map will be used, when
-						the next game on that map starts on the server.
-					</remark>
+            When not in edit mode, the map will not be saved. The new map will be used, when
+            the next game on that map starts on the server.
+            </remark>
           </remarks>
           <references>
             <identifierReference identifier="getmap"/>
@@ -6441,13 +6467,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Claims or drops admin status.</description>
           <remarks>
             <remark>
-						Failed logins result in an auto kick.
-						The admin is granted the right to kick, ban, remove bans, set autoteam, set shuffleteam, change server
-						description (if enabled), change map, change mastermode, force team, change mode, record demos, stop demos
-						and clear demo(s) - All without needing votes from other users.
-						If the admin votes on any (other players) call, his vote is final.
-						In the scoreboard, the admin will be shown as a red colour.
-					</remark>
+            Failed logins result in an auto kick.
+            The admin is granted the right to kick, ban, remove bans, set autoteam, set shuffleteam, change server
+            description (if enabled), change map, change mastermode, force team, change mode, record demos, stop demos
+            and clear demo(s) - All without needing votes from other users.
+            If the admin votes on any (other players) call, his vote is final.
+            In the scoreboard, the admin will be shown as a red colour.
+            </remark>
           </remarks>
           <references>
             <identifierReference identifier="kick"/>
@@ -6483,9 +6509,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="ctf"/>
             <identifierReference identifier="pf"/>
             <!--
-						<identifierReference identifier="btdm"/>
-						<identifierReference identifier="bdm"/>
-						-->
+            <identifierReference identifier="btdm"/>
+            <identifierReference identifier="bdm"/>
+            -->
             <identifierReference identifier="lss"/>
             <identifierReference identifier="osok"/>
             <identifierReference identifier="tosok"/>
@@ -6726,9 +6752,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
     <!-- Editing Configs Section Starts -->
     <section name="Editing configs" sortindex="10">
       <description>
-				All the below commands are used specifically in map configuration files.
-				Some of these commands can also be used without the need of a map configuration file.
-			</description>
+        All the below commands are used specifically in map configuration files.
+        Some of these commands can also be used without the need of a map configuration file.
+    	</description>
       <identifiers sort="true">
 
         <command name="md2anim">
@@ -6874,11 +6900,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Sets the fog distance.</description>
           <remarks>
             <remark>
-						You can do this for tweaking the visual effect of the fog, or if you are on a slow machine,
-						setting the fog to a low value can also be a very effective way to increase fps (if you are geometry limited).
-						Try out different values on big maps / maps which give you low fps. It is also good for aesthetic features of maps
-						especially when combined with "fogcolour".
-					</remark>
+            You can do this for tweaking the visual effect of the fog, or if you are on a slow machine,
+            setting the fog to a low value can also be a very effective way to increase fps (if you are geometry limited).
+            Try out different values on big maps / maps which give you low fps. It is also good for aesthetic features of maps
+            especially when combined with "fogcolour".
+            </remark>
           </remarks>
           <references>
             <identifierReference identifier="fogcolour"/>
@@ -6902,10 +6928,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Binds a texture to be used if a slot couldn't be loaded with a given textures path.</description>
           <remarks>
             <remark>
-						Binds the texture indicated in the filename to the texture slot of any textures that aren't found.
-						The path is given exactly as with the texture-command, if it is omitted (or can't be loaded) the default is used.
-						The default is located in packages/misc/notexture.jpg (not in packages/textures - where custom ones must reside!)
-					</remark>
+            Binds the texture indicated in the filename to the texture slot of any textures that aren't found.
+            The path is given exactly as with the texture-command, if it is omitted (or can't be loaded) the default is used.
+            The default is located in packages/misc/notexture.jpg (not in packages/textures - where custom ones must reside!)
+            </remark>
           </remarks>
           <examples>
             <example>
@@ -6929,9 +6955,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>The available skymaps reside in packages/textures/skymaps/..</remark>
             <remark>
-						To select a skymap you need to use the full path from "packages/"
-						but only up to the underscore "_" in the filename.
-					</remark>
+            To select a skymap you need to use the full path from "packages/"
+            but only up to the underscore "_" in the filename.
+            </remark>
           </remarks>
           <examples>
             <example>
@@ -6947,10 +6973,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Registers a mapmodel that can be placed in maps.</description>
           <remarks>
             <remark>
-						A mapmodel registered with this command can be placed in a map using the 'newent mapmodel' command.
-						The bounding box is an invisible force surrounding the model, allowing players to collide against it, instead
-						of walking through the mapmodel. For more information about this command, read mapediting5.xml.
-					</remark>
+            A mapmodel registered with this command can be placed in a map using the 'newent mapmodel' command.
+            The bounding box is an invisible force surrounding the model, allowing players to collide against it, instead
+            of walking through the mapmodel. For more information about this command, read mapediting5.xml.
+            </remark>
             <remark>Example: mapmodel 4 2 4 0 "modelname"</remark>
             <remark>This mapmodel has a bounding box of 8x8x2 in size (X/Y/Z) and by default hovers 4 units above ground.</remark>
           </remarks>
@@ -6982,10 +7008,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Defines a mapsound.</description>
           <remarks>
             <remark>
-						Registers the sound as a map-specific sound. These map-specific sounds may currently
-						only be used with "sound" entities within a map. The first map sound registered in a map has slot/index number 0
-						and increases afterwards.
-					</remark>
+            Registers the sound as a map-specific sound. These map-specific sounds may currently
+            only be used with "sound" entities within a map. The first map sound registered in a map has slot/index number 0
+            and increases afterwards.
+            </remark>
           </remarks>
           <references>
             <identifierReference identifier="newent sound"/>
@@ -7017,9 +7043,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </examples>
           <remarks>
             <remark>
-						When specifying shadowyaw, remember that the default angle is 45 degrees. The example below
-						would make the shadows appear at 90 degrees (45 degrees more to the left).
-					</remark>
+            When specifying shadowyaw, remember that the default angle is 45 degrees. The example below
+            would make the shadows appear at 90 degrees (45 degrees more to the left).
+            </remark>
           </remarks>
           <arguments>
             <argument token="D" description="The angle in degrees to rotate the stencil shadows" valueNotes="0...360, default is 45"/>
@@ -7060,9 +7086,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
           <remarks>
             <remark>
-						You must define all 3 values, otherwise this command may not work
-						correctly (use "1" as a placeholder if needed).
-					</remark>
+            You must define all 3 values, otherwise this command may not work
+            correctly (use "1" as a placeholder if needed).
+            </remark>
           </remarks>
           <arguments>
             <argument token="R" description="Red colour intensity" valueNotes="Between 1 and 255"/>
