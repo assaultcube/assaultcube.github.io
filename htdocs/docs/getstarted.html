@@ -75,13 +75,21 @@
             <td>
               <b>Linux</b><br>
               You'll need to make sure the appropriate OpenGL drivers are installed, plus these libraries
-              (you may already have most of them installed by default):<br>
-              * <i>SDL</i><br>
-              * <i>SDL_image 1.2</i><br>
-              * <i>libogg</i><br>
-              * <i>libvorbis</i><br>
-              * <i>zlib</i><br>
-              * <i>OpenAL-Soft</i><br>
+              (you may already have most of them installed by default):
+              <ul style="margin : 0;">
+                <li>SDL</li>
+                <li>SDL_image</li>
+                <li>zlib</li>
+                <li>libogg</li>
+                <li>libvorbis</li>
+                <li>OpenAL Soft</li>
+              </ul>
+              For RedHat based systems, type this at the command line:<br>
+              <span class="code" style="margin-left : 50px;">
+              sudo yum install SDL SDL_image zlib libogg libvorbis openal-soft<br></span>
+              For Debian based systems, type this at the command line:<br>
+              <span class="code" style="margin-left : 50px;">
+              sudo apt-get install libsdl1.2debian-all libsdl-image1.2 zlib1g libogg0 libvorbis0a libopenal1</span>
             </td>
           </tr>
           <tr>

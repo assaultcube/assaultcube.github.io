@@ -96,17 +96,22 @@
         <br>
           Linux users should take special note that they will need these additional libraries installed:
         </p>
-        <ul>
-          <li>SDL 1.2</li>
-          <li>SDL_image 1.2</li>
-          <li>OpenAL Soft</li>
-          <li>SDL_ttf 2.0</li>
-        </ul>
+          <ul style="margin : 0;">
+            <li>SDL</li>
+            <li>SDL_image</li>
+            <li>zlib</li>
+            <li>libogg</li>
+            <li>libvorbis</li>
+            <li>OpenAL Soft</li>
+          </ul>
         <p>
-          If you're on a Debian or Ubuntu based system, you can run this command in a terminal to install these libraries:
-          <br>
-          <span class="code">
-            sudo apt-get install libsdl1.2debian-all libsdl-image1.2 libsdl-ttf2.0-0 libopenal1
+          For RedHat based systems, type this at the command line:<br>
+          <span class="code" style="margin-left : 20px;">
+            sudo yum install SDL SDL_image zlib libogg libvorbis openal-soft
+          <br></span>
+          For Debian based systems, type this at the command line:<br>
+          <span class="code" style="margin-left : 20px;">
+            sudo apt-get install libsdl1.2debian-all libsdl-image1.2 zlib1g libogg0 libvorbis0a libopenal1
           </span>
         </p>
         <p>
