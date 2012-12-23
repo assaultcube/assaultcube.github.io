@@ -5212,7 +5212,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="radarheight">
           <description>change at what height you are floating in the radar-view</description>
-          <value token="H" description="height" minValue="20" maxValue="70" defaultValue="35"/>
+          <value token="H" description="height" minValue="5" maxValue="500" defaultValue="150"/>
         </variable>
 
         <variable name="showtargetname">
