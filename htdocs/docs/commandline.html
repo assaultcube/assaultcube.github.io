@@ -301,6 +301,7 @@
             <td class="c1" id="server-c">-c<b>N</b></td>
             <td class="c2">
               Sets the maximum number of players that can play on the server to N (default 6).
+              The masterserver will only register servers with N set to a value less or equal 16.
               If extra players try to connect they will receive a "server full" error message.
             </td>
           </tr>
@@ -377,7 +378,7 @@
           <tr>
             <td class="c3" id="server--masterport">--masterport=<b>PORT</b></td>
             <td>
-              Sets the port on the master server to which the server will register, the default is 28760.
+              Sets the port on the masterserver to which the server will register, the default is 28760.
             </td>
           </tr>
           <tr>
