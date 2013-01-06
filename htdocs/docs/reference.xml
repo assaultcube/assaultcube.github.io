@@ -5097,7 +5097,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="recoiltest">
-          <description>.</description>
+          <description></description>
           <value token="V" description="" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
@@ -5244,6 +5244,46 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <variable name="showmodedescriptions">
           <description>enables or disables the showing of game mode descriptions on the console after map starts.</description>
           <value token="B" description="0 off, 1 on" minValue="0" maxValue="1" defaultValue="1"/>
+        </variable>
+
+        <variable name="sc_flags">
+          <description>Sets the order priority for the column flags on the scoreboard.</description>
+          <value token="V" description="low priority: left, high priority: right" minValue="0" maxValue="100" defaultValue="0" />
+        </variable>
+
+        <variable name="sc_frags">
+          <description>Sets the order priority for the column frags on the scoreboard.</description>
+          <value token="V" description="low priority: left, high priority: right" minValue="0" maxValue="100" defaultValue="1" />
+        </variable>
+
+        <variable name="sc_deaths">
+          <description>Sets the order priority for the column deaths or disables it on the scoreboard.</description>
+          <value token="V" description="-1: disable, low priority: left, high priority: right" minValue="-1" maxValue="100" defaultValue="2" />
+        </variable>
+
+        <variable name="sc_ratio">
+          <description>Sets the order priority for the column ratio or disables it on the scoreboard.</description>
+          <value token="V" description="-1: disable, low priority: left, high priority: right" minValue="-1" maxValue="100" defaultValue="-1" />
+        </variable>
+
+        <variable name="sc_score">
+          <description>Sets the order priority for the column score or disables it on the scoreboard.</description>
+          <value token="V" description="-1: disable, low priority: left, high priority: right" minValue="-1" maxValue="100" defaultValue="4" />
+        </variable>
+
+        <variable name="sc_lag">
+          <description>Sets the order priority for the column pj/ping or disables it on the scoreboard.</description>
+          <value token="V" description="-1: disable, low priority: left, high priority: right" minValue="-1" maxValue="100" defaultValue="5" />
+        </variable>
+
+        <variable name="sc_clientnum">
+          <description>Sets the order priority for the column cn on the scoreboard.</description>
+          <value token="V" description="low priority: left, high priority: right" minValue="0" maxValue="100" defaultValue="6" />
+        </variable>
+
+        <variable name="sc_name">
+          <description>Sets the order priority for the column name on the scoreboard.</description>
+          <value token="V" description="low priority: left, high priority: right" minValue="0" maxValue="100" defaultValue="7" />
         </variable>
 
       </identifiers>
