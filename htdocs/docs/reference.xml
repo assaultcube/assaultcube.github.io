@@ -5185,7 +5185,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="radarentsize">
           <description>Sets the icon size of the players shown in the radar and the minimap.</description>
-          <value token="V" description="size of icons inside radar" minValue="1" maxValue="64" defaultValue="4"/>
+          <value token="V" description="size of icons inside radar" minValue="4" maxValue="64" defaultValue="12"/>
         </variable>
 
         <variable name="cncolumncolor">
