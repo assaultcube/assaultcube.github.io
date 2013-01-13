@@ -6613,7 +6613,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </examples>
           <arguments>
             <variableArgument token="M" description="The name of the map you wish to edit"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
