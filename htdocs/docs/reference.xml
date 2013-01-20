@@ -2178,6 +2178,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
         </variable>
 
+        <variable name="protocol">
+          <description>Gets an integer representing the game protocol. READ ONLY</description>
+          <remarks>
+            <remark>As example, the protocol of version 1.1.0.4 is represented as value 1132.</remark>
+          </remarks>
+        </variable>
+
         <variable name="gamemode">
           <description>Holds the current game mode. READ ONLY</description>
           <examples>
