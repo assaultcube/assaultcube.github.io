@@ -2416,7 +2416,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </scriptalias>
 
         <scriptalias name="onDisconnect">
-          <description>If defined, this will be executed when you disconnect from a server.</description>
+          <arguments>
+            <argument token="player" description="The client number of the player who disconnected" valueNotes="integer (-1 for local player)"/>
+          </arguments>
+          <description>If defined, this will be executed when you or another player disconnect(s) from a server.</description>
         </scriptalias>
 
         <scriptalias name="onSpawn">
