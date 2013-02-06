@@ -694,6 +694,23 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="false" description="the body to execute if the condition is false"/>
           </arguments>
         </command>
+        
+        <command name="switch">
+          <description>Takes an integer argument to determine what block of code to execute.</description>
+          <examples>
+            <example>
+              <code><![CDATA[switch 2 [echo case 0] [echo case 1] [echo case 2] [echo case 3] [echo case 4]]]></code>
+              <explanation>Output: case 2</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="I" description="integer"/>
+            <argument token="C" description="a variable number of 'case' arguments..."/>
+          </arguments>
+          <remarks>
+            <remark>This command can only handle up to 23 'cases'. (because of cubescript's 24 argument limit)</remark>
+          </remarks>
+        </command>
 
         <command name="loop">
           <description>Loops the specified body.</description>
@@ -1060,7 +1077,40 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="checkalias"/>
             <identifierReference identifier="aliasinit"/>
+            <identifierReference identifier="check2init"/>
+            <identifierReference identifier="check2initlist"/>
           </references>
+        </command>
+        
+        <command name="check2init">
+          <description>Defines an alias only if it does not already exist.</description>
+          <arguments>
+            <argument token="A" description="alias name"/>
+            <argument token="V" description="alias value"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="check2initlist"/>
+            <identifierReference identifier="checkalias"/>
+            <identifierReference identifier="checkinit"/>
+            <identifierReference identifier="aliasinit"/>
+          </references>
+        </command>
+        
+        <command name="forceinit">
+          <description>Forcibly sets a list of aliases to a specified value.</description>
+          <examples>
+            <example>
+              <code><![CDATA[alias1 = 0; alias2 = 0; alias3 = 0; alias4 = 0; alias 5 = 0]]></code>
+              <explanation>Can be written as:</explanation>
+            </example>
+            <example>
+              <code><![CDATA[forceinit [alias1 alias2 alias3 alias4 alias5] 0]]></code>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="L" description="list of alias names"/>
+            <argument token="V" description="alias value"/>
+          </arguments>
         </command>
 
         <command name="aliasinit">
@@ -1072,6 +1122,22 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="checkalias"/>
             <identifierReference identifier="checkinit"/>
+            <identifierReference identifier="check2init"/>
+            <identifierReference identifier="check2initlist"/>
+          </references>
+        </command>
+        
+        <command name="check2initlist">
+          <description>Uses check2init on a list of aliases.</description>
+          <arguments>
+            <argument token="L" description="list of alias names"/>
+            <argument token="V" description="alias value"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="checkalias"/>
+            <identifierReference identifier="checkinit"/>
+            <identifierReference identifier="aliasinit"/>
+            <identifierReference identifier="check2init"/>
           </references>
         </command>
 
@@ -2881,6 +2947,26 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="mode"/>
           </references>
         </command>
+        
+        <command name="modenum">
+          <description>Returns the mode number for a specified mode acronym.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (modenum ctf)]]></code>
+              <explanation>Output: 5</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (modenum btosok)]]></code>
+              <explanation>Output: 21</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="M" description="the mode acronym"/>
+          </arguments>
+          <remarks>
+            <remark>Returns -1 if not found.</remark>
+          </remarks>
+        </command>
 
         <variable name="curmaprevision">
           <description>Current map revision number.</description>
@@ -3107,6 +3193,14 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <references>
             <identifierReference identifier="say"/>
+            <identifierReference identifier="quickanswer"/>
+          </references>
+        </command>
+        
+        <command name="quickanswer">
+          <description>Easily respond the the last client who sent you a private message.</description>
+          <references>
+            <identifierReference identifier="pm"/>
           </references>
         </command>
 
@@ -4527,6 +4621,20 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="TYPE" description="0|1|100"/>
           </arguments>
+        </command>
+        
+        <command name="convertclips">
+          <description>Converts the nearest entity (if its a clip or plclip) to its opposite type.</description>
+          <examples>
+            <example>
+              <code><![CDATA[convertclips]]></code>
+              <explanation>Assuming the nearest entity is a clip, it will be converted to a plclip.</explanation>
+            </example>
+            <example>
+              <code><![CDATA[convertclips]]></code>
+              <explanation>Assuming the nearest entity is a plclip, it will be converted to a clip.</explanation>
+            </example>
+          </examples>
         </command>
 
         <command name="movemap">
