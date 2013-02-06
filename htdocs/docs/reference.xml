@@ -1357,6 +1357,67 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="add2list"/>
           </references>
         </scriptalias>
+        
+        <command name="keybind">
+          <description>Returns the contents of a keybind.</description>
+          <arguments>
+            <argument token="K" description="name of key"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="findkey"/>
+            <identifierReference identifier="findkeycode"/>
+          </references>
+        </command>
+        
+        <command name="findkey">
+          <description>Returns the name of a key via a specified code.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (findkey 8)]]></code>
+              <explanation>Output: BACKSPACE</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (findkey 280)]]></code>
+              <explanation>Output: PAGEUP</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="I" description="integer"/>
+          </arguments>
+          <remarks>
+            <remark>Returns -255 if the key does not exist.</remark>
+            <remark>See /config/keymap.cfg for a full list of valid key codes.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="keybind"/>
+            <identifierReference identifier="findkeycode"/>
+          </references>
+        </command>
+        
+        <command name="findkeycode">
+          <description>Returns the integer code of a key.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (findkeycode BACKSPACE)]]></code>
+              <explanation>Output: 8</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (findkeycode PAGEUP)]]></code>
+              <explanation>Output: 280</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="K" description="the name of the key"/>
+          </arguments>
+          <remarks>
+            <remark>Returns -255 if the key does not exist.</remark>
+            <remark>See /config/keymap.cfg for a full list of valid key names.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="keybind"/>
+            <identifierReference identifier="findkey"/>
+          </references>
+        </command>
 
         <command name="MDArray_New_Subarray">
           <description>Adds a subarray to a cubescript multidimensional array. (alias)</description>
