@@ -1310,34 +1310,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>See the following c++ functions for more information about the usage of this command:</remark>
             <remark>isalpha(), isalnum(), isdigit(), islower(), isprint(), ispunct(), isupper(), and isspace()</remark>
           </remarks>
-          <references>
-            <identifierReference identifier="testlist"/>
-          </references>
-        </command>
-
-        <command name="testlist">
-          <description>Tests a list argument for various things.</description>
-          <examples>
-            <example>
-              <code><![CDATA[echo (testlist "1 2.45 8")]]></code>
-              <explanation>Output: 1 // It is a valid list of numbers (supports ints and floats)</explanation>
-            </example>
-            <example>
-              <code><![CDATA[echo (testlist "a B C defg hi jk" 1)]]></code>
-              <explanation>Output: 1 // It is a valid list of alpha-characters a-z or A-Z only</explanation>
-            </example>
-            <example>
-              <code><![CDATA[echo (testlist "a B C  defg hi jk" 2)]]></code>
-              <explanation>Output: 1 // It is a valid list of alpha-characters a-z or A-Z or whitespace only</explanation>
-            </example>
-          </examples>
-          <arguments>
-            <argument token="L" description="the list to test"/>
-            <argument token="N" description="type of test to run" valueNotes="min 0/max 2/default 0"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="testchar"/>
-          </references>
         </command>
 
         <command name="strreplace">
@@ -2566,6 +2538,43 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>The alias is executed before the name is effectively changed, so you can still get the previous name of the client from this alias.</remark>
           </remarks>
+        </scriptalias>
+        
+        <scriptalias name="afterinit">
+          <description>If defined, this will be executed after saved.cfg is loaded.</description>
+        </scriptalias>
+        
+        <scriptalias name="KEYPRESS">
+          <description>If defined, this will be executed every time you press a key.</description>
+          <arguments>
+            <argument token="I" description="integer key code"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[checkinit KEYPRESS [echo You pressed key: (findkey $arg1)]]]></code>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="KEYRELEASE"/>
+            <identifierReference identifier="findkey"/>
+          </references>
+        </scriptalias>
+        
+        <scriptalias name="KEYRELEASE">
+          <description>If defined, this will be executed every time you release a key.</description>
+          <arguments>
+            <argument token="I" description="integer key code"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[checkinit KEYRELEASE [echo You released key: (findkey $arg1)]]]></code>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="KEYPRESS"/>
+            <identifierReference identifier="KEYPRESS"/>
+            <identifierReference identifier="findkey"/>
+          </references>
         </scriptalias>
 
         <scriptalias name="addOnQuit">
@@ -3854,7 +3863,28 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>This does not work in multiplayer. For entertainment purposes only :)</remark>
           </remarks>
           <value token="N" description="the game speed" minValue="10" maxValue="1000" defaultValue="100"/>
+          <references>
+            <identifierReference identifier="changespeed"/>
+          </references>
         </variable>
+        
+        <command name="changespeed">
+          <description>Smoothly changes your gamespeed to the specified value.</description>
+          <arguments>
+            <argument token="S" description="the gamespeed to change to"/>
+            <argument token="M" description="milliseconds between gamespeed changes"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[changespeed 1000 30]]></code>
+              <explanation>Every 30 milliseconds your gamespeed is changed by 1 until it reaches its goal of gamespeed 1000.</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="gamespeed"/>
+            <identifierReference identifier="changegamma"/>
+          </references>
+        </command>
 
         <variable name="akimboautoswitch">
           <description>Enables or disables automatic switching to the akimbo upon pickup.</description>
@@ -5947,7 +5977,28 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>May not work if your card/driver doesn't support it.</remark>
           </remarks>
           <value token="N" description="the gamma value" minValue="30" maxValue="300" defaultValue="100"/>
+          <references>
+            <identifierReference identifier="changegamma"/>
+          </references>
         </variable>
+        
+        <command name="changegamma">
+          <description>Smoothly changes your gamma to the specified value.</description>
+          <arguments>
+            <argument token="G" description="the gamma to change to"/>
+            <argument token="M" description="milliseconds between gamma changes"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[changegamma 300 30]]></code>
+              <explanation>Every 30 milliseconds your gamma is changed by 1 until it reaches its goal of gamma 300.</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="gamma"/>
+            <identifierReference identifier="changespeed"/>
+          </references>
+        </command>
 
         <variable name="dyngamma">
           <description>Enables or disables the per official map dynamic gamma system.</description>
