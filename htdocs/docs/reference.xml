@@ -339,6 +339,42 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="B" description="value to be added"/>
           </arguments>
         </command>
+        
+        <command name="++">
+          <description>Increments an alias by 1.</description>
+          <arguments>
+            <argument token="A" description="the alias name"/>
+          </arguments>
+          <examples>
+            <example>
+              <code>i = 0; ++ i; echo $i</code>
+              <explanation>Output: 1</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="--"/>
+            <identifierReference identifier="++f"/>
+            <identifierReference identifier="--f"/>
+          </references>
+        </command>
+        
+        <command name="++f">
+          <description>Increments an alias by 1.</description>
+          <arguments>
+            <argument token="A" description="the alias name"/>
+          </arguments>
+          <examples>
+            <example>
+              <code>i = 2.14; ++f i; echo $i</code>
+              <explanation>Output: 3.14</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="--f"/>
+            <identifierReference identifier="++"/>
+            <identifierReference identifier="--"/>
+          </references>
+        </command>
 
         <command name="-=">
           <description>Subtracts a value from an alias.</description>
@@ -351,6 +387,42 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="A" description="the alias to subtract from"/>
             <argument token="B" description="value to be subtracted"/>
           </arguments>
+        </command>
+        
+        <command name="--">
+          <description>Decrements an alias by 1.</description>
+          <arguments>
+            <argument token="A" description="the alias name"/>
+          </arguments>
+          <examples>
+            <example>
+              <code>i = 0; -- i; echo $i</code>
+              <explanation>Output: -1</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="++"/>
+            <identifierReference identifier="--f"/>
+            <identifierReference identifier="++f"/>
+          </references>
+        </command>
+        
+        <command name="--f">
+          <description>Decrements an alias by 1.</description>
+          <arguments>
+            <argument token="A" description="the alias name"/>
+          </arguments>
+          <examples>
+            <example>
+              <code>i = 4.14; --f i; echo $i</code>
+              <explanation>Output: 3.14</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="++f"/>
+            <identifierReference identifier="--"/>
+            <identifierReference identifier="++"/>
+          </references>
         </command>
 
         <command name="*=">
