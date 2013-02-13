@@ -3088,7 +3088,26 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="weapon"/>
             <identifierReference identifier="magcontent"/>
             <identifierReference identifier="magreserve"/>
+            <identifierReference identifier="hasprimary"/>
           </references>
+        </command>
+        
+        <command name="hasprimary">
+          <description>Determines if the local player (you) are currently carrying a primary weapon.</description>
+          <examples>
+            <example>
+              <code><![CDATA[add2bind MOUSE1 [ if (hasprimary) [ echo you attacked with a primary weapon ] ]]]></code>
+              <explanation>Everytime you press the left mouse button, assuming you are carrying your primary weapon, the above echo will be executed.</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="currentprimary"/>
+            <identifierReference identifier="curweapon"/>
+            <identifierReference identifier="checkmag"/>
+          </references>
+          <remarks>
+            <remark>Returns 0 (false) or 1 (true).</remark>
+          </remarks>
         </command>
 
         <command name="currole">
@@ -3149,6 +3168,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="weapon"/>
             <identifierReference identifier="magcontent"/>
             <identifierReference identifier="magreserve"/>
+            <identifierReference identifier="hasprimary"/>
           </references>
         </command>
 
