@@ -2689,6 +2689,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="modmdlvwepN"/>
+            <identifierReference identifier="modmdlpickupN"/>
             <identifierReference identifier="delalias"/>
           </references>
         </scriptalias>
@@ -2697,6 +2698,32 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>change name of directory used for weapon model (viewable/world) number N</description>
           <references>
             <identifierReference identifier="modmdlweapN"/>
+            <identifierReference identifier="modmdlpickupN"/>
+            <identifierReference identifier="delalias"/>
+          </references>
+        </scriptalias>
+        
+        <scriptalias name="modmdlpickupN">
+          <description>change name of directory used for pickup model number N</description>
+          <examples>
+            <example>
+              <code><![CDATA[modmdlpickup3 = health2]]></code>
+              <explanation>This will make the health pickup model use the data inside packages/models/pickups/health2</explanation>
+            </example>
+            <example>
+              <code><![CDATA[modmdlpickup1 = my_ammobox]]></code>
+              <explanation>This will make the ammobox pickup model use the data inside packages/models/pickups/my_ammobox</explanation>
+            </example>
+          </examples>
+          <remarks>
+            <remark>These setting should be loaded from config/autoexec.cfg, but they work on-the-fly too.</remark>
+            <remark>If the model fails to load you will end up with nothing being displayed; use <b>delalias</b> to get back to default</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="modmdlweapN"/>
+            <identifierReference identifier="modmdlvwepN"/>
+            <identifierReference identifier="delalias"/>
+            <identifierReference identifier="onPickup"/>
           </references>
         </scriptalias>
 
