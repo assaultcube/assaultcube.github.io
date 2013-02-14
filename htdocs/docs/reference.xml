@@ -3988,15 +3988,19 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="akimboendaction">
           <description>Sets the behavior of weapon switching upon akimbo expiration.</description>
-          <value token="N" description="akimbo end action" minValue="0" maxValue="2" defaultValue="0"/>
+          <value token="N" description="akimbo end action" minValue="0" maxValue="3" defaultValue="3"/>
           <arguments>
-            <argument valueNotes="0 (none)"/>
-            <argument valueNotes="1 (switch to primary)"/>
-            <argument valueNotes="2 (switch to grenades, else switch to primary)"/>
+            <argument valueNotes="0 (switch to knife)"/>
+            <argument valueNotes="1 (stay with pistol)"/>
+            <argument valueNotes="2 (switch to grenades)"/>
+            <argument valueNotes="3 (switch to primary)"/>
           </arguments>
           <references>
             <identifierReference identifier="akimboautoswitch"/>
           </references>
+          <remarks>
+            <remark>If no ammunition is detected for the target weapon, it will fallback to the previous weapon until it finds a weapon with ammunition to use.</remark>
+          </remarks>
         </variable>
 
         <command name="survival">
