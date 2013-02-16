@@ -2690,6 +2690,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="modmdlvwepN"/>
             <identifierReference identifier="modmdlpickupN"/>
+            <identifierReference identifier="modmdlbounceN"/>
             <identifierReference identifier="delalias"/>
           </references>
         </scriptalias>
@@ -2699,6 +2700,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="modmdlweapN"/>
             <identifierReference identifier="modmdlpickupN"/>
+            <identifierReference identifier="modmdlbounceN"/>
             <identifierReference identifier="delalias"/>
           </references>
         </scriptalias>
@@ -2722,8 +2724,41 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="modmdlweapN"/>
             <identifierReference identifier="modmdlvwepN"/>
+            <identifierReference identifier="modmdlbounceN"/>
             <identifierReference identifier="delalias"/>
             <identifierReference identifier="onPickup"/>
+          </references>
+        </scriptalias>
+        
+        <scriptalias name="modmdlbounceN">
+          <description>change name of directory used for bounce model number N</description>
+          <examples>
+            <example>
+              <code><![CDATA[modmdlbounce0 = misc/my_gib1]]></code>
+              <explanation>This will make the gib 1 model use the data inside packages/models/misc/my_gib1</explanation>
+            </example>
+            <example>
+              <code><![CDATA[modmdlbounce1 = misc/my_gib2]]></code>
+              <explanation>This will make the gib 2 model use the data inside packages/models/misc/my_gib2</explanation>
+            </example>
+            <example>
+              <code><![CDATA[modmdlbounce2 = misc/my_gib3]]></code>
+              <explanation>This will make the gib 3 model use the data inside packages/models/misc/my_gib3</explanation>
+            </example>
+            <example>
+              <code><![CDATA[modmdlbounce3 = weapons/grenade2/static]]></code>
+              <explanation>This will make the grenade static model use the data inside packages/models/weapons/grenade2/static</explanation>
+            </example>
+          </examples>
+          <remarks>
+            <remark>These setting should be loaded from config/autoexec.cfg, but they work on-the-fly too.</remark>
+            <remark>If the model fails to load you will end up with nothing being displayed; use <b>delalias</b> to get back to default</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="modmdlweapN"/>
+            <identifierReference identifier="modmdlvwepN"/>
+            <identifierReference identifier="modmdlpickupN"/>
+            <identifierReference identifier="delalias"/>
           </references>
         </scriptalias>
 
