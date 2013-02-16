@@ -2848,10 +2848,32 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="loadcrosshair">
-          <description>Loads a crosshair for a specific weapon of - if the weapon argument is omitted or &lt;0 - for all weapons.</description>
+          <description>Loads a crosshair for argument T.</description>
+          <examples>
+            <example>
+              <code><![CDATA[loadcrosshair red_dot.png]]></code>
+              <explanation>Loads the red_dot.png crosshair for all weapons.</explanation>
+            </example>
+            <example>
+              <code><![CDATA[loadcrosshair red_dot.png all]]></code>
+              <explanation>Same as above. Loads the red_dot.png crosshair for all weapons.</explanation>
+            </example>
+            <example>
+              <code><![CDATA[loadcrosshair red_dot.png knife]]></code>
+              <explanation>Loads the red_dot.png crosshair for your knife only.</explanation>
+            </example>
+            <example>
+              <code><![CDATA[loadcrosshair red_dot.png ar]]></code>
+              <explanation>Loads the red_dot.png crosshair for your assault rifle only.</explanation>
+            </example>
+            <example>
+              <code><![CDATA[loadcrosshair red_dot.png scope]]></code>
+              <explanation>Loads the red_dot.png crosshair for your sniper rifle scope only.</explanation>
+            </example>
+          </examples>
           <arguments>
             <argument token="I" description="image"/>
-            <argument token="W" description="weapon" valueNotes="-1,0..7"/>
+            <argument token="T" description="type" valueNotes="all, scope, teammate, knife, pistol, carbine, shotgun, smg, sniper, ar, cpistol, grenades, akimbo"/>
           </arguments>
         </command>
 
