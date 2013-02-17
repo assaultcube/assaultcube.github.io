@@ -2406,6 +2406,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
     <section name="Gameplay" sortindex="02">
       <description>This section describes gameplay related identifiers.</description>
       <identifiers sort="true">
+      
+        <command name="lasttarget">
+          <description>Returns the name of the last player you aimed at.</description>
+          <remarks>
+            <remark>Returns nothing "" if you have not yet aimed at a player.</remark>
+          </remarks>
+        </command>
 
         <scriptalias name="start_intermission">
           <description>If this alias exists it will be run when the game reaches intermission.</description>
@@ -4160,6 +4167,19 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
     <!-- Editing Section Starts -->
     <section name="Editing" sortindex="09">
       <identifiers sort="true">
+      
+        <scriptalias name="newselkeys">
+          <description>Binds a list of keys to be used to create new (multiple) selections in editmode.</description>
+          <examples>
+            <example>
+              <code><![CDATA[newselkeys = [LCTRL RCTRL LALT RALT]]]></code>
+              <explanation>Makes all 4 keys create new (multiple) selections in editmode.</explanation>
+            </example>
+          </examples>
+          <remarks>
+            <remark>LCTRL is default.</remark>
+          </remarks>
+        </scriptalias>
 
         <command name="togglegrap">
           <description>Will toggle the focus of the mouse in game. Normally you can use your mouse to look around, when you type this command your mouse cursor is visible and can be used as normally. This is only useful when you run cube windowed, of course.</description>
