@@ -6202,7 +6202,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Sets the current map's default dynamic gamma.</description>
           <examples>
             <example>
-              <code>ofc_gamma_list = [175 225 150 120 ...]</code>
+              <code><![CDATA[checkinit afterinit [ofc_gamma_list = [175 225 150 120 ...]]]]></code>
               <explanation>
                 Sets your custom gamma values for the per official map dynamic gamma system. If you are going to use this method,
                 you MUST include values for every existing official map. The list must be alphabetical and be the exact length of
