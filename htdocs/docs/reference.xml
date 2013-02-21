@@ -3240,12 +3240,19 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="curteam">
-          <description>Returns 1 if the local player is on the RVSF team, 0 if on CLA. If the player is in SPECTATOR it returns 2.</description>
+          <description>Returns an integer indicating what team a client is currently on.</description>
           <arguments>
             <argument token="C" description="optional argument: client number" valueNotes="returns the specified client's team instead"/>
           </arguments>
+          <remarks>
+            <remark>Returns 0 for CLA, 1 for RVSF.</remark>
+            <remark>Returns 2 for CLA-spectator, 3 for RVSF-spectator.</remark>
+            <remark>Returns 4 for spectator.</remark>
+            <remark>By default this command returns what team *you* (player1) are currently on.</remark>
+          </remarks>
           <references>
             <identifierReference identifier="team"/>
+            <identifierReference identifier="forceteam"/>
             <identifierReference identifier="skin"/>
           </references>
         </command>
@@ -6925,19 +6932,29 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="forceteam">
-          <description>Forces the specified player to join the enemy team.</description>
+          <description>Calls a vote to force the specified player to switch to the specified team.</description>
           <references>
+            <identifierReference identifier="forceme"/>
+            <identifierReference identifier="curteam"/>
             <identifierReference identifier="setadmin"/>
           </references>
           <arguments>
-            <argument token="CN" description="The player to assign to a team" valueNotes="Client number"/>
+            <argument token="C" description="client number of player" valueNotes="integer"/>
+            <argument token="T" description="the team to force to" valueNotes="0-4"/>
           </arguments>
         </command>
 
         <command name="forceme">
-          <description>Calls a vote to forceteam yourself to the enemy team.</description>
+          <description>Calls a vote to forceteam yourself to the specified team.</description>
+          <arguments>
+            <argument token="T" description="optional, the team to force yourself to" valueNotes="0-4"/>
+          </arguments>
+          <remarks>
+            <remark>By default, if you are on team CLA or RVSF, this command will force you to the enemy team, no arguments necessary.</remark>
+          </remarks>
           <references>
             <identifierReference identifier="forceteam"/>
+            <identifierReference identifier="curteam"/>
           </references>
         </command>
 
