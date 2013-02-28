@@ -5406,6 +5406,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
+        <variable name="wrapslider">
+          <description>If wrapslider is set the menuitemslider will toggle to the min/max value if at end of the range.</description>
+          <value token="N" description="0 off, 1 on" minValue="0" maxValue="1" defaultValue="0"/>
+        </variable>
+
       </identifiers>
     </section>
     <!-- Menus Section Ends -->
