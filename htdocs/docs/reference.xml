@@ -1071,7 +1071,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <arguments>
             <argument token="N" description="the name of the alias" valueNotes="string, must not contain '$'"/>
-            <argument token="A" description="the value" valueNotes="string (optional)"/>
+            <argument token="A" description="the value" valueNotes="string" optional="true"/>
           </arguments>
           <examples>
             <example>
@@ -1144,7 +1144,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </examples>
           <arguments>
             <argument token="A" description="the alias to check for"/>
-            <argument token="B" description="the optional block of code to ensure that the alias contains"/>
+            <argument token="B" description="the block of code to ensure that the alias contains" optional="true"/>
           </arguments>
           <references>
             <identifierReference identifier="checkalias"/>
@@ -1189,7 +1189,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Initializes a group of aliases using checkinit.</description>
           <arguments>
             <argument token="L" description="the list of aliases to check for"/>
-            <argument token="B" description="the optional block of code to ensure the aliases contain"/>
+            <argument token="B" description="the block of code to ensure the aliases contain" optional="true"/>
           </arguments>
           <references>
             <identifierReference identifier="checkalias"/>
@@ -2967,7 +2967,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="getdemo">
           <arguments>
             <argument token="X" description="number in list"/>
-            <argument token="P" description="subpath (optional)"/>
+            <argument token="P" description="subpath" optional="true"/>
           </arguments>
           <references>
             <identifierReference identifier="listdemos"/>
@@ -3242,7 +3242,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="curteam">
           <description>Returns an integer indicating what team a client is currently on.</description>
           <arguments>
-            <argument token="C" description="optional argument: client number" valueNotes="returns the specified client's team instead"/>
+            <argument token="C" description="client number" valueNotes="returns the specified client's team instead" optional="true"/>
           </arguments>
           <remarks>
             <remark>Returns 0 for CLA, 1 for RVSF.</remark>
@@ -3605,6 +3605,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </examples>
           <references>
             <identifierReference identifier="connectadmin"/>
+            <identifierReference identifier="disconnect"/>
+            <identifierReference identifier="reconnect"/>
           </references>
           <arguments>
             <argument token="N" description="the address of the server (hostname or IP)" optional="true"/>
@@ -3641,6 +3643,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="currole"/>
             <identifierReference identifier="connect"/>
+            <identifierReference identifier="disconnect"/>
+            <identifierReference identifier="reconnect"/>
           </references>
           <arguments>
             <argument token="N" description="the address of the server (hostname or IP)" optional="true"/>
@@ -3651,6 +3655,23 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="disconnect">
           <description>Leaves a server.</description>
+          <references>
+            <identifierReference identifier="reconnect"/>
+            <identifierReference identifier="connect"/>
+            <identifierReference identifier="connectadmin"/>
+          </references>
+        </command>
+        
+        <command name="reconnect">
+          <description>Disconnects then reconnects you to the current server.</description>
+          <arguments>
+            <argument token="P" description="the server password" optional="true"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="disconnect"/>
+            <identifierReference identifier="connect"/>
+            <identifierReference identifier="connectadmin"/>
+          </references>
         </command>
 
         <command name="team">
@@ -4108,7 +4129,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <arguments>
             <argument token="M" description="the map to use"/>
-            <argument token="D" description="optional: the difficulty" valueNotes="0 = easy, 1 = intermediate, 2 = hard, 3 = impossible"/>
+            <argument token="D" description="the difficulty" valueNotes="0 = easy, 1 = intermediate, 2 = hard, 3 = impossible" optional="true"/>
           </arguments>
         </command>
 
@@ -4593,8 +4614,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <arguments>
             <argument token="N" description="The mapmodel identifier" valueNotes="Integer"/>
-            <argument token="Z" description="Extra elevation above ground" valueNotes="Integer"/>
-            <argument token="T" description="The map texture to use (optional)" valueNotes="Integer"/>
+            <argument token="Z" description="Extra elevation above ground" valueNotes="Integer" optional="true"/>
+            <argument token="T" description="The map texture to use" valueNotes="Integer" optional="true"/>
           </arguments>
         </command>
 
@@ -5007,7 +5028,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </remark>
           </remarks>
           <arguments>
-            <argument token="S" description="side delta (optional)"/>
+            <argument token="S" description="side delta" optional="true"/>
           </arguments>
         </command>
 
@@ -6952,7 +6973,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="forceme">
           <description>Calls a vote to forceteam yourself to the specified team.</description>
           <arguments>
-            <argument token="T" description="optional, the team to force yourself to" valueNotes="0-4"/>
+            <argument token="T" description="the team to force yourself to" valueNotes="0-4" optional="true"/>
           </arguments>
           <remarks>
             <remark>By default, if you are on team CLA or RVSF, this command will force you to the enemy team, no arguments necessary.</remark>
