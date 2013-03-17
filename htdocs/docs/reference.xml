@@ -4136,7 +4136,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="drawzone">
           <description>Draws a zone marker with the specified color and dimensions on the minimap/radar. This is primarily intended for the survival mode.</description>
           <remarks>
-            <remark>Only a single zone can be drawn at a time, and it will be reset (i.e. removed) once a new game starts.</remark>
+            <remark>You can draw a few zones at a time. They will be reset (i.e. removed) once a new game starts.</remark>
             <remark>Note that the coordinates must be specified as integers, not as floating-point values.</remark>
           </remarks>
           <arguments>
@@ -4147,6 +4147,15 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="C" description="a color for the zone, in hexadecimal notation" valueNotes="default: 0x00FF00 (green)"/>
           </arguments>
           <references>
+            <identifierReference name="resetzones" identifier="resetzones"/>
+            <identifierReference name="survival" identifier="survival"/>
+          </references>
+        </command>
+        
+        <command name="resetzones">
+          <description>Reset all drawn zones.</description>
+          <references>
+            <identifierReference name="drawzone" identifier="drawzone"/>          
             <identifierReference name="survival" identifier="survival"/>
           </references>
         </command>
