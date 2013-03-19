@@ -4951,6 +4951,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Show editing cursor grid.</description>
           <value token="N" description="-" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
+        
+        <command name="guidetoggle">
+          <description>Enables or disables a special set of default textures while editing.</description>
+          <remarks>
+            <remark>The textures in "packages/textures/map_editor" are used.</remark>
+          </remarks>
+        </command>
 
         <command name="waterlevel">
           <description>Sets the global water level for the map.</description>
