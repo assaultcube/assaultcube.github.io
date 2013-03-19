@@ -5132,6 +5132,32 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="resetselections">
           <description>Resets all current selections.</description>
         </command>
+        
+        <command name="expandselection">
+          <description>Increases the size of the current selection by N cubes on all sides.</description>
+          <arguments>
+            <argument token="N" description="number of cubes" valueNotes="integer"/>
+          </arguments>
+          <remarks>
+            <remark>Instead of manually executing this command, you can bind "domodifier 11" to a key. While holding this key you can expand/shrink the current selection with the mouse wheel.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="shrinkselection"/>
+          </references>
+        </command>
+        
+        <command name="shrinkselection">
+          <description>Decreases the size of the current selection by N cubes on all sides.</description>
+          <arguments>
+            <argument token="N" description="number of cubes" valueNotes="integer"/>
+          </arguments>
+          <remarks>
+            <remark>Instead of manually executing this command, you can bind "domodifier 11" to a key. While holding this key you can expand/shrink the current selection with the mouse wheel.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="expandselection"/>
+          </references>
+        </command>
 
         <command name="selsx">
           <description>Return a list containg the x-coordinate of each selection</description>
