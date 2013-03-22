@@ -4218,8 +4218,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
         </scriptalias>
 
-        <command name="togglegrap">
-          <description>Will toggle the focus of the mouse in game. Normally you can use your mouse to look around, when you type this command your mouse cursor is visible and can be used as normally. This is only useful when you run cube windowed, of course.</description>
+        <command name="togglegrab">
+          <description>Will toggle the focus of the mouse in game. Normally you can use your mouse to look around, when you type this command your mouse cursor is visible and can be used as normally. This is only useful when you run cube windowed.</description>
         </command>
 
         <command name="getentattr">
