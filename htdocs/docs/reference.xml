@@ -3851,10 +3851,58 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="getmap">
           <description>Retrieves the last map that was sent to the server using 'sendmap'.</description>
+          <remarks>
+            <remark>If the command is passed an argument, different than the map being played, the game tries to download the specified map from an available packages source server.</remark>
+          </remarks>
+          
           <references>
             <identifierReference identifier="sendmap"/>
           </references>
+          
+          <arguments>
+            <argument token="S" description="the name of the map"/>
+          </arguments>
         </command>
+        
+        <command name="addpckserver">
+          <description>Adds a packages source server where to download custom content from.</description>
+          <remarks>
+            <remark>Only add servers you trust.</remark>
+            <remark>The list of servers is saved into config/pcksources.cfg on game quit.</remark>
+          </remarks>
+          
+          <examples>
+            <example>
+              <code>addpckserver http://packages.ac-akimbo.net</code>
+            </example>
+          </examples>
+          
+          <references>
+            <identifierReference identifier="resetpckservers"/>
+            <identifierReference identifier="autodownload"/>
+          </references>
+          
+          <arguments>
+            <argument token="S" description="The server address. Trailing slash not needed."/>
+          </arguments>
+        </command>
+        
+        <command name="resetpckservers">
+          <description>Resets the list of packages source servers where to download custom content from.</description>
+          <remarks>
+            <remark>The list of servers is saved into config/pcksources.cfg on game quit.</remark>
+          </remarks>
+          
+          <references>
+            <identifierReference identifier="addpckserver"/>
+            <identifierReference identifier="autodownload"/>
+          </references>
+        </command>
+        
+        <variable name="autodownload">
+          <description>Determines if the game should try to download missing packages such as textures or mapmodels on the fly.</description>
+          <value token="V" description="Note: This is turned on by default." minValue="0" maxValue="1" defaultValue="1"/>
+        </variable>
 
         <command name="spectatemode">
           <description>Sets the desired spectating mode.</description>
