@@ -4843,26 +4843,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Returns the map message of the current map.</description>
         </command>
 
-        <command name="listmapdependencies">
-          <description>Prints all media dependencies of a map to a file.</description>
-          <arguments>
-            <argument token="A" description="map name"/>
-          </arguments>
-          <remarks>
-            <remark>The output will be added to the file 'mapdependencies.txt'.</remark>
-          </remarks>
-        </command>
-
-        <command name="listmapdependencies_all">
-          <description>Prints all media dependencies of all maps to a file.</description>
-          <arguments>
-            <argument token="A" description="42"/>
-          </arguments>
-          <remarks>
-            <remark>The output will be written to the file 'mapdependencies.txt'.</remark>
-          </remarks>
-        </command>
-
         <command name="entstats">
           <description>Print some map entity statistics to the console.</description>
         </command>
@@ -5224,10 +5204,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
           <value token="N" description="the brightness of the scene" minValue="1" maxValue="100" defaultValue="4"/>
         </variable>
-
-        <command name="checkmapdependencies">
-          <description>Find what media the map depends on, this is used for mediapack providers.</description>
-        </command>
 
         <variable name="old_editbinds">
           <description>Enables or disables the old editing binds.</description>
