@@ -7628,7 +7628,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="loadsky">
           <description>Loads a skymap for a map.</description>
           <remarks>
-            <remark>The available skymaps reside in packages/textures/skymaps/..</remark>
+            <remark>The available skymaps reside in packages/skymaps/..</remark>
             <remark>
             To select a skymap you need to use the full path from "packages/"
             but only up to the underscore "_" in the filename.
@@ -7636,11 +7636,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <examples>
             <example>
-              <code><![CDATA[loadsky "textures/skymaps/makke/mountain"]]></code>
+              <code><![CDATA[loadsky "skymaps/makke/mountain"]]></code>
             </example>
           </examples>
           <arguments>
-            <argument token="P" description="path to the six skybox textures" valueNotes="string"/>
+            <argument token="P" description="path to the six skymap textures" valueNotes="string"/>
           </arguments>
         </command>
 
