@@ -3857,11 +3857,24 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           
           <references>
             <identifierReference identifier="sendmap"/>
+            <identifierReference identifier="dlmap"/>
           </references>
           
           <arguments>
             <argument token="S" description="the name of the map"/>
+            <argument token="C" description="cubescript to execute once map is installed" optional="true"/>
           </arguments>
+        </command>
+        
+        <command name="dlmap">
+          <description>Downloads and loads the specified map from an available packages source server.</description>
+          <arguments>
+            <argument token="S" description="the name of the map"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="getmap"/>
+            <identifierReference identifier="sendmap"/>
+          </references>
         </command>
         
         <command name="addpckserver">
@@ -7126,6 +7139,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="getmap"/>
+            <identifierReference identifier="dlmap"/>
           </references>
           <arguments>
             <argument token="M" description="map to send" optional="true"/>
