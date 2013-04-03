@@ -750,6 +750,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="strlen"/>
             <identifierReference identifier="strpos"/>
             <identifierReference identifier="strreplace"/>
+            <identifierReference identifier="parsestring"/>
           </references>
         </command>
 
@@ -876,6 +877,87 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="break"/>
             <identifierReference identifier="loop"/>
             <identifierReference identifier="while"/>
+          </references>
+        </command>
+        
+        <command name="parsestring">
+          <description>Loops through every character in the given string and executes the given block of cubescript on each iteration.</description>
+          <examples>
+            <example>
+              <code><![CDATA[parsestring "Hello world" iter [echo $iter]]]></code>
+              <explanation>Uses echo on every character in the string: "Hello world"</explanation>
+            </example>
+            <example>
+              <code><![CDATA[parsestring "Hello world" iter [echo (concatword "Char #" $__iter ": " $iter)]]]></code>
+              <explanation>Uses echo on every character in the string: "Hello world" --- Also outputs the position of each character in the string.</explanation>
+            </example>
+            <example>
+              <code><![CDATA[backwardsstring = []; parsestring "This will look interesting backwards." iter [backwardsstring = (concatword $backwardsstring $iter); if (= $__iter 0) [echo $backwardsstring]] 1]]></code>
+              <explanation>Outputs: ".sdrawkcab gnitseretni kool lliw sihT"</explanation>
+            </example>
+            <example>
+              <code><![CDATA[parsestring "abcdefghijklmnopqrstuvwxyz" iter [if (> $__iter 4) breakparse [echo $iter]]]]></code>
+              <explanation>Example usage of the breakparse command. Uses echo on characters a through e, then breaks out of the parse.</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="S" description="string" valueNotes="string to parse"/>
+            <argument token="A" description="string" valueNotes="name of alias to use as iterator"/>
+            <argument token="C" description="string" valueNotes="cubescript to execute on each iteration"/>
+            <argument token="B" description="integer" valueNotes="non-zero to force backwards parse" optional="true"/>
+          </arguments>
+          <remarks>
+            <remark>Important: A secondary iterator alias (prefixed with a double underscore "__") is automatically created before each iteration that contains the character position data.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="breakparse"/>
+            <identifierReference identifier="substr"/>
+            <identifierReference identifier="trimAllWhitespace"/>
+            <identifierReference identifier="trimAllUnnecessaryWhitespace"/>
+          </references>
+        </command>
+        
+        <command name="breakparse">
+          <description>Breaks out of a parsestring loop.</description>
+          <remarks>
+            <remark>Important: This command should only be used within the 3rd argument (the cubescript to execute) of parsestring.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="parsestring"/>
+          </references>
+        </command>
+        
+        <command name="trimAllWhitespace">
+          <description>Removes all whitespace characters from the given string.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (trimAllWhitespace "    H   e ll     o w  o r   l d     ")]]></code>
+              <explanation>Outputs: Helloworld</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="S" description="string" valueNotes="string to modify"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="trimAllUnnecessaryWhitespace"/>
+            <identifierReference identifier="parsestring"/>
+          </references>
+        </command>
+        
+        <command name="trimAllUnnecessaryWhitespace">
+          <description>Removes all unnecessary leading and trailing whitespace characters from the given string.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (trimAllUnnecessaryWhitespace "    H   e ll     o w  o r   l d     ")]]></code>
+              <explanation>Outputs: "H   e ll     o w  o r   l d"</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="S" description="string" valueNotes="string to modify"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="trimAllWhitespace"/>
+            <identifierReference identifier="parsestring"/>
           </references>
         </command>
 
