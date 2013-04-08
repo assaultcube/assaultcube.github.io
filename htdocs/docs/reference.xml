@@ -4893,6 +4893,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="N" description="-" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
         
+        <variable name="showclips">
+          <description>Show clips/plclips/mapmodel clips in edit mode.</description>
+          <value token="N" description="-" minValue="0" maxValue="1" defaultValue="1"/>
+        </variable>
+        
         <command name="guidetoggle">
           <description>Enables or disables a special set of default textures while editing.</description>
           <remarks>
@@ -6268,7 +6273,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="spectfov">
           <description>Specifies the Field Of View when in spectating/ghost mode.</description>
-          <value token="V" description="Spectate FOV size" minValue="5" maxValue="120" defaultValue="120"/>
+          <value token="V" description="Spectate FOV size" minValue="5" maxValue="120" defaultValue="110"/>
         </variable>
 
         <variable name="hwtexsize">
