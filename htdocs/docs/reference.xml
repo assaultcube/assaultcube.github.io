@@ -2486,6 +2486,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <description>If defined, this will be executed each time you switch to a different weapon.</description>
         </scriptalias>
+        
+        <scriptalias name="onReload">
+          <arguments>
+            <argument token="B" description="was autoreload?" valueNotes="0 (false), 1 (true)"/>
+          </arguments>
+          <description>If defined, this will be executed each time you reload a weapon.</description>
+        </scriptalias>
 
         <scriptalias name="onConnect">
           <arguments>
