@@ -3799,6 +3799,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           
           <references>
             <identifierReference identifier="resetpckservers"/>
+            <identifierReference identifier="sortpckservers"/>
             <identifierReference identifier="autodownload"/>
           </references>
           
@@ -3815,6 +3816,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           
           <references>
             <identifierReference identifier="addpckserver"/>
+            <identifierReference identifier="sortpckservers"/>
+            <identifierReference identifier="autodownload"/>
+          </references>
+        </command>
+        
+        <command name="sortpckservers">
+          <description>Sorts the available packages source servers by ascendant ping. The fastest to reach is then used by default.</description>
+       
+          <references>
+            <identifierReference identifier="addpckserver"/>
+            <identifierReference identifier="sortpckservers"/>
             <identifierReference identifier="autodownload"/>
           </references>
         </command>
