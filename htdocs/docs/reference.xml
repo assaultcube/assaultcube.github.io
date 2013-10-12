@@ -7896,7 +7896,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="maxrollremote">
           <description>TODO</description>
-          <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="1"/>
+          <value token="N" description="TODO" minValue="0" maxValue="20" defaultValue="0"/>
         </variable>
 
         <variable name="mdldlist">
