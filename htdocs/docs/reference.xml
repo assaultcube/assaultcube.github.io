@@ -7911,22 +7911,22 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="mfilter">
           <description>TODO</description>
-          <value token="N" description="TODO" minValue="0,0" maxValue="6,0" defaultValue="0,0"/>
+          <value token="N" description="TODO" minValue="0.0" maxValue="6.0" defaultValue="0.0"/>
         </variable>
 
         <variable name="mouseaccel">
           <description>TODO</description>
-          <value token="N" description="TODO" minValue="0,0" maxValue="1000,0" defaultValue="0,0"/>
+          <value token="N" description="TODO" minValue="0.0" maxValue="1000.0" defaultValue="0.0"/>
         </variable>
 
         <variable name="scopesensscale">
           <description>TODO</description>
-          <value token="N" description="TODO" minValue="0,001" maxValue="1000,0" defaultValue="0,5"/>
+          <value token="N" description="TODO" minValue="0.001" maxValue="1000.0" defaultValue="0.5"/>
         </variable>
 
         <variable name="sensitivityscale">
           <description>TODO</description>
-          <value token="N" description="TODO" minValue="0,001" maxValue="1000,0" defaultValue="1,0"/>
+          <value token="N" description="TODO" minValue="0.001" maxValue="1000.0" defaultValue="1.0"/>
         </variable>
 
         <variable name="testvel">
