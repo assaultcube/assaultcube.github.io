@@ -2307,13 +2307,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
       <description>This section describes gameplay related identifiers.</description>
       <identifiers sort="true">
       
-        <command name="lasttarget">
-          <description>Returns the name of the last player you aimed at.</description>
-          <remarks>
-            <remark>Returns nothing "" if you have not yet aimed at a player.</remark>
-          </remarks>
-        </command>
-
         <scriptalias name="start_intermission">
           <description>If this alias exists it will be run when the game reaches intermission.</description>
           <examples>
