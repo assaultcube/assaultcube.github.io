@@ -704,7 +704,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="H" description="haystack string"/>
             <argument token="S" description="needle string"/>
-            <argument token="N" description="The occurence of 'needle' to find (optionnal)"/>
+            <argument token="N" description="The occurence of 'needle' to find (optional)"/>
           </arguments>
           <return token="N" description="The N'th position of 'needle' into 'haystack' (-1 if 'needle' isn't found;)"/>
           <remarks>
@@ -729,7 +729,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="S" description="the original string"/>
             <argument token="A" description="start position"/>
-            <argument token="L" description="substring length (optionnal)"/>
+            <argument token="L" description="substring length (optional)"/>
           </arguments>
           <return token="S" description="the substring"/>
           <remarks>
@@ -1050,7 +1050,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="N" description="the amount of milliseconds"/>
             <argument token="C" description="the command to execute"/>
-            <argument token="P" description="ignore map change (optionnal)"/>
+            <argument token="P" description="ignore map change (optional)"/>
           </arguments>
         </command>
 
@@ -1668,19 +1668,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="N" description="Compression level" minValue="0" maxValue="9" defaultValue="9"/>
         </variable>
 
-        <command name="soundtest">
-          <description>Plays all hardcoded sounds in order.</description>
-        </command>
-
         <command name="writecfg">
           <description>writes current configuration to config/saved.cfg - automatic on quit</description>
-        </command>
-
-        <command name="registermusic">
-          <description>registers a track as music - the first three tracks have special meaning. Track #1 is for "flag grab" the second and third are used as "last minute" tracks.</description>
-          <arguments>
-            <argument token="M" description="music file"/>
-          </arguments>
         </command>
 
         <command name="echo">
@@ -6466,6 +6455,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="S" description="the sound to play" valueNotes="string, see config/sounds.cfg"/>
           </arguments>
         </command>
+        
+        <command name="soundtest">
+          <description>Plays all hardcoded sounds in order.</description>
+        </command>
 
         <command name="mutesound">
           <description>Mute a specific game sound.</description>
@@ -6544,6 +6537,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="A" description="music file name"/>
             <argument token="B" description="playtime"/>
             <argument token="C" description="command to be executed, when music is done"/>
+          </arguments>
+        </command>
+        
+        <command name="registermusic">
+          <description>registers a track as music - the first three tracks have special meaning. Track #1 is for "flag grab" the second and third are used as "last minute" tracks.</description>
+          <arguments>
+            <argument token="M" description="music file"/>
           </arguments>
         </command>
 
