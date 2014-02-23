@@ -5206,7 +5206,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <scriptalias name="onNewMap">
-          <description>If this alias exists, it will be automatically executed when you start a new map.</description>
+          <description>
+            If this alias exists, it will automatically be executed when you create a new map via the "newmap" command
+            (not to be confused with loading an existing map).
+          </description>
+          <references>
+            <identifierReference identifier="newmap"/>
+          </references>
         </scriptalias>
 
         <variable name="flyspeed">

@@ -368,7 +368,7 @@
                       <!-- references -->
                       <xsl:if test="t:references">
                         <div class="references">
-                          see also:
+                          See also:
                           <!-- refer to identifiers (identifier anchor) -->
                           <xsl:for-each select="t:references/t:identifierReference">
                             <a>
