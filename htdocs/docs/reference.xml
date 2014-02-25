@@ -2361,6 +2361,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="add2alias"/>
             <identifierReference identifier="mapstartalways"/>
+            <identifierReference identifier="onNewMap"/>
           </references>
         </scriptalias>
 
@@ -2391,6 +2392,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="add2alias"/>
             <identifierReference identifier="mapstartonce"/>
+            <identifierReference identifier="onNewMap"/>
           </references>
         </scriptalias>
 
@@ -5212,6 +5214,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </description>
           <references>
             <identifierReference identifier="newmap"/>
+            <identifierReference identifier="mapstartonce"/>
+            <identifierReference identifier="mapstartalways"/>
           </references>
         </scriptalias>
 
