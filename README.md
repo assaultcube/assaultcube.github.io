@@ -18,8 +18,9 @@ Any AssaultCube documentation should be added to ./htdocs/docs
 from now on. Upon any AC releases, simply copy/paste 
 the ./htdocs/docs folder into the release. No changes necessary.
 
-Other folders/files in THIS directory:
-======================================
+
+## Other folders/files in THIS directory:
+
  * "INFO.txt" - Information about the "ac_website" repository (this file).
  * "DATASTORAGE_HEADER.html" - This file will update the parts of the webpage
    found at http://assault.cubers.net/$_DATA_STORAGE that aren't automatically
@@ -34,8 +35,9 @@ AC Developers:
 
    DO NOT TOUCH ANYTHING UNTIL YOU HAVE!
 
-LIST OF FILES TO CHANGE UPON NEW RELEASES:
-==========================================
+   
+## LIST OF FILES TO CHANGE UPON NEW RELEASES:
+
  * Update ./htdocs/SSI-HTML/download_box.html
  * Update ./htdocs/download.html
  * Update "docswarning" with the location of the new versions
