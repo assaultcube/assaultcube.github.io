@@ -1016,20 +1016,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
-        <command name="findcn">
-          <description>find client number (cn)</description>
-          <arguments>
-            <argument token="N" description="NAME"/>
-          </arguments>
-        </command>
-
-        <command name="findpn">
-          <description>find player name</description>
-          <arguments>
-            <argument token="C" description="CLIENTNUM"/>
-          </arguments>
-        </command>
-
         <command name="findlist">
           <description>Searches a list for a specified value.</description>
           <arguments>
@@ -1348,13 +1334,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="S" description="a string"/>
             <argument token="N" description="type ID" valueNotes="min 0/max 5/default 0"/>
           </arguments>
-        </command>
-
-        <command name="curplayers">
-          <description>Returns the current number of players.</description>
-          <remarks>
-            <remark>The return value includes the local player "(you)", and works in both singleplayer and multiplayer scenarios.</remark>
-          </remarks>
         </command>
         
         <command name="highestcn">
@@ -2772,10 +2751,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </variable>
 
-        <command name="mapname">
-          <description>returns the mapname</description>
-        </command>
-
         <command name="mapsize">
           <description>outputs the mapsize.</description>
         </command>
@@ -2866,7 +2841,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="dropflag">
-          <description>Drops the enemy flag.</description>
+          <description>Drops the taken flag.</description>
         </command>
 
         <command name="drawbeamtobots">
@@ -4150,6 +4125,18 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
+        <command name="curplayers">
+          <description>Returns the size of the players vector.</description>
+          <remarks>
+            <remark>The return value includes the local player "(you)" and works in both singleplayer and multiplayer scenarios.
+It can be used, for example, in a loop to find all valid clients (players) on server.
+Note: it DOESN'T return current number of players.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="isclient"/>
+          </references>
+        </command>
+
         <command name="isclient">
           <description>Determines if the client number given is a valid client (player).</description>
           <examples>
@@ -4164,6 +4151,23 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </examples>
           <arguments>
             <argument token="C" description="client number"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="curplayers"/>
+          </references>
+        </command>
+
+        <command name="findcn">
+          <description>find client number (cn)</description>
+          <arguments>
+            <argument token="N" description="NAME"/>
+          </arguments>
+        </command>
+
+        <command name="findpn">
+          <description>find player name</description>
+          <arguments>
+            <argument token="C" description="CLIENTNUM"/>
           </arguments>
         </command>
 
@@ -5617,7 +5621,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="hidevote">
           <description>Turns on or off the display of vote icons.</description>
-          <value token="V" description="enable/disable vote info" minValue="0" maxValue="2" defaultValue="0"/>
+          <value token="V" description="0=on; 1=on, but hide after own vote; 2=off" minValue="0" maxValue="2" defaultValue="0"/>
         </variable>
 
         <variable name="hudgun">
@@ -6122,15 +6126,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="dynlight">
           <description>Determines whether dynamic shadows and lights are rendered, provided just incase they slow your fps down too much.</description>
-          <remarks>
-            <remark>
-            With radius you can specify the radius of a dynamic light,
-            smaller to maybe gain some speed (0 is off entirely),
-            or bigger to see the effect of dynamic shadows more dramatically
-            (try shooting it past some pillars that have a dark area on the other side... or use the "gamespeed" variable).
-            </remark>
-          </remarks>
-          <value token="R" description="the radius of a dynamic light" minValue="0" maxValue="32" defaultValue="16"/>
+          <value token="R" description="0 off, 1 on" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
 
         <variable name="watersubdiv">
@@ -7892,16 +7888,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
-        <variable name="interms">
-          <description>TODO</description>
-          <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <variable name="mapdimsfactor">
-          <description>TODO</description>
-          <value token="N" description="TODO" minValue="0" maxValue="4" defaultValue="2"/>
-        </variable>
-
         <variable name="maxrollremote">
           <description>TODO</description>
           <value token="N" description="TODO" minValue="0" maxValue="20" defaultValue="0"/>
@@ -7930,11 +7916,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <variable name="sensitivityscale">
           <description>TODO</description>
           <value token="N" description="TODO" minValue="0.001" maxValue="1000.0" defaultValue="1.0"/>
-        </variable>
-
-        <variable name="testvel">
-          <description>TODO</description>
-          <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
         <command name="showedithide">
