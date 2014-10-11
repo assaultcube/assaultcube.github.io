@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 25 March 2009), see www.w3.org"><!--
+Things to note when editing this file:
+a) Don't mess up the colour pattern, change the class="c1" and so-on accordingly to get it right.
+b) Ensure you add your new argument into the correct category, then, expand the
+"rowspan" on that category by one. Otherwise, set up a new category using existing ones as templates.
+c) Please keep to the style provided and make your instructions 'n00b' friendly, thanks.
+d) Add an "id" to each new argument, with the arguments switch, so it can be easily linked to, if need be.
+-->
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+  <meta name="robots" content="NOODP">
+  <meta name="author" content="Rabid Viper Productions">
+  <meta name="copyright" content=
+  "You may be able to redistribute this content under specific conditions. Please read the licensing information, available @ http://assault.cubers.net/docs/license.html for the conditions that would apply to what you may be redistributing.">
+
+  <title>AssaultCube Documentation :: Favourite servers</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/docs.css">
+  <link rel="stylesheet" type="text/css" href="css/fancytable.css">
+  <!--#include virtual="/SSI-HTML/docs/invisibility.html" -->
+  <link rel="shortcut icon" href="images/favicon.ico">
+  <style type="text/css">
+table, tr, td {
+  text-align : left;
+  }
+  .verttxt {
+  text-align : center;
+  font-weight : bold;
+  font-size : 14px;
+  vertical-align: middle;
+  padding : 10px;
+  }
+  .c1 {
+  text-align : center;
+  background-color : #0C0C0C;
+  vertical-align: top;
+  font-size : 15px;
+  }
+  .c2 {
+  background-color : #0C0C0C;
+  }
+  .c3 {
+  text-align : center;
+  vertical-align: top;
+  font-size : 15px;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="docsheader">
+      AssaultCube Documentation
+    </div>
+
+    <div id="logo">
+      <a href="index.html"><img src="images/aclogo.png" alt="AssaultCube" width="193"
+      height="81"></a>
+    </div>
+
+    <div id="menubar">
+      <!--#include virtual="/SSI-HTML/docs/navigation_box_docs.html" -->
+      &nbsp;
+    </div><!--#include virtual="/SSI-HTML/docs/docswarn.html" -->
+
+    <div class="docsmain">
+      <div id="gohome">
+        <a href="index.html">Go to documentation index &crarr;</a>
+      </div>
+
+      <h2>Favourite servers</h2>
+
+      <p>Favourites let you move your favourite servers (ie. servers with preferred maps,
+      modes, etc.) above others in the serverbrowser, and, similarly, move disliked
+      servers, etc. below other servers.<br>
+      <br>
+      Basic favourites category definitions are located in <span class=
+      "code">[AC_installation_folder]/config/favourites.cfg</span>.<br>
+      <br>
+      To add your own category, it's best to copy this file to your game home directory
+      (where <span class="code">saved.cfg</span> is located), and then edit that copy.
+      Another way is to put additional categories into your <span class=
+      "code">autoexec.cfg</span>.<br>
+      You can edit later category definitions in a text editor or via the in-game menu -
+      just press F1 in the serverbrowser to open the serverbrowser help menu, then Edit
+      Favourites (or press F4 in the serverbrowser to get there directly) and select the
+      one you wish to edit.<br>
+      <br>
+      You can easily toggle (add it to, or remove it from a category) the category of a
+      selected server in the serverbrowser - <b>just press the 0..9 keys on the
+      keyboard.</b> See in the serverbrowser help menu which key toggles what
+      category.<br>
+      <br>
+      <b>Note:</b> the category SEARCH is special, because it's used in the "Search for
+      servers" feature, so please <b>DON'T</b> remove it; you can only change the order
+      of this category.</p>
+
+      <h2 id="attributes" style="padding-top : 20px;">Category attributes</h2>
+
+      <p>Every category has the following attributes:</p>
+
+      <table summary="Category attributes">
+        <tr>
+          <td>&nbsp;</td>
+
+          <td class="head01">Attribute</td>
+
+          <td class="head01">Description</td>
+        </tr>
+
+        <tr>
+          <td rowspan="8" class="verttxt">C<br>
+          A<br>
+          T<br>
+          E<br>
+          G<br>
+          O<br>
+          R<br>
+          Y</td>
+
+          <td class="c1" id="weight">weight</td>
+
+          <td class="c2">Positive weights list a server higher in the list; negative
+          weights list lower. To see weights in serverbrowser use:<br>
+          "<span class="code"><a href=
+          "http://assault.cubers.net/docs/reference.html#identifier_showweights">showweights</a>
+          = 1</span>".</td>
+        </tr>
+
+        <tr>
+          <td class="c3" id="tag">tag</td>
+
+          <td>A short category description, which shows in the serverbrowser. It can use
+          escaped colour commands (for example: <span class="code">\f3</span>). If
+          undefined, it's the same as the category name.</td>
+        </tr>
+
+        <tr>
+          <td class="c1" id="desc">desc</td>
+
+          <td class="c2">A detailed category description.</td>
+        </tr>
+
+        <tr>
+          <td class="c3" id="bgcolor">red, green, blue, alpha</td>
+
+          <td>The background colour for servers of this category. Use values from
+          <span class="code">0..100</span>; use <span class="code">alpha = 0</span> to
+          disable the background colour.</td>
+        </tr>
+
+        <tr>
+          <td class="c1" id="keys">keys</td>
+
+          <td class="c2">
+            Keywords to describe which servers are in this category.<br>
+            Possible key types:<br>
+            <br>
+
+            <table summary="Key types">
+              <tr>
+                <td class="head01">Key</td>
+
+                <td class="head01">Key description</td>
+              </tr>
+
+              <tr>
+                <td>IP</td>
+
+                <td>IP address of a server; partial addresses can be used. Example:<br>
+                <br>
+                <span class="code">11.22.33</span> - matches all servers whose IP starts
+                with that string</td>
+              </tr>
+
+              <tr>
+                <td>IP:port</td>
+
+                <td>IP &amp; port address of a server. Example:<br>
+                <br>
+                <span class="code">11.22.33.44:28763</span> - matches the server with
+                that IP &amp; port address</td>
+              </tr>
+
+              <tr>
+                <td>serverdescription</td>
+
+                <td>Description of a server; partial strings are possible. Example:<br>
+                <br>
+                <span class="code">ABC</span> - matches all servers that have "ABC" as a
+                part of the server description<br>
+                <br>
+                <b>Notes:</b> The "serverdescription" key is case sensitive for "
+                <span class="code"><a href=
+                "http://assault.cubers.net/docs/reference.html#identifier_showonlyfavourites">
+                showonlyfavourites</a> = 0</span>" and case insensitive, when it's
+                <span class="code">&gt; 0</span> (for example, showonlyfavourites is &gt;
+                0, when you select "Show servers of this category" from the menu, where
+                you can edit selected favourities).</td>
+              </tr>
+
+              <tr>
+                <td>%mapname</td>
+
+                <td>Map name; partial names possible. Examples:<br>
+                <br>
+                <span class="code">%desert</span> - matches all servers with "desert" in
+                the currently played map's name (for example, ac_desert, ac_desert2,
+                ac_desert3, apollo_desertcity)<br>
+                <br>
+                <span class="code">%gema</span> - matches all servers with gema maps
+                currently being played</td>
+              </tr>
+
+              <tr>
+                <td>#gamemode</td>
+
+                <td>Number of a game mode. Example:<br>
+                <br>
+                <span class="code">#5 #13 #14 #15</span> - matches all servers with flag
+                modes currently being played</td>
+              </tr>
+
+              <tr>
+                <td>&gt;ping</td>
+
+                <td>Matches servers with a ping above the given number. Example:<br>
+                <br>
+                <span class="code">&gt;350</span> - matches all servers with a ping &gt;
+                350</td>
+              </tr>
+
+              <tr>
+                <td>$cubescript</td>
+
+                <td>
+                  Name of an alias to check, for the server to be in the category.
+                  Example:<br>
+                  <br>
+                  <span class="code">$offmap</span> - matches all servers with an
+                  official map currently played<br>
+                  <br>
+                  Definition of "offmap" alias (see it in favourites.cfg): <span class=
+                  "code">offmap = [ (+ 1 (findlist $defaultmaps $arg1)) ]</span><br>
+                  <br>
+                  <b>Notes:</b> cubescript aliases can be used to check more complicated
+                  conditions. The alias gets the server properties as arguments, and has
+                  to return non-zero for the server to be placed in the category:
+
+                  <ul style="margin : 5px; list-style-type : square;">
+                    <li>arg1: mapname,</li>
+
+                    <li>arg2: gamemode number,</li>
+
+                    <li>arg3: ping,</li>
+
+                    <li>arg4: minutesremaining,</li>
+
+                    <li>arg5: number of players,</li>
+
+                    <li>arg6: maxclients,</li>
+
+                    <li>arg7: IP,</li>
+
+                    <li>arg8: port,</li>
+
+                    <li>arg9: pongflags - bit-coded:
+
+                      <ul style="margin : 5px; list-style-type : disc;">
+                        <li>bit 0: passworded,</li>
+
+                        <li>bit 1: banned,</li>
+
+                        <li>bit 2: blacklisted,</li>
+
+                        <li>bit 6: mastermode.</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </table><br>
+            In the category:
+
+            <ul style="margin : 5px; list-style-type : square;">
+              <li>you can prefix a key with '!' to invert its meaning,</li>
+
+              <li>you can prefix a key with '+' to match only populated servers,</li>
+
+              <li>if several keys are specified (separated by spaces), all servers that
+              match _any_ of the keys are placed in the category.</li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="c3" id="ignore">ignore</td>
+
+          <td><span class="code">1</span>: disable this category, <span class=
+          "code">0</span>: enable it</td>
+        </tr>
+
+        <tr>
+          <td class="c1" id="image">image</td>
+
+          <td class="c2">Path to the image which is displayed in serverbrowser instead of
+          a tag (for example: <span class="code">packages/misc/heart.png</span>)</td>
+        </tr>
+      </table>
+
+      <h2 id="example" style="padding-top : 20px;">Example category definition</h2>
+
+      <p>Below is an example definition of a category. More examples are contained in
+      <span class="code">favourites.cfg</span>.<br>
+      You don't have to use all the attributes; you can use only those which you need to
+      define.<br>
+      Example:<br>
+      <br>
+      <span class="code">addfavcategory LOVE<br>
+      sbfavourite_LOVE_desc = "Your real favourites"<br>
+      sbfavourite_LOVE_alpha = 20<br>
+      sbfavourite_LOVE_red = 0<br>
+      sbfavourite_LOVE_green = 100<br>
+      sbfavourite_LOVE_blue = 0<br>
+      sbfavourite_LOVE_weight = 255<br>
+      sbfavourite_LOVE_image = packages/misc/heart.png<br></span></p>
+    </div>
+
+    <div id="author">
+      <a href="license.html">&copy; Copyright, Rabid Viper Productions</a>
+    </div>
+
+    <div id="donatedocs">
+      <a href="http://sourceforge.net/p/actiongame/donate/">We would be grateful for any
+      donations considered towards AssaultCube</a>
+    </div><!--#include virtual="/SSI-HTML/adsense_footer.html" -->
+  </div>
+</body>
+</html>
