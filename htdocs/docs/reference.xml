@@ -7362,6 +7362,45 @@ Note: it DOESN'T return current number of players.</remark>
             <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
+        
+        <command name="surv">
+          <description>Starts a map with the mode "Survivor"</description>
+          <examples>
+            <example>
+              <code><![CDATA[surv ac_complex]]></code>
+            </example>
+          </examples>
+          <arguments>
+            <variableArgument token="M" description="The name of the map you wish to play"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+          </arguments>
+        </command>
+		
+	<command name="tpf">
+          <description>Starts a map with the mode "Team Pistol Frenzy"</description>
+          <examples>
+            <example>
+              <code><![CDATA[tpf ac_complex]]></code>
+            </example>
+          </examples>
+          <arguments>
+            <variableArgument token="M" description="The name of the map you wish to play"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+          </arguments>
+        </command>
+		
+	<command name="tlss">
+          <description>Starts a map with the mode "Team Last Swiss Standing"</description>
+          <examples>
+            <example>
+              <code><![CDATA[tlss ac_complex]]></code>
+            </example>
+          </examples>
+          <arguments>
+            <variableArgument token="M" description="The name of the map you wish to play"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+          </arguments>
+        </command>
 
       </identifiers>
     </section>
