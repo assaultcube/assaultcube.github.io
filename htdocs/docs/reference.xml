@@ -339,7 +339,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="B" description="value to be added"/>
           </arguments>
         </command>
-        
+
         <command name="++">
           <description>Increments an alias by 1.</description>
           <arguments>
@@ -357,7 +357,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="--f"/>
           </references>
         </command>
-        
+
         <command name="++f">
           <description>Increments an alias by 1.</description>
           <arguments>
@@ -388,7 +388,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="B" description="value to be subtracted"/>
           </arguments>
         </command>
-        
+
         <command name="--">
           <description>Decrements an alias by 1.</description>
           <arguments>
@@ -406,7 +406,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="++f"/>
           </references>
         </command>
-        
+
         <command name="--f">
           <description>Decrements an alias by 1.</description>
           <arguments>
@@ -767,7 +767,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="false" description="the body to execute if the condition is false"/>
           </arguments>
         </command>
-        
+
         <command name="switch">
           <description>Takes an integer argument to determine what block of code to execute.</description>
           <examples>
@@ -879,7 +879,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="while"/>
           </references>
         </command>
-        
+
         <command name="parsestring">
           <description>Loops through every character in the given string and executes the given block of cubescript on each iteration.</description>
           <examples>
@@ -916,7 +916,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="trimAllUnnecessaryWhitespace"/>
           </references>
         </command>
-        
+
         <command name="breakparse">
           <description>Breaks out of a parsestring loop.</description>
           <remarks>
@@ -926,7 +926,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="parsestring"/>
           </references>
         </command>
-        
+
         <command name="trimAllWhitespace">
           <description>Removes all whitespace characters from the given string.</description>
           <examples>
@@ -943,7 +943,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="parsestring"/>
           </references>
         </command>
-        
+
         <command name="trimAllUnnecessaryWhitespace">
           <description>Removes all unnecessary leading and trailing whitespace characters from the given string.</description>
           <examples>
@@ -1221,7 +1221,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="check2initlist"/>
           </references>
         </command>
-        
+
         <command name="check2init">
           <description>Defines an alias only if it does not already exist.</description>
           <arguments>
@@ -1235,7 +1235,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="aliasinit"/>
           </references>
         </command>
-        
+
         <command name="delalias">
           <description>deletes the passed alias.</description>
           <arguments>
@@ -1273,7 +1273,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="check2initlist"/>
           </references>
         </command>
-        
+
         <command name="check2initlist">
           <description>Uses check2init on a list of aliases.</description>
           <arguments>
@@ -1342,7 +1342,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="N" description="type ID" valueNotes="min 0/max 5/default 0"/>
           </arguments>
         </command>
-        
+
         <command name="highestcn">
           <description>Returns the highest valid client number available.</description>
         </command>
@@ -1546,7 +1546,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="findkeycode"/>
           </references>
         </command>
-        
+
         <command name="findkey">
           <description>Returns the name of a key via a specified code.</description>
           <examples>
@@ -1571,7 +1571,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="findkeycode"/>
           </references>
         </command>
-        
+
         <command name="findkeycode">
           <description>Returns the integer code of a key.</description>
           <examples>
@@ -1905,41 +1905,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Quits the game without asking.</description>
         </command>
 
-        <command name="forward">
-          <description>Moves the player forward.</description>
-          <remarks>
-            <remark>default keys: W and Up Arrow</remark>
-          </remarks>
-        </command>
-
-        <command name="backward">
-          <description>Moves the player backward.</description>
-          <remarks>
-            <remark>default keys: S and Down Arrow</remark>
-          </remarks>
-        </command>
-
-        <command name="left">
-          <description>Moves the player left.</description>
-          <remarks>
-            <remark>default keys: A and Left Arrow</remark>
-          </remarks>
-        </command>
-
-        <command name="right">
-          <description>Moves the player right.</description>
-          <remarks>
-            <remark>default keys: D and Right Arrow</remark>
-          </remarks>
-        </command>
-
-        <command name="attack">
-          <description>Fires the current weapon.</description>
-          <remarks>
-            <remark>default: left mouse button</remark>
-          </remarks>
-        </command>
-
         <command name="invmouse">
           <description>Sets mouse to "flight sim" mode.</description>
           <arguments>
@@ -1983,7 +1948,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="C" description="the config file"/>
           </arguments>
         </command>
-        
+
         <command name="run">
           <description>Executes a config file within /config/</description>
           <arguments>
@@ -2250,11 +2215,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="B" description="the connection state" valueNotes="1 (connected), 0 (disconnected)" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
-        <variable name="maxroll">
-          <description>Sets the maximum value the display will roll on strafing.</description>
-          <value token="N" description="the roll value" minValue="0" maxValue="20" defaultValue="0"/>
-        </variable>
-
         <variable name="numconlines">
           <description>Hold the current number of lines on the console.</description>
         </variable>
@@ -2274,6 +2234,35 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="L" description="the language code"/>
         </variable>
 
+        <variable name="applydialog">
+          <description>Toggles the showing of the "Apply changes now?" menu when changing certain graphical settings.</description>
+          <value token="N" description="1 = show, 0 = don't show" minValue="0" maxValue="1" defaultValue="1"/>
+        </variable>
+
+        <variable name="conopen">
+          <description>"Returns $conopen, which describes the state of the console."</description>
+          <remarks>
+            <remark>0 means the console is closed. 1 means the console is open in an alternate size. 2 means the console is open regularly. </remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="altconsize"/>
+            <identifierReference identifier="toggleconsole"/>
+          </references>
+        </variable>
+
+        <command name="history">
+          <description>Executes the specified command in the command line history.</description>
+          <remarks>
+            <remark>
+            For example, binding "history 1" to a key allows you to quickly repeat the last
+            command typed in (useful for placing many identical entities etc.)
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="the N'th command from the history"/>
+          </arguments>
+        </command>
+
       </identifiers>
     </section>
     <!-- General Section Ends -->
@@ -2287,7 +2276,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <examples>
             <example>
               <code>
-              <![CDATA[
+                <![CDATA[
                 start_intermission = [
                 echo "INTERMISSION - STATISTICS TIME"
                 loop p 255 [
@@ -2992,7 +2981,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="mode"/>
           </references>
         </command>
-        
+
         <command name="modenum">
           <description>Returns the mode number for a specified mode acronym.</description>
           <examples>
@@ -3055,7 +3044,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="hasprimary"/>
           </references>
         </command>
-        
+
         <command name="hasprimary">
           <description>Determines if the local player (you) are currently carrying a primary weapon.</description>
           <examples>
@@ -3190,7 +3179,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="M" description="Name of the map to load" valueNotes="string"/>
           </arguments>
         </command>
-        
+
         <command name="votemap">
           <description>Sets the next gamemode then calls a vote for a map.</description>
           <arguments>
@@ -3268,7 +3257,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="quickanswer"/>
           </references>
         </command>
-        
+
         <command name="quickanswer">
           <description>Easily respond the the last client who sent you a private message.</description>
           <references>
@@ -3299,7 +3288,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>Omit the client number to clear the whole list.</remark>
           </remarks>
         </command>
-        
+
         <command name="ignoreall">
           <description>Ignores all clients currently on the server. (only works in multiplayer)</description>
           <references>
@@ -3308,7 +3297,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="ignoreenemy"/>
           </references>
         </command>
-        
+
         <command name="unignoreall">
           <description>Unignores all clients currently on the server. (only works in multiplayer)</description>
           <references>
@@ -3317,7 +3306,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="ignoreenemy"/>
           </references>
         </command>
-        
+
         <command name="ignoreteam">
           <description>Ignores all clients on the specified team.</description>
           <references>
@@ -3329,7 +3318,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="T" description="the team to ignore" valueNotes="0 or 1 || cla or rvsf"/>
           </arguments>
         </command>
-        
+
         <command name="ignoreenemy">
           <description>Ignores all clients on the enemy team.</description>
           <references>
@@ -3534,7 +3523,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="connectadmin"/>
           </references>
         </command>
-        
+
         <command name="reconnect">
           <description>Disconnects then reconnects you to the current server.</description>
           <arguments>
@@ -3616,7 +3605,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="N" description="the weapon number" valueNotes="0 (knife), 1 (pistol), 2 (shotgun), 3 (sub), 4 (sniper), 5 (assault), 6 (grenades)"/>
           </arguments>
         </command>
-        
+
         <command name="primary">
           <description>Switches to your current primary weapon. (must be binded to a key)</description>
           <references>
@@ -3625,7 +3614,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="grenades"/>
           </references>
         </command>
-        
+
         <command name="secondary">
           <description>Switches to your secondary weapon. (must be binded to a key)</description>
           <references>
@@ -3634,7 +3623,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="grenades"/>
           </references>
         </command>
-        
+
         <command name="melee">
           <description>Switches to your knife. (must be binded to a key)</description>
           <references>
@@ -3643,16 +3632,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="grenades"/>
           </references>
         </command>
-        
+
         <command name="grenades">
           <description>Switches to grenades. (if available) (must be binded to a key)</description>
           <references>
             <identifierReference identifier="primary"/>
             <identifierReference identifier="secondary"/>
             <identifierReference identifier="melee"/>
+            <identifierReference identifier="quicknadethrow"/>
           </references>
         </command>
-        
+
         <command name="sndtoggle">
           <description>Toggles between your primary weapon and your secondary weapon. (must be binded to a key)</description>
           <references>
@@ -3660,7 +3650,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="gndtoggle"/>
           </references>
         </command>
-        
+
         <command name="knftoggle">
           <description>Toggles between your primary weapon and your knife. (must be binded to a key)</description>
           <references>
@@ -3668,7 +3658,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="gndtoggle"/>
           </references>
         </command>
-        
+
         <command name="gndtoggle">
           <description>Toggles between your primary weapon and grenades. (must be binded to a key)</description>
           <references>
@@ -3710,7 +3700,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="N" description="the weapon number"/>
           </arguments>
         </command>
-        
+
         <command name="checkmag">
           <description>Determines if you have any ammunition available for the specified weapon. (uses magcontent and magreserve)</description>
           <references>
@@ -3738,7 +3728,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="C" description="cubescript to execute once map is installed" optional="true"/>
           </arguments>
         </command>
-        
+
         <command name="dlmap">
           <description>Downloads and loads the specified map from an available packages source server.</description>
           <arguments>
@@ -3749,7 +3739,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="sendmap"/>
           </references>
         </command>
-        
+
         <command name="addpckserver">
           <description>Adds a packages source server where to download custom content from.</description>
           <remarks>
@@ -3773,7 +3763,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="S" description="The server address. Trailing slash not needed."/>
           </arguments>
         </command>
-        
+
         <command name="resetpckservers">
           <description>Resets the list of packages source servers where to download custom content from.</description>
           <remarks>
@@ -3786,7 +3776,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="autodownload"/>
           </references>
         </command>
-        
+
         <command name="sortpckservers">
           <description>Sorts the available packages source servers by ascendant ping. The fastest to reach is then used by default.</description>
        
@@ -3796,7 +3786,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="autodownload"/>
           </references>
         </command>
-        
+
         <variable name="autodownload">
           <description>Determines if the game should try to download missing packages such as textures or mapmodels on the fly.</description>
           <value token="V" description="Note: This is turned on by default." minValue="0" maxValue="1" defaultValue="1"/>
@@ -3892,19 +3882,21 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Returns the time (in milliseconds) of the currently played game. READ ONLY</description>
           <examples>
             <example>
-              <code><![CDATA[showtime = [
-	if (> $lastgametimeupdate 0) [
-    gmr = (- $gametimemaximum (+ $gametimecurrent (- (millis) $lastgametimeupdate)))
-    gsr = (div $gmr 1000)
-    gts = (mod $gsr 60)
-    if (< $gts 10) [ gts = (concatword 0 $gts) ] [ ]
-    gtm = (div $gsr 60)
-    if (< $gtm 10) [ gtm = (concatword 0 $gtm) ] [ ]
-    echo (concatword $gtm : $gts) remaining
-	] [
-    echo gametime not updated yet
-	]
-	      ]]]></code>
+              <code>
+                <![CDATA[showtime = [
+                if (> $lastgametimeupdate 0) [
+                gmr = (- $gametimemaximum (+ $gametimecurrent (- (millis) $lastgametimeupdate)))
+                gsr = (div $gmr 1000)
+                gts = (mod $gsr 60)
+                if (< $gts 10) [ gts = (concatword 0 $gts) ] [ ]
+                gtm = (div $gsr 60)
+                if (< $gtm 10) [ gtm = (concatword 0 $gtm) ] [ ]
+                echo (concatword $gtm : $gts) remaining
+                ] [
+                echo gametime not updated yet
+                ]
+                ]]]>
+              </code>
             </example>
           </examples>
           <references>
@@ -4029,7 +4021,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="changespeed"/>
           </references>
         </variable>
-        
+
         <command name="changespeed">
           <description>Smoothly changes your gamespeed to the specified value.</description>
           <arguments>
@@ -4102,7 +4094,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference name="survival" identifier="survival"/>
           </references>
         </command>
-        
+
         <command name="resetzones">
           <description>Reset all drawn zones.</description>
           <references>
@@ -4118,9 +4110,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="curplayers">
           <description>Returns the size of the players vector.</description>
           <remarks>
-            <remark>The return value includes the local player "(you)" and works in both singleplayer and multiplayer scenarios.
-It can be used, for example, in a loop to find all valid clients (players) on server.
-Note: it DOESN'T return current number of players.</remark>
+            <remark>
+              The return value includes the local player "(you)" and works in both singleplayer and multiplayer scenarios.
+              It can be used, for example, in a loop to find all valid clients (players) on server.
+              Note: it DOESN'T return current number of players.
+            </remark>
           </remarks>
           <references>
             <identifierReference identifier="isclient"/>
@@ -4159,6 +4153,61 @@ Note: it DOESN'T return current number of players.</remark>
           <arguments>
             <argument token="C" description="CLIENTNUM"/>
           </arguments>
+        </command>
+
+        <command name="quicknadethrow">
+          <description>Switches to grenades (if available). If grenades are already selected, throw a grenade and switch back to previous weapon. (must be binded to a key)</description>
+          <references>
+            <identifierReference identifier="grenades"/>
+          </references>
+        </command>
+
+        <variable name="mfilter">
+          <description>Sets the degree of mouse filtering (0.0 being no filtering)</description>
+          <value token="N" description="Amount of mouse filtration" minValue="0.0" maxValue="6.0" defaultValue="0.0"/>
+        </variable>
+
+        <variable name="mouseaccel">
+          <description>Sets the mouse acceleration</description>
+          <value token="N" description="acceleration factor" minValue="0.0" maxValue="1000.0" defaultValue="0.0"/>
+          <references>
+            <identifierReference identifier="sensitivity"/>
+          </references>
+        </variable>
+
+        <command name="forward">
+          <description>Moves the player forward.</description>
+          <remarks>
+            <remark>default keys: W and Up Arrow</remark>
+          </remarks>
+        </command>
+
+        <command name="backward">
+          <description>Moves the player backward.</description>
+          <remarks>
+            <remark>default keys: S and Down Arrow</remark>
+          </remarks>
+        </command>
+
+        <command name="left">
+          <description>Moves the player left.</description>
+          <remarks>
+            <remark>default keys: A and Left Arrow</remark>
+          </remarks>
+        </command>
+
+        <command name="right">
+          <description>Moves the player right.</description>
+          <remarks>
+            <remark>default keys: D and Right Arrow</remark>
+          </remarks>
+        </command>
+
+        <command name="attack">
+          <description>Fires the current weapon.</description>
+          <remarks>
+            <remark>default: left mouse button</remark>
+          </remarks>
         </command>
 
       </identifiers>
@@ -4832,7 +4881,7 @@ Note: it DOESN'T return current number of players.</remark>
             <argument token="TYPE" description="0|1|100"/>
           </arguments>
         </command>
-        
+
         <command name="convertclips">
           <description>Converts the nearest entity (if its a clip or plclip) to its opposite type.</description>
           <examples>
@@ -4894,12 +4943,12 @@ Note: it DOESN'T return current number of players.</remark>
           <description>Show editing cursor grid.</description>
           <value token="N" description="-" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
-        
+
         <variable name="showclips">
           <description>Show clips/plclips/mapmodel clips in edit mode.</description>
           <value token="N" description="-" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
-        
+
         <command name="guidetoggle">
           <description>Enables or disables a special set of default textures while editing.</description>
           <remarks>
@@ -5080,7 +5129,7 @@ Note: it DOESN'T return current number of players.</remark>
         <command name="resetselections">
           <description>Resets all current selections.</description>
         </command>
-        
+
         <command name="expandselection">
           <description>Increases the size of the current selection by N cubes on all sides.</description>
           <arguments>
@@ -5093,7 +5142,7 @@ Note: it DOESN'T return current number of players.</remark>
             <identifierReference identifier="shrinkselection"/>
           </references>
         </command>
-        
+
         <command name="shrinkselection">
           <description>Decreases the size of the current selection by N cubes on all sides.</description>
           <arguments>
@@ -5408,6 +5457,16 @@ Note: it DOESN'T return current number of players.</remark>
           <value token="N" description="0 off, 1 on" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
+        <command name="menucanblink">
+          <description>for toggling on the ability for menutext to have the blinking bit set. The global setting of 'allowblinkingtext' overrides this</description>
+          <arguments>
+            <argument token="T" description="0 = Off, Any other integer = On" valueNotes="Any integer is valid, positive or negative"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="allowblinkingtext"/>
+          </references>
+        </command>
+
       </identifiers>
     </section>
     <!-- Menus Section Ends -->
@@ -5439,19 +5498,6 @@ Note: it DOESN'T return current number of players.</remark>
           <references>
             <identifierReference identifier="minimapres"/>
           </references>
-        </command>
-
-        <command name="history">
-          <description>Executes the specified command in the command line history.</description>
-          <remarks>
-            <remark>
-            For example, binding "history 1" to a key allows you to quickly repeat the last
-            command typed in (useful for placing many identical entities etc.)
-            </remark>
-          </remarks>
-          <arguments>
-            <argument token="N" description="the N'th command from the history"/>
-          </arguments>
         </command>
 
         <command name="conskip">
@@ -6152,7 +6198,17 @@ Note: it DOESN'T return current number of players.</remark>
         <variable name="fullscreen">
           <description>Enables or disables fullscreen.</description>          
           <value description="fullscreen" minValue="0" maxValue="1" defaultValue="1"/>
+          <references>
+            <identifierReference identifier="fullscreentoggle"/>
+          </references>
         </variable>
+
+        <command name="fullscreentoggle">
+          <description>Toggles fullscreen on or off.</description>
+          <references>
+            <identifierReference identifier="fullscreen"/>
+          </references>
+        </command>
 
         <variable name="fsaa">
           <description>Sets the level of fullscreen antialiasing (FSAA).</description>
@@ -6197,7 +6253,7 @@ Note: it DOESN'T return current number of players.</remark>
             <identifierReference identifier="changegamma"/>
           </references>
         </variable>
-        
+
         <command name="changegamma">
           <description>Smoothly changes your gamma to the specified value.</description>
           <arguments>
@@ -6403,6 +6459,33 @@ Note: it DOESN'T return current number of players.</remark>
           <value token="N" description="chars" minValue="0" maxValue="255" defaultValue="46"/>
         </variable>
 
+        <variable name="maxroll">
+          <description>Sets the maximum value the display will roll on strafing.</description>
+          <value token="N" description="the roll value" minValue="0" maxValue="20" defaultValue="0"/>
+          <references>
+            <identifierReference identifier="maxrollremote"/>
+          </references>
+        </variable>
+
+        <variable name="maxrollremote">
+          <description>Limits the maximum value the display will roll on strafing when spectating other players.</description>
+          <remarks>
+            <remark>This only comes into effect if the remote client being spectated has a maxroll greater than 0.</remark>
+          </remarks>
+          <value token="N" description="The roll value" minValue="0" maxValue="20" defaultValue="0"/>
+          <references>
+            <identifierReference identifier="maxroll"/>
+          </references>
+        </variable>
+
+        <command name="allowblinkingtext">
+          <description>for toggling on the ability for any text to have the blinking bit set.</description>
+          <value token="T" description="0 = Off, 1 = On" minValue="0" maxValue="1" defaultValue="0"/>
+          <references>
+            <identifierReference identifier="menucanblink"/>
+          </references>
+        </command>
+
       </identifiers>
     </section>
     <!-- Visuals Section Ends -->
@@ -6448,7 +6531,7 @@ Note: it DOESN'T return current number of players.</remark>
             <argument token="S" description="the sound to play" valueNotes="string, see config/sounds.cfg"/>
           </arguments>
         </command>
-        
+
         <command name="soundtest">
           <description>Plays all hardcoded sounds in order.</description>
         </command>
@@ -6532,7 +6615,7 @@ Note: it DOESN'T return current number of players.</remark>
             <argument token="C" description="command to be executed, when music is done"/>
           </arguments>
         </command>
-        
+
         <command name="registermusic">
           <description>registers a track as music - the first three tracks have special meaning. Track #1 is for "flag grab" the second and third are used as "last minute" tracks.</description>
           <arguments>
@@ -6802,7 +6885,7 @@ Note: it DOESN'T return current number of players.</remark>
       <description>
         This section lists commands used by the client that communicate to the server. Most are used for server administration.
         Also see the "mode" section and the "map" command which also communicate to the server.
-    	</description>
+      </description>
       <identifiers sort="true">
 
         <command name="serverdesc">
@@ -6810,7 +6893,7 @@ Note: it DOESN'T return current number of players.</remark>
             If the server was run with -n1 and -n2 arguments (prefix and suffix of descriptive title)
             a serveradmin can set a user-defined server description with this command, if it wasn't this command results
             in "invalid vote". This title will only stay until the next map is loaded.
-        	</description>
+          </description>
           <arguments>
             <argument token="D" description="description"/>
           </arguments>
@@ -7003,7 +7086,7 @@ Note: it DOESN'T return current number of players.</remark>
           <description>
             Shuffles the teams. The server will attempt to restore balance, but the result may
             be less that optimal, and there are certainly better ways to keep teams balanced.
-        	</description>
+          </description>
           <references>
             <identifierReference identifier="forceteam"/>
             <identifierReference identifier="forceme"/>
@@ -7141,19 +7224,25 @@ Note: it DOESN'T return current number of players.</remark>
             <identifierReference identifier="coop"/>
             <identifierReference identifier="dm"/>
             <!--<identifierReference identifier="survivor"/>-->
-            <identifierReference identifier="ts"/>
+            <identifierReference identifier="tsurv"/>
             <identifierReference identifier="ctf"/>
+            <identifierReference identifier="tpf"/>
             <identifierReference identifier="pf"/>
-            <!--
-            <identifierReference identifier="btdm"/>
-            <identifierReference identifier="bdm"/>
-            -->
+            <identifierReference identifier="tlss"/>
             <identifierReference identifier="lss"/>
             <identifierReference identifier="osok"/>
             <identifierReference identifier="tosok"/>
             <identifierReference identifier="htf"/>
             <identifierReference identifier="tktf"/>
             <identifierReference identifier="ktf"/>
+            <identifierReference identifier="btdm"/>
+            <identifierReference identifier="bdm"/>
+            <identifierReference identifier="bpf"/>
+            <identifierReference identifier="blss"/>
+            <identifierReference identifier="btdm"/>
+            <identifierReference identifier="bdm"/>
+            <identifierReference identifier="btsurv"/>
+            <identifierReference identifier="btosok"/>
           </references>
           <arguments>
             <argument token="N" valueNotes="0" description="Team Deathmatch"/>
@@ -7172,6 +7261,12 @@ Note: it DOESN'T return current number of players.</remark>
             <argument valueNotes="13" description="Hunt the Flag"/>
             <argument valueNotes="14" description="Team keep the flag"/>
             <argument valueNotes="15" description="Keep the flag"/>
+            <argument valueNotes="16" description="Team Pistol Frenzy"/>
+            <argument valueNotes="17" description="Team Last Swiss Standing"/>
+            <argument valueNotes="18" description="Bot Pistol Frenzy"/>
+            <argument valueNotes="19" description="Bot Last Swiss Standing"/>
+            <argument valueNotes="20" description="Bot Team Survival"/>
+            <argument valueNotes="21" description="Bot Team One Shot, One kill"/>
           </arguments>
           <remarks>
             <remark>You will need to define mode before loading the map or it will stay as the last mode played.</remark>
@@ -7355,11 +7450,11 @@ Note: it DOESN'T return current number of players.</remark>
           </arguments>
         </command>
 
-        <command name="ts">
+        <command name="tsurv">
           <description>Starts a map with the mode "Team Survivor"</description>
           <examples>
             <example>
-              <code><![CDATA[ts ac_complex]]></code>
+              <code><![CDATA[tsurv ac_complex]]></code>
             </example>
           </examples>
           <arguments>
@@ -7380,7 +7475,7 @@ Note: it DOESN'T return current number of players.</remark>
             <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
-        
+
         <command name="surv">
           <description>Starts a map with the mode "Survivor"</description>
           <examples>
@@ -7393,8 +7488,8 @@ Note: it DOESN'T return current number of players.</remark>
             <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
-		
-	<command name="tpf">
+
+        <command name="tpf">
           <description>Starts a map with the mode "Team Pistol Frenzy"</description>
           <examples>
             <example>
@@ -7406,12 +7501,116 @@ Note: it DOESN'T return current number of players.</remark>
             <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
-		
-	<command name="tlss">
+
+        <command name="tlss">
           <description>Starts a map with the mode "Team Last Swiss Standing"</description>
           <examples>
             <example>
               <code><![CDATA[tlss ac_complex]]></code>
+            </example>
+          </examples>
+          <arguments>
+            <variableArgument token="M" description="The name of the map you wish to play"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+          </arguments>
+        </command>
+
+        <command name="tpf">
+          <description>Starts a map with the mode "Team Pistol Frenzy"</description>
+          <examples>
+            <example>
+              <code><![CDATA[tpf ac_complex]]></code>
+            </example>
+          </examples>
+          <arguments>
+            <variableArgument token="M" description="The name of the map you wish to play"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+          </arguments>
+        </command>
+
+        <command name="tlss">
+          <description>Starts a map with the mode "Team Last Swiss Standing"</description>
+          <examples>
+            <example>
+              <code><![CDATA[tlss ac_complex]]></code>
+            </example>
+          </examples>
+          <arguments>
+            <variableArgument token="M" description="The name of the map you wish to play"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+          </arguments>
+        </command>
+
+        <command name="bpf">
+          <description>Starts a map with the mode "Bot Pistol Frenzy"</description>
+          <examples>
+            <example>
+              <code><![CDATA[bpf ac_complex]]></code>
+            </example>
+          </examples>
+          <arguments>
+            <variableArgument token="M" description="The name of the map you wish to play"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+          </arguments>
+        </command>
+
+        <command name="blss">
+          <description>Starts a map with the mode "Bot Last Swiss Standing"</description>
+          <examples>
+            <example>
+              <code><![CDATA[blss ac_complex]]></code>
+            </example>
+          </examples>
+          <arguments>
+            <variableArgument token="M" description="The name of the map you wish to play"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+          </arguments>
+        </command>
+
+        <command name="btdm">
+          <description>Starts a map with the mode "Bot Team Deathmatch"</description>
+          <examples>
+            <example>
+              <code><![CDATA[btdm ac_complex]]></code>
+            </example>
+          </examples>
+          <arguments>
+            <variableArgument token="M" description="The name of the map you wish to play"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+          </arguments>
+        </command>
+
+        <command name="bdm">
+          <description>Starts a map with the mode "Bot Deathmatch"</description>
+          <examples>
+            <example>
+              <code><![CDATA[bdm ac_complex]]></code>
+            </example>
+          </examples>
+          <arguments>
+            <variableArgument token="M" description="The name of the map you wish to play"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+          </arguments>
+        </command>
+
+        <command name="btsurv">
+          <description>Starts a map with the mode "Bot Team Survivor"</description>
+          <examples>
+            <example>
+              <code><![CDATA[btsurv ac_complex]]></code>
+            </example>
+          </examples>
+          <arguments>
+            <variableArgument token="M" description="The name of the map you wish to play"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+          </arguments>
+        </command>
+
+        <command name="btosok">
+          <description>Starts a map with the mode "Bot Team One Shot, One Kill"</description>
+          <examples>
+            <example>
+              <code><![CDATA[btosok ac_complex]]></code>
             </example>
           </examples>
           <arguments>
@@ -7428,7 +7627,7 @@ Note: it DOESN'T return current number of players.</remark>
       <description>
         All the below commands are used specifically in map configuration files.
         Some of these commands can also be used without the need of a map configuration file.
-    	</description>
+      </description>
       <identifiers sort="true">
 
         <command name="md2anim">
@@ -7874,26 +8073,6 @@ Note: it DOESN'T return current number of players.</remark>
           </arguments>
         </command>
 
-        <command name="menucanblink">
-          <description>for toggling on the ability for menutext to have the blinking bit set. The global setting of 'allowblinkingtext' overrides this</description>
-          <arguments>
-            <argument token="T" description="0 || !=0"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="allowblinkingtext"/>
-          </references>
-        </command>
-
-        <command name="allowblinkingtext">
-          <description>for toggling on the ability for any text to have the blinking bit set.</description>
-          <arguments>
-            <argument token="T" description="TOGGLE" minValue="0" maxValue="1" defaultValue="0"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="menucanblink"/>
-          </references>
-        </command>
-
         <command name="menuitemmapload">
           <description>a menuitem that loads a map, displays the title and the preview or a default image</description>
           <arguments>
@@ -7909,10 +8088,6 @@ Note: it DOESN'T return current number of players.</remark>
           </arguments>
         </command>
 
-        <command name="quicknadethrow">
-          <description>TODO: Description</description>
-        </command>
-
         <command name="removezip">
           <description>TODO: Description</description>
           <arguments>
@@ -7922,6 +8097,9 @@ Note: it DOESN'T return current number of players.</remark>
 
         <command name="setburst">
           <description>TODO: Description</description>
+          <remarks>
+            <remark>This applies to the Combat Pistol, a currently unimplemented feature.</remark>
+          </remarks>
         </command>
 
         <command name="setwptriggernr">
@@ -7931,34 +8109,14 @@ Note: it DOESN'T return current number of players.</remark>
           </arguments>
         </command>
 
-        <variable name="applydialog">
-          <description>do you <i>really</i> want to quit?</description>
-          <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="1"/>
-        </variable>
-
         <variable name="autoscopesens">
           <description>TODO</description>
           <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
-        <variable name="maxrollremote">
-          <description>TODO</description>
-          <value token="N" description="TODO" minValue="0" maxValue="20" defaultValue="0"/>
-        </variable>
-
         <variable name="mdldlist">
           <description>TODO</description>
           <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="1"/>
-        </variable>
-
-        <variable name="mfilter">
-          <description>TODO</description>
-          <value token="N" description="TODO" minValue="0.0" maxValue="6.0" defaultValue="0.0"/>
-        </variable>
-
-        <variable name="mouseaccel">
-          <description>TODO</description>
-          <value token="N" description="TODO" minValue="0.0" maxValue="1000.0" defaultValue="0.0"/>
         </variable>
 
         <variable name="scopesensscale">
