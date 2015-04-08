@@ -1597,6 +1597,79 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
+        <command name="listoptions">
+          <description>Lists the argument options for several argument types</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (listoptions)]]></code>
+              <explanation>Output: "entities ents weapons teamnames teamnames-abbrv punctuations crosshairnames"</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (listoptions teamnames)]]></code>
+              <explanation>Output: "CLA RVSF CLA-SPECT RVSF-SPECT SPECTATOR"</explanation>
+            </example>
+          </examples>
+        </command>
+
+        <command name="escape">
+          <description>Replaces control characters in a string with escaped sequences.</description>
+          <arguments>
+            <argument token="S" description="String to escape"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[echo (escape (concat (c 3) "Hello World"]]></code>
+              <explanation>Output: "\f3Hello World"</explanation>
+            </example>
+          </examples>
+        </command>
+
+        <command name="tempalias">
+          <description>Creates a temporary alias that will not be written to saved.cfg, and thus will not persist after quitting.</description>
+          <arguments>
+            <argument token="N" description="Temporary Alias Name"/>
+            <argument token="C" description="Cubescript Command(s)"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="alias" />
+          </references>
+        </command>
+
+        <command name="editsvar">
+          <description>Interactively edits an alias in the console buffer.</description>
+          <remarks>
+            <remark>This takes the current value of the alias, and inserts it into the command line / text entry box</remark>
+          </remarks>
+          <arguments>
+            <argument token="A" description="Alias to edit" valueNotes="The alias name, without $"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[alias test "Hello World"; editsvar test]]></code>
+              <explanation>Result: edit test: Hello World</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="inputcommand"/>
+          </references>
+        </command>
+
+        <command name="inputcommand">
+          <description>Makes an input perform a certain command.</description>
+          <arguments>
+            <argument token="I" description="input"/>
+            <argument token="C" description="command"/>
+            <argument token="P" description="prompt"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="complete"/>
+            <identifierReference identifier="listcomplete"/>
+            <identifierReference identifier="saycommand"/>
+          </references>
+          <examples>
+          </examples>
+        </command>
+
       </identifiers>
     </section>
     <!-- CubeScript language Section ends -->
@@ -2262,6 +2335,22 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="N" description="the N'th command from the history"/>
           </arguments>
         </command>
+
+        <variable name="omitunchangeddefaults">
+          <description>If this value is 1, variables that are at their default values are omitted from saved.cfg. If 0, the variables are written to saved.cfg, but commented out.</description>
+          <value token="N" description="1 = Omit, 0 = Comment out" minValue="0" maxValue="1" defaultValue="1"/>
+          <references>
+            <identifierReference identifier="groupvariables"/>
+          </references>
+        </variable>
+
+        <variable name="groupvariables">
+          <description>Controls how many variables (with similar names) are grouped together on one line. This only pertains to commented variables in saved.cfg caused by omitunchangeddefaults being 0.</description>
+          <value token="N" description="Variables per line" minValue="0" maxValue="10" defaultValue="4"/>
+          <references>
+            <identifierReference identifier="omitunchangeddefaults"/>
+          </references>
+        </variable>
 
       </identifiers>
     </section>
@@ -3386,22 +3475,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
-        <command name="inputcommand">
-          <description>Makes an input perform a certain command.</description>
-          <arguments>
-            <argument token="I" description="input"/>
-            <argument token="C" description="command"/>
-            <argument token="P" description="prompt"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="complete"/>
-            <identifierReference identifier="listcomplete"/>
-            <identifierReference identifier="saycommand"/>
-          </references>
-          <examples>
-          </examples>
-        </command>
-
         <command name="complete">
           <arguments>
             <argument token="C" description="command" valueNotes="any command or alias"/>
@@ -4064,17 +4137,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>If no ammunition is detected for the target weapon, it will fallback to the previous weapon until it finds a weapon with ammunition to use.</remark>
           </remarks>
         </variable>
-
-        <command name="survival">
-          <description>Prepares a round of bot survival mode on the specified map.</description>
-          <remarks>
-            <remark>All official maps are compatible with survival, if you want to play survival on a custom map, prior edits/additions to the script are necessary, such as adding a zone for that specific map.</remark>
-          </remarks>
-          <arguments>
-            <argument token="M" description="the map to use"/>
-            <argument token="D" description="the difficulty" valueNotes="0 = easy, 1 = intermediate, 2 = hard, 3 = impossible" optional="true"/>
-          </arguments>
-        </command>
 
         <command name="drawzone">
           <description>Draws a zone marker with the specified color and dimensions on the minimap/radar. This is primarily intended for the survival mode.</description>
@@ -4845,14 +4907,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>You will need to use quote marks around the message, otherwise it save the message correctly.</remark>
             <remark>For example: /mapmsg "Map By Author"</remark>
+            <remark>You can get the current map message with the $mapmsg variable</remark>
           </remarks>
           <arguments>
             <argument token="M" description="The map message" valueNotes="String"/>
           </arguments>
-        </command>
-
-        <command name="getmapmsg">
-          <description>Returns the map message of the current map.</description>
         </command>
 
         <command name="entstats">
@@ -5204,23 +5263,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="N" description="the brightness of the scene" minValue="1" maxValue="100" defaultValue="4"/>
         </variable>
 
-        <variable name="old_editbinds">
-          <description>Enables or disables the old editing binds.</description>
-          <examples>
-            <example>
-              <code><![CDATA[old_editbinds = 0]]></code>
-              <explanation>disables the old editing binds</explanation>
-            </example>
-            <example>
-              <code><![CDATA[old_editbinds = 1]]></code>
-              <explanation>enables the old editing binds</explanation>
-            </example>
-          </examples>
-          <remarks>
-            <remark>If disabled, an updated editing binds system is used, see the comments in "/config/resetbinds.cfg" for more info.</remark>
-          </remarks>
-        </variable>
-
         <scriptalias name="onNewMap">
           <description>
             If this alias exists, it will automatically be executed when you create a new map via the "newmap" command
@@ -5464,6 +5506,23 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <references>
             <identifierReference identifier="allowblinkingtext"/>
+          </references>
+        </command>
+
+        <command name="curmenu">
+          <description>Returns the name of the currently open menu.</description>
+          <remarks>
+            <remark>If more than one menu is open, only the name of the topmost menu on the stack is returned.</remark>
+          </remarks>
+        </command>
+
+        <command name="closecurmenu">
+          <description>Closes the currently open menu.</description>
+          <remarks>
+            <remark>If more than one menu is open, only closes the topmost menu on the stack.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="curmenu"/>
           </references>
         </command>
 
@@ -7223,7 +7282,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="tdm"/>
             <identifierReference identifier="coop"/>
             <identifierReference identifier="dm"/>
-            <!--<identifierReference identifier="survivor"/>-->
+            <identifierReference identifier="surv"/>
             <identifierReference identifier="tsurv"/>
             <identifierReference identifier="ctf"/>
             <identifierReference identifier="tpf"/>
@@ -7242,6 +7301,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="btdm"/>
             <identifierReference identifier="bdm"/>
             <identifierReference identifier="btsurv"/>
+            <identifierReference identifier="bosok"/>
             <identifierReference identifier="btosok"/>
           </references>
           <arguments>
@@ -7360,7 +7420,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="lms">
-          <description>Starts a map with the mode "Last Man Standing"</description>
+          <description>Starts a map with the mode "Survivor". Some players prefer the name "Last Man Standing" for this mode.</description>
           <examples>
             <example>
               <code><![CDATA[lms ac_complex]]></code>
@@ -7485,33 +7545,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </examples>
           <arguments>
             <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
-          </arguments>
-        </command>
-
-        <command name="tpf">
-          <description>Starts a map with the mode "Team Pistol Frenzy"</description>
-          <examples>
-            <example>
-              <code><![CDATA[tpf ac_complex]]></code>
-            </example>
-          </examples>
-          <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
-          </arguments>
-        </command>
-
-        <command name="tlss">
-          <description>Starts a map with the mode "Team Last Swiss Standing"</description>
-          <examples>
-            <example>
-              <code><![CDATA[tlss ac_complex]]></code>
-            </example>
-          </examples>
-          <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -7550,7 +7584,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </examples>
           <arguments>
             <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -7563,7 +7597,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </examples>
           <arguments>
             <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -7589,7 +7623,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </examples>
           <arguments>
             <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -7606,6 +7640,19 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
+        <command name="bosok">
+          <description>Starts a map with the mode "Bot One shot, One kill"</description>
+          <examples>
+            <example>
+              <code><![CDATA[bosok ac_complex]]></code>
+            </example>
+          </examples>
+          <arguments>
+            <variableArgument token="M" description="The name of the map you wish to play"/>
+            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
+          </arguments>
+        </command>
+
         <command name="btosok">
           <description>Starts a map with the mode "Bot Team One shot, One kill"</description>
           <examples>
@@ -7616,6 +7663,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <variableArgument token="M" description="The name of the map you wish to play"/>
             <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+          </arguments>
+        </command>
+
+        <command name="survival">
+          <description>Prepares a round of bot survival mode on the specified map.</description>
+          <remarks>
+            <remark>All official maps are compatible with survival, if you want to play survival on a custom map, prior edits/additions to the script are necessary, such as adding a zone for that specific map.</remark>
+          </remarks>
+          <arguments>
+            <argument token="M" description="the map to use"/>
+            <argument token="D" description="the difficulty" valueNotes="0 = easy, 1 = intermediate, 2 = hard, 3 = impossible" optional="true"/>
           </arguments>
         </command>
 
