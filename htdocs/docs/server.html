@@ -49,8 +49,8 @@
                 <p>
                     The easiest way to configure the AssaultCube server is through the options in
                     <i>config/servercmdline.txt</i>.
-                    The server scripts, <i>assaultcube_server.bat</i> on windows or
-                    <i>assaultcube_server.sh</i> on linux, use this method by default. All the possible command
+                    The server scripts, <i>server.bat</i> on windows or
+                    <i>server.sh</i> on linux, use this method by default. All the possible command
                     line options are documented in this file, and you simply have to uncomment (remove the //'s
                     from the start of the line) and edit the ones you want to use.
                 </p>
@@ -62,7 +62,7 @@
                 <p>
                     When you've configured your server, run the script to start it. You should see the message:
                     <pre xml:space="preserve">
-		looking up assault.cubers.net...
+		looking up ms.cubers.net:28760...
 		master server registration succeeded
 	     </pre>
 	     If you don't see this, use the <a href="http://assault.cubers.net/search.html">website search facility</a>
@@ -74,7 +74,7 @@
                 </h2>
                 <p>
                     A server automatically acts as a LAN server, and any clients on the same subnet will be able to
-                    connect through the <b>Join to a LAN server</b> menu option. If you want the server to remain
+                    connect through the <b>Multiplayer->Join a LAN server</b> menu option. If you want the server to remain
                     private, and not be displayed on the public in-game server list, you must use the <span class="code">-m</span>
                     option to change the master server. It's common to use <span class="code">-mlocalhost</span>
                     to achieve this, but any other hostname or IP address will do.
@@ -145,8 +145,8 @@
                             time
                         </td>
                         <td>
-                            Game time in minutes. Usually 15 minutes for flag modes, 10 minutes for
-                            all other modes.
+                            Game time in minutes. Usually 15 minutes for team modes, 10 minutes for
+                            non-team modes.
                         </td>
                     </tr>
                     <tr>
@@ -271,7 +271,7 @@
                 </p>
                 <p>
                     If a player from a banned IP address tries to connect to your server, he will get an
-                    error message: <i>"connection refused due to ban"</i>.
+                    error message: <i>"connection refused - you have been banned from this server"</i>.
                 </p>
                 <p>
                     <b>Important: The AC development team reserves the right to ban players centrally, usually proven cheats.
