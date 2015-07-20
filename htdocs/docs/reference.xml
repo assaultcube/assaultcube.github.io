@@ -62,10 +62,10 @@
 name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuberef.xsd">
   <sections sort="true">
   <!--
-    Sections available: General, Gameplay, Game modes, Visuals, Heads-Up Display, Sound
+    Sections available: Cubescript, General, Gameplay, Keyboard and mouse, Game modes, Visuals, Heads-Up Display, Sound,
                         Server commands, Editing, Editing configs, Menus, Ingame Reference, TODO
   -->
-
+    <!-- CubeScript language Section Starts -->
     <section name="CubeScript" sortindex="00">
       <description>This section describes identifiers that are closely related to the CubeScript language.</description>
       <identifiers sort="true">
@@ -1519,161 +1519,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="add2bind"/>
           </references>
         </scriptalias>
-
-        <scriptalias name="add2bind">
-          <description>Adds a block of code, if it does not already exist, to a keybind.</description>
-          <arguments>
-            <argument token="K" description="the key to add to"/>
-            <argument token="C" description="the code to add"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="add2alias"/>
-            <identifierReference identifier="add2list"/>
-          </references>
-        </scriptalias>
         
-        <command name="keybind">
-          <description>Returns the contents of a keybind, bound with 'bind'.</description>
-          <arguments>
-            <argument token="K" description="name of key"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="bind"/>
-            <identifierReference identifier="findkey"/>
-            <identifierReference identifier="findkeycode"/>
-            <identifierReference identifier="keyeditbind"/>
-            <identifierReference identifier="keyspecbind"/>
-          </references>
-        </command>
-
-        <command name="keyeditbind">
-          <description>Returns the contents of a keybind, bound with 'editbind'.</description>
-          <arguments>
-            <argument token="K" description="name of key"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="editbind"/>
-            <identifierReference identifier="keybind"/>
-            <identifierReference identifier="keyspecbind"/>
-          </references>
-        </command>
-
-        <command name="keyspecbind">
-          <description>Returns the contents of a keybind, bound with 'specbind'.</description>
-          <arguments>
-            <argument token="K" description="name of key"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="keybind"/>
-            <identifierReference identifier="keyeditbind"/>
-            <identifierReference identifier="specbind"/>
-          </references>
-        </command>
-
-        <command name="searchbinds">
-          <description>Search keybinds (bound with 'bind'), return keys with matching contents.</description>
-          <arguments>
-            <argument token="S" description="search string"/>
-          </arguments>
-          <examples>
-            <example>
-              <code><![CDATA[echo (searchbinds "reload")]]></code>
-              <explanation>Output: R</explanation>
-            </example>
-          </examples>
-          <remarks>
-            <remark>This is the inverse of 'keybind'</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="bind"/>
-            <identifierReference identifier="keybind"/>
-          </references>
-        </command>
-
-        <command name="searcheditbinds">
-          <description>Search keybinds (bound with 'editbind'), return keys with matching contents.</description>
-          <arguments>
-            <argument token="s" description="search string"/>
-          </arguments>
-          <examples>
-            <example>
-              <code><![CDATA[echo (searcheditbinds "toggleocull")]]></code>
-              <explanation>Output: F5</explanation>
-            </example>
-          </examples>
-          <remarks>
-            <remark>This is the inverse of 'keyeditbind'</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="editbind"/>
-            <identifierReference identifier="keyeditbind"/>
-          </references>
-        </command>
-
-        <command name="searchspecbinds">
-          <description>Search keybinds (bound with 'specbind'), return keys with matching contents.</description>
-          <arguments>
-            <argument token="s" description="search string"/>
-          </arguments>
-          <remarks>
-            <remark>This is the inverse of 'keyspecbind'</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="specbind"/>
-            <identifierReference identifier="keyspecbind"/>
-          </references>
-        </command>
-
-        <command name="findkey">
-          <description>Returns the name of a key via a specified code.</description>
-          <examples>
-            <example>
-              <code><![CDATA[echo (findkey 8)]]></code>
-              <explanation>Output: BACKSPACE</explanation>
-            </example>
-            <example>
-              <code><![CDATA[echo (findkey 280)]]></code>
-              <explanation>Output: PAGEUP</explanation>
-            </example>
-          </examples>
-          <arguments>
-            <argument token="I" description="integer"/>
-          </arguments>
-          <remarks>
-            <remark>Returns -255 if the key does not exist.</remark>
-            <remark>See /config/keymap.cfg for a full list of valid key codes.</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="keybind"/>
-            <identifierReference identifier="findkeycode"/>
-          </references>
-        </command>
-
-        <command name="findkeycode">
-          <description>Returns the integer code of a key.</description>
-          <examples>
-            <example>
-              <code><![CDATA[echo (findkeycode BACKSPACE)]]></code>
-              <explanation>Output: 8</explanation>
-            </example>
-            <example>
-              <code><![CDATA[echo (findkeycode PAGEUP)]]></code>
-              <explanation>Output: 280</explanation>
-            </example>
-          </examples>
-          <arguments>
-            <argument token="K" description="the name of the key"/>
-          </arguments>
-          <remarks>
-            <remark>Returns -255 if the key does not exist.</remark>
-            <remark>See /config/keymap.cfg for a full list of valid key names.</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="keybind"/>
-            <identifierReference identifier="findkey"/>
-          </references>
-        </command>
-
         <command name="listoptions">
           <description>Lists the argument options for several argument types</description>
           <examples>
@@ -1770,7 +1616,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
       </identifiers>
     </section>
-    <!-- CubeScript language Section ends -->
+    <!-- CubeScript language Section Ends -->
     <!-- General Section Starts -->
     <section name="General" sortindex="01">
       <description>This section describes general identifiers.</description>
@@ -1985,102 +1831,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </examples>
         </command>
 
-        <command name="bind">
-          <description>Binds a key to a command.</description>
-          <remarks>
-            <remark>
-              To find out what key names and their default bindings are, look at config/keymap.cfg,
-              then add bind commands to your autoexec.cfg.
-            </remark>
-          </remarks>
-          <arguments>
-            <argument token="K" description="the key to bind" valueNotes="string"/>
-            <argument token="A" description="the command" valueNotes="string, usually an alias"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="editbind"/>
-            <identifierReference identifier="specbind"/>
-            <identifierReference identifier="megabind"/>
-            <identifierReference identifier="onrelease"/>
-          </references>
-        </command>
-
-        <command name="editbind">
-          <description>Similar to bind, but is only active while editing, where it overrides the regular bind for the specified key.</description>
-          <arguments>
-            <argument token="K" description="the key to bind" valueNotes="string"/>
-            <argument token="A" description="the command" valueNotes="string, usually an alias"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="bind"/>
-            <identifierReference identifier="specbind"/>
-          </references>
-        </command>
-
-        <command name="specbind">
-          <description>Similar to bind, but is only active while spectating, where it overrides the regular bind for the specified key.</description>
-          <arguments>
-            <argument token="K" description="the key to bind" valueNotes="string"/>
-            <argument token="A" description="the command" valueNotes="string, usually an alias"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="bind"/>
-            <identifierReference identifier="editbind"/>
-          </references>
-        </command>
-
-        <command name="megabind">
-          <description>Binds a key to many different actions depending on the current game state.</description>
-          <examples>
-            <example>
-              <code><![CDATA[megabind F9 [echo Demo!] [echo Editing or coop!] [echo Connected!] [echo Bots!] [echo Other!]]]></code>
-            </example>
-          </examples>
-          <arguments>
-            <argument token="K" description="the key to bind" valueNotes="string"/>
-            <argument token="D" description="body of code to execute if watching a demo" valueNotes="a body of code"/>
-            <argument token="E" description="body of code to execute if editing or in coop-edit mode" valueNotes="a body of code"/>
-            <argument token="C" description="body of code to execute if connected to a server" valueNotes="a body of code"/>
-            <argument token="B" description="body of code to execute if in a bot mode" valueNotes="a body of code"/>
-            <argument token="O" description="body of code to execute if none of the other arguments have been met" valueNotes="a body of code"/>
-          </arguments>
-          <remarks>
-            <remark>This command requires 6 arguments, no less. Use an empty set of brackets [] for any of the arguments that you want to "do nothing".</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="bind"/>
-            <identifierReference identifier="onrelease"/>
-          </references>
-        </command>
-
-        <command name="onrelease">
-          <description>Executes a command on the release of a key/button.</description>
-          <remarks>
-            <remark>This command must be placed in an action in a bind or in an alias in a bind.</remark>
-          </remarks>
-          <examples>
-            <example>
-              <code><![CDATA[bind CTRL [ echo "key pressed"; onrelease [ echo "key released" ] ]]]></code>
-            </example>
-          </examples>
-          <references>
-            <identifierReference identifier="bind"/>
-            <identifierReference identifier="megabind"/>
-          </references>
-          <arguments>
-            <argument token="A" description="the command"/>
-          </arguments>
-        </command>
-
         <command name="quit">
           <description>Quits the game without asking.</description>
-        </command>
-
-        <command name="invmouse">
-          <description>Sets mouse to "flight sim" mode.</description>
-          <arguments>
-            <argument token="B" description="sets invmouse" valueNotes="0 (off), else (on)"/>
-          </arguments>
         </command>
 
         <command name="screenshot">
@@ -2140,32 +1892,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="N" description="the file name (without extension)"/>
           </arguments>
-        </command>
-
-        <command name="keymap">
-          <description>Sets up the keymap for the specified key.</description>
-          <remarks>
-            <remark>You should never have to use this command manually, use "bind" instead.</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="bind"/>
-          </references>
-          <arguments>
-            <argument token="K" description="the key to map"/>
-            <argument token="N" description="the name for the key"/>
-            <argument token="A" description="the default action"/>
-          </arguments>
-        </command>
-
-        <command name="sensitivity">
-          <description>Sets the mouse sensitivity.</description>
-          <arguments>
-            <argument token="S" description="the sensitivity" valueNotes="floating-point"/>
-          </arguments>
-        </command>
-
-        <command name="findsens">
-          <description>Initiate sensitivity training, to help you find what sensitivity setting you like.</description>
         </command>
 
         <command name="addserver">
@@ -2303,16 +2029,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
-        <variable name="resetbinds">
-          <description>Resets all binds back to their default values.</description>
-          <remarks>
-            <remark>
-              This command executes the file /config/resetbinds.cfg which will bind all keys to the values specified in that
-              file, thus resetting the binds to their default values.
-            </remark>
-          </remarks>
-        </variable>
-
         <variable name="changeteam">
           <description>Swaps your player to the enemy team.</description>
         </variable>
@@ -2326,6 +2042,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </remark>
           </remarks>
           <references>
+            <identifierReference identifier="resetbinds"/>
             <identifierReference identifier="quit"/>
           </references>
           <value token="B" description="enable reset" minValue="0" maxValue="1" defaultValue="0"/>
@@ -2693,39 +2410,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         
         <scriptalias name="afterinit">
           <description>If defined, this will be executed after saved.cfg is loaded.</description>
-        </scriptalias>
-        
-        <scriptalias name="KEYPRESS">
-          <description>If defined, this will be executed every time you press a key.</description>
-          <arguments>
-            <argument token="I" description="integer key code"/>
-          </arguments>
-          <examples>
-            <example>
-              <code><![CDATA[checkinit KEYPRESS [echo You pressed key: (findkey $arg1)]]]></code>
-            </example>
-          </examples>
-          <references>
-            <identifierReference identifier="KEYRELEASE"/>
-            <identifierReference identifier="findkey"/>
-          </references>
-        </scriptalias>
-        
-        <scriptalias name="KEYRELEASE">
-          <description>If defined, this will be executed every time you release a key.</description>
-          <arguments>
-            <argument token="I" description="integer key code"/>
-          </arguments>
-          <examples>
-            <example>
-              <code><![CDATA[checkinit KEYRELEASE [echo You released key: (findkey $arg1)]]]></code>
-            </example>
-          </examples>
-          <references>
-            <identifierReference identifier="KEYPRESS"/>
-            <identifierReference identifier="KEYPRESS"/>
-            <identifierReference identifier="findkey"/>
-          </references>
         </scriptalias>
 
         <scriptalias name="addOnQuit">
@@ -4298,7 +3982,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="resetzones">
           <description>Reset all drawn zones.</description>
           <references>
-            <identifierReference name="drawzone" identifier="drawzone"/>          
+            <identifierReference name="drawzone" identifier="drawzone"/>
             <identifierReference name="survival" identifier="survival"/>
           </references>
         </command>
@@ -4366,19 +4050,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
-        <variable name="mfilter">
-          <description>Sets the degree of mouse filtering (0.0 being no filtering)</description>
-          <value token="N" description="Amount of mouse filtration" minValue="0.0" maxValue="6.0" defaultValue="0.0"/>
-        </variable>
-
-        <variable name="mouseaccel">
-          <description>Sets the mouse acceleration</description>
-          <value token="N" description="acceleration factor" minValue="0.0" maxValue="1000.0" defaultValue="0.0"/>
-          <references>
-            <identifierReference identifier="sensitivity"/>
-          </references>
-        </variable>
-
         <command name="forward">
           <description>Moves the player forward.</description>
           <remarks>
@@ -4433,6 +4104,357 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
       </identifiers>
     </section>
     <!-- Gameplay Section Ends -->
+    <!-- Keyboard and mouse Section Starts -->
+    <section name="Keyboard and mouse" sortindex="03">
+      <description>This section describes keyboard and mouse related identifiers.</description>
+      <identifiers sort="true">
+
+        <command name="bind">
+          <description>Binds a key to a command.</description>
+          <remarks>
+            <remark>
+              To find out what key names and their default bindings are, look at config/keymap.cfg,
+              then add bind commands to your autoexec.cfg.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="K" description="the key to bind" valueNotes="string"/>
+            <argument token="A" description="the command" valueNotes="string, usually an alias"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="editbind"/>
+            <identifierReference identifier="specbind"/>
+            <identifierReference identifier="megabind"/>
+            <identifierReference identifier="onrelease"/>
+          </references>
+        </command>
+
+        <command name="editbind">
+          <description>Similar to bind, but is only active while editing, where it overrides the regular bind for the specified key.</description>
+          <arguments>
+            <argument token="K" description="the key to bind" valueNotes="string"/>
+            <argument token="A" description="the command" valueNotes="string, usually an alias"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="bind"/>
+            <identifierReference identifier="specbind"/>
+          </references>
+        </command>
+
+        <command name="specbind">
+          <description>Similar to bind, but is only active while spectating, where it overrides the regular bind for the specified key.</description>
+          <arguments>
+            <argument token="K" description="the key to bind" valueNotes="string"/>
+            <argument token="A" description="the command" valueNotes="string, usually an alias"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="bind"/>
+            <identifierReference identifier="editbind"/>
+          </references>
+        </command>
+
+        <command name="megabind">
+          <description>Binds a key to many different actions depending on the current game state.</description>
+          <examples>
+            <example>
+              <code><![CDATA[megabind F9 [echo Demo!] [echo Editing or coop!] [echo Connected!] [echo Bots!] [echo Other!]]]></code>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="K" description="the key to bind" valueNotes="string"/>
+            <argument token="D" description="body of code to execute if watching a demo" valueNotes="a body of code"/>
+            <argument token="E" description="body of code to execute if editing or in coop-edit mode" valueNotes="a body of code"/>
+            <argument token="C" description="body of code to execute if connected to a server" valueNotes="a body of code"/>
+            <argument token="B" description="body of code to execute if in a bot mode" valueNotes="a body of code"/>
+            <argument token="O" description="body of code to execute if none of the other arguments have been met" valueNotes="a body of code"/>
+          </arguments>
+          <remarks>
+            <remark>This command requires 6 arguments, no less. Use an empty set of brackets [] for any of the arguments that you want to "do nothing".</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="bind"/>
+            <identifierReference identifier="onrelease"/>
+          </references>
+        </command>
+
+        <command name="onrelease">
+          <description>Executes a command on the release of a key/button.</description>
+          <remarks>
+            <remark>This command must be placed in an action in a bind or in an alias in a bind.</remark>
+          </remarks>
+          <examples>
+            <example>
+              <code><![CDATA[bind CTRL [ echo "key pressed"; onrelease [ echo "key released" ] ]]]></code>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="bind"/>
+            <identifierReference identifier="megabind"/>
+          </references>
+          <arguments>
+            <argument token="A" description="the command"/>
+          </arguments>
+        </command>
+
+        <scriptalias name="add2bind">
+          <description>Adds a block of code, if it does not already exist, to a keybind.</description>
+          <arguments>
+            <argument token="K" description="the key to add to"/>
+            <argument token="C" description="the code to add"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="add2alias"/>
+            <identifierReference identifier="add2list"/>
+          </references>
+        </scriptalias>
+
+        <command name="keybind">
+          <description>Returns the contents of a keybind, bound with 'bind'.</description>
+          <arguments>
+            <argument token="K" description="name of key"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="bind"/>
+            <identifierReference identifier="findkey"/>
+            <identifierReference identifier="findkeycode"/>
+            <identifierReference identifier="keyeditbind"/>
+            <identifierReference identifier="keyspecbind"/>
+          </references>
+        </command>
+
+        <command name="keyeditbind">
+          <description>Returns the contents of a keybind, bound with 'editbind'.</description>
+          <arguments>
+            <argument token="K" description="name of key"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="editbind"/>
+            <identifierReference identifier="keybind"/>
+            <identifierReference identifier="keyspecbind"/>
+          </references>
+        </command>
+
+        <command name="keyspecbind">
+          <description>Returns the contents of a keybind, bound with 'specbind'.</description>
+          <arguments>
+            <argument token="K" description="name of key"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="keybind"/>
+            <identifierReference identifier="keyeditbind"/>
+            <identifierReference identifier="specbind"/>
+          </references>
+        </command>
+
+        <command name="searchbinds">
+          <description>Search keybinds (bound with 'bind'), return keys with matching contents.</description>
+          <arguments>
+            <argument token="S" description="search string"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[echo (searchbinds "reload")]]></code>
+              <explanation>Output: R</explanation>
+            </example>
+          </examples>
+          <remarks>
+            <remark>This is the inverse of 'keybind'</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="bind"/>
+            <identifierReference identifier="keybind"/>
+          </references>
+        </command>
+
+        <command name="searcheditbinds">
+          <description>Search keybinds (bound with 'editbind'), return keys with matching contents.</description>
+          <arguments>
+            <argument token="s" description="search string"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[echo (searcheditbinds "toggleocull")]]></code>
+              <explanation>Output: F5</explanation>
+            </example>
+          </examples>
+          <remarks>
+            <remark>This is the inverse of 'keyeditbind'</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="editbind"/>
+            <identifierReference identifier="keyeditbind"/>
+          </references>
+        </command>
+
+        <command name="searchspecbinds">
+          <description>Search keybinds (bound with 'specbind'), return keys with matching contents.</description>
+          <arguments>
+            <argument token="s" description="search string"/>
+          </arguments>
+          <remarks>
+            <remark>This is the inverse of 'keyspecbind'</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="specbind"/>
+            <identifierReference identifier="keyspecbind"/>
+          </references>
+        </command>
+
+        <command name="findkey">
+          <description>Returns the name of a key via a specified code.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (findkey 8)]]></code>
+              <explanation>Output: BACKSPACE</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (findkey 280)]]></code>
+              <explanation>Output: PAGEUP</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="I" description="integer"/>
+          </arguments>
+          <remarks>
+            <remark>Returns -255 if the key does not exist.</remark>
+            <remark>See /config/keymap.cfg for a full list of valid key codes.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="keybind"/>
+            <identifierReference identifier="findkeycode"/>
+          </references>
+        </command>
+
+        <command name="findkeycode">
+          <description>Returns the integer code of a key.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (findkeycode BACKSPACE)]]></code>
+              <explanation>Output: 8</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (findkeycode PAGEUP)]]></code>
+              <explanation>Output: 280</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="K" description="the name of the key"/>
+          </arguments>
+          <remarks>
+            <remark>Returns -255 if the key does not exist.</remark>
+            <remark>See /config/keymap.cfg for a full list of valid key names.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="keybind"/>
+            <identifierReference identifier="findkey"/>
+          </references>
+        </command>
+
+        <variable name="resetbinds">
+          <description>Resets all binds back to their default values.</description>
+          <remarks>
+            <remark>
+              This command executes the file /config/resetbinds.cfg which will bind all keys to the values specified in that
+              file, thus resetting the binds to their default values.
+            </remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="resetcfg"/>
+          </references>
+        </variable>
+
+        <command name="keymap">
+          <description>Sets up the keymap for the specified key.</description>
+          <remarks>
+            <remark>You should never have to use this command manually, use "bind" instead.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="bind"/>
+          </references>
+          <arguments>
+            <argument token="K" description="the key to map"/>
+            <argument token="N" description="the name for the key"/>
+            <argument token="A" description="the default action"/>
+          </arguments>
+        </command>
+
+        <scriptalias name="KEYPRESS">
+          <description>If defined, this will be executed every time you press a key.</description>
+          <arguments>
+            <argument token="I" description="integer key code"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[checkinit KEYPRESS [echo You pressed key: (findkey $arg1)]]]></code>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="KEYRELEASE"/>
+            <identifierReference identifier="findkey"/>
+          </references>
+        </scriptalias>
+
+        <scriptalias name="KEYRELEASE">
+          <description>If defined, this will be executed every time you release a key.</description>
+          <arguments>
+            <argument token="I" description="integer key code"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[checkinit KEYRELEASE [echo You released key: (findkey $arg1)]]]></code>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="KEYPRESS"/>
+            <identifierReference identifier="KEYPRESS"/>
+            <identifierReference identifier="findkey"/>
+          </references>
+        </scriptalias>
+
+        <command name="sensitivity">
+          <description>Sets the mouse sensitivity.</description>
+          <arguments>
+            <argument token="S" description="the sensitivity" valueNotes="floating-point"/>
+          </arguments>
+        </command>
+
+        <variable name="sensitivityscale">
+          <description>Scales the effect of an increase or decrease in the sensitivity value. The larger the value, the smaller the difference between sensitivity values.</description>
+          <value token="N" description="the sensitivity scale" minValue="0.001" maxValue="1000.0" defaultValue="1.0"/>
+        </variable>
+
+        <command name="findsens">
+          <description>Initiate sensitivity training, to help you find what sensitivity setting you like.</description>
+        </command>
+
+        <variable name="scopesensscale">
+          <description>Scales the effect of an increase or decrease in the sensitivity value when scoping. The larger the value, the smaller the difference between sensitivity values.</description>
+          <value token="N" description="the scope sensitivity scale" minValue="0.001" maxValue="1000.0" defaultValue="0.5"/>
+        </variable>
+
+        <command name="invmouse">
+          <description>Sets mouse to "flight sim" mode.</description>
+          <arguments>
+            <argument token="B" description="sets invmouse" valueNotes="0 (off), else (on)"/>
+          </arguments>
+        </command>
+
+        <variable name="mfilter">
+          <description>Sets the degree of mouse filtering (0.0 being no filtering)</description>
+          <value token="N" description="Amount of mouse filtration" minValue="0.0" maxValue="6.0" defaultValue="0.0"/>
+        </variable>
+
+        <variable name="mouseaccel">
+          <description>Sets the mouse acceleration</description>
+          <value token="N" description="acceleration factor" minValue="0.0" maxValue="1000.0" defaultValue="0.0"/>
+          <references>
+            <identifierReference identifier="sensitivity"/>
+          </references>
+        </variable>
+
+      </identifiers>
+    </section>
+    <!-- Keyboard and mouse Section Ends -->
     <!-- Editing Section Starts -->
     <section name="Editing" sortindex="09">
       <identifiers sort="true">
@@ -8454,19 +8476,14 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
+        <variable name="scopesensfeel">
+          <description>TODO</description>
+          <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="0"/>
+        </variable>
+
         <variable name="mdldlist">
           <description>TODO</description>
           <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="1"/>
-        </variable>
-
-        <variable name="scopesensscale">
-          <description>TODO</description>
-          <value token="N" description="TODO" minValue="0.001" maxValue="1000.0" defaultValue="0.5"/>
-        </variable>
-
-        <variable name="sensitivityscale">
-          <description>TODO</description>
-          <value token="N" description="TODO" minValue="0.001" maxValue="1000.0" defaultValue="1.0"/>
         </variable>
 
         <command name="showedithide">
