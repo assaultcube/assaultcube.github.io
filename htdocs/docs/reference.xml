@@ -1614,6 +1614,27 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
         </variable>
 
+        <command name="isolatecontext">
+          <description>Isolates the given context. This disables access from this context to identifiers located in other contexts, also it removes all aliases created in this context once the running context changes</description>
+          <arguments>
+            <argument token="C" description="the context"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="sealcontexts"/>
+          </references>
+        </command>
+
+        <command name="sealcontexts">
+          <description>secure this configuration for the rest of the game</description>
+        </command>
+
+        <command name="scriptcontext">
+          <arguments>
+            <argument token="C" description="context"/>
+            <argument token="N" description="idname"/>
+          </arguments>
+        </command>
+
       </identifiers>
     </section>
     <!-- CubeScript language Section Ends -->
@@ -1714,49 +1735,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="clearservers">
         </command>
 
-        <variable name="browsefiledesc">
-          <description>Toggles getting descriptive text from CGZ or DMO files in menudirlist.</description>
-          <value token="B" description="" minValue="0" maxValue="1" defaultValue="1"/>
-          <references>
-            <identifierReference identifier="menudirlist"/>
-          </references>
-        </variable>
-
         <variable name="physinterp">
           <description>Toggles physics interpolation.</description>
           <value token="B" description="" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
 
-        <command name="menudirlist">
-          <description>create a menu listing of files from a path and perform an action on them when clicked.</description>
-          <remarks>
-            <remark>use this inside menu definitions, almost always as the only command of that menu.</remark>
-            <remark>compare the usage inside config/menus.cfg</remark>
-          </remarks>
-          <arguments>
-            <argument token="" description=""/>
-          </arguments>
-          <examples>
-            <example>
-              <code><![CDATA[menudirlist "packages/maps" "cgz" "map $arg1"]]></code>
-              <explanation>will create a list of maps and load them when clicked</explanation>
-            </example>
-          </examples>
-          <references>
-            <identifierReference identifier="newmenu"/>
-            <identifierReference identifier="browsefiledesc"/>
-          </references>
-        </command>
-
         <command name="toggleconsole">
           <description>Toggles the console.</description>
-        </command>
-
-        <command name="jump">
-          <description>Triggers a jump.</description>
-          <remarks>
-            <remark>default keys: space and right mouse.</remark>
-          </remarks>
         </command>
 
         <command name="updatefrommaster">
@@ -2730,17 +2715,20 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Drops the taken flag.</description>
         </command>
 
-        <command name="drawbeamtobots">
-          <description>Draws a shooting line in the direction of all available bots.</description>
-          <arguments>
-            <argument token="" description="this command does not take any arguments" valueNotes="none"/>
-          </arguments>
+        <command name="crouch">
+          <description>Triggers a crouch.</description>
           <remarks>
-            <remark>This is a debugging command and only works for single player modes.</remark>
+            <remark>default keys: left shift.</remark>
           </remarks>
         </command>
 
-        <command name="crouch"/>
+        <command name="jump">
+          <description>Triggers a jump.</description>
+          <remarks>
+            <remark>default keys: space and right ctrl.</remark>
+          </remarks>
+        </command>
+
         <command name="addbot">
           <description>add a bot for a given team with a given skill calling him a given name.</description>
           <arguments>
@@ -4458,19 +4446,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
     <!-- Editing Section Starts -->
     <section name="Editing" sortindex="09">
       <identifiers sort="true">
-      
-        <scriptalias name="newselkeys">
-          <description>Binds a list of keys to be used to create new (multiple) selections in editmode.</description>
-          <examples>
-            <example>
-              <code><![CDATA[newselkeys = [LCTRL RCTRL LALT RALT]]]></code>
-              <explanation>Makes all 4 keys create new (multiple) selections in editmode.</explanation>
-            </example>
-          </examples>
-          <remarks>
-            <remark>LCTRL is default.</remark>
-          </remarks>
-        </scriptalias>
 
         <command name="togglegrab">
           <description>Will toggle the focus of the mouse in game. Normally you can use your mouse to look around, when you type this command your mouse cursor is visible and can be used as normally. This is only useful when you run cube windowed.</description>
@@ -4534,26 +4509,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>takes the current player yaw for the current waypoint</description>
         </command>
 
-        <command name="telebot">
-          <description>teletransports the bot with the lowest connection number to you current position.</description>
-          <arguments>
-            <argument token="" description="this command does not take any arguments" valueNotes="none"/>
-          </arguments>
-          <remarks>
-            <remark>This is a debugging command and only works for single player modes.</remark>
-          </remarks>
-        </command>
-
         <command name="togglebotview">
           <description>When used you will see what the bot sees. Type it again (with or without name) to return to the game(you will respawn).</description>
           <arguments>
             <argument token="N" description="botname" valueNotes="the name of the bot"/>
-          </arguments>
-        </command>
-
-        <command name="testvisible">
-          <arguments>
-            <argument token="D" description="direction" valueNotes="0..5 for Forward, Backward, Left, Right, Up AND Down"/>
           </arguments>
         </command>
 
@@ -5451,7 +5410,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
-        <variable name="Map editing">
+        <variable name="editing">
           <description>A variable indicating if the game is in editmode.</description>
           <value token="B" description="editmode" minValue="0" maxValue="1" readOnly="true" valueNotes="1 (true), 0 (false)" defaultValue="0"/>
         </variable>
@@ -5490,7 +5449,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="oldselstyle">
-          <description>Enables or disables using triangles to render the editing grid/current selection instead of squares.</description>
+          <description>Enables or disables using squares to render the editing grid/current selection instead of triangles.</description>
           <value token="N" description="0 off, 1 on" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
 
@@ -5645,10 +5604,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="menuselectionbgcolor">
           <description>Defines the background color for the menu selection bar.</description>
           <arguments>
-            <argument token="R" description="red (0..100)"/>
-            <argument token="G" description="green (0..100)"/>
-            <argument token="B" description="blue (0..100)"/>
-            <argument token="A" description="alpha (0..100)"/>
+            <argument token="R" description="red" valueNotes="0..100"/>
+            <argument token="G" description="green" valueNotes="0..100"/>
+            <argument token="B" description="blue" valueNotes="0..100"/>
+            <argument token="A" description="alpha" valueNotes="0..100"/>
           </arguments>
         </command>
 
@@ -5670,10 +5629,23 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
+        <variable name="hidebigmenuimages">
+          <description>Hide big images in menus.</description>
+          <value token="N" description="0: show, 1: hide" minValue="0" maxValue="1" defaultValue="0"/>
+        </variable>
+
         <command name="menuitemkeyinput">
           <arguments>
             <argument token="T" description="text"/>
             <argument token="B" description="bind command"/>
+          </arguments>
+        </command>
+
+        <command name="menuitemmapload">
+          <description>a menuitem that loads a map, displays the title and the preview or a default image</description>
+          <arguments>
+            <argument token="M" description="map"/>
+            <argument token="T" description="text"/>
           </arguments>
         </command>
 
@@ -5696,6 +5668,45 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="A" description="action"/>
             <argument token="H" description="hoveraction"/>
             <argument token="M" description="maxchars"/>
+          </arguments>
+        </command>
+
+        <variable name="browsefiledesc">
+          <description>Toggles getting descriptive text from CGZ or DMO files in menudirlist.</description>
+          <value token="B" description="" minValue="0" maxValue="1" defaultValue="1"/>
+          <references>
+            <identifierReference identifier="menudirlist"/>
+          </references>
+        </variable>
+
+        <command name="menudirlist">
+          <description>Create a menu listing of files from a path and perform an action on them when clicked.</description>
+          <remarks>
+            <remark>Use this inside menu definitions, almost always as the only command of that menu.</remark>
+            <remark>Compare the usage inside config/menus.cfg</remark>
+          </remarks>
+          <arguments>
+            <argument token="P" description="the directory path from the assaultcube root"/>
+            <argument token="E" description="file extension"/>
+            <argument token="A" description="action"/>
+            <argument token="I" description="show image from a file" valueNotes="0 or 1"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[menudirlist "packages/maps" "cgz" "map $arg1"]]></code>
+              <explanation>will create a list of maps and load them when clicked</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="newmenu"/>
+            <identifierReference identifier="browsefiledesc"/>
+          </references>
+        </command>
+
+        <command name="menufont">
+          <description>switch the font in which the menu is displayed</description>
+          <arguments>
+            <argument token="F" description="font"/>
           </arguments>
         </command>
 
@@ -5872,11 +5883,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <variable name="hidedamageindicator">
           <description>Turns on/off the damage indicator</description>
           <value token="V" description="enable/disable damage indicator" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <variable name="hidebigmenuimages">
-          <description>Hide big images in menus.</description>
-          <value token="N" description="0: show, 1: hide" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
         <variable name="oldfashionedgunstats">
@@ -6134,7 +6140,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="showspeed">
-          <description>Enables or disables showing the player's horizontal speed.</description>
+          <description>Enables or disables showing the player's horizontal speed (vector).</description>
           <value token="N" description="0 off, 1 on" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
@@ -6434,7 +6440,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="gibnum"/>
             <identifierReference identifier="gibspeed"/>
           </references>
-          <value token="N" description="time to live" minValue="0" maxValue="15000" defaultValue="5000"/>
+          <value token="N" description="time to live" minValue="0" maxValue="60000" defaultValue="7000"/>
         </variable>
 
         <variable name="gibspeed">
@@ -6600,7 +6606,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="gamma">
-          <description>Sets the hardware gamma value.</description>
+          <description>Sets the temporary (to next map start) hardware gamma value.</description>
           <remarks>
             <remark>May not work if your card/driver doesn't support it.</remark>
           </remarks>
@@ -6628,48 +6634,15 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
-        <variable name="dyngamma">
-          <description>Enables or disables the per official map dynamic gamma system.</description>
-          <examples>
-            <example>
-              <code><![CDATA[dyngamma = 0]]></code>
-              <explanation>Output: disables the system</explanation>
-            </example>
-            <example>
-              <code><![CDATA[dyngamma = 1]]></code>
-              <explanation>Output: enables the system</explanation>
-            </example>
-          </examples>
-          <references>
-            <identifierReference identifier="gamma"/>
-            <identifierReference identifier="setgamma"/>
-          </references>
-        </variable>
-
-        <command name="setgamma">
-          <description>Sets the current map's default dynamic gamma.</description>
-          <examples>
-            <example>
-              <code><![CDATA[checkinit afterinit [ofc_gamma_list = [175 225 150 120 ...]]]]></code>
-              <explanation>
-                Sets your custom gamma values for the per official map dynamic gamma system. If you are going to use this method,
-                you MUST include values for every existing official map. The list must be alphabetical and be the exact length of
-                the number of currrent official maps. Hint: use "echo $defaultmaps" and "echo (listlen $defaultmaps)".
-              </explanation>
-            </example>
-          </examples>
+        <scriptalias name="setgamma">
+          <description>Sets a persistent gamma value for a map.</description>
           <arguments>
-            <argument token="G" description="the gamma value" minValue="30" maxValue="300" defaultValue="100"/>
+            <argument token="G" description="the gamma value"  valueNotes="30..300, default 100"/>
           </arguments>
-          <remarks>
-            <remark>The setting will take affect automatically if dyngamma is enabled, upon future loads of that map. This command only works on official maps!</remark>
-            <remark>Rather than manually loading each official map and setting it's default gamma with this command, the entire list can be initialized via your autoexec.cfg like so:</remark>
-          </remarks>
           <references>
-            <identifierReference identifier="dyngamma"/>
             <identifierReference identifier="gamma"/>
           </references>
-        </command>
+        </scriptalias>
 
         <variable name="lighterror">
           <description>Allows to finetune the amount of "error" the mipmapper/stripifier allow themselves for changing lightlevels.</description>
@@ -6937,7 +6910,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="mapsound"/>
             <identifierReference identifier="newent sound"/>
           </references>
-          <value token="N" description="interval in milliseconds" minValue="0" maxValue="1000" defaultValue="50"/>
+          <value token="N" description="interval in milliseconds" minValue="0" maxValue="1000" defaultValue="10"/>
         </variable>
 
         <variable name="audiodebug">
@@ -7010,7 +6983,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>AC will try to allocate that number of channels but it is not guaranteed to succeed.</remark>
           </remarks>
-          <value description="number of channels" minValue="4" maxValue="1024" defaultValue="32"/>
+          <value description="number of channels" minValue="4" maxValue="1024" defaultValue="128"/>
         </variable>
 
         <variable name="bulletairsounddestrad">
@@ -7038,7 +7011,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="maxsoundsatonce">
-          <value token="V" description="" minValue="0" maxValue="100" defaultValue="40"/>
+          <value token="V" description="" minValue="0" maxValue="100" defaultValue="32"/>
         </variable>
 
         <variable name="soundvol">
@@ -8110,27 +8083,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
-        <command name="isolatecontext">
-          <description>Isolates the given context. This disables access from this context to identifiers located in other contexts, also it removes all aliases created in this context once the running context changes</description>
-          <arguments>
-            <argument token="C" description="the context"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="sealcontexts"/>
-          </references>
-        </command>
-
-        <command name="sealcontexts">
-          <description>secure this configuration for the rest of the game</description>
-        </command>
-
-        <command name="scriptcontext">
-          <arguments>
-            <argument token="C" description="context"/>
-            <argument token="N" description="idname"/>
-          </arguments>
-        </command>
-
         <command name="fog">
           <description>Sets the fog distance.</description>
           <remarks>
@@ -8418,28 +8370,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>At what char does the definition proceed?</description>
           <arguments>
             <argument token="A" description="TODO"/>
-          </arguments>
-        </command>
-
-        <command name="gettext">
-          <description>An alias used for i18n. Translateable text should be marked [(_ "this is the EN-us variant of the text")].</description>
-          <arguments>
-            <argument token="M" description="I18Nmessage"/>
-          </arguments>
-        </command>
-
-        <command name="menufont">
-          <description>switch the font in which the menu is displayed</description>
-          <arguments>
-            <argument token="F" description="FONT"/>
-          </arguments>
-        </command>
-
-        <command name="menuitemmapload">
-          <description>a menuitem that loads a map, displays the title and the preview or a default image</description>
-          <arguments>
-            <argument token="M" description="MAP"/>
-            <argument token="T" description="TEXT"/>
           </arguments>
         </command>
 
