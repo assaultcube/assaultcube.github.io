@@ -2550,7 +2550,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </examples>
           <remarks>
             <remark>The list is:</remark>
-            <remark>knife/atk dmg pistol/atk dmg carbine/atk dmg shotgun/atk dmg smg/atk dmg sniper/atk dmg assault/atk dmg cpistol/atk dmg nade/atk dmg akimbo/atk dmg</remark>
+            <remark>knife/atk dmg pistol/atk dmg carbine/atk dmg shotgun/atk dmg smg/atk dmg sniper/atk dmg assault/atk dmg nade/atk dmg akimbo/atk dmg</remark>
           </remarks>
           <references>
             <identifierReference identifier="start_intermission"/>
@@ -2634,7 +2634,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
               <explanation>Loads the red_dot.png crosshair for all weapons.</explanation>
             </example>
             <example>
-              <code><![CDATA[loadcrosshair red_dot.png all]]></code>
+              <code><![CDATA[loadcrosshair red_dot.png default]]></code>
               <explanation>Same as above. Loads the red_dot.png crosshair for all weapons.</explanation>
             </example>
             <example>
@@ -2642,7 +2642,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
               <explanation>Loads the red_dot.png crosshair for your knife only.</explanation>
             </example>
             <example>
-              <code><![CDATA[loadcrosshair red_dot.png ar]]></code>
+              <code><![CDATA[loadcrosshair red_dot.png assault]]></code>
               <explanation>Loads the red_dot.png crosshair for your assault rifle only.</explanation>
             </example>
             <example>
@@ -2651,8 +2651,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
+            <argument token="T" description="type" valueNotes="default, teammate, scope, edit, knife, pistol, carbine, shotgun, subgun, sniper, assault, grenade, akimbo"/>
             <argument token="I" description="image"/>
-            <argument token="T" description="type" valueNotes="all, scope, teammate, knife, pistol, carbine, shotgun, smg, sniper, ar, cpistol, grenades, akimbo"/>
           </arguments>
         </command>
 
@@ -2958,12 +2958,12 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
-        <command name="nextprimary">
-          <description>Returns the primary weapon on next respawn.</description>
+        <variable name="nextprimary">
+          <description>Sets the primary weapon on next respawn.</description>
           <arguments>
-            <argument token="A" description="weapon id" valueNotes="value"/>
+            <argument token="A" description="weapon id/name" valueNotes="2 (carbine), 3 (shotgun), 4 (subgun), 5 (sniper), 6 (assault)"/>
           </arguments>
-        </command>
+        </variable>
 
         <command name="reload">
           <description>Reloads the weapon.</description>
@@ -3367,9 +3367,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="weapon">
-          <description>Changes the weapon.</description>
+          <description>Changes the weapon. (must be binded to a key)</description>
           <arguments>
-            <argument token="N" description="the weapon number" valueNotes="0 (knife), 1 (pistol), 2 (shotgun), 3 (sub), 4 (sniper), 5 (assault), 6 (grenades)"/>
+            <argument token="N" description="the number/name of available weapon" valueNotes="0 (knife), 1 (pistol), 2 (carbine), 3 (shotgun), 4 (subgun), 5 (sniper), 6 (assault), 7 (grenades), 8 (akimbo)"/>
           </arguments>
         </command>
 
@@ -4360,10 +4360,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>During map editing, drop all mapsounds so they can be re-added.</description>
         </command>
 
-        <variable name="editing">
-          <value token="V" description="" minValue="1" maxValue="0" defaultValue="0"/>
-        </variable>
-
         <command name="edittoggle">
           <description><![CDATA[switches between map edit mode and normal.]]></description>
           <remarks>
@@ -4881,17 +4877,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
         </command>
 
-        <command name="mapmsg">
+        <variable name="mapmsg">
           <description>Sets the map message, which will be displayed when the map loads.</description>
           <remarks>
             <remark>You will need to use quote marks around the message, otherwise it save the message correctly.</remark>
             <remark>For example: /mapmsg "Map By Author"</remark>
-            <remark>You can get the current map message with the $mapmsg variable</remark>
+            <remark>You can get the current map message with the $mapmsg variable.</remark>
           </remarks>
           <arguments>
             <argument token="M" description="The map message" valueNotes="String"/>
           </arguments>
-        </command>
+        </variable>
 
         <command name="entstats">
           <description>Print some map entity statistics to the console.</description>
@@ -5323,6 +5319,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="mapmodelbyname"/>
           </references>
         </command>
+
+        <variable name="mapsoundchanged">
+          <description>Set to "1" with every command that changes mapsound slots.</description>
+          <value token="N" description="0: not changed, 1: changed" minValue="0" maxValue="1" defaultValue="0" />
+          <remarks>
+            <remark>Should be used to trigger a rebuild of mapsound menus.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="mapsound"/>
+          </references>
+        </variable>
 
         </identifiers>
     </section>
@@ -6365,6 +6372,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="V" description="enable/disable water refractions" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
+        <variable name="waveheight">
+          <description>Sets the wave height of water, between 0 (completely still, no waves at all) and 1 (very choppy).</description>
+          <value token="F" description="wave height (floating-point value)" minValue="0" maxValue="1" defaultValue="0.3"/>
+        </variable>
+
         <variable name="shotlinettl">
           <value token="V" description="" minValue="0" maxValue="10000" defaultValue="75"/>
         </variable>
@@ -6388,19 +6400,27 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
+        <variable name="aniso">
+          <description>Sets the level of anisotropic filtering.</description>
+          <value token="V" description="anisotropic filtering" minValue="0" maxValue="16" defaultValue="0"/>
+        </variable>
+
         <variable name="fsaa">
-          <description>Sets the level of fullscreen antialiasing (FSAA).</description>
-          <value description="fsaa" minValue="0" maxValue="16" defaultValue="0"/>
+          <description>Sets the level of full-scene antialiasing (FSAA).</description>
+          <value token="V" description="full-scene antialiasing" minValue="-1" maxValue="16" defaultValue="0"/>
+          <remarks>
+            <remark>-1 uses the default settings obtained from the system. 0 disables, 1..16 enables FSAA.</remark>
+          </remarks>
         </variable>
 
         <variable name="scr_w">
           <description>Sets the screen width.</description>
-          <value description="the screen width" minValue="0" maxValue="1024" defaultValue="10000"/>
+          <value token="W" description="the screen width" minValue="320" maxValue="10000" defaultValue="1024"/>
         </variable>
 
         <variable name="scr_h">
           <description>Sets the screen height.</description>
-          <value description="the screen height" minValue="0" maxValue="768" defaultValue="10000"/>
+          <value token="H" description="the screen height" minValue="200" maxValue="10000" defaultValue="768"/>
         </variable>
 
         <variable name="colorbits">
@@ -6415,7 +6435,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="vsync">
           <description>Enables or disables vsync.</description>
-          <value description="vsync" minValue="-1" maxValue="1" defaultValue="-1"/>
+          <value token="V" description="vsync" minValue="-1" maxValue="1" defaultValue="-1"/>
           <remarks>
             <remark>-1 uses the default settings obtained from the system. 0 disables, 1 enables vsync.</remark>
           </remarks>
@@ -7854,6 +7874,12 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
+        <command name="mdlalphablend">
+          <arguments>
+            <argument token="A" description="alphablend"/>
+          </arguments>
+        </command>
+
         <command name="mdlcachelimit">
           <arguments>
             <argument token="L" description="cachelimit"/>
@@ -7947,30 +7973,47 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference name="texture" identifier="texture"/>
             <identifierReference name="texturereset" identifier="texturereset"/>
+            <identifierReference name="getnotexture" identifier="getnotexture"/>
           </references>
           <arguments>
             <argument token="F" description="file name of the texture to bind" valueNotes="string"/>
           </arguments>
         </command>
 
-        <command name="loadsky">
+        <variable name="getnotexture">
+          <description>Returns the current "notexture" path (set by loadnotexture).</description>
+          <references>
+            <identifierReference name="loadnotexture" identifier="loadnotexture"/>
+          </references>
+          <examples>
+            <example>
+              <code><![CDATA[echo (getnotexture)]]></code>
+            </example>
+          </examples>
+        </variable>
+
+        <variable name="loadsky">
           <description>Loads a skymap for a map.</description>
           <remarks>
             <remark>The available skymaps reside in packages/textures/skymaps/..</remark>
             <remark>
-            To select a skymap you need to use the full path from "packages/"
-            but only up to the underscore "_" in the filename.
+            The skymap name in the argument is required to start with "textures/skymaps/",
+            but that part of the path can be omitted, and it should be used only up to the underscore "_" in the filename.
             </remark>
+            <remark>You can get the current skymap name with the $loadsky variable.</remark>
           </remarks>
           <examples>
             <example>
-              <code><![CDATA[loadsky "textures/skymaps/makke/mountain"]]></code>
+              <code><![CDATA[loadsky makke/mountain]]></code>
+            </example>
+            <example>
+              <code><![CDATA[loadsky textures/skymaps/makke/mountain]]></code>
             </example>
           </examples>
           <arguments>
-            <argument token="P" description="path to the six skymap textures" valueNotes="string"/>
+            <argument token="P" description="path to skymap textures" valueNotes="string"/>
           </arguments>
-        </command>
+        </variable>
 
         <command name="mapmodel">
           <description>Registers a mapmodel that can be placed in maps.</description>
@@ -7982,6 +8025,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </remark>
             <remark>Example: mapmodel 4 2 4 0 "modelname"</remark>
             <remark>This mapmodel has a bounding box of 8x8x2 in size (X/Y/Z) and by default hovers 4 units above ground.</remark>
+            <remark>It also returns the number of the created slot, example: echo (mapmodel ...)</remark>
           </remarks>
           <references>
             <identifierReference identifier="mapmodelreset"/>
@@ -8015,6 +8059,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             only be used with "sound" entities within a map. The first map sound registered in a map has slot/index number 0
             and increases afterwards.
             </remark>
+            <remark>It also returns the number of the created slot, example: echo (mapsound ...)</remark>
           </remarks>
           <references>
             <identifierReference identifier="newent sound"/>
@@ -8060,6 +8105,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>Binds the texture indicated in the filename to the current texture slot and increments the slot number.</remark>
             <remark>The texture is rendered at the given scale. At scale 1.0 (or if scale is 0), 32x32 texels cover one cube. At scale 2.0, which is the current maximum, it's 64x64.</remark>
+            <remark>It also returns the number of the created slot, example: echo (texture ...)</remark>
           </remarks>
           <references>
             <identifierReference identifier="loadnotexture"/>
@@ -8099,11 +8145,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="B" description="Blue colour intensity" valueNotes="Between 1 and 255"/>
           </arguments>
         </command>
-
-        <variable name="waveheight">
-          <description>Sets the wave height of water, between 0 (completely still, no waves at all) and 1 (very choppy).</description>
-          <value token="F" description="wave height (floating-point value)" minValue="0" maxValue="1" defaultValue="0.3"/>
-        </variable>
 
       </identifiers>
     </section>
