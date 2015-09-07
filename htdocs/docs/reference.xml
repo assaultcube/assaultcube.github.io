@@ -1733,6 +1733,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="clearservers">
+          <description>Clears the server list.</description>
         </command>
 
         <variable name="physinterp">
@@ -1843,6 +1844,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="screenshot"/>
+            <identifierReference identifier="disablehud"/>
+            <identifierReference identifier="enablehud"/>
+            <identifierReference identifier="blankouthud"/>
           </references>
         </command>
 
@@ -1978,11 +1982,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="V" description="maximum FPS" minValue="25 or 0" maxValue="1000" defaultValue="200" valueNotes="0 disables maxfps"/>
         </variable>
 
-        <variable name="maxtmus">
-          <description>Gets the maximum number of supported textures when performing multitexturing.</description>
-          <value token="V" description="max. number of textures" minValue="1" maxValue="0" defaultValue="0" readOnly="true"/>
-        </variable>
-
         <variable name="minlod">
           <description>Minimal level of detail.</description>
           <value token="V" description="" minValue="25" maxValue="250" defaultValue="60"/>
@@ -2111,6 +2110,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Hold the current number of lines on the console.</description>
         </variable>
 
+        <variable name="conline">
+          <description>Returns text from the last line in the console.</description>
+        </variable>
+
         <variable name="lang">
           <description>Sets the language for which a translated server MOTD will be fetched, if the server has one for this language.</description>
           <remarks>
@@ -2154,6 +2157,33 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="N" description="the N'th command from the history"/>
           </arguments>
         </command>
+
+        <command name="conskip">
+          <description>Allows to browse through the console history by offsetting the console output.</description>
+          <defaultKeys>
+            <key alias="KP_MINUS" name="- on the keypad" description="scrolls into the history (conskip 1)"/>
+            <key alias="KP_PLUS" name="+ on the keypad" description="resets the history (conskip -1000)"/>
+          </defaultKeys>
+          <arguments>
+            <argument token="N" description="the offset"/>
+          </arguments>
+        </command>
+
+        <variable name="maxhistory">
+          <description>Sets how many typed console commands to store.</description>
+          <remarks>
+            <remark>
+            This value sets how many command lines to store in memory, everytime a command is entered
+            it gets store so it can be recalled using the "/" key along with the arrow keys to scroll back and forth through the list.
+            </remark>
+          </remarks>
+          <value token="N" description="Total of stored commands" minValue="0" maxValue="10000" defaultValue="1000"/>
+        </variable>
+
+        <variable name="maxcon">
+          <description>Sets the total number of text lines from the console to store as history.</description>
+          <value token="V" description="" minValue="10" maxValue="1000" defaultValue="200"/>
+        </variable>
 
         <variable name="omitunchangeddefaults">
           <description>If this value is 1, variables that are at their default values are omitted from saved.cfg. If 0, the variables are written to saved.cfg, but commented out.</description>
@@ -3001,7 +3031,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="N" description="the name"/>
           </arguments>
+          <references>
+            <identifierReference identifier="curname"/>
+          </references>
         </command>
+
+        <variable name="curname">
+          <description>Returns the nick name of the local player.</description>
+          <references>
+            <identifierReference identifier="name"/>
+          </references>
+        </variable>
 
         <command name="say">
           <description>Outputs text to other players.</description>
@@ -3556,7 +3596,12 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="autodownload">
           <description>Determines if the game should try to download missing packages such as textures or mapmodels on the fly.</description>
-          <value token="V" description="Note: This is turned on by default." minValue="0" maxValue="1" defaultValue="1"/>
+          <value token="V" description="Note: This is turned on by default" minValue="0" maxValue="1" defaultValue="1"/>
+        </variable>
+
+        <variable name="autodownloaddebug">
+          <description>When the variable autodownloaddebug is set to 1 and/or in debug binaries, more debug output is produced.</description>
+          <value token="V" description="Add debug info to autodownload" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
         <command name="spectatemode">
@@ -3602,6 +3647,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="setmr"/>
             <identifierReference identifier="rewind"/>
+            <identifierReference identifier="curdemofile"/>
           </references>
         </command>
 
@@ -3629,6 +3675,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="setmr"/>
           </references>
         </command>
+
+        <variable name="curdemofile">
+          <description>Returns the name of played demo.</description>
+          <references>
+            <identifierReference identifier="demo"/>
+          </references>
+        </variable>
 
         <variable name="minutesremaining">
           <description>Returns the remaining minutes of the currently played game. READ ONLY</description>
@@ -5232,17 +5285,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="B" description="flrceil" minValue="0" maxValue="2" readOnly="true" valueNotes="0 (floor), 2 (ceiling)" defaultValue="0"/>
         </variable>
 
-        <variable name="lightscale">
-          <description>Used to finetune the "overbright lighting" rendering feature when enabled.</description>
-          <remarks>
-            <remark>After changing this value, a "recalc" is needed to see the differences.</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="recalc"/>
-          </references>
-          <value token="N" description="the brightness of the scene" minValue="1" maxValue="100" defaultValue="4"/>
-        </variable>
-
         <scriptalias name="onNewMap">
           <description>
             If this alias exists, it will automatically be executed when you create a new map via the "newmap" command
@@ -5434,6 +5476,16 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
+        <command name="menuselectiondescbgcolor">
+          <description>Defines the background color for the description of selected active menu items (checkbox, slider, text input).</description>
+          <arguments>
+            <argument token="R" description="red" valueNotes="0..100"/>
+            <argument token="G" description="green" valueNotes="0..100"/>
+            <argument token="B" description="blue" valueNotes="0..100"/>
+            <argument token="A" description="alpha" valueNotes="0..100"/>
+          </arguments>
+        </command>
+
         <command name="menuitemcheckbox">
           <description>Creates a checkbox menu item.</description>
           <arguments>
@@ -5513,6 +5565,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="E" description="file extension"/>
             <argument token="A" description="action"/>
             <argument token="I" description="show image from a file" valueNotes="0 or 1"/>
+            <argument token="S" description="string - search it in map/demo filenames and descriptions and show only matched files (case insensitive)"/>
           </arguments>
           <examples>
             <example>
@@ -5642,22 +5695,26 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
     <section name="Heads-Up Display" sortindex="06">
       <description>This section describes the identifiers to configure the head-up display (HUD).</description>
       <identifiers>
-        <variable name="clockdisplay">
-          <description>Show the game-time clock on the HUD.</description>
-          <value token="D" description="turn the clock on (1) or off (0)" minValue="0" maxValue="1" defaultValue="1"/>
-          <references>
-            <identifierReference identifier="clockcount"/>
-          </references>
-        </variable>
 
-        <variable name="clockcount">
-          <description>Set counting direction of the game-time clock.</description>
+        <variable name="gametimedisplay">
+          <description>Show the game-time clock on the HUD.</description>
+          <value token="D" description="off (0), count backward (1), count forward (2)" minValue="0" maxValue="2" defaultValue="1"/>
           <remarks>
             <remark>The clock can count backward (from time limit to 0s) or forward (from 0s to time limit).</remark>
           </remarks>
-          <value token="D" description="count backward (0) or forward (1)" minValue="0" maxValue="1" defaultValue="0"/>
           <references>
-            <identifierReference identifier="clockdisplay"/>
+            <identifierReference identifier="wallclockformat"/>
+          </references>
+        </variable>
+
+        <variable name="wallclockformat">
+          <description>Show the wall clock with time (usually local, not game-time) on the HUD.</description>
+          <remarks>
+            <remark>"wallclockformat" alias should contain string in strftime format to show the clock with proper time.
+            If the alias is empty, the wall clock is hidden.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="gametimedisplay"/>
           </references>
         </variable>
 
@@ -5667,28 +5724,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="minimapres"/>
           </references>
         </command>
-
-        <command name="conskip">
-          <description>Allows to browse through the console history by offsetting the console output.</description>
-          <defaultKeys>
-            <key alias="KP_MINUS" name="- on the keypad" description="scrolls into the history (conskip 1)"/>
-            <key alias="KP_PLUS" name="+ on the keypad" description="resets the history (conskip -1000)"/>
-          </defaultKeys>
-          <arguments>
-            <argument token="N" description="the offset"/>
-          </arguments>
-        </command>
-
-        <variable name="maxhistory">
-          <description>Sets how many typed console commands to store.</description>
-          <remarks>
-            <remark>
-            This value sets how many command lines to store in memory, everytime a command is entered
-            it gets store so it can be recalled using the "/" key along with the arrow keys to scroll back and forth through the list.
-            </remark>
-          </remarks>
-          <value token="N" description="Total of stored commands" minValue="0" maxValue="10000" defaultValue="1000"/>
-        </variable>
 
         <variable name="minimapres">
           <description>Sets the resolution for the minimap.</description>
@@ -5723,11 +5758,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="V" description="time before the text rolls up" minValue="0" maxValue="60" defaultValue="20"/>
         </variable>
 
-        <variable name="maxcon">
-          <description>Sets the total number of text lines from the console to store as history.</description>
-          <value token="V" description="" minValue="10" maxValue="1000" defaultValue="200"/>
-        </variable>
-
         <variable name="consize">
           <description>Sets how many lines of text the console displays.</description>
           <value token="V" description="" minValue="0" maxValue="100" defaultValue="6"/>
@@ -5738,7 +5768,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="altconsize">
-          <description>Sets the number of text lines on an alternate F11 history display.</description>
+          <description>Sets the percent of screen height for text lines on an alternate F11 history display.</description>
           <value token="V" description="" minValue="0" maxValue="100" defaultValue="0"/>
           <references>
             <identifierReference identifier="consize"/>
@@ -5747,7 +5777,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="fullconsize">
-          <description>Sets the number of text lines on the F11 history display.</description>
+          <description>Sets the percent of screen height for text lines on the F11 history display.</description>
           <value token="V" description="" minValue="0" maxValue="100" defaultValue="40"/>
           <references>
             <identifierReference identifier="consize"/>
@@ -5972,6 +6002,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="cleanshot"/>
             <identifierReference identifier="enablehud"/>
+            <identifierReference identifier="blankouthud"/>
           </references>
         </command>
 
@@ -5980,8 +6011,25 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="cleanshot"/>
             <identifierReference identifier="disablehud"/>
+            <identifierReference identifier="blankouthud"/>
           </references>
         </command>
+
+        <variable name="blankouthud">
+          <description>Hides most of elements on the HUD for X frames.</description>
+          <value token="X" description="blank out the HUD" minValue="0" maxValue="10000" defaultValue="0"/>
+          <remarks>
+            <remark>
+            Used for "clean" screenshot. The parameter is "frames", so for example 1000 will take 20 seconds at 50 fps
+            or second at 1000 fps.
+            </remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="cleanshot"/>
+             <identifierReference identifier="enablehud"/>
+            <identifierReference identifier="disablehud"/>
+          </references>
+        </variable>
 
         <variable name="showmodedescriptions">
           <description>enables or disables the showing of game mode descriptions on the console after map starts.</description>
@@ -6509,6 +6557,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </variable>
 
+        <variable name="maxtmus">
+          <description>Gets the maximum number of supported textures when performing multitexturing.</description>
+        </variable>
+
         <variable name="trilinear">
           <value token="V" description="" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
@@ -6590,10 +6642,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <command name="fragmessage">
-          <description>set the frag message corresponding to a weapon (appearing on the hud or in server logs)</description>
+          <description>set the frag message corresponding to a weapon (appearing on the hud).</description>
           <arguments>
-            <argument token="G" description="the integer of the gun" valueNotes=" 0 = knife, etc."/>
-            <argument token="M" description="the message you want to appear" valueNotes="ex : sniped"/>
+            <argument token="G" description="the integer of the gun" valueNotes="0 = knife, etc."/>
+            <argument token="M" description="the message you want to appear" valueNotes="example: sniped"/>
           </arguments>
           <examples>
             <example>
@@ -6603,20 +6655,25 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
              In server logs you will get "[127.0.0.1] killer sniped unarmed".</explanation>
             </example>
           </examples>
-          <remarks>
-            <remark>
-             This command can be read by both client and server, but the server can't read the cfg if it contains anything else than fragmessage or gibmessage calls.
-            </remark>
-          </remarks>
+          <references>
+            <identifierReference identifier="gibmessage"/>
+          </references>
         </command>
 
         <command name="gibmessage">
-          <description>set the gib message corresponding to a weapon (appearing on the hud or in server logs)</description>
+          <description>set the gib message corresponding to a weapon (appearing on the hud).</description>
+          <arguments>
+            <argument token="G" description="the integer of the gun" valueNotes="0 = knife, etc."/>
+            <argument token="M" description="the message you want to appear" valueNotes="example: slashed"/>
+          </arguments>
           <remarks>
             <remark>
-              This command is identical to fragmessage (above)
+              This command is identical to fragmessage, see it.
             </remark>
           </remarks>
+          <references>
+            <identifierReference identifier="fragmessage"/>
+          </references>
         </command>
 
         <variable name="maploaditemlength">
