@@ -184,20 +184,20 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <references>
             <identifierReference identifier="storesets"/>
+            <identifierReference identifier="getvarrange"/>
           </references>
         </command>
 
-        <!-- FIXME: (getalias) can not handle built-in client variables
-        <command name="getvar">
-          <description>return the value of the engine variable</description>
+        <command name="getvarrange">
+          <description>Gets range attribute for builtin variable.</description>
           <arguments>
-            <argument token="N" description="identifier name"/>
+            <argument token="W" description="what" valueNotes="min, max, default"/>
+            <argument token="N" description="the name of any builtin variable (integer or float)"/>
           </arguments>
           <references>
             <identifierReference identifier="getalias"/>
           </references>
         </command>
-        -->
 
         <command name="isIdent">
           <description>returns whether or not there is an identifier by that name</description>
@@ -2201,6 +2201,204 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </variable>
 
+        <command name="addpckserver">
+          <description>Adds a packages source server where to download custom content from.</description>
+          <remarks>
+            <remark>Only add servers you trust.</remark>
+            <remark>The list of servers is saved into config/pcksources.cfg on game quit.</remark>
+            <remark>
+            If a priority is given, it influences the sorting of servers. Servers with higher priority are queried first.
+            If servers have the same priority, they are sorted by ping. Default priority is zero.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="S" description="The server address. Trailing slash not needed."/>
+            <argument token="P" description="priority of the server"/>
+          </arguments>
+          <examples>
+            <example>
+              <code>addpckserver http://packages.ac-akimbo.net</code>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="resetpckservers"/>
+            <identifierReference identifier="autodownload"/>
+            <identifierReference identifier="getpckserver"/>
+          </references>
+        </command>
+
+        <command name="getpckserver">
+          <description>Returns a table with four columns of all configured package servers.</description>
+          <remarks>
+            <remark>The columns are: host name, priority, ping and resolved.
+            "resolved" is a flag, indicating, if the server answered the ping during game start.
+            </remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="addpckserver"/>
+            <identifierReference identifier="autodownload"/>
+            <identifierReference identifier="resetpckservers"/>
+          </references>
+        </command>
+
+        <command name="resetpckservers">
+          <description>Resets the list of packages source servers where to download custom content from.</description>
+          <remarks>
+            <remark>Restart AssaultCube to take the effect.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="addpckserver"/>
+            <identifierReference identifier="autodownload"/>
+            <identifierReference identifier="getpckserver"/>
+          </references>
+        </command>
+
+        <variable name="autodownload">
+          <description>Determines if the game should try to download missing packages such as textures or mapmodels on the fly.</description>
+          <value token="V" description="Note: This is turned on by default" minValue="0" maxValue="1" defaultValue="1"/>
+        </variable>
+
+        <variable name="autodownloaddebug">
+          <description>When the variable autodownloaddebug is set to 1 and/or in debug binaries, more debug output is produced.</description>
+          <value token="V" description="Add debug info to autodownload" minValue="0" maxValue="1" defaultValue="0"/>
+        </variable>
+
+        <command name="addzipmod">
+          <description>Add the zip package file "mods/zipname.zip" to the virtual file system.</description>
+          <remarks>
+            <remark>
+            Add the zip package file "mods/zipname.zip" to the virtual file system.
+            Only files below the path "packages/" are added (and also files below "config/", if zipname starts with "###").
+            If the size of the zip file is below "zipcachemaxsize", the whole zip file is cached in memory.
+            (Un-cached zip files are kept open at all time, so caching keeps the number of simultaneously opened files lower.)
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="the name of the zip mod"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="getmod"/>
+            <identifierReference identifier="zipcachemaxsize"/>
+            <identifierReference identifier="zipmodremove"/>
+            <identifierReference identifier="zipmodclear"/>
+            <identifierReference identifier="zipmodlist"/>
+            <identifierReference identifier="zipmodgetdesc"/>
+            <identifierReference identifier="zipmodgetfiles"/>
+            <identifierReference identifier="zipmodgetrevision"/>
+          </references>
+        </command>
+
+        <variable name="zipcachemaxsize">
+          <description>Maximal size of the file, which is cached in memory.</description>
+          <remarks>
+            <remark>
+            If the size of the zip file is below "zipcachemaxsize",
+            then during loading the whole zip file is cached in memory.
+            When the size is greater, then zip is just opened as a file and read from disk.
+            </remark>
+          </remarks>
+          <value token="S" description="size [kB]" minValue="0" maxValue="1024" defaultValue="512"/>
+          <references>
+            <identifierReference identifier="addzipmod"/>
+          </references>
+        </variable>
+
+        <command name="zipmodremove">
+          <description>Removes one zip file from the virtual file system.</description>
+          <arguments>
+            <argument token="N" description="the name of the zip mod"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="addzipmod"/>
+            <identifierReference identifier="zipmodclear"/>
+          </references>
+        </command>
+
+        <command name="zipmodclear">
+          <description>Removes all zip files from the virtual file system.</description>
+          <references>
+            <identifierReference identifier="addzipmod"/>
+            <identifierReference identifier="zipmodremove"/>
+          </references>
+        </command>
+
+        <command name="zipmodlist">
+          <description>Lists zip files in "mods/".</description>
+          <remarks>
+            <remark>
+            By default or if "what" is "all", all zips are listed. If "what" is "active", only those zips,
+            that are already in use, are listed. If "what" is "inactive", only the unused zip files are listed.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="W" description="what" valueNotes="all, active, inactive"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="getmod"/>
+            <identifierReference identifier="addzipmod"/>
+            <identifierReference identifier="zipmodgetdesc"/>
+            <identifierReference identifier="zipmodgetfiles"/>
+            <identifierReference identifier="zipmodgetrevision"/>
+          </references>
+        </command>
+
+        <command name="zipmodgetdesc">
+          <description>Reads and returns the first 11 lines from the file "desc.txt" in the named zip file.</description>
+          <remarks>
+            <remark>
+            The first line is supposed to contain a descriptive title for the zip (for use in menus)
+            and the next 10 lines should contain a more detailed description (also for use in menus).
+            The command also unpacks "preview.jpg" from the zip and mounts it as a temporary file
+            under the name "packages/modpreviews/zipname.jpg".
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="the name of the zip mod"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="getmod"/>
+            <identifierReference identifier="addzipmod"/>
+            <identifierReference identifier="zipmodlist"/>
+            <identifierReference identifier="zipmodgetfiles"/>
+            <identifierReference identifier="zipmodgetrevision"/>
+          </references>
+        </command>
+
+        <command name="zipmodgetfiles">
+          <description>Returns the list of files contained in a zip file.</description>
+          <arguments>
+            <argument token="N" description="the name of the zip mod"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="getmod"/>
+            <identifierReference identifier="addzipmod"/>
+            <identifierReference identifier="zipmodlist"/>
+            <identifierReference identifier="zipmodgetdesc"/>
+            <identifierReference identifier="zipmodgetrevision"/>
+          </references>
+        </command>
+
+        <command name="zipmodgetrevision">
+          <description>Returns the revision number of the zip file.</description>
+          <remarks>
+            <remark>
+            The number is supposed to be part of a filename: "revision_n".
+            If no such file is found in the zip file, the return value is zero.
+            The content of the revision file is not relevant and a file size of zero is recommended.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="the name of the zip mod"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="getmod"/>
+            <identifierReference identifier="addzipmod"/>
+            <identifierReference identifier="zipmodlist"/>
+            <identifierReference identifier="zipmodgetdesc"/>
+            <identifierReference identifier="zipmodgetfiles"/>
+          </references>
+        </command>
+
       </identifiers>
     </section>
     <!-- General Section Ends -->
@@ -3524,12 +3722,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>If the command is passed an argument, different than the map being played, the game tries to download the specified map from an available packages source server.</remark>
           </remarks>
-          
           <references>
             <identifierReference identifier="sendmap"/>
             <identifierReference identifier="dlmap"/>
           </references>
-          
           <arguments>
             <argument token="S" description="the name of the map"/>
             <argument token="C" description="cubescript to execute once map is installed" optional="true"/>
@@ -3547,62 +3743,18 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
-        <command name="addpckserver">
-          <description>Adds a packages source server where to download custom content from.</description>
+        <command name="getmod">
+          <description>Try to download mods/modname.zip from all configured package servers.</description>
           <remarks>
-            <remark>Only add servers you trust.</remark>
-            <remark>The list of servers is saved into config/pcksources.cfg on game quit.</remark>
+            <remark>Does not automatically activate the mod.</remark>
           </remarks>
-          
-          <examples>
-            <example>
-              <code>addpckserver http://packages.ac-akimbo.net</code>
-            </example>
-          </examples>
-          
-          <references>
-            <identifierReference identifier="resetpckservers"/>
-            <identifierReference identifier="sortpckservers"/>
-            <identifierReference identifier="autodownload"/>
-          </references>
-          
           <arguments>
-            <argument token="S" description="The server address. Trailing slash not needed."/>
+            <argument token="N" description="the name of the mod"/>
           </arguments>
-        </command>
-
-        <command name="resetpckservers">
-          <description>Resets the list of packages source servers where to download custom content from.</description>
-          <remarks>
-            <remark>Restart AssaultCube to take the effect.</remark>
-          </remarks>
-          
           <references>
-            <identifierReference identifier="addpckserver"/>
-            <identifierReference identifier="sortpckservers"/>
-            <identifierReference identifier="autodownload"/>
+            <identifierReference identifier="addzipmod"/>
           </references>
         </command>
-
-        <command name="sortpckservers">
-          <description>Sorts the available packages source servers by ascendant ping. The fastest to reach is then used by default.</description>
-       
-          <references>
-            <identifierReference identifier="addpckserver"/>
-            <identifierReference identifier="sortpckservers"/>
-            <identifierReference identifier="autodownload"/>
-          </references>
-        </command>
-
-        <variable name="autodownload">
-          <description>Determines if the game should try to download missing packages such as textures or mapmodels on the fly.</description>
-          <value token="V" description="Note: This is turned on by default" minValue="0" maxValue="1" defaultValue="1"/>
-        </variable>
-
-        <variable name="autodownloaddebug">
-          <description>When the variable autodownloaddebug is set to 1 and/or in debug binaries, more debug output is produced.</description>
-          <value token="V" description="Add debug info to autodownload" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
 
         <command name="spectatemode">
           <description>Sets the desired spectating mode.</description>
@@ -4445,7 +4597,24 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="T" description="an integer denoting the type" valueNotes="0 (floor), 1 (lower or wall), 2 (ceiling), 3 (upper wall)"/>
             <argument token="D" description="the direction you want to cycle the textures in" valueNotes="1 (forwards), -1 (backwards)"/>
           </arguments>
+          <references>
+            <identifierReference identifier="hudtexttl"/>
+          </references>
         </command>
+
+        <variable name="hudtexttl">
+          <description>show preview of textures during editing.</description>
+          <remarks>
+            <remark>
+            When textures of the map geometry are changed, five textures around the current pick from the "last used" stack are shown.
+            </remark>
+            <remark>The texture assigned to the "sky" slot is not shown. Instead, a plain blue rectangle is used.</remark>
+          </remarks>
+          <value token="T" description="time to show texture preview [ms]" minValue="0" maxValue="10000" defaultValue="2500"/>
+          <references>
+            <identifierReference identifier="edittex"/>
+          </references>
+        </variable>
 
         <command name="settex">
           <description><![CDATA[Set a texture for the current selection.]]></description>
@@ -5427,9 +5596,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="newmenu"/>
           </references>
           <arguments>
-            <argument token="N" description="The menuitem description."/>
+            <argument token="T" description="The text content in menu line."/>
             <argument token="A" description="The command to execute on selection of the menuitem." optional="true"/>
             <argument token="H" description="The command to execute upon rolling over the menuitem." optional="true"/>
+            <argument token="D" description="The description of menu item, which is displayed on the menu footer." optional="true"/>
           </arguments>
         </command>
 
@@ -5458,12 +5628,41 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
+        <command name="menuitemaltfont">
+          <description>Displays a menu line with a text which may contain chars from an alternate font.</description>
+          <remarks>
+            <remark>
+            Chars from the alternate font have to be marked with "\a".
+            Alternate font chars have no width and are just rendered above the following text. Use spaces to counter that.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="the name of the alternate font"/>
+            <argument token="T" description="text content in menu line"/>
+            <argument token="A" description="action" optional="true"/>
+            <argument token="H" description="hoveraction" optional="true"/>
+            <argument token="D" description="description displayed on menu footer" optional="true"/>
+          </arguments>
+        </command>
+
         <command name="menuselection">
           <description>Selects a line in a menu.</description>
           <arguments>
             <argument token="A" description="menu name"/>
             <argument token="B" description="line number"/>
           </arguments>
+        </command>
+
+        <command name="menuselectionpersistent">
+          <description>Enables persistent selections for the currently displayed menu</description>
+          <remarks>
+            <remark>When enabled, it restores a previously saved selection.</remark>
+            <remark>
+            Probably most efficient inside "menuinit". The position is restored during execution of this command,
+            so the menu entry has to already exist and the alias with the last position has to be read from saved.cfg.
+            In automatically created menus it may be necessary to execute the command with a short delay.
+            </remark>
+          </remarks>
         </command>
 
         <command name="menuselectionbgcolor">
@@ -5655,6 +5854,44 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="S" description="the scale"/>
           </arguments>
         </command>
+
+        <command name="chmenutexture">
+          <description>Displays a texture on the right side of a menu.</description>
+          <remarks>
+            <remark>
+            By specifying a title string in the third argument to chmenutexture,
+            a picture is rendered instead of a texture. The title string is displayed instead of the texture resolution.
+            The variable "menupicturesize" holds a size modifier for pictures, similar to "menutexturesize".
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="the name of the menu"/>
+            <argument token="P" description="the path to the texture"/>
+            <argument token="T" description="the title of the picture"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="menutexturesize"/>
+            <identifierReference identifier="menupicturesize"/>
+          </references>
+        </command>
+
+        <variable name="menutexturesize">
+          <description>Changes the size of textures displayed in menus (mostly for testing purposes).</description>
+          <value token="N" description="size factor" minValue="0.1f" maxValue="5.0f" defaultValue="1.0f"/>
+          <references>
+            <identifierReference identifier="chmenutexture"/>
+            <identifierReference identifier="menupicturesize"/>
+          </references>
+        </variable>
+
+        <variable name="menupicturesize">
+          <description>Changes the size of pictures displayed in menus.</description>
+          <value token="N" description="size factor" minValue="0.1f" maxValue="5.0f" defaultValue="1.6f"/>
+          <references>
+            <identifierReference identifier="chmenutexture"/>
+            <identifierReference identifier="menutexturesize"/>
+          </references>
+        </variable>
 
         <variable name="wrapslider">
           <description>If wrapslider is set the menuitemslider will toggle to the min/max value if at end of the range.</description>
@@ -8470,15 +8707,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="B" description="BOOL" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
-        <command name="addzip">
-          <description>TODO: Description</description>
-          <arguments>
-            <argument token="A" description="TODO"/>
-            <argument token="B" description="TODO"/>
-            <argument token="C" description="TODO"/>
-          </arguments>
-        </command>
-
         <command name="fontskip">
           <description>At what char does the definition proceed?</description>
           <arguments>
@@ -8487,13 +8715,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="musicpreload">
-          <description>TODO: Description</description>
-          <arguments>
-            <argument token="A" description="TODO"/>
-          </arguments>
-        </command>
-
-        <command name="removezip">
           <description>TODO: Description</description>
           <arguments>
             <argument token="A" description="TODO"/>
