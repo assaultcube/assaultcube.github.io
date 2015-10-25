@@ -5531,16 +5531,146 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
+        <command name="gettextureorigin">
+          <description>Returns the location where the texture file actually can be found.</description>
+          <remarks>
+            <remark>The possibilities are:</remark>
+            <remark>"official": texture file was found in the working directory, which indicates an official texture.</remark>
+            <remark>"custom": texture file was found in the profile directory, which means, the texture is either manually installed or downloaded.</remark>
+            <remark>"package dir #x": texture file was found in a mod directory.</remark>
+            <remark>"&lt;file not found&gt;"</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="filename or partial path with filename"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="texture"/>
+            <identifierReference identifier="gettexturelist"/>
+          </references>
+        </command>
+
+        <command name="textureslotbyname">
+          <description>Returns the list of numbers of all texture slots which use that texture file.</description>
+          <arguments>
+            <argument token="N" description="texture filename"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="texture"/>
+            <identifierReference identifier="gettexturelist"/>
+          </references>
+        </command>
+
+        <command name="textureslotusagelist">
+          <description>Return a list of 256 numbers representing the number of uses for every texture slot.</description>
+          <remarks>
+            <remark>
+            If "what" is "onlygeometry", the uses as map model skin do not count.
+            If "what" is "onlymodels", the uses in map geometry do not count.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="W" description="what" valueNotes="onlygeometry, onlymodels"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="texture"/>
+            <identifierReference identifier="edittextureslot"/>
+            <identifierReference identifier="deletetextureslot"/>
+            <identifierReference identifier="edittexturestack"/>
+          </references>
+        </command>
+
+        <command name="deletetextureslot">
+          <description>Deletes an unused texture slot.</description>
+          <remarks>
+            <remark>
+            If "purge" word is put as second argument, it also deletes an used slot.
+            All mapmodels that use that texture as skin are changed to default skin.
+            All world geometry, which uses the texture, is instead set to use slot #255 or a specified replacement slot.
+            Slots below #5 always require "purge", no matter if they are in use (default slots).
+            </remark>
+            <remark>Also enables automapconfig.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="texture slot number" valueNotes="0..255"/>
+            <argument token="P" description="delete used slot?" valueNotes="purge"/>
+            <argument token="R" description="replacement slot" valueNotes="0..255"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="texture"/>
+            <identifierReference identifier="edittextureslot"/>
+            <identifierReference identifier="textureslotusagelist"/>
+          </references>
+        </command>
+
+        <command name="edittexturestack">
+          <description>Puts a texture slot in a "last used" list up front.</description>
+          <remarks>
+            <remark>The first parameter picks the list, the second parameter is the texture slot number to be used for the next edit.</remark>
+          </remarks>
+          <arguments>
+            <argument token="S" description="surface" valueNotes="floor, wall or ceiling"/>
+            <argument token="N" description="texture slot number" valueNotes="0..255"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="texture"/>
+            <identifierReference identifier="textureslotusagelist"/>
+          </references>
+        </command>
+
+        <command name="getmapsoundlist">
+          <description>Returns a list of all *.wav and *.ogg files below packages/audio/ambience.</description>
+          <references>
+            <identifierReference identifier="mapsound"/>
+            <identifierReference identifier="mapsoundslotbyname"/>
+            <identifierReference identifier="getmapsoundorigin"/>
+          </references>
+        </command>
+
+        <command name="getmapsoundorigin">
+          <description>Returns the location where the map sound file actually can be found.</description>
+          <remarks>
+            <remark>The possibilities are:</remark>
+            <remark>"official": mapsound file was found in the working directory, which indicates an official mapsound.</remark>
+            <remark>"custom": mapsound file was found in the profile directory, which means, the mapsound is either manually installed or downloaded.</remark>
+            <remark>"package dir #x": mapsound file was found in a mod directory.</remark>
+            <remark>"&lt;file not found&gt;"</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="filename or partial path with filename"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapsound"/>
+            <identifierReference identifier="getmapsoundlist"/>
+          </references>
+        </command>
+
+        <command name="mapsoundslotbyname">
+          <description>Returns the list of numbers of all mapsound slots which use that sound file.</description>
+          <arguments>
+            <argument token="N" description="mapsound filename"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapsound"/>
+            <identifierReference identifier="getmapsoundlist"/>
+            <identifierReference identifier="mapsoundchanged"/>
+          </references>
+        </command>
+
         <variable name="mapsoundchanged">
           <description>Set to "1" with every command that changes mapsound slots.</description>
-          <value token="N" description="0: not changed, 1: changed" minValue="0" maxValue="1" defaultValue="0" />
+          <value token="N" description="0: not changed, 1: changed" minValue="0" maxValue="1" defaultValue="0"/>
           <remarks>
             <remark>Should be used to trigger a rebuild of mapsound menus.</remark>
           </remarks>
           <references>
             <identifierReference identifier="mapsound"/>
+            <identifierReference identifier="mapsoundslotbyname"/>
           </references>
         </variable>
+
+        <command name="getautomapconfig">
+          <description>Returns "1" if automapconfig is already enabled, "0" otherwise.</description>
+        </command>
 
         </identifiers>
     </section>
@@ -5923,6 +6053,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="curmenu"/>
           </references>
+        </command>
+
+        <command name="menurenderoffset">
+          <description>Moves a menu away from the middle of the screen.</description>
+          <remarks>
+            <remark>Values of "100" represent half the screen width and height.</remark>
+          </remarks>
+          <arguments>
+            <argument token="X" description="x-offset"/>
+            <argument token="Y" description="y-offset"/>
+          </arguments>
         </command>
 
       </identifiers>
