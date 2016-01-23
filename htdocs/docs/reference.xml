@@ -236,6 +236,14 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="pop">
           <description>Resets a previously pushed alias to it's original value.</description>
+          <remarks>
+            <remark>
+              It is allowed to use multiple arguments for "pop".
+              So instead of "pop var_a ; pop var_b" you can write "pop var_a var_b".
+              Also, "pop" will now give back the removed value of the first alias from the argument list.
+              This allows using the pop'd value one last time.
+            </remark>
+          </remarks>
           <arguments>
             <argument token="A" description="alias"/>
           </arguments>
@@ -2620,7 +2628,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>The alias is executed before the name is effectively changed, so you can still get the previous name of the client from this alias.</remark>
           </remarks>
         </scriptalias>
-        
+
         <scriptalias name="afterinit">
           <description>If defined, this will be executed after saved.cfg is loaded.</description>
         </scriptalias>
@@ -2628,23 +2636,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <scriptalias name="addOnQuit">
           <description>Execute a command or block of code on quit.</description>
           <value token="A" description="the command or block of code to execute"/>
-          <references>
-            <identifierReference identifier="addListOnQuit"/>
-          </references>
-        </scriptalias>
-
-        <scriptalias name="addListOnQuit">
-          <description>Deletes a list of aliases (from saved.cfg) on quit.</description>
-          <examples>
-            <example>
-              <code><![CDATA[addListOnQuit "a b c"]]></code>
-              <explanation>Deletes aliases a, b, and c from existance and saved.cfg upon quit.</explanation>
-            </example>
-          </examples>
-          <value token="L" description="the list of aliases to delete"/>
-          <references>
-            <identifierReference identifier="addOnQuit"/>
-          </references>
         </scriptalias>
 
         <scriptalias name="modmdlweapN">
@@ -5672,6 +5663,181 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Returns "1" if automapconfig is already enabled, "0" otherwise.</description>
         </command>
 
+        <command name="enumentities">
+          <description>Returns a list of the numbers of all entities of that type.</description>
+          <remarks>
+            <remark>If no such entities exist or the entity type could not be recognised, the list is empty.</remark>
+          </remarks>
+          <arguments>
+            <argument token="type" description="the entity type" valueNotes="light, sound, clip, plclip, playerstart, pistol, ammobox, grenades, health, armour, akimbo, mapmodel, ladder, ctf-flag, helmet"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="gotoentity"/>
+          </references>
+        </command>
+
+        <command name="gotoentity">
+          <description>Jump to the location of a map entity.</description>
+          <remarks>
+            <remark>You can get the entity number with use "enumentities" command.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="the entity number" valueNotes=""/>
+          </arguments>
+          <references>
+            <identifierReference identifier="enumentities"/>
+          </references>
+        </command>
+
+        <command name="toggleclosestentpin">
+          <description>Toggles the pin on the "closest entity" selector.</description>
+          <remarks>
+            <remark>Bound to MOUSE3 (middle mouse button) by default.</remark>
+            <remark>
+            The HUD will indicate the lock by showing "pinned" instead of "closest" entity.
+            All actions, that would otherwise affect the closest entity, will affect the pinned entity instead.
+            Deleting the locked entity will unlock it.
+            </remark>
+          </remarks>
+        </command>
+
+        <command name="getdeletedentities">
+          <description>Returns a list of deleted entities.</description>
+          <remarks>
+            <remark>Each line contains the entity type, the position and all seven attributes.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="undelent"/>
+            <identifierReference identifier="unlistdeletedentity"/>
+          </references>
+        </command>
+
+        <command name="undelent">
+          <description>Restores deleted entity.</description>
+          <remarks>
+            <remark>
+            If no index is specified, the last deleted entity is restored.
+            If an index is given, the specified entity from the list of deleted entities is restored.
+            </remark>
+            <remark>BACKSPACE in combination with editmeta (LCTRL) undeletes the last deleted entity.</remark>
+            <remark>BACKSPACE in combination with editmeta2 (LSHIFT) brings up the menu "deleted entities".</remark>
+          </remarks>
+          <arguments>
+            <argument token="I" description="index"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="getdeletedentities"/>
+            <identifierReference identifier="unlistdeletedentity"/>
+          </references>
+        </command>
+
+        <command name="unlistdeletedentity">
+          <description>Removes entities from the list of deleted entities.</description>
+          <remarks>
+            <remark>If &lt;which&gt; is a number, the specified entry from the list of deleted entities gets removed.</remark>
+            <remark>If &lt;which&gt; is "all", the whole list of deleted entities gets deleted.</remark>
+            <remark>If &lt;which&gt; is "last" the last deleted entity is removed from the list of deleted entities.</remark>
+            <remark>Returns the number of entities on the list of deleted entities (even if the parameter &lt;which&gt; was unknown or not specified).</remark>
+          </remarks>
+          <arguments>
+            <argument token="W" description="which" valueNotes="[a number], all or last"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="getdeletedentities"/>
+            <identifierReference identifier="undelent"/>
+          </references>
+        </command>
+
+        <command name="xmap_list">
+          <description>Lists all xmaps currently in memory.</description>
+          <references>
+            <identifierReference identifier="xmap_store"/>
+            <identifierReference identifier="xmap_restore"/>
+            <identifierReference identifier="xmap_delete"/>
+            <identifierReference identifier="xmap_delete_backup"/>
+            <identifierReference identifier="xmap_keep_backup"/>
+            <identifierReference identifier="xmap_rename"/>
+          </references>
+        </command>
+
+        <command name="xmap_store">
+          <description>Creates a snapshot and stores it under the given nickname.</description>
+          <remarks>
+            <remark>Nicknames have to qualify as valid filenames.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="nickname"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="xmap_list"/>
+            <identifierReference identifier="xmap_restore"/>
+          </references>
+        </command>
+
+        <command name="xmap_restore">
+          <description>Restores the xmap snapshot.</description>
+          <remarks>
+            <remark>1. If nickname is not given, it restores the last automatic backup snapshot. Automatic snapshots are taken:</remark>
+            <remark>a) before a snapshot is restored,</remark>
+            <remark>b) before a new map is loaded (if there were unsaved edits on the map) and</remark>
+            <remark>c) when the game ends (if there were unsaved edits).</remark>
+            <remark>2. If nickname is given, the command restores the named snapshot, it also creates a backup snapshot of the current editing data.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="nickname"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="xmap_list"/>
+            <identifierReference identifier="xmap_store"/>
+          </references>
+        </command>
+
+        <command name="xmap_delete">
+          <description>Deletes the named snapshot.</description>
+          <arguments>
+            <argument token="N" description="nickname"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="xmap_list"/>
+          </references>
+        </command>
+
+        <command name="xmap_delete_backup">
+          <description>Deletes the backup xmap.</description>
+          <references>
+            <identifierReference identifier="xmap_list"/>
+          </references>
+        </command>
+
+        <command name="xmap_keep_backup">
+          <description>Moves the backup xmap to a regular named spot.</description>
+          <arguments>
+            <argument token="N" description="nickname"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="xmap_list"/>
+          </references>
+        </command>
+
+        <command name="xmap_rename">
+          <description>Changes the nickname of the xmap.</description>
+          <arguments>
+            <argument token="O" description="old nickname"/>
+            <argument token="N" description="new nickname"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="xmap_list"/>
+          </references>
+        </command>
+
+        <variable name="showplayerstarts">
+          <description>Show all playerstarts in edit mode.</description>
+          <remarks>
+            <remark>Set showplayerstarts to "1" to see a playermodel rendered at all playerstart entities.</remark>
+          </remarks>
+          <value token="N" description="0: hide, 1: show" minValue="0" maxValue="1" defaultValue="0"/>
+        </variable>
+
         </identifiers>
     </section>
     <!-- Editing Section Ends -->
@@ -6760,7 +6926,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="reflectclip">
-          <value token="V" description="" minValue="0" maxValue="100" defaultValue="3"/>
+          <value token="V" description="" minValue="0" maxValue="100" defaultValue="1"/>
         </variable>
 
         <variable name="reflectsize">
@@ -7629,7 +7795,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="setadmin"/>
           </references>
           <arguments>
-            <argument token="B" description="Enables or disables auto team." valueNotes="1 (On), 0 (Off)"/>
+            <argument token="B" description="Enables or disables auto team" valueNotes="1 (On), 0 (Off)"/>
           </arguments>
         </command>
 
@@ -7643,7 +7809,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="setadmin"/>
           </references>
           <arguments>
-            <argument token="CN" description="The player to ban" valueNotes="Client number"/>
+            <argument token="C" description="The player to ban" valueNotes="client number"/>
+            <argument token="R" description="The reason" valueNotes="at least 4 characters"/>
           </arguments>
         </command>
 
@@ -7709,7 +7876,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="setadmin"/>
           </references>
           <arguments>
-            <argument token="CN" description="The player to become admin" valueNotes="Client number"/>
+            <argument token="C" description="The player to become admin" valueNotes="client number"/>
           </arguments>
         </command>
 
@@ -7719,7 +7886,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="setadmin"/>
           </references>
           <arguments>
-            <argument token="CN" description="The player to kick" valueNotes="Client number"/>
+            <argument token="C" description="The player to kick" valueNotes="client number"/>
+            <argument token="R" description="The reason" valueNotes="at least 4 characters"/>
           </arguments>
         </command>
 
