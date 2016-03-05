@@ -1977,14 +1977,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="B" description="enable correction" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
-        <variable name="dbgts">
-          <description>Enable triangle debug.</description>
-          <remarks>
-            <remark>Prints details while connecting triangles of 3d models.</remark>
-          </remarks>
-          <value token="B" description="triangle debug" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
         <variable name="maxfps">
           <description>Limits the FPS (frames per second) of AssaultCube's video output.</description>
           <value token="V" description="maximum FPS" minValue="25 or 0" maxValue="1000" defaultValue="200" valueNotes="0 disables maxfps"/>
@@ -2085,14 +2077,14 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <variable name="version">
           <description>Gets an integer representing the game version. READ ONLY</description>
           <remarks>
-            <remark>As example, version 1.0 is represented as value 1000.</remark>
+            <remark>As example, version 1.2.0.2 is represented as value 1202.</remark>
           </remarks>
         </variable>
 
         <variable name="protocol">
           <description>Gets an integer representing the game protocol. READ ONLY</description>
           <remarks>
-            <remark>As example, the protocol of version 1.1.0.4 is represented as value 1132.</remark>
+            <remark>As example, the protocol of version 1.2.0.2 is represented as value 1201.</remark>
           </remarks>
         </variable>
 
@@ -2143,10 +2135,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="conopen">
-          <description>"Returns $conopen, which describes the state of the console."</description>
-          <remarks>
-            <remark>0 means the console is closed. 1 means the console is open in an alternate size. 2 means the console is open regularly. </remark>
-          </remarks>
+          <description>Indicates the state of the console.</description>
+          <value token="N" description="console state" minValue="0" maxValue="2" defaultValue="0" readOnly="true" valueNotes="0: closed, 1: open in an alternate size, 2: open regularly"/>
           <references>
             <identifierReference identifier="altconsize"/>
             <identifierReference identifier="toggleconsole"/>
@@ -3946,17 +3936,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="B" description="enable footsteps" minValue="0" maxValue="1" defaultValue="1" valueNotes="1 (true), 0 (false)"/>
         </variable>
 
-        <variable name="footstepalign">
-          <description>Maximum time span between player animation and the playback of the footstep sound</description>
-          <remarks>
-            <remark>
-            If the footstep sound would be played immediately when entering the radius of the other player, it would
-            not be synchronous to the player model animation.
-            </remark>
-          </remarks>
-          <value token="T" description="time span" minValue="5" maxValue="4000" defaultValue="15"/>
-        </variable>
-
         <variable name="hitsound">
           <description>Plays a sound upon every successful hit if enabled.</description>
            <remarks>
@@ -4037,16 +4016,16 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="C" description="a color for the zone, in hexadecimal notation" valueNotes="default: 0x00FF00 (green)"/>
           </arguments>
           <references>
-            <identifierReference name="resetzones" identifier="resetzones"/>
-            <identifierReference name="survival" identifier="survival"/>
+            <identifierReference identifier="resetzones"/>
+            <identifierReference identifier="survival"/>
           </references>
         </command>
 
         <command name="resetzones">
           <description>Reset all drawn zones.</description>
           <references>
-            <identifierReference name="drawzone" identifier="drawzone"/>
-            <identifierReference name="survival" identifier="survival"/>
+            <identifierReference identifier="drawzone"/>
+            <identifierReference identifier="survival"/>
           </references>
         </command>
 
@@ -4551,7 +4530,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
-
         <command name="applymapsoundchanges">
           <description>During map editing, drop all mapsounds so they can be re-added.</description>
         </command>
@@ -4566,8 +4544,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             Note that if you fly outside the map, cube still renders the world as if you were standing on the floor
             directly below the camera.
             </remark>
-            <remark>Hotkey E</remark>
           </remarks>
+          <defaultKeys>
+            <key alias="E"/>
+          </defaultKeys>
           <references>
             <identifierReference name="select" identifier="select"/>
             <wikiReference article="Coopedit"/>
@@ -4667,7 +4647,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </remark>
           </remarks>
           <references>
-            <identifierReference name="vdelta" identifier="vdelta"/>
+            <identifierReference identifier="vdelta"/>
           </references>
           <arguments>
             <argument token="T" description="an integer denoting the type" valueNotes="0 (floor), 2 (ceiling)"/>
@@ -4714,40 +4694,52 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="undo">
-          <description>Multi-level undo of any of the changes caused by editing operations</description>
+          <description>Multi-level undo of any of the changes caused by editing operations.</description>
           <remarks>
-            <remark>hotkey u</remark>
+            <remark>With editmeta pressed it also restores player position and selects the affected area.</remark>
           </remarks>
+          <defaultKeys>
+            <key alias="U"/>
+          </defaultKeys>
           <references>
             <identifierReference identifier="redo"/>
+            <identifierReference identifier="editmeta"/>
           </references>
         </command>
 
         <command name="redo">
           <description>Redoes editing operations undone by 'undo'.</description>
+          <remarks>
+            <remark>With editmeta pressed it also restores player position and selects the affected area.</remark>
+          </remarks>
+          <defaultKeys>
+            <key alias="R"/>
+          </defaultKeys>
           <references>
             <identifierReference identifier="undo"/>
+            <identifierReference identifier="editmeta"/>
           </references>
         </command>
 
-        <command name="undomegs">
+        <variable name="undomegs">
           <description>Sets the number of megabytes used for the undo buffer.</description>
           <remarks>
             <remark>
-            undo's work for any size areas, so the amount of undo steps per megabyte is more for small areas
+            Undo's work for any size areas, so the amount of undo steps per megabyte is more for small areas
             than for big ones (a megabyte fits 280 undo steps on a 16x16 area, but only 4 steps on a 128x128 area).
             </remark>
           </remarks>
-          <arguments>
-            <argument token="N" description="number of megabytes, default is 1" valueNotes="integer"/>
-          </arguments>
-        </command>
+          <value token="N" description="number of megabytes" valueNotes="integer" minValue="0" maxValue="50" defaultValue="5"/>
+        </variable>
 
         <command name="copy">
           <description>Copies the current selection into a buffer.</description>
-          <remarks>
-            <remark>hotkey c</remark>
-          </remarks>
+          <defaultKeys>
+            <key alias="C"/>
+          </defaultKeys>
+          <references>
+            <identifierReference identifier="paste"/>
+          </references>
         </command>
 
         <command name="copyent">
@@ -4756,7 +4748,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>Only works while in edit mode.</remark>
           </remarks>
           <references>
-            <identifierReference name="pasteent" identifier="pasteent"/>
+            <identifierReference identifier="pasteent"/>
           </references>
         </command>
 
@@ -4768,8 +4760,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             size the selection will be resized automatically prior to the paste operation (with the red dot as anchor),
             which is easier for large selections.
             </remark>
-            <remark>hotkey v</remark>
           </remarks>
+          <defaultKeys>
+            <key alias="V"/>
+          </defaultKeys>
+          <references>
+            <identifierReference identifier="copy"/>
+          </references>
         </command>
 
         <command name="countwalls">
@@ -4791,7 +4788,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>Only works while in edit mode.</remark>
           </remarks>
           <references>
-            <identifierReference name="copyent" identifier="copyent"/>
+            <identifierReference identifier="copyent"/>
           </references>
         </command>
 
@@ -4909,7 +4906,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </remark>
           </remarks>
           <references>
-            <identifierReference name="newent mapmodel" identifier="newent mapmodel"/>
+            <identifierReference identifier="newent mapmodel"/>
           </references>
           <arguments>
             <argument token="H" description="the height of the ladder" valueNotes="integer"/>
@@ -4958,13 +4955,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
-        <command name="ambientsoundvol">
-          <description>Deletes the entity closest to the player</description>
-          <remarks>
-            <remark>hotkey x</remark>
-          </remarks>
-        </command>
-
         <command name="newent plclip">
           <description>Adds a player clip entity.</description>
           <remarks>
@@ -4983,10 +4973,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="delent">
-          <description>Deletes the entity closest to the player</description>
-          <remarks>
-            <remark>hotkey x</remark>
-          </remarks>
+          <description>Deletes the entity closest to the player.</description>
+          <defaultKeys>
+            <key alias="BACKSPACE"/>
+          </defaultKeys>
+          <references>
+            <identifierReference identifier="undelent"/>
+          </references>
         </command>
 
         <command name="entset">
@@ -5007,11 +5000,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Changes property of the closest entity.</description>
           <remarks>
             <remark>For example 'entproperty 0 2' when executed near a lightsource would increase its radius by 2.</remark>
+            <remark>Keys 1..7, in combination with the scrollwheel, can be used to alter the new entity attributes.</remark>
+            <remark>Pressing editmeta speeds up the scrolling. Pressing editmeta2 enables unscaled editing of entity attributes.</remark>
           </remarks>
           <arguments>
-            <argument token="P" description="the property to change" valueNotes="0..3"/>
+            <argument token="P" description="the property to change" valueNotes="0..6"/>
             <argument token="A" description="amount by wich the property is increased" valueNotes="integer"/>
           </arguments>
+          <references>
+            <identifierReference identifier="editmeta"/>
+            <identifierReference identifier="editmeta2"/>
+          </references>
         </command>
 
         <command name="clearents">
@@ -5023,9 +5022,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="recalc">
           <description>Recomputes all there is to recompute about a map, currently only lighting.</description>
-          <remarks>
-            <remark>hotkey R</remark>
-          </remarks>
         </command>
 
         <command name="savemap">
@@ -5043,7 +5039,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </remark>
           </remarks>
           <references>
-            <identifierReference name="map" identifier="map"/>
+            <identifierReference identifier="map"/>
           </references>
           <arguments>
             <argument token="M" description="file name of the map, see command 'map' for the naming scheme" valueNotes="string"/>
@@ -5075,7 +5071,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </remark>
           </remarks>
           <references>
-            <identifierReference name="newmap" identifier="newmap"/>
+            <identifierReference identifier="newmap"/>
           </references>
         </command>
 
@@ -5100,7 +5096,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="M" description="The map message" valueNotes="String"/>
           </arguments>
+          <references>
+            <identifierReference identifier="editmapmsg"/>
+          </references>
         </variable>
+
+        <command name="editmapmsg">
+          <description>Allows to edit the map message.</description>
+          <references>
+            <identifierReference identifier="mapmsg"/>
+          </references>
+        </command>
 
         <command name="entstats">
           <description>Print some map entity statistics to the console.</description>
@@ -5116,9 +5122,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="nextclosestent">
           <description>Choose another 'closest ent'.</description>
           <remarks>
-            <remark>
-            Use this, when two entities are placed in exactly the same location.
-            </remark>
+            <remark>Use this, when two entities are placed in exactly the same location.</remark>
           </remarks>
         </command>
 
@@ -5208,7 +5212,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
         </command>
 
-        <command name="waterlevel">
+        <variable name="waterlevel">
           <description>Sets the global water level for the map.</description>
           <remarks>
             <remark>
@@ -5222,10 +5226,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             Players can influence how accurate the water is rendered using the "watersubdiv" command (map config).
             </remark>
           </remarks>
-          <arguments>
-            <argument token="H" description="the water level" valueNotes="integer"/>
-          </arguments>
-        </command>
+          <value token="H" description="the water level" valueNotes="float, -10000=&quot;no water&quot;" minValue="-128" maxValue="127" defaultValue="-10000"/>
+          <references>
+            <identifierReference identifier="watersubdiv"/>
+          </references>
+        </variable>
 
         <variable name="ambient">
           <description>Controls the ambient lighting of the map, i.e. how bright areas not affected by any light entities will appear.</description>
@@ -5250,7 +5255,22 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             Shows what parts of the scenery are rendered using what size cubes, and outputs some statistics about it.
             This can give map editors hints as to what architecture to align, textures to change, etc.
             </remark>
+            <remark>If "showfocuscubedetails" is enabled, "showmip" stats on the HUD are hidden.</remark>
           </remarks>
+          <references>
+            <identifierReference identifier="calcmipstats"/>
+            <identifierReference identifier="showfocuscubedetails"/>
+          </references>
+        </command>
+
+        <command name="showfocuscubedetails">
+          <description>Shows detailed geometry data of the cube inside editing focus.</description>
+          <remarks>
+            <remark>It shows on the HUD cube type, floor and ceiling heights, vdelta and all textures.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="showmip"/>
+          </references>
         </command>
 
         <command name="toggleocull">
@@ -5332,12 +5352,12 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </remark>
           </remarks>
           <references>
-            <identifierReference name="addselection" identifier="addselection"/>
-            <identifierReference name="resetselections" identifier="resetselections"/>
-            <identifierReference name="selx" identifier="selx"/>
-            <identifierReference name="sely" identifier="sely"/>
-            <identifierReference name="selxs" identifier="selxs"/>
-            <identifierReference name="selys" identifier="selys"/>
+            <identifierReference identifier="addselection"/>
+            <identifierReference identifier="resetselections"/>
+            <identifierReference identifier="selx"/>
+            <identifierReference identifier="sely"/>
+            <identifierReference identifier="selxs"/>
+            <identifierReference identifier="selys"/>
           </references>
           <arguments>
             <argument token="X" description="the X coordinate"/>
@@ -5348,12 +5368,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="addselection">
-          <description>Select the given area, as if dragged with the mouse holding CTRL.</description>
+          <description>Select the given area, as if dragged with the mouse holding editmeta.</description>
           <remarks>
             <remark>
               This command is useful for making complex geometry-generating scripts.
               It adds a selection to the current list of selections.
-
               The dimensions of the current selections can be accessed by the commands selx, sely, selxs and selys.
               These commands return the list of coordinates corresponding to each selection.
             </remark>
@@ -5363,12 +5382,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </remark>
           </remarks>
           <references>
-            <identifierReference name="select" identifier="select"/>
-            <identifierReference name="resetselections" identifier="resetselections"/>
-            <identifierReference name="selx" identifier="selx"/>
-            <identifierReference name="sely" identifier="sely"/>
-            <identifierReference name="selxs" identifier="selxs"/>
-            <identifierReference name="selys" identifier="selys"/>
+            <identifierReference identifier="select"/>
+            <identifierReference identifier="resetselections"/>
+            <identifierReference identifier="selx"/>
+            <identifierReference identifier="sely"/>
+            <identifierReference identifier="selxs"/>
+            <identifierReference identifier="selys"/>
+            <identifierReference identifier="editmeta"/>
           </references>
           <arguments>
             <argument token="X" description="the X coordinate"/>
@@ -5496,29 +5516,45 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Holds the number of unsaved edits.</description>
         </variable>
 
-        <command name="mapmodelbyname">
+        <command name="mapmodelslotbyname">
           <description>Returns the slot number registered in the map config file of the model with the given name.</description>
           <arguments>
             <argument token="M" description="mapmodel name (with path)"/>
           </arguments>
           <examples>
             <example>
-              <code><![CDATA[echo (mapmodelbyname "mapmodels/makke/platform_bridge")]]></code>
+              <code><![CDATA[echo (mapmodelslotbyname "mapmodels/makke/platform_bridge")]]></code>
               <explanation>Output: 5</explanation>
             </example>
           </examples>
           <references>
-            <identifierReference identifier="mapmodelname"/>
+            <identifierReference identifier="mapmodel"/>
+            <identifierReference identifier="mapmodelslotname"/>
+            <identifierReference identifier="mapmodelchanged"/>
           </references>
         </command>
 
-        <command name="mapmodelname">
+        <variable name="mapmodelchanged">
+          <description>Set to "1" with every command that changes mapmodel slots.</description>
+          <value token="N" description="0: not changed, 1: changed" minValue="0" maxValue="1" defaultValue="0"/>
+          <remarks>
+            <remark>Should be used to trigger a rebuild of mapsound menus.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="mapmodel"/>
+            <identifierReference identifier="mapmodelslotname"/>
+            <identifierReference identifier="mapmodelslotbyname"/>
+          </references>
+        </variable>
+
+        <command name="mapmodelslotname">
           <description>Returns the map model name (and path) of the mapmodel registered in the given slot number in the map config file.</description>
           <arguments>
             <argument token="N" description="mapmodel slot number"/>
           </arguments>
           <references>
-            <identifierReference identifier="mapmodelbyname"/>
+            <identifierReference identifier="mapmodel"/>
+            <identifierReference identifier="mapmodelslotbyname"/>
           </references>
         </command>
 
@@ -5663,6 +5699,20 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Returns "1" if automapconfig is already enabled, "0" otherwise.</description>
         </command>
 
+        <command name="addentity">
+          <description>Adds an entity of the specified type at the current camera position.</description>
+          <remarks>
+            <remark>It also returns the index number of the new entity, so that the other attributes can be set by editentity.</remark>
+          </remarks>
+          <arguments>
+            <argument token="type" description="the entity type" valueNotes="light, sound, clip, plclip, playerstart, pistol, ammobox, grenades, health, armour, akimbo, mapmodel, ladder, ctf-flag, helmet"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="enumentities"/>
+            <identifierReference identifier="gotoentity"/>
+          </references>
+        </command>
+
         <command name="enumentities">
           <description>Returns a list of the numbers of all entities of that type.</description>
           <remarks>
@@ -5672,6 +5722,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="type" description="the entity type" valueNotes="light, sound, clip, plclip, playerstart, pistol, ammobox, grenades, health, armour, akimbo, mapmodel, ladder, ctf-flag, helmet"/>
           </arguments>
           <references>
+            <identifierReference identifier="addentity"/>
             <identifierReference identifier="gotoentity"/>
           </references>
         </command>
@@ -5685,20 +5736,35 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="N" description="the entity number" valueNotes=""/>
           </arguments>
           <references>
+            <identifierReference identifier="addentity"/>
             <identifierReference identifier="enumentities"/>
+          </references>
+        </command>
+
+        <command name="getclosestent">
+          <description>Returns the entity index number of the closest entity (or of the pinned entity, if one exists).</description>
+          <remarks>
+            <remark>Returns -1, if no entities are on the map.</remark>
+            <remark>Returns always exactly the entity, that edit commands like delent will use next.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="toggleclosestentpin"/>
           </references>
         </command>
 
         <command name="toggleclosestentpin">
           <description>Toggles the pin on the "closest entity" selector.</description>
           <remarks>
-            <remark>Bound to MOUSE3 (middle mouse button) by default.</remark>
             <remark>
             The HUD will indicate the lock by showing "pinned" instead of "closest" entity.
             All actions, that would otherwise affect the closest entity, will affect the pinned entity instead.
             Deleting the locked entity will unlock it.
             </remark>
+            <remark>Bound to MOUSE3 (middle mouse button) by default.</remark>
           </remarks>
+          <references>
+            <identifierReference identifier="getclosestent"/>
+          </references>
         </command>
 
         <command name="getdeletedentities">
@@ -5719,8 +5785,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             If no index is specified, the last deleted entity is restored.
             If an index is given, the specified entity from the list of deleted entities is restored.
             </remark>
-            <remark>BACKSPACE in combination with editmeta (LCTRL) undeletes the last deleted entity.</remark>
-            <remark>BACKSPACE in combination with editmeta2 (LSHIFT) brings up the menu "deleted entities".</remark>
+            <remark>BACKSPACE in combination with editmeta undeletes the last deleted entity.</remark>
+            <remark>BACKSPACE in combination with editmeta2 brings up the menu "deleted entities".</remark>
           </remarks>
           <arguments>
             <argument token="I" description="index"/>
@@ -5728,6 +5794,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="getdeletedentities"/>
             <identifierReference identifier="unlistdeletedentity"/>
+            <identifierReference identifier="editmeta"/>
+            <identifierReference identifier="editmeta2"/>
           </references>
         </command>
 
@@ -5838,8 +5906,77 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="N" description="0: hide, 1: show" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
+        <command name="mapmrproper">
+          <description>Cleanups hidden map attributes.</description>
+          <remarks>
+            <remark>
+            "mapmrproper" tries to optimize hidden attributes of maps in a way, that the map can be handled in bigger chunks by the renderer.
+            </remark>
+            <remark>
+            The mipmapping routine does not take into account, if certain textures of a cube are visible at all, when it collects otherwise identical cubes to be handled en-bloc.
+            "mapmrproper" changes invisible textures in a way, that the cubes are in fact identical - so, that the mipmapper is satisfied.
+            The optimizer does not change any map properties that are visible in any way.</remark>
+            <remark>
+            Before any changes are made, mapmrproper creates a backup, which can be restored by "undo" command.
+            Enable mipstats ("showmip" command), to see, what has been done.
+            </remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="showmip"/>
+          </references>
+        </command>
+
+        <command name="calcmipstats">
+          <description>Counts all the mips in the current map and prints their numbers as 1x1/2x2/4x4/8x8/16x16/32x32/64x64.</description>
+          <references>
+            <identifierReference identifier="showmip"/>
+          </references>
+        </command>
+
+        <command name="editmeta">
+          <description>First modifier key for editing mode (LCTRL by default).</description>
+          <remarks>
+            <remark>Go to references mentioned below to see the use.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="addselection"/>
+            <identifierReference identifier="entproperty"/>
+            <identifierReference identifier="undelent"/>
+            <identifierReference identifier="editmetakeydown"/>
+          </references>
+        </command>
+
+        <command name="editmeta2">
+          <description>Second modifier key for editing mode (LSHIFT by default).</description>
+          <remarks>
+            <remark>Go to references mentioned below to see the use.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="entproperty"/>
+            <identifierReference identifier="undelent"/>
+            <identifierReference identifier="editmeta2down"/>
+          </references>
+        </command>
+
+        <variable name="editmetakeydown">
+          <description>Indicates if editmeta key is pressed.</description>
+          <value token="N" description="state of the first editmeta key" minValue="0" maxValue="1" defaultValue="0" readOnly="true" valueNotes="0: unpressed, 1: pressed"/>
+          <references>
+            <identifierReference identifier="editmeta"/>
+          </references>
+        </variable>
+
+        <variable name="editmeta2down">
+          <description>Indicates if editmeta key is pressed.</description>
+          <value token="N" description="state of the second editmeta key" minValue="0" maxValue="1" defaultValue="0" readOnly="true" valueNotes="0: unpressed, 1: pressed"/>
+          <references>
+            <identifierReference identifier="editmeta2"/>
+          </references>
+        </variable>
+
         </identifiers>
     </section>
+
     <!-- Editing Section Ends -->
     <!-- Menus Section Starts -->
     <section name="Menus" sortindex="11">
@@ -6110,8 +6247,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <references>
             <identifierReference identifier="newmenu"/>
-            <identifierReference identifier="delmenu"/>
             <identifierReference identifier="showmenu"/>
+            <identifierReference identifier="delmenu"/>
+            <identifierReference identifier="closecurmenu"/>
           </references>
         </command>
 
@@ -6122,8 +6260,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <references>
             <identifierReference identifier="newmenu"/>
-            <identifierReference identifier="closemenu"/>
             <identifierReference identifier="showmenu"/>
+            <identifierReference identifier="closemenu"/>
           </references>
         </command>
 
@@ -6505,20 +6643,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="cncolumncolor">
-          <description>colour of CN column in scoreboard</description>
-          <value token="N" description="color" minValue="0" maxValue="9" defaultValue="5"/>
-          <arguments>
-            <argument valueNotes="0 (green)"/>
-            <argument valueNotes="1 (blue)"/>
-            <argument valueNotes="2 (yellow)"/>
-            <argument valueNotes="3 (red)"/>
-            <argument valueNotes="4 (gray)"/>
-            <argument valueNotes="5 (white, default)"/>
-            <argument valueNotes="6 (dark brown)"/>
-            <argument valueNotes="7 (dark red)"/>
-            <argument valueNotes="8 (purple)"/>
-            <argument valueNotes="9 (orange)"/>
-          </arguments>
+          <description>Colour of CN column in scoreboard.</description>
+          <value token="C" description="color" minValue="0" maxValue="9" defaultValue="5"
+          valueNotes="0 (green), 1 (blue), 2 (yellow), 3 (red), 4 (gray), 5 (white), 6 (dark brown), 7 (dark red), 8 (purple), 9 (orange)"/>
         </variable>
 
         <variable name="orderscorecolumns">
@@ -6622,11 +6749,25 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="accuracy">
           <description>Sets whether or not to display the accuracy information window.</description>
+          <remarks>
+            <remark>Accuracy is displayed for current weapon and only then, if scoreboard is turned on.</remark>
+          </remarks>
           <value token="N" description="1: on, 0: off" minValue="0" maxValue="1" defaultValue="0" />
+          <references>
+            <identifierReference identifier="accuracyinfo"/>
+            <identifierReference identifier="accuracyreset"/>
+          </references>
         </variable>
 
         <command name="accuracyreset">
           <description>Resets accuracy counters.</description>
+          <references>
+            <identifierReference identifier="accuracy"/>
+          </references>
+        </command>
+
+        <command name="accuracyinfo">
+          <description>Shows in the console accuracy of all used weapons.</description>
           <references>
             <identifierReference identifier="accuracy"/>
           </references>
@@ -6704,22 +6845,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <variable name="dbgpos">
           <description>Displays local player's current x,y,z position in map, showstats 1 must be enabled.</description>
           <value token="V" description="display current position" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <variable name="dbgmbatch">
-          <value token="V" description="" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <variable name="dbgstenc">
-          <value token="V" description="" minValue="0" maxValue="2" defaultValue="0"/>
-        </variable>
-
-        <variable name="dbgtiles">
-          <value token="V" description="" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <variable name="dbgvlight">
-          <value token="V" description="" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
         <variable name="stencilbits">
@@ -6952,6 +7077,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </remark>
           </remarks>
           <value token="N" description="the subdivisioin value" minValue="1" maxValue="64" defaultValue="4"/>
+          <references>
+            <identifierReference identifier="waterlevel"/>
+          </references>
         </variable>
 
         <variable name="waterreflect">
@@ -6992,9 +7120,19 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
+        <variable name="hwmaxaniso">
+          <description>Shows the maximum level of anisotropic filtering supported by the graphics hardware.</description>
+          <references>
+            <identifierReference identifier="aniso"/>
+          </references>
+        </variable>
+
         <variable name="aniso">
           <description>Sets the level of anisotropic filtering.</description>
           <value token="V" description="anisotropic filtering" minValue="0" maxValue="16" defaultValue="0"/>
+          <references>
+            <identifierReference identifier="hwmaxaniso"/>
+          </references>
         </variable>
 
         <variable name="fsaa">
@@ -7065,7 +7203,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <scriptalias name="setgamma">
           <description>Sets a persistent gamma value for a map.</description>
           <arguments>
-            <argument token="G" description="the gamma value"  valueNotes="30..300, default 100"/>
+            <argument token="G" description="the gamma value" valueNotes="30..300, default 100"/>
           </arguments>
           <references>
             <identifierReference identifier="gamma"/>
@@ -7089,13 +7227,15 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="hwtexsize">
-          <description>The maximum texture size (in pixels) supported by the graphics hardware.</description>
-          <value token="V" description="max. hardware texture size" minValue="1" maxValue="0" defaultValue="0"/>
+          <description>Shows the maximum texture size (in pixels) supported by the graphics hardware.</description>
+          <references>
+            <identifierReference identifier="maxtexsize"/>
+          </references>
         </variable>
 
         <variable name="maxtexsize">
           <description>The maximum texture (if less than hwtexsize) that will actually be used by the engine, larger textures will be scaled down. 0 removes this limit.</description>
-          <value token="V" description="max. texture size" minValue="0" maxValue="4096" defaultValue="0"/>
+          <value token="V" description="maximum texture size" minValue="0" maxValue="4096" defaultValue="0"/>
           <references>
             <identifierReference identifier="hwtexsize"/>
           </references>
@@ -7120,7 +7260,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Controls whether textures with a scale higher than 1.0 will be scaled down while loading to increase performance (0) or stay at higher resolution (1).</description>
           <value token="S" description="scale down?" minValue="0" maxValue="1" defaultValue="1"/>
           <references>
-            <identifierReference name="texture" identifier="texture"/>
+            <identifierReference identifier="texture"/>
           </references>
         </variable>
 
@@ -7368,7 +7508,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <variable name="musicvol">
           <description>Sets the music volume.</description>
           <references>
-            <identifierReference name="soundvol" identifier="soundvol"/>
+            <identifierReference identifier="soundvol"/>
           </references>
           <value token="N" description="the volume" minValue="0" maxValue="255" defaultValue="128"/>
         </variable>
@@ -7400,7 +7540,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>See for example config/sounds.cfg.</remark>
           </remarks>
           <references>
-            <identifierReference name="sound" identifier="sound"/>
+            <identifierReference identifier="sound"/>
           </references>
           <arguments>
             <argument token="N" description="sound name" valueNotes="string, see config/sounds.cfg"/>
@@ -8528,6 +8668,42 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
+        <command name="mdlattribute">
+          <description>Adds a value for a specified attribute to the model.</description>
+          <arguments>
+            <argument token="A" description="attribute" valueNotes="keywords, desc, usage, author, license, distribution, version"/>
+            <argument token="V" description="value" valueNotes=""/>
+          </arguments>
+        </command>
+
+        <command name="mapmodelattributes">
+          <description>Adds values for all attributes to a specific mapmodel.</description>
+          <remarks>
+            <remark>
+            If modelpath is a number, it is interpreted as index for the list of models in the current map config.
+            If no attribute name is specified, all attributes are printed to the console instead.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="P" description="model path" valueNotes=""/>
+            <argument token="A" description="attribute" valueNotes="keywords, desc, usage, author, license, distribution, version"/>
+          </arguments>
+        </command>
+
+        <command name="mapmodelattributes">
+          <description>Adds values for all attributes to a specific mapmodel.</description>
+          <remarks>
+            <remark>
+            If modelpath is a number, it is interpreted as index for the list of models in the current map config.
+            If no attribute name is specified, all attributes are printed to the console instead.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="P" description="model path" valueNotes=""/>
+            <argument token="A" description="attribute" valueNotes="keywords, desc, usage, author, license, distribution, version"/>
+          </arguments>
+        </command>
+
         <command name="fog">
           <description>Sets the fog distance.</description>
           <remarks>
@@ -8574,9 +8750,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <references>
-            <identifierReference name="texture" identifier="texture"/>
-            <identifierReference name="texturereset" identifier="texturereset"/>
-            <identifierReference name="getnotexture" identifier="getnotexture"/>
+            <identifierReference identifier="texture"/>
+            <identifierReference identifier="texturereset"/>
+            <identifierReference identifier="getnotexture"/>
           </references>
           <arguments>
             <argument token="F" description="file name of the texture to bind" valueNotes="string"/>
@@ -8586,7 +8762,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <variable name="getnotexture">
           <description>Returns the current "notexture" path (set by loadnotexture).</description>
           <references>
-            <identifierReference name="loadnotexture" identifier="loadnotexture"/>
+            <identifierReference identifier="loadnotexture"/>
           </references>
           <examples>
             <example>
@@ -9028,13 +9204,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="A" description="TODO"/>
           </arguments>
-        </command>
-
-        <command name="setburst">
-          <description>TODO: Description</description>
-          <remarks>
-            <remark>This applies to the Combat Pistol, a currently unimplemented feature.</remark>
-          </remarks>
         </command>
 
         <variable name="autoscopesens">
