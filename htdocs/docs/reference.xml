@@ -708,7 +708,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="strpos">
-          <description>Returns the position of a substring into another</description>
+          <description>Returns the position of a substring into another.</description>
           <arguments>
             <argument token="H" description="haystack string"/>
             <argument token="S" description="needle string"/>
@@ -812,6 +812,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="break"/>
             <identifierReference identifier="continue"/>
             <identifierReference identifier="while"/>
+            <identifierReference identifier="looplist"/>
           </references>
         </command>
 
@@ -841,14 +842,20 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="looplist">
           <description>Browses a list and executes a body for each element</description>
+           <remarks>
+             <remark>It works optionally with several variables.</remark>
+          </remarks>
           <examples>
             <example>
-              <code><![CDATA[looplist "zero one two three" number [ echo $number ]]]></code>
+              <code><![CDATA[looplist "zero one two three" number [echo $number]]]></code>
+            </example>
+            <example>
+              <code><![CDATA[looplist [0 "is knife" 1 "is pistol"] [n w] [echo weapon $n $w]]]></code>
             </example>
           </examples>
           <arguments>
             <argument token="V" description="the list to browse"/>
-            <argument token="N" description="the alias containing the current element value."/>
+            <argument token="N" description="the alias(es) containing the current element value"/>
             <argument token="body" description="the body to execute on each iteration"/>
           </arguments>
           <references>
@@ -916,6 +923,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <remarks>
             <remark>Important: A secondary iterator alias (prefixed with a double underscore "__") is automatically created before each iteration that contains the character position data.</remark>
+            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/parsestring".</remark>
           </remarks>
           <references>
             <identifierReference identifier="breakparse"/>
@@ -928,7 +936,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="breakparse">
           <description>Breaks out of a parsestring loop.</description>
           <remarks>
-            <remark>Important: This command should only be used within the 3rd argument (the cubescript to execute) of parsestring.</remark>
+            <remark>Important: this command should only be used within the 3rd argument (the cubescript to execute) of parsestring.</remark>
+            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/parsestring".</remark>
           </remarks>
           <references>
             <identifierReference identifier="parsestring"/>
@@ -937,6 +946,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="trimAllWhitespace">
           <description>Removes all whitespace characters from the given string.</description>
+          <remarks>
+            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/parsestring".</remark>
+          </remarks>
           <examples>
             <example>
               <code><![CDATA[echo (trimAllWhitespace "    H   e ll     o w  o r   l d     ")]]></code>
@@ -954,6 +966,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="trimAllUnnecessaryWhitespace">
           <description>Removes all unnecessary leading and trailing whitespace characters from the given string.</description>
+          <remarks>
+            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/parsestring".</remark>
+          </remarks>
           <examples>
             <example>
               <code><![CDATA[echo (trimAllUnnecessaryWhitespace "    H   e ll     o w  o r   l d     ")]]></code>
@@ -1054,7 +1069,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="numargs">
           <description>The number of arguments passed to the current alias</description>
-          <value token="V" description="numargs" minValue="0" maxValue="25" defaultValue="0" readOnly="true"/>
+          <value token="V" description="numargs" minValue="0" maxValue="24" defaultValue="0" readOnly="true"/>
         </variable>
 
         <command name="format">
@@ -1334,20 +1349,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
               <explanation>Output: $hello</explanation>
             </example>
             <example>
-              <code><![CDATA[echo (addpunct "" 4)]]></code>
-            </example>
-            <example>
-              <code><![CDATA[echo (addpunct "" 5)]]></code>
-              <explanation>Output: %</explanation>
-            </example>
-            <example>
               <code><![CDATA[test = (concat echo (addpunct fov 3)); test]]></code>
               <explanation>Output: 90.0</explanation>
             </example>
           </examples>
           <arguments>
             <argument token="S" description="a string"/>
-            <argument token="N" description="type ID" valueNotes="min 0/max 5/default 0"/>
+            <argument token="N" description="ID or name" valueNotes="0 (quotes), 1 (brackets), 2 (parenthesis), 3 (_$_), 4 (quote), 5 (percent)"/>
           </arguments>
         </command>
 
@@ -1490,7 +1498,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <scriptalias name="add2alias">
-          <description>This will append the passed 2nd argument to any existing content of the alias named in the 1st argument. Several popular aliases have predefined shortcuts using this scriptalias: addOnQuit, addOnLoadOnce, addOnLoadAlways. Check config/scripts.cfg for possible omissions in that list.</description>
+          <description>This will append the passed 2nd argument to any existing content of the alias named in the 1st argument. Several popular aliases have predefined shortcuts using this scriptalias: addOnLoadOnce, addOnLoadAlways. Check config/scripts.cfg for possible omissions in that list.</description>
           <examples>
             <example>
               <code>
@@ -1529,7 +1537,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </scriptalias>
         
         <command name="listoptions">
-          <description>Lists the argument options for several argument types</description>
+          <description>Lists the argument options for several argument types.</description>
           <examples>
             <example>
               <code><![CDATA[echo (listoptions)]]></code>
@@ -1545,7 +1553,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="escape">
           <description>Replaces control characters in a string with escaped sequences.</description>
           <arguments>
-            <argument token="S" description="String to escape"/>
+            <argument token="S" description="string to escape"/>
           </arguments>
           <examples>
             <example>
@@ -1558,11 +1566,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="tempalias">
           <description>Creates a temporary alias that will not be written to saved.cfg, and thus will not persist after quitting.</description>
           <arguments>
-            <argument token="N" description="Temporary Alias Name"/>
-            <argument token="C" description="Cubescript Command(s)"/>
+            <argument token="N" description="temporary alias name"/>
+            <argument token="C" description="Cubescript command(s)"/>
           </arguments>
           <references>
-            <identifierReference identifier="alias" />
+            <identifierReference identifier="alias"/>
           </references>
         </command>
 
@@ -2536,7 +2544,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="gun" description="The number of the gun used" valueNotes="integer"/>
             <argument token="gib" description="Is it a gib or a normal frag" valueNotes="integer (0 or 1)"/>
           </arguments>
-        </scriptalias>
+          <remarks>
+            <remark>Remark: it works only in singleplayer.</remark>
+          </remarks>
+          </scriptalias>
 
         <scriptalias name="onFlag">
           <arguments>
@@ -2545,6 +2556,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="flag" description="The flag owner team" valueNotes="integer (0 = CLA, 1 = RVSF)"/>
           </arguments>
           <description>If defined, this will be executed each time a flag action occurs.</description>
+          <remarks>
+            <remark>Remark: it works only in singleplayer.</remark>
+          </remarks>
         </scriptalias>
 
         <scriptalias name="onPickup">
@@ -2553,6 +2567,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="q" description="The quantity that was received"/>
           </arguments>
           <description>If defined, this will be executed each time you pick up an item.</description>
+          <remarks>
+            <remark>Remark: it works only in singleplayer.</remark>
+          </remarks>
         </scriptalias>
 
         <scriptalias name="onAttack">
@@ -2560,6 +2577,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="weapon" description="The weapon that was used"/>
           </arguments>
           <description>If defined, this will be executed each time you shot a bullet, throw a grenade or use your knife.</description>
+          <remarks>
+            <remark>Remark: it works only in singleplayer.</remark>
+          </remarks>
         </scriptalias>
 
         <scriptalias name="onHit">
@@ -2571,13 +2591,19 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="gib" description="Is it a gib or a normal frag" valueNotes="integer (0 or 1)"/>
           </arguments>
           <description>If it's defined, this alias will be executed each time a damage is done.</description>
+          <remarks>
+            <remark>Remark: it works only in singleplayer.</remark>
+          </remarks>
         </scriptalias>
 
         <scriptalias name="onWeaponSwitch">
           <arguments>
-            <argument token="w" description="The weapon ID that you switched to"/>
+            <argument token="W" description="The weapon number that you switched to"/>
           </arguments>
           <description>If defined, this will be executed each time you switch to a different weapon.</description>
+          <remarks>
+            <remark>Remark: it works only in singleplayer.</remark>
+          </remarks>
         </scriptalias>
         
         <scriptalias name="onReload">
@@ -2585,6 +2611,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="B" description="was autoreload?" valueNotes="0 (false), 1 (true)"/>
           </arguments>
           <description>If defined, this will be executed each time you reload a weapon.</description>
+          <remarks>
+            <remark>Remark: it works only in singleplayer.</remark>
+          </remarks>
         </scriptalias>
 
         <scriptalias name="onConnect">
@@ -2606,26 +2635,33 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="player" description="The client number of the player who spawned" valueNotes="integer"/>
           </arguments>
           <description>If defined, this will be executed each time a player spawns.</description>
+          <remarks>
+            <remark>Remark: it works only in singleplayer.</remark>
+          </remarks>
         </scriptalias>
 
         <scriptalias name="onNameChange">
           <arguments>
-            <argument token="player" description="The client number of the player who connected" valueNotes="integer"/>
+            <argument token="player" description="The client number of the player who changed name" valueNotes="integer"/>
             <argument token="new name" description="The new name of the client" valueNotes="string"/>
           </arguments>
           <description>If defined, this will be executed when you or another player change(s) his name. </description>
           <remarks>
             <remark>The alias is executed before the name is effectively changed, so you can still get the previous name of the client from this alias.</remark>
+            <remark>Remark: it works only in singleplayer.</remark>
           </remarks>
+        </scriptalias>
+
+         <scriptalias name="onPM">
+          <arguments>
+            <argument token="player" description="The client number who sent you private message" valueNotes="integer"/>
+            <argument token="message" description="The private message" valueNotes="string"/>
+          </arguments>
+          <description>If defined, this will be executed when another player sent you private message.</description>
         </scriptalias>
 
         <scriptalias name="afterinit">
           <description>If defined, this will be executed after saved.cfg is loaded.</description>
-        </scriptalias>
-
-        <scriptalias name="addOnQuit">
-          <description>Execute a command or block of code on quit.</description>
-          <value token="A" description="the command or block of code to execute"/>
         </scriptalias>
 
         <scriptalias name="modmdlweapN">
@@ -2843,19 +2879,19 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
               <explanation>Loads the red_dot.png crosshair for all weapons.</explanation>
             </example>
             <example>
-              <code><![CDATA[loadcrosshair red_dot.png default]]></code>
+              <code><![CDATA[loadcrosshair default red_dot.png]]></code>
               <explanation>Same as above. Loads the red_dot.png crosshair for all weapons.</explanation>
             </example>
             <example>
-              <code><![CDATA[loadcrosshair red_dot.png knife]]></code>
+              <code><![CDATA[loadcrosshair knife red_dot.png]]></code>
               <explanation>Loads the red_dot.png crosshair for your knife only.</explanation>
             </example>
             <example>
-              <code><![CDATA[loadcrosshair red_dot.png assault]]></code>
+              <code><![CDATA[loadcrosshair assault red_dot.png]]></code>
               <explanation>Loads the red_dot.png crosshair for your assault rifle only.</explanation>
             </example>
             <example>
-              <code><![CDATA[loadcrosshair red_dot.png scope]]></code>
+              <code><![CDATA[loadcrosshair scope red_dot.png]]></code>
               <explanation>Loads the red_dot.png crosshair for your sniper rifle scope only.</explanation>
             </example>
           </examples>
@@ -3170,7 +3206,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <variable name="nextprimary">
           <description>Sets the primary weapon on next respawn.</description>
           <arguments>
-            <argument token="A" description="weapon id/name" valueNotes="2 (carbine), 3 (shotgun), 4 (subgun), 5 (sniper), 6 (assault)"/>
+            <argument token="A" description="the weapon number or name" valueNotes="2 (carbine), 3 (shotgun), 4 (subgun), 5 (sniper), 6 (assault)"/>
           </arguments>
         </variable>
 
@@ -3530,7 +3566,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <argument token="S" description="the team name" valueNotes="either CLA or RVSF or SPECTATOR"/>
+            <argument token="N" description="the team number or name" valueNotes="0 (CLA), 1 (RVSF), 2 (CLA-SPECT), 3 (RVSF-SPECT), 4 (SPECTATOR)"/>
           </arguments>
         </command>
 
@@ -3668,7 +3704,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="magreserve"/>
           </references>
           <arguments>
-            <argument token="N" description="the weapon number"/>
+            <argument token="N" description="the weapon number or name" valueNotes="0 (knife), 1 (pistol), 2 (carbine), 3 (shotgun), 4 (subgun), 5 (sniper), 6 (assault), 7 (grenades), 8 (akimbo)"/>
           </arguments>
         </command>
 
@@ -3683,7 +3719,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="magcontent"/>
           </references>
           <arguments>
-            <argument token="N" description="the weapon number"/>
+            <argument token="N" description="the weapon number or name" valueNotes="0 (knife), 1 (pistol), 2 (carbine), 3 (shotgun), 4 (subgun), 5 (sniper), 6 (assault), 7 (grenades), 8 (akimbo)"/>
           </arguments>
         </command>
 
@@ -3694,7 +3730,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="magreserve"/>
           </references>
           <arguments>
-            <argument token="N" description="the weapon number"/>
+            <argument token="N" description="the weapon number or name" valueNotes="0 (knife), 1 (pistol), 2 (carbine), 3 (shotgun), 4 (subgun), 5 (sniper), 6 (assault), 7 (grenades), 8 (akimbo)"/>
           </arguments>
         </command>
 
@@ -3961,6 +3997,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="changespeed">
           <description>Smoothly changes your gamespeed to the specified value.</description>
+          <remarks>
+            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/survival" or start bot surival mode from menu.</remark>
+          </remarks>
           <arguments>
             <argument token="S" description="the gamespeed to change to"/>
             <argument token="M" description="milliseconds between gamespeed changes"/>
@@ -3976,6 +4015,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="changegamma"/>
           </references>
         </command>
+
+        <variable name="flyspeed">
+          <description>Determines by how much to multiply the fly speeds by.</description>
+          <value token="N" description="the multiplier" minValue="1.0" maxValue="5.0" defaultValue="2.0"/>
+        </variable>
 
         <variable name="akimboautoswitch">
           <description>Enables or disables automatic switching to the akimbo upon pickup.</description>
@@ -4007,6 +4051,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>You can draw a few zones at a time. They will be reset (i.e. removed) once a new game starts.</remark>
             <remark>Note that the coordinates must be specified as integers, not as floating-point values.</remark>
+            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/survival" or start bot surival mode from menu.</remark>
           </remarks>
           <arguments>
             <argument token="X1" description="X-coordinate - top-left corner"/>
@@ -4023,6 +4068,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="resetzones">
           <description>Reset all drawn zones.</description>
+          <remarks>
+            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/survival" or start bot surival mode from menu.</remark>
+          </remarks>
           <references>
             <identifierReference identifier="drawzone"/>
             <identifierReference identifier="survival"/>
@@ -4134,7 +4182,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="burstshots">
           <description>Set the firing mode of automatic weapons between full auto mode and burst fire mode.</description>
           <arguments>
-            <argument token="W" description="weapon name" valueNotes="subgun, assault, or akimbo"/>
+            <argument token="N" description="the weapon number or name" valueNotes="4 (subgun), 6 (assault), 8 (akimbo)"/>
             <argument token="S" description="shots per burst" valueNotes="Special values: 0: set weapon to full auto, -1: don't set, instead check and return shots per burst"/>
           </arguments>
         </command>
@@ -4809,11 +4857,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>
             (x,y) is determined by the current selection (the red dot corner) and z by the camera height, of said type.
-            Type is a string giving the type of entity, such as "light", and may optionally take values (depending on the entity).
+            The type of entity may optionally take values (depending on the entity).
             </remark>
           </remarks>
           <arguments>
-            <argument token="type" description="the entity type" valueNotes="light, sound, clip, plclip, playerstart, pistol, ammobox, grenades, health, armour, akimbo, mapmodel, ladder, ctf-flag, helmet"/>
+            <argument token="E" description="the entity type or number" valueNotes="light (1), playerstart (2), pistol (3), ammobox (4), grenades (5), health (6), helmet (7), armour (8), akimbo (9), mapmodel (10), ladder (12), ctf-flag (13), sound (14), clip (15), plclip (16)"/>
             <argument token="value1" description="see newent 'type'"/>
             <argument token="value2" description="see newent 'type'"/>
             <argument token="value3" description="see newent 'type'"/>
@@ -4918,7 +4966,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>
             Will play map-specific sound so long as the player is within the radius.
-            However, only up to the max uses allowed for N (specified in the mapsound command) will play, even if the player is within the radius of more N sounds than the max.
+            However, only up to the maxuses allowed for N (specified in the mapsound command) will play, even if the player is within the radius of more N sounds than the max.
             By default (size 0), the sound is a point source. Its volume is maximal at the entity's location, and tapers off to 0 at the radius. If size is specified,
             the volume is maximal within the specified size, and only starts tapering once outside this distance. Radius is always defined as distance from the entity's location,
             so a size greater than or equal to the radius will just make a sound that is always max volume within the radius, and off outside.
@@ -4979,6 +5027,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </defaultKeys>
           <references>
             <identifierReference identifier="undelent"/>
+            <identifierReference identifier="deleteentity"/>
+            <identifierReference identifier="clearents"/>
           </references>
         </command>
 
@@ -4988,12 +5038,15 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>Overwrites the closest entity with the specified values.</remark>
           </remarks>
           <arguments>
-            <argument token="type" description="the entity type" valueNotes="light, sound, clip, plclip, playerstart, pistol, ammobox, grenades, health, armour, akimbo, mapmodel, ladder, ctf-flag, helmet"/>
+            <argument token="E" description="the entity type or number" valueNotes="light (1), playerstart (2), pistol (3), ammobox (4), grenades (5), health (6), helmet (7), armour (8), akimbo (9), mapmodel (10), ladder (12), ctf-flag (13), sound (14), clip (15), plclip (16)"/>
             <argument token="value1" description="see newent 'type'"/>
             <argument token="value2" description="see newent 'type'"/>
             <argument token="value3" description="see newent 'type'"/>
             <argument token="value4" description="see newent 'type'"/>
           </arguments>
+          <references>
+            <identifierReference identifier="editentity"/>
+          </references>
         </command>
 
         <command name="entproperty">
@@ -5018,6 +5071,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="T" description="the entity type, see command 'newent'" valueNotes="string"/>
           </arguments>
+          <references>
+            <identifierReference identifier="delent"/>
+            <identifierReference identifier="deleteentity"/>
+          </references>
         </command>
 
         <command name="recalc">
@@ -5477,27 +5534,68 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </scriptalias>
 
-        <variable name="flyspeed">
-          <description>Determines by how much to multiply the fly speeds by.</description>
-          <value token="N" description="the multiplier" minValue="1.0" maxValue="5.0" defaultValue="2.0"/>
-        </variable>
-
         <variable name="oldselstyle">
           <description>Enables or disables using squares to render the editing grid/current selection instead of triangles.</description>
           <value token="N" description="0 off, 1 on" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
 
-        <command name="go_to">
-          <description>Teleport local client to (x,y) coordinates, if in edit mode.</description>
+        <command name="gotoposition">
+          <description>Only in edit mode: get and set camera position.</description>
+          <remarks>
+            <remark>Returns x, y, z, yaw and pitch. Sets x, y, z, yaw and pitch, if the parameter is not an empty string.</remark>
+          </remarks>
           <arguments>
-            <argument token="x" description="X coordinate"/>
-            <argument token="y" description="Y coordinate"/>
-            <argument token="s" description="Show teleport message" valueNotes="If 0, don't print. Otherwise, print the message."/>
+            <argument token="x" description="X coordinate" valueNotes="float"/>
+            <argument token="y" description="Y coordinate" valueNotes="float"/>
+            <argument token="z" description="Z coordinate" valueNotes="float"/>
+            <argument token="yaw" description="yaw" valueNotes="integer"/>
+            <argument token="pitch" description="pitch" valueNotes="integer"/>
           </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[echo (gotoposition)]]></code>
+              <explanation>Output: 67.7 78.6 5.5 8 0</explanation>
+            </example>
+            <example>
+              <code><![CDATA[gotoposition "" "" "" 180 0]]></code>
+              <explanation>Change yaw and pitch to look straight in +y direction.</explanation>
+            </example>
+          </examples>
+        </command>
+
+        <command name="setvantagepoint">
+          <description>Sets vantage point in current camera position.</description>
+          <remarks>
+            <remark>
+            The vantage point is supposed to be a distinctive view on a map
+            - like the angle from which the preview picture was taken.
+            </remark>
+            <remark>A map can only have one vantage point.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="gotovantagepoint"/>
+            <identifierReference identifier="clearvantagepoint"/>
+          </references>
+        </command>
+
+        <command name="gotovantagepoint">
+          <description>Sets camera position in vantage point.</description>
+          <references>
+            <identifierReference identifier="setvantagepoint"/>
+            <identifierReference identifier="clearvantagepoint"/>
+          </references>
+        </command>
+
+        <command name="clearvantagepoint">
+          <description>Clears a set parameters of vantage point.</description>
+          <references>
+            <identifierReference identifier="setvantagepoint"/>
+            <identifierReference identifier="gotovantagepoint"/>
+          </references>
         </command>
 
         <command name="showmapstats">
-          <description>Print some map statistics.</description>
+          <description>Prints some map statistics.</description>
         </command>
 
         <variable name="mapstats_hud">
@@ -5509,12 +5607,26 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <command name="showmapdims">
-          <description>Print map dimensions.</description>
+          <description>Prints map dimensions.</description>
         </command>
 
         <variable name="unsavededits">
           <description>Holds the number of unsaved edits.</description>
         </variable>
+
+        <command name="mapmodelslotname">
+          <description>Returns the map model name (and path) of the mapmodel registered in the given slot number in the map config file.</description>
+          <arguments>
+            <argument token="N" description="mapmodel slot number"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapmodel"/>
+            <identifierReference identifier="mapmodelslotbyname"/>
+            <identifierReference identifier="mapmodelslotusage"/>
+            <identifierReference identifier="editmapmodelslot"/>
+            <identifierReference identifier="deletemapmodelslot"/>
+          </references>
+        </command>
 
         <command name="mapmodelslotbyname">
           <description>Returns the slot number registered in the map config file of the model with the given name.</description>
@@ -5530,6 +5642,86 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="mapmodel"/>
             <identifierReference identifier="mapmodelslotname"/>
+            <identifierReference identifier="mapmodelslotusage"/>
+            <identifierReference identifier="editmapmodelslot"/>
+            <identifierReference identifier="deletemapmodelslot"/>
+          </references>
+        </command>
+
+        <command name="mapmodelslotusage">
+          <description>Returns a list of map entity indices which use a certain mapmodel slot.</description>
+          <remarks>
+            <remark>If the mapmodel is unused, it returns an empty string.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="mapmodel slot number"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapmodel"/>
+            <identifierReference identifier="mapmodelslotname"/>
+            <identifierReference identifier="mapmodelslotbyname"/>
+            <identifierReference identifier="editmapmodelslot"/>
+            <identifierReference identifier="deletemapmodelslot"/>
+          </references>
+        </command>
+
+        <command name="editmapmodelslot">
+          <description>Edits the parameters of a mapmodel slot.</description>
+          <remarks>
+            <remark>Edits the parameters of a mapmodel slot. Only non-empty parameters actually change something.</remark>
+            <remark>
+            The command returns the resulting data of the mapmodel slot. If only the mapmodel slot number is specified,
+            no changes are made, but the current data is returned. Therefore the command can be used to get and set parameters.
+            </remark>
+            <remark>If anything is changed, automapconfig is enabled.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="mapmodel slot number" valueNotes="integer"/>
+            <argument token="R" description="radius" valueNotes="integer"/>
+            <argument token="H" description="height" valueNotes="integer"/>
+            <argument token="Z" description="z-offset" valueNotes="integer"/>
+            <argument token="0" description="redundant, leave it at zero so you don't break the command" valueNotes="0"/>
+            <argument token="P" description="mapmodel path" valueNotes="string"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[editmapmodelslot 33 "" "" -5]]></code>
+              <explanation>sets the z-offset of slot #33 to -5 without affecting other parameters</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (editmapmodelslot 33)]]></code>
+              <explanation>prints the current parameters of mapmodel slot #33 , for example: 0 0 0 0 "makke/lightbulb"</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="mapmodel"/>
+            <identifierReference identifier="mapmodelslotname"/>
+            <identifierReference identifier="mapmodelslotbyname"/>
+            <identifierReference identifier="mapmodelslotusage"/>
+            <identifierReference identifier="deletemapmodelslot"/>
+            <identifierReference identifier="mapmodelchanged"/>
+          </references>
+        </command>
+
+        <command name="deletemapmodelslot">
+          <description>Deletes an unused mapmodel slot.</description>
+          <remarks>
+            <remark>
+            If "purge" is specified as second argument, it also deletes an used slot
+            (including all map entities which use that mapmodel).
+            </remark>
+            <remark>Also it enables automapconfig.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="mapmodel slot number"/>
+            <argument token="P" description="purge"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapmodel"/>
+            <identifierReference identifier="mapmodelslotname"/>
+            <identifierReference identifier="mapmodelslotbyname"/>
+            <identifierReference identifier="mapmodelslotusage"/>
+            <identifierReference identifier="editmapmodelslot"/>
             <identifierReference identifier="mapmodelchanged"/>
           </references>
         </command>
@@ -5542,19 +5734,137 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="mapmodel"/>
-            <identifierReference identifier="mapmodelslotname"/>
-            <identifierReference identifier="mapmodelslotbyname"/>
+            <identifierReference identifier="editmapmodelslot"/>
+            <identifierReference identifier="deletemapmodelslot"/>
           </references>
         </variable>
 
-        <command name="mapmodelslotname">
-          <description>Returns the map model name (and path) of the mapmodel registered in the given slot number in the map config file.</description>
+        <command name="mapmodelregister">
+          <description>Adds values for all attributes to a specific mapmodel.</description>
+          <remarks>
+            <remark>
+            This is used to restore the cached values from config/mapmodelattributes.cfg during game start.
+            It does not actually verify of load the model.
+            </remark>
+          </remarks>
           <arguments>
-            <argument token="N" description="mapmodel slot number"/>
+            <argument token="P" description="model path" valueNotes=""/>
+            <argument token="V" description="list of all attribute values" valueNotes=""/>
           </arguments>
           <references>
             <identifierReference identifier="mapmodel"/>
-            <identifierReference identifier="mapmodelslotbyname"/>
+            <identifierReference identifier="getmapmodelattributes"/>
+            <identifierReference identifier="listallmapmodelattributes"/>
+            <identifierReference identifier="mdlattribute"/>
+          </references>
+        </command>
+
+        <command name="getmapmodelattributes">
+          <description>Returns values for all attributes to a specific mapmodel.</description>
+          <remarks>
+            <remark>
+            If modelpath is a number, it is interpreted as index for the list of models in the current map config.
+            If no attribute name is specified, all attributes are printed to the console instead.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="P" description="model path" valueNotes=""/>
+            <argument token="N" description="attribute name" optional="true" valueNotes="keywords, desc, defaults, usage, author, license, distribution, version"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapmodel"/>
+            <identifierReference identifier="listallmapmodelattributes"/>
+            <identifierReference identifier="mapmodelregister"/>
+            <identifierReference identifier="mdlattribute"/>
+          </references>
+        </command>
+
+        <command name="listallmapmodelattributes">
+          <description>Returns a table of all known mapmodels.</description>
+          <remarks>
+            <remark>
+            Each model is listed with the modelpath and the values for the requested attributes.
+            To be used instead of a fixed table in menu_edit.cfg.
+            </remark>
+            <remark>
+            In addition to attribute names, the function also allows the keywords "explodekeywords" and "sortby:" as arguments.
+            If "explodekeywords" is given, all mapmodels with more than one keyword are listed multiple times, once for each keyword.
+            If an attribute name is preceeded by "sortby:" the list will be sorted by this table column.
+            If "sortby:" is used several times, this first sort will have highest priority.
+            The list is always sorted by path by default.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="list of attribute names" valueNotes="explodekeywords, sortby:, keywords, desc, defaults, usage, author, license, distribution, version"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[getmapmodelattributes sortby: author sortby: desc explodekeywords]]></code>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="mapmodel"/>
+            <identifierReference identifier="getmapmodelattributes"/>
+            <identifierReference identifier="mapmodelregister"/>
+            <identifierReference identifier="mdlattribute"/>
+          </references>
+        </command>
+
+        <command name="loadallmapmodels">
+          <description>Tries to load mapmodels from all paths below packages/models/mapmodels.</description>
+          <remarks>
+            <remark>
+            It will throw a lot of error messages, because not all directories contain models to load.
+            This command can be used to build or rebuild the complete list of all available mapmodels.
+            It is only necessary, if models are added manually to the directories, since every mapmodel gets added to the list
+            when it is loaded - which takes care of all automatically downloaded models.
+            </remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="mapmodel"/>
+          </references>
+        </command>
+
+        <command name="gettexturelist">
+          <description>Returns a table of all texture files fitting a certain description.</description>
+          <remarks>
+            <remark>All files found under packages/textures are examined.</remark>
+            <remark>
+            By default, the command returns a list with two columns: path and filename.
+            If "excludes" is exactly one path prefix to exclude, the table gets a third column with path names without that prefix.
+            If "extensions" is exactly one extension which does not start with the character '.',
+            the table gets an additional (third or fourth) column containing file names without that extension.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="includes" description="Optional list of path prefixes to include in the table."/>
+            <argument token="excludes" description="Optional list of path prefixes to exclude from the table."/>
+            <argument token="extensions" description="Optional list of filename extensions to include in the table."/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[echo (gettexturelist)]]></code>
+              <explanation>Outputs two columns like "noctua/wall" "wall02.jpg"</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (gettexturelist "" "map_editor skymaps")]]></code>
+              <explanation>Outputs two columns like "noctua/wall" "wall02.jpg", but omits skymaps and special textures for the editor</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (gettexturelist makke)]]></code>
+              <explanation>Outputs only textures by makke and adds a third column like "makke/rattrap" "rb_box_03.jpg" "/rattrap"</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (gettexturelist "skymaps/" "" "_ft.jpg")]]></code>
+              <explanation>
+              Outputs four columns like "skymaps/egypt" "egypt_ft.jpg" "egypt" "egypt",
+              "skymaps/humus" "meadow_ft.jpg" "humus" "meadow"
+              </explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="texture"/>
+            <identifierReference identifier="gettextureorigin"/>
           </references>
         </command>
 
@@ -5583,12 +5893,34 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <references>
             <identifierReference identifier="texture"/>
-            <identifierReference identifier="gettexturelist"/>
+            <identifierReference identifier="textureslotusage"/>
+            <identifierReference identifier="textureslotusagelist"/>
+            <identifierReference identifier="edittextureslot"/>
+            <identifierReference identifier="deletetextureslot"/>
+            <identifierReference identifier="edittexturestack"/>
+          </references>
+        </command>
+
+         <command name="textureslotusage">
+          <description>Returns a list of mapmodels who use that texture as skin.</description>
+          <remarks>
+            <remark>If no mapmodel uses the texture, but world geometry does, a string of whitespace is returned. If the mapmodel is unused, an empty string is returned.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="texture slot number" valueNotes="0..255"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="texture"/>
+            <identifierReference identifier="textureslotusagelist"/>
+            <identifierReference identifier="textureslotbyname"/>
+            <identifierReference identifier="edittextureslot"/>
+            <identifierReference identifier="deletetextureslot"/>
+            <identifierReference identifier="edittexturestack"/>
           </references>
         </command>
 
         <command name="textureslotusagelist">
-          <description>Return a list of 256 numbers representing the number of uses for every texture slot.</description>
+          <description>Returns a list of 256 numbers representing the number of uses for every texture slot.</description>
           <remarks>
             <remark>
             If "what" is "onlygeometry", the uses as map model skin do not count.
@@ -5600,6 +5932,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <references>
             <identifierReference identifier="texture"/>
+            <identifierReference identifier="textureslotusage"/>
+            <identifierReference identifier="textureslotbyname"/>
             <identifierReference identifier="edittextureslot"/>
             <identifierReference identifier="deletetextureslot"/>
             <identifierReference identifier="edittexturestack"/>
@@ -5624,8 +5958,46 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <references>
             <identifierReference identifier="texture"/>
-            <identifierReference identifier="edittextureslot"/>
+            <identifierReference identifier="textureslotusage"/>
             <identifierReference identifier="textureslotusagelist"/>
+            <identifierReference identifier="textureslotbyname"/>
+            <identifierReference identifier="edittextureslot"/>
+            <identifierReference identifier="edittexturestack"/>
+          </references>
+        </command>
+
+        <command name="edittextureslot">
+          <description>Edits the parameters of a texture slot.</description>
+          <remarks>
+            <remark>
+            Only non-empty parameters actually change something. The command returns the resulting data of the texture slot.
+            If only the texture slot number is specified, no changes are made, but the current data is returned.
+            Therefore the command can be used to get and set parameters.
+            </remark>
+            <remark>If anything is changed, automapconfig is enabled.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="texture slot number" valueNotes="0..255"/>
+            <argument token="S" description="scale" valueNotes=""/>
+            <argument token="P" description="path" valueNotes=""/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[edittextureslot 33 "" "arcitool/rohbaubims.jpg"]]></code>
+              <explanation>Sets texture name of slot #33</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (edittextureslot 33)]]></code>
+              <explanation>Prints the current parameters of texture slot #33, for example: 0 "zastrow/3wood_crate_10.jpg"</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="texture"/>
+            <identifierReference identifier="textureslotusage"/>
+            <identifierReference identifier="textureslotusagelist"/>
+            <identifierReference identifier="textureslotbyname"/>
+            <identifierReference identifier="deletetextureslot"/>
+            <identifierReference identifier="edittexturestack"/>
           </references>
         </command>
 
@@ -5640,7 +6012,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <references>
             <identifierReference identifier="texture"/>
+            <identifierReference identifier="textureslotusage"/>
             <identifierReference identifier="textureslotusagelist"/>
+            <identifierReference identifier="textureslotbyname"/>
+            <identifierReference identifier="deletetextureslot"/>
+            <identifierReference identifier="edittextureslot"/>
           </references>
         </command>
 
@@ -5648,7 +6024,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Returns a list of all *.wav and *.ogg files below packages/audio/ambience.</description>
           <references>
             <identifierReference identifier="mapsound"/>
-            <identifierReference identifier="mapsoundslotbyname"/>
             <identifierReference identifier="getmapsoundorigin"/>
           </references>
         </command>
@@ -5674,11 +6049,74 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="mapsoundslotbyname">
           <description>Returns the list of numbers of all mapsound slots which use that sound file.</description>
           <arguments>
-            <argument token="N" description="mapsound filename"/>
+            <argument token="N" description="map sound filename"/>
           </arguments>
           <references>
             <identifierReference identifier="mapsound"/>
-            <identifierReference identifier="getmapsoundlist"/>
+            <identifierReference identifier="mapsoundslotusage"/>
+            <identifierReference identifier="editmapsoundslot"/>
+            <identifierReference identifier="deletemapsoundslot"/>
+          </references>
+        </command>
+
+        <command name="mapsoundslotusage">
+          <description>Returns a list of map entity indices which use a certain map sound slot.</description>
+          <remarks>
+            <remark>If the sound is unused, it returns an empty string.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="map sound slot number"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapsound"/>
+            <identifierReference identifier="mapsoundslotbyname"/>
+            <identifierReference identifier="editmapsoundslot"/>
+            <identifierReference identifier="deletemapsoundslot"/>
+          </references>
+        </command>
+
+        <command name="editmapsoundslot">
+          <description>Edits path/name and maxuses parameters of a mapsound slot.</description>
+          <remarks>
+            <remark>
+            Only non-empty parameters actually change something. The command returns the resulting data of the map sound slot.
+            If only the map sound slot number is specified, no changes are made, but the current data is returned.
+            Therefore the command can be used to get and set parameters.
+            </remark>
+            <remark>If anything is changed, automapconfig is enabled.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="map sound slot number"/>
+            <argument token="P" description="map sound path"/>
+            <argument token="M" description="maxuses"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapsound"/>
+            <identifierReference identifier="mapsoundslotbyname"/>
+            <identifierReference identifier="mapsoundslotusage"/>
+            <identifierReference identifier="deletemapsoundslot"/>
+            <identifierReference identifier="mapsoundchanged"/>
+          </references>
+        </command>
+
+        <command name="deletemapsoundslot">
+          <description>Deletes an unused map sound slot.</description>
+          <remarks>
+            <remark>
+            If "purge" is specified as second argument, it also deletes an used slot
+            (including all map entities which use that sound).
+            </remark>
+            <remark>Also it enables automapconfig.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="map sound slot number"/>
+            <argument token="P" description="purge"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapsound"/>
+            <identifierReference identifier="mapsoundslotbyname"/>
+            <identifierReference identifier="mapsoundslotusage"/>
+            <identifierReference identifier="editmapsoundslot"/>
             <identifierReference identifier="mapsoundchanged"/>
           </references>
         </command>
@@ -5691,12 +6129,26 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="mapsound"/>
-            <identifierReference identifier="mapsoundslotbyname"/>
+            <identifierReference identifier="editmapsoundslot"/>
+            <identifierReference identifier="deletemapsoundslot"/>
           </references>
         </variable>
 
+        <command name="automapconfig">
+          <description>Enables the "automatic embedded map config data" feature.</description>
+          <remarks>
+            <remark>With the next map save the map config file will get renamed and the map config data stored inside the map file.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="getautomapconfig"/>
+          </references>
+        </command>
+
         <command name="getautomapconfig">
           <description>Returns "1" if automapconfig is already enabled, "0" otherwise.</description>
+          <references>
+            <identifierReference identifier="automapconfig"/>
+          </references>
         </command>
 
         <command name="addentity">
@@ -5705,11 +6157,58 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>It also returns the index number of the new entity, so that the other attributes can be set by editentity.</remark>
           </remarks>
           <arguments>
-            <argument token="type" description="the entity type" valueNotes="light, sound, clip, plclip, playerstart, pistol, ammobox, grenades, health, armour, akimbo, mapmodel, ladder, ctf-flag, helmet"/>
+            <argument token="E" description="the entity type or number" valueNotes="light (1), playerstart (2), pistol (3), ammobox (4), grenades (5), health (6), helmet (7), armour (8), akimbo (9), mapmodel (10), ladder (12), ctf-flag (13), sound (14), clip (15), plclip (16)"/>
           </arguments>
           <references>
             <identifierReference identifier="enumentities"/>
-            <identifierReference identifier="gotoentity"/>
+            <identifierReference identifier="editentity"/>
+            <identifierReference identifier="deleteentity"/>
+          </references>
+        </command>
+
+        <command name="editentity">
+          <description>Edits a map entity.</description>
+          <remarks>
+            <remark>It edits only parameters given a non-empty value. Returns the values of all attributes (type, x, y, z, attr1 - attr4).</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="entity index/number" valueNotes=""/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[echo (editentity 33)]]></code>
+              <explanation>Prints all attributes of map entity number 33, for example "light 174 172 12  20 255 200 200"</explanation>
+            </example>
+            <example>
+              <code><![CDATA[editentity 33 "" 173]]></code>
+              <explanation>Changes the y-position of entity 33 to 173</explanation>
+            </example>
+          </examples>
+          <references>
+           <identifierReference identifier="entset"/>
+            <identifierReference identifier="enumentities"/>
+            <identifierReference identifier="addentity"/>
+            <identifierReference identifier="deleteentity"/>
+          </references>
+        </command>
+
+        <command name="deleteentity">
+          <description>Deletes a map entity.</description>
+          <remarks>
+            <remark>Note: deleting an entity only marks it as unused. It will be completely removed after saving and loading the map.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="entity index/number" valueNotes=""/>
+          </arguments>
+          <references>
+            <identifierReference identifier="delent"/>
+            <identifierReference identifier="clearents"/>
+            <identifierReference identifier="enumentities"/>
+            <identifierReference identifier="addentity"/>
+            <identifierReference identifier="editentity"/>
+            <identifierReference identifier="undelent"/>
+            <identifierReference identifier="getdeletedentities"/>
+            <identifierReference identifier="unlistdeletedentity"/>
           </references>
         </command>
 
@@ -5722,8 +6221,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="type" description="the entity type" valueNotes="light, sound, clip, plclip, playerstart, pistol, ammobox, grenades, health, armour, akimbo, mapmodel, ladder, ctf-flag, helmet"/>
           </arguments>
           <references>
-            <identifierReference identifier="addentity"/>
             <identifierReference identifier="gotoentity"/>
+            <identifierReference identifier="addentity"/>
+            <identifierReference identifier="editentity"/>
+            <identifierReference identifier="deleteentity"/>
           </references>
         </command>
 
@@ -5736,7 +6237,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="N" description="the entity number" valueNotes=""/>
           </arguments>
           <references>
-            <identifierReference identifier="addentity"/>
             <identifierReference identifier="enumentities"/>
           </references>
         </command>
@@ -5775,6 +6275,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="undelent"/>
             <identifierReference identifier="unlistdeletedentity"/>
+            <identifierReference identifier="deleteentity"/>
           </references>
         </command>
 
@@ -5794,6 +6295,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="getdeletedentities"/>
             <identifierReference identifier="unlistdeletedentity"/>
+            <identifierReference identifier="deleteentity"/>
             <identifierReference identifier="editmeta"/>
             <identifierReference identifier="editmeta2"/>
           </references>
@@ -5813,6 +6315,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="getdeletedentities"/>
             <identifierReference identifier="undelent"/>
+            <identifierReference identifier="deleteentity"/>
           </references>
         </command>
 
@@ -5971,6 +6474,28 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="N" description="state of the second editmeta key" minValue="0" maxValue="1" defaultValue="0" readOnly="true" valueNotes="0: unpressed, 1: pressed"/>
           <references>
             <identifierReference identifier="editmeta2"/>
+          </references>
+        </variable>
+
+        <variable name="rereadtexturelists">
+          <description>Variable, which is set to "1" when a texture is downloaded.</description>
+          <remarks>
+            <remark>Used to trigger menu rebuilds.</remark>
+          </remarks>
+          <value token="N" description="is texture downloaded?" minValue="0" maxValue="1" defaultValue="1" valueNotes="0: no, 1: yes"/>
+          <references>
+            <identifierReference identifier="rereadsoundlists"/>
+          </references>
+        </variable>
+
+        <variable name="rereadsoundlists">
+          <description>Variable, which is set to "1" when a sound is downloaded.</description>
+          <remarks>
+            <remark>Used to trigger menu rebuilds.</remark>
+          </remarks>
+          <value token="N" description="is sound downloaded?" minValue="0" maxValue="1" defaultValue="1" valueNotes="0: no, 1: yes"/>
+          <references>
+            <identifierReference identifier="rereadtexturelists"/>
           </references>
         </variable>
 
@@ -7184,6 +7709,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="changegamma">
           <description>Smoothly changes your gamma to the specified value.</description>
+          <remarks>
+            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/survival" or start bot surival mode from menu.</remark>
+          </remarks>
           <arguments>
             <argument token="G" description="the gamma to change to"/>
             <argument token="M" description="milliseconds between gamma changes"/>
@@ -7328,35 +7856,35 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="fragmessage">
           <description>set the frag message corresponding to a weapon (appearing on the hud).</description>
           <arguments>
-            <argument token="G" description="the integer of the gun" valueNotes="0 = knife, etc."/>
+            <argument token="N" description="the weapon number or name" valueNotes="0 (knife), 1 (pistol), 2 (carbine), 3 (shotgun), 4 (subgun), 5 (sniper), 6 (assault), 7 (grenades), 8 (akimbo)"/>
             <argument token="M" description="the message you want to appear" valueNotes="example: sniped"/>
           </arguments>
           <examples>
             <example>
-              <code>fragmessage 5 sniped // set "sniped" message for frags with sniper. </code>
-              <explanation>
-             It will display "you sniped unarmed" on the hud when you frag unarmed with sniper.
-             In server logs you will get "[127.0.0.1] killer sniped unarmed".</explanation>
+              <code>fragmessage sniper sniped</code>
+              <explanation>It will display "you sniped unarmed" on the hud when you frag unarmed with sniper.</explanation>
             </example>
           </examples>
           <references>
             <identifierReference identifier="gibmessage"/>
+            <identifierReference identifier="weapon"/>
           </references>
         </command>
 
         <command name="gibmessage">
           <description>set the gib message corresponding to a weapon (appearing on the hud).</description>
           <arguments>
-            <argument token="G" description="the integer of the gun" valueNotes="0 = knife, etc."/>
+            <argument token="N" description="the weapon number or name" valueNotes="0 (knife), 1 (pistol), 2 (carbine), 3 (shotgun), 4 (subgun), 5 (sniper), 6 (assault), 7 (grenades), 8 (akimbo)"/>
             <argument token="M" description="the message you want to appear" valueNotes="example: slashed"/>
           </arguments>
           <remarks>
             <remark>
-              This command is identical to fragmessage, see it.
+              This command is identical to fragmessage, please see it.
             </remark>
           </remarks>
           <references>
             <identifierReference identifier="fragmessage"/>
+            <identifierReference identifier="weapon"/>
           </references>
         </command>
 
@@ -8526,6 +9054,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Prepares a round of bot survival mode on the specified map.</description>
           <remarks>
             <remark>All official maps are compatible with survival, if you want to play survival on a custom map, prior edits/additions to the script are necessary, such as adding a zone for that specific map.</remark>
+            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/survival" or start bot surival mode from menu.</remark>
           </remarks>
           <arguments>
             <argument token="M" description="the map to use"/>
@@ -8671,37 +9200,14 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="mdlattribute">
           <description>Adds a value for a specified attribute to the model.</description>
           <arguments>
-            <argument token="A" description="attribute" valueNotes="keywords, desc, usage, author, license, distribution, version"/>
+            <argument token="A" description="attribute" valueNotes="keywords, desc, defaults, usage, author, license, distribution, version"/>
             <argument token="V" description="value" valueNotes=""/>
           </arguments>
-        </command>
-
-        <command name="mapmodelattributes">
-          <description>Adds values for all attributes to a specific mapmodel.</description>
-          <remarks>
-            <remark>
-            If modelpath is a number, it is interpreted as index for the list of models in the current map config.
-            If no attribute name is specified, all attributes are printed to the console instead.
-            </remark>
-          </remarks>
-          <arguments>
-            <argument token="P" description="model path" valueNotes=""/>
-            <argument token="A" description="attribute" valueNotes="keywords, desc, usage, author, license, distribution, version"/>
-          </arguments>
-        </command>
-
-        <command name="mapmodelattributes">
-          <description>Adds values for all attributes to a specific mapmodel.</description>
-          <remarks>
-            <remark>
-            If modelpath is a number, it is interpreted as index for the list of models in the current map config.
-            If no attribute name is specified, all attributes are printed to the console instead.
-            </remark>
-          </remarks>
-          <arguments>
-            <argument token="P" description="model path" valueNotes=""/>
-            <argument token="A" description="attribute" valueNotes="keywords, desc, usage, author, license, distribution, version"/>
-          </arguments>
+          <references>
+            <identifierReference identifier="getmapmodelattributes"/>
+            <identifierReference identifier="listallmapmodelattributes"/>
+            <identifierReference identifier="mapmodelregister"/>
+          </references>
         </command>
 
         <command name="fog">
@@ -8807,8 +9313,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>It also returns the number of the created slot, example: echo (mapmodel ...)</remark>
           </remarks>
           <references>
-            <identifierReference identifier="mapmodelreset"/>
             <identifierReference identifier="newent mapmodel"/>
+            <identifierReference identifier="mapmodelreset"/>
+            <identifierReference identifier="loadallmapmodels"/>
+            <identifierReference identifier="mapmodelslotname"/>
+            <identifierReference identifier="mapmodelslotbyname"/>
+            <identifierReference identifier="mapmodelslotusage"/>
+            <identifierReference identifier="editmapmodelslot"/>
+            <identifierReference identifier="deletemapmodelslot"/>
+            <identifierReference identifier="mapmodelchanged"/>
+            <identifierReference identifier="listallmapmodelattributes"/>
+            <identifierReference identifier="getmapmodelattributes"/>
           </references>
           <arguments>
             <argument token="R" description="The square radius of the bounding box." valueNotes="Integer"/>
@@ -8843,10 +9358,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <references>
             <identifierReference identifier="newent sound"/>
             <identifierReference identifier="mapsoundreset"/>
+            <identifierReference identifier="getmapsoundlist"/>
+            <identifierReference identifier="getmapsoundorigin"/>
+            <identifierReference identifier="mapsoundslotbyname"/>
+            <identifierReference identifier="mapsoundslotusage"/>
+            <identifierReference identifier="editmapsoundslot"/>
+            <identifierReference identifier="deletemapsoundslot"/>
+            <identifierReference identifier="mapsoundchanged"/>
           </references>
           <arguments>
-            <argument token="N" description="Path to the sound file"/>
-            <argument token="M" description="Maximum simultaneous sounds" optional="true" valueNotes="default -1 (unlimited)"/>
+            <argument token="P" description="Path to the sound file"/>
+            <argument token="M" description="Maximum simultaneous sounds/maxuses" optional="true" valueNotes="default -1 (unlimited)"/>
           </arguments>
         </command>
 
@@ -8890,6 +9412,14 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="loadnotexture"/>
             <identifierReference identifier="texturereset"/>
             <identifierReference identifier="hirestextures"/>
+            <identifierReference identifier="gettexturelist"/>
+            <identifierReference identifier="gettextureorigin"/>
+            <identifierReference identifier="textureslotusage"/>
+            <identifierReference identifier="textureslotusagelist"/>
+            <identifierReference identifier="textureslotbyname"/>
+            <identifierReference identifier="deletetextureslot"/>
+            <identifierReference identifier="edittextureslot"/>
+            <identifierReference identifier="edittexturestack"/>
           </references>
           <arguments>
             <argument token="S" description="Scale of the texture to load (should be a power of two)." valueNotes="Float"/>
@@ -9132,24 +9662,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
       <description>This section describes identifiers that are not documented yet, but you may try to help us there.</description>
       <identifiers sort="true">        
 
-        <command name="getdemonameformat">
-          <description>returns the currently used formatstring for demo filenames</description>
-          <references>
-            <identifierReference identifier="getdemotimeformat"/>
-            <identifierReference identifier="demotimeformat"/>
-            <identifierReference identifier="demonameformat"/>
-          </references>
-        </command>
-
-        <command name="getdemotimeformat">
-          <description>returns the currently used formatstring for demo timestamp</description>
-          <references>
-            <identifierReference identifier="demotimeformat"/>
-            <identifierReference identifier="getdemonameformat"/>
-            <identifierReference identifier="demonameformat"/>
-          </references>
-        </command>
-
         <command name="demonameformat">
           <description>set the formatstring for demo filenames - default: TODO (when stable)</description>
           <arguments>
@@ -9186,11 +9698,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <webReference url="http://www.cplusplus.com/reference/clibrary/ctime/strftime/" name="C++-Reference"/>
           </references>
         </command>
-
-        <variable name="demotimelocal">
-          <description>use localtime (1) or GMT (0)?</description>
-          <value token="B" description="BOOL" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
 
         <command name="fontskip">
           <description>At what char does the definition proceed?</description>
