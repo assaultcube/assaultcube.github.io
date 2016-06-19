@@ -2665,7 +2665,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </scriptalias>
 
         <scriptalias name="modmdlweapN">
-          <description>change name of directory used for weapon model (hudgun) number N</description>
+          <description>Changes name of directory used for weapon model (hudgun) number N.</description>
           <examples>
             <example>
               <code>
@@ -2689,7 +2689,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </scriptalias>
 
         <scriptalias name="modmdlvwepN">
-          <description>change name of directory used for weapon model (viewable/world) number N</description>
+          <description>Changes name of directory used for weapon model (viewable/world) number N.</description>
           <references>
             <identifierReference identifier="modmdlweapN"/>
             <identifierReference identifier="modmdlpickupN"/>
@@ -2699,7 +2699,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </scriptalias>
         
         <scriptalias name="modmdlpickupN">
-          <description>change name of directory used for pickup model number N</description>
+          <description>Change name of directory used for pickup model number N.</description>
           <examples>
             <example>
               <code><![CDATA[modmdlpickup3 = health2]]></code>
@@ -2724,7 +2724,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </scriptalias>
         
         <scriptalias name="modmdlbounceN">
-          <description>change name of directory used for bounce model number N</description>
+          <description>Changes name of directory used for bounce model number N.</description>
           <examples>
             <example>
               <code><![CDATA[modmdlbounce0 = misc/my_gib1]]></code>
@@ -2753,6 +2753,27 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="modmdlpickupN"/>
             <identifierReference identifier="delalias"/>
           </references>
+        </scriptalias>
+
+        <scriptalias name="mapmodelzoff">
+          <description>Allows negative z-offsets for mapmodels.</description>
+          <remarks>
+            <remark>
+            A mapmodel entity is placed at a z-coordinate that is based on the floor height of map geometry
+            and a z-offset. The z-offset is a sum of the entity attribute 3 and the third mapmodel slot parameter.
+            The entity z-offset can range from 0 to 255 while the mapmodel slot parameter can be any integer including negative numbers.
+            So, to place a mapmodel below floor height, the mapmodel slot parameter has to be negative.
+            </remark>
+            <remark>
+            "mapmodelzoff" script decreases the mapmodel slot parameter by one and increases the z-offset of every mapmodel
+            which uses that slot also by one. This means, that all mapmodel are exact in the same place afterwards
+            - but the entity z-offset now has room to lower the mapmodel by one more cube.
+            </remark>
+            <remark>If you need more z-offset available, run the script several times.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="mapmodel slot number"/>
+          </arguments>
         </scriptalias>
 
         <command name="pstat_score">
@@ -4554,15 +4575,29 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="getentattr">
-          <description>Returns the value of the selected entity attribute of the nearest entity.</description>
+          <description>Returns the value of the selected attribute of the nearest entity.</description>
+          <remarks>
+            <remark>
+            It returns float values for some attributes.
+            If "unscaled" flag is "1", raw integer values (representing the highest resolution) are returned.
+            </remark>
+          </remarks>
           <arguments>
-            <argument token="A" description="attribute" valueNotes="0..7"/>
-            <argument token="F" description="unscaled flag, if '1', then raw integer values (representing the highest resolution) are returned" valueNotes="0 or 1"/>
+            <argument token="A" description="attribute index" valueNotes="0..6"/>
+            <argument token="U" description="unscaled flag" valueNotes="0 or 1" optional="true"/>
           </arguments>
+          <references>
+            <identifierReference identifier="entproperty"/>
+            <identifierReference identifier="getenttype"/>
+          </references>
         </command>
 
         <command name="getenttype">
           <description>Returns the entity type of the nearest entity.</description>
+          <references>
+            <identifierReference identifier="entproperty"/>
+            <identifierReference identifier="getentattr"/>
+          </references>
         </command>
 
         <command name="edittag">
@@ -4857,15 +4892,15 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>
             (x,y) is determined by the current selection (the red dot corner) and z by the camera height, of said type.
-            The type of entity may optionally take values (depending on the entity).
+            The type of entity may optionally take attributes (depending on the entity).
             </remark>
           </remarks>
           <arguments>
             <argument token="E" description="the entity type or number" valueNotes="light (1), playerstart (2), pistol (3), ammobox (4), grenades (5), health (6), helmet (7), armour (8), akimbo (9), mapmodel (10), ladder (12), ctf-flag (13), sound (14), clip (15), plclip (16)"/>
-            <argument token="value1" description="see newent 'type'"/>
-            <argument token="value2" description="see newent 'type'"/>
-            <argument token="value3" description="see newent 'type'"/>
-            <argument token="value4" description="see newent 'type'"/>
+            <argument token="attr1" description="see newent 'type'"/>
+            <argument token="attr2" description="see newent 'type'"/>
+            <argument token="attr3" description="see newent 'type'"/>
+            <argument token="attr4" description="see newent 'type'"/>
           </arguments>
         </command>
 
@@ -5035,14 +5070,14 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="entset">
           <description>Edits the closest entity.</description>
           <remarks>
-            <remark>Overwrites the closest entity with the specified values.</remark>
+            <remark>Overwrites the closest entity with the specified attributes. Some attributes may be specified as floats.</remark>
           </remarks>
           <arguments>
             <argument token="E" description="the entity type or number" valueNotes="light (1), playerstart (2), pistol (3), ammobox (4), grenades (5), health (6), helmet (7), armour (8), akimbo (9), mapmodel (10), ladder (12), ctf-flag (13), sound (14), clip (15), plclip (16)"/>
-            <argument token="value1" description="see newent 'type'"/>
-            <argument token="value2" description="see newent 'type'"/>
-            <argument token="value3" description="see newent 'type'"/>
-            <argument token="value4" description="see newent 'type'"/>
+            <argument token="attr1" description="see newent 'type'"/>
+            <argument token="attr2" description="see newent 'type'"/>
+            <argument token="attr3" description="see newent 'type'"/>
+            <argument token="attr4" description="see newent 'type'"/>
           </arguments>
           <references>
             <identifierReference identifier="editentity"/>
@@ -5050,17 +5085,27 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="entproperty">
-          <description>Changes property of the closest entity.</description>
+          <description>Changes property (attributes) of the closest entity.</description>
           <remarks>
             <remark>For example 'entproperty 0 2' when executed near a lightsource would increase its radius by 2.</remark>
-            <remark>Keys 1..7, in combination with the scrollwheel, can be used to alter the new entity attributes.</remark>
-            <remark>Pressing editmeta speeds up the scrolling. Pressing editmeta2 enables unscaled editing of entity attributes.</remark>
+            <remark>
+            Keys 1..7, in combination with the scrollwheel, can be used to alter the new entity attributes (attr1 - attr7).
+            Pressing editmeta speeds up the scrolling. Pressing editmeta2 enables unscaled editing of entity attributes.
+            </remark>
+            <remark>
+            Increment is a float for some attributes. If "unscaled" flag is "1", increment is applied as unscaled integer,
+            which means, it will change float attributes at their highest resolution.
+            </remark>
           </remarks>
           <arguments>
-            <argument token="P" description="the property to change" valueNotes="0..6"/>
-            <argument token="A" description="amount by wich the property is increased" valueNotes="integer"/>
+            <argument token="A" description="attribute index" valueNotes="0..6 (atrr1 - attr7), 11..13 (x, y, z)"/>
+            <argument token="I" description="attribute increment" valueNotes=""/>
+            <argument token="U" description="unscaled flag" valueNotes="0 or 1" optional="true"/>
           </arguments>
           <references>
+            <identifierReference identifier="getclosestent"/>
+            <identifierReference identifier="getentattr"/>
+            <identifierReference identifier="getenttype"/>
             <identifierReference identifier="editmeta"/>
             <identifierReference identifier="editmeta2"/>
           </references>
@@ -6169,15 +6214,19 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="editentity">
           <description>Edits a map entity.</description>
           <remarks>
-            <remark>It edits only parameters given a non-empty value. Returns the values of all attributes (type, x, y, z, attr1 - attr4).</remark>
+            <remark>
+            It edits only parameters given a non-empty value. Returns the type and the values of all attributes (x, y, z, attr1 - attr7).
+            It uses float values for some attributes, return values also may be float.
+            </remark>
           </remarks>
           <arguments>
             <argument token="N" description="entity index/number" valueNotes=""/>
+            <argument token="A" description="list of attributes" valueNotes="" optional="true"/>
           </arguments>
           <examples>
             <example>
               <code><![CDATA[echo (editentity 33)]]></code>
-              <explanation>Prints all attributes of map entity number 33, for example "light 174 172 12  20 255 200 200"</explanation>
+              <explanation>Prints all attributes of map entity number 33, for example "light 174 172 12  20 255 200 200 0 0 0"</explanation>
             </example>
             <example>
               <code><![CDATA[editentity 33 "" 173]]></code>
@@ -6249,6 +6298,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="toggleclosestentpin"/>
+            <identifierReference identifier="entproperty"/>
+            <identifierReference identifier="getentattr"/>
+            <identifierReference identifier="getenttype"/>
           </references>
         </command>
 
@@ -6554,10 +6606,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="newmenu"/>
           </references>
           <arguments>
-            <argument token="T" description="The text content in menu line."/>
-            <argument token="A" description="The command to execute on selection of the menuitem." optional="true"/>
-            <argument token="H" description="The command to execute upon rolling over the menuitem." optional="true"/>
-            <argument token="D" description="The description of menu item, which is displayed on the menu footer." optional="true"/>
+            <argument token="T" description="the text content in menu line"/>
+            <argument token="A" description="the command to execute on selection of the menuitem" optional="true"/>
+            <argument token="H" description="the command to execute upon rolling over the menuitem" optional="true"/>
+            <argument token="D" description="the description of menu item, which is displayed on the menu footer" optional="true"/>
           </arguments>
         </command>
 
@@ -6580,9 +6632,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="menuitem"/>
           </references>
           <arguments>
-            <argument token="N" description="The cubescript to generate the menuitem description."/>
-            <argument token="A" description="The command to execute on selection of the menuitem." optional="true"/>
-            <argument token="H" description="The command to execute upon rolling over the menuitem." optional="true"/>
+            <argument token="N" description="the cubescript to generate the menuitem description"/>
+            <argument token="A" description="the command to execute on selection of the menuitem" optional="true"/>
+            <argument token="H" description="the command to execute upon rolling over the menuitem" optional="true"/>
           </arguments>
         </command>
 
@@ -6595,12 +6647,15 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </remark>
           </remarks>
           <arguments>
-            <argument token="N" description="the name of the alternate font"/>
+            <argument token="N" description="the name of the alternate font" valueNotes="default, mono, serif, huddigits, serverquality, bargraphs, radaricons"/>
             <argument token="T" description="text content in menu line"/>
             <argument token="A" description="action" optional="true"/>
             <argument token="H" description="hoveraction" optional="true"/>
             <argument token="D" description="description displayed on menu footer" optional="true"/>
           </arguments>
+          <references>
+            <identifierReference identifier="font"/>
+          </references>
         </command>
 
         <command name="menuselection">
@@ -6703,6 +6758,14 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
+        <command name="menuheader">
+          <description>Adds header and/or footer to the menu.</description>
+          <arguments>
+            <argument token="H" description="header"/>
+            <argument token="F" description="footer"/>
+          </arguments>
+        </command>
+
         <variable name="browsefiledesc">
           <description>Toggles getting descriptive text from CGZ or DMO files in menudirlist.</description>
           <value token="B" description="" minValue="0" maxValue="1" defaultValue="1"/>
@@ -6737,10 +6800,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="menufont">
-          <description>switch the font in which the menu is displayed</description>
+          <description>Switches the font in which the menu is displayed</description>
           <arguments>
-            <argument token="F" description="font"/>
+            <argument token="F" description="font" valueNotes="default, mono, serif"/>
           </arguments>
+          <references>
+            <identifierReference identifier="font"/>
+          </references>
         </command>
 
         <command name="showmenu">
@@ -7417,43 +7483,68 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="font">
-          <description>
-            Loads a font texture to use as text within AssaultCube.
-          </description>
+          <description>Loads a font texture to use as text within AssaultCube.</description>
           <arguments>
-            <argument token="NAME" description="The font name."/>
-            <argument token="PATH" description="The path to the font texture."/>
-            <argument token="A" description="The default width."/>
-            <argument token="B" description="The default height."/>
-            <argument token="C" description="Offset (co-ordinate X)."/>
-            <argument token="D" description="Offset (co-ordinate Y)."/>
-            <argument token="E" description="Offset (width)."/>
-            <argument token="F" description="Offset (height)."/>
+            <argument token="NAME" description="the font name"/>
+            <argument token="PATH" description="the path to the font texture"/>
+            <argument token="A" description="the default width"/>
+            <argument token="B" description="the default height"/>
+            <argument token="C" description="offset (co-ordinate X)"/>
+            <argument token="D" description="offset (co-ordinate Y)"/>
+            <argument token="E" description="offset (width)"/>
+            <argument token="F" description="offset (height)"/>
           </arguments>
+          <references>
+            <identifierReference identifier="fontchar"/>
+            <identifierReference identifier="fontskip"/>
+            <identifierReference identifier="setfont"/>
+            <identifierReference identifier="menufont"/>
+            <identifierReference identifier="scorefont"/>
+            <identifierReference identifier="menuitemaltfont"/>
+          </references>
         </command>
 
         <command name="fontchar">
-          <description>
-            Specify a region of an image to be used as a font character
-          </description>
+          <description>Specifies a region of an image to be used as a font character.</description>
           <arguments>
-            <argument token="A" description="X co-ordinates (from top-left corner)."/>
-            <argument token="B" description="Y co-ordinates (from top-left corner)."/>
-            <argument token="C" description="Width."/>
-            <argument token="D" description="Height."/>
+            <argument token="A" description="X co-ordinates (from top-left corner)"/>
+            <argument token="B" description="Y co-ordinates (from top-left corner)"/>
+            <argument token="C" description="width"/>
+            <argument token="D" description="height"/>
           </arguments>
+          <references>
+            <identifierReference identifier="font"/>
+            <identifierReference identifier="fontskip"/>
+          </references>
+        </command>
+
+        <command name="fontskip">
+          <description>Specifies, at what char the font definition proceeds.</description>
+          <arguments>
+            <argument token="A" description="the ascii code of the first char"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="font"/>
+            <identifierReference identifier="fontchar"/>
+          </references>
         </command>
 
         <command name="setfont">
           <description>Changes the current font.</description>
           <arguments>
-            <argument token="N" description="Font name" valueNotes="name of the font"/>
+            <argument token="N" description="font name" valueNotes="default, mono, serif"/>
           </arguments>
+          <references>
+            <identifierReference identifier="font"/>
+          </references>
         </command>
 
         <variable name="scorefont">
           <description>Whether a special monospace font should be used to render the text on the scoreboard.</description>
           <value token="M" description="normal (0) or monospace (1)" minValue="0" maxValue="1" defaultValue="0"/>
+          <references>
+            <identifierReference identifier="font"/>
+          </references>
         </variable>
 
         <variable name="fov">
@@ -9697,13 +9788,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="demonameformat"/>
             <webReference url="http://www.cplusplus.com/reference/clibrary/ctime/strftime/" name="C++-Reference"/>
           </references>
-        </command>
-
-        <command name="fontskip">
-          <description>At what char does the definition proceed?</description>
-          <arguments>
-            <argument token="A" description="TODO"/>
-          </arguments>
         </command>
 
         <command name="musicpreload">
