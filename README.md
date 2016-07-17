@@ -30,7 +30,7 @@ the ./htdocs/docs folder into the release. No changes necessary.
 
 AC Developers:
    If you have NEVER changed ANY files within this repository before,
-   then PLEASE ensure you've asked flowtron or RandumKiwi about
+   then PLEASE ensure you've asked RandumKiwi or other developer about
    how things work, before you change files for the first time.
 
    DO NOT TOUCH ANYTHING UNTIL YOU HAVE!
