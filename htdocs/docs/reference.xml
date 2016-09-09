@@ -63,7 +63,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
   <sections sort="true">
   <!--
     Sections available: Cubescript, General, Gameplay, Keyboard and mouse, Game modes, Visuals, Heads-Up Display, Sound,
-                        Server commands, Editing, Editing configs, Menus, Ingame Reference, Bot mode, TODO
+                        Server commands, Editing, Editing configs, Menus, Ingame Reference, Bot mode, Optional, TODO
   -->
     <!-- CubeScript language Section Starts -->
     <section name="CubeScript" sortindex="00">
@@ -895,95 +895,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
-        <command name="parsestring">
-          <description>Loops through every character in the given string and executes the given block of cubescript on each iteration.</description>
-          <examples>
-            <example>
-              <code><![CDATA[parsestring "Hello world" iter [echo $iter]]]></code>
-              <explanation>Uses echo on every character in the string: "Hello world"</explanation>
-            </example>
-            <example>
-              <code><![CDATA[parsestring "Hello world" iter [echo (concatword "Char #" $__iter ": " $iter)]]]></code>
-              <explanation>Uses echo on every character in the string: "Hello world" --- Also outputs the position of each character in the string.</explanation>
-            </example>
-            <example>
-              <code><![CDATA[backwardsstring = []; parsestring "This will look interesting backwards." iter [backwardsstring = (concatword $backwardsstring $iter); if (= $__iter 0) [echo $backwardsstring]] 1]]></code>
-              <explanation>Outputs: ".sdrawkcab gnitseretni kool lliw sihT"</explanation>
-            </example>
-            <example>
-              <code><![CDATA[parsestring "abcdefghijklmnopqrstuvwxyz" iter [if (> $__iter 4) breakparse [echo $iter]]]]></code>
-              <explanation>Example usage of the breakparse command. Uses echo on characters a through e, then breaks out of the parse.</explanation>
-            </example>
-          </examples>
-          <arguments>
-            <argument token="S" description="string" valueNotes="string to parse"/>
-            <argument token="A" description="string" valueNotes="name of alias to use as iterator"/>
-            <argument token="C" description="string" valueNotes="cubescript to execute on each iteration"/>
-            <argument token="B" description="integer" valueNotes="non-zero to force backwards parse" optional="true"/>
-          </arguments>
-          <remarks>
-            <remark>Important: A secondary iterator alias (prefixed with a double underscore "__") is automatically created before each iteration that contains the character position data.</remark>
-            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/parsestring".</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="breakparse"/>
-            <identifierReference identifier="substr"/>
-            <identifierReference identifier="trimAllWhitespace"/>
-            <identifierReference identifier="trimAllUnnecessaryWhitespace"/>
-          </references>
-        </command>
-
-        <command name="breakparse">
-          <description>Breaks out of a parsestring loop.</description>
-          <remarks>
-            <remark>Important: this command should only be used within the 3rd argument (the cubescript to execute) of parsestring.</remark>
-            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/parsestring".</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="parsestring"/>
-          </references>
-        </command>
-
-        <command name="trimAllWhitespace">
-          <description>Removes all whitespace characters from the given string.</description>
-          <remarks>
-            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/parsestring".</remark>
-          </remarks>
-          <examples>
-            <example>
-              <code><![CDATA[echo (trimAllWhitespace "    H   e ll     o w  o r   l d     ")]]></code>
-              <explanation>Outputs: Helloworld</explanation>
-            </example>
-          </examples>
-          <arguments>
-            <argument token="S" description="string" valueNotes="string to modify"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="trimAllUnnecessaryWhitespace"/>
-            <identifierReference identifier="parsestring"/>
-          </references>
-        </command>
-
-        <command name="trimAllUnnecessaryWhitespace">
-          <description>Removes all unnecessary leading and trailing whitespace characters from the given string.</description>
-          <remarks>
-            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/parsestring".</remark>
-          </remarks>
-          <examples>
-            <example>
-              <code><![CDATA[echo (trimAllUnnecessaryWhitespace "    H   e ll     o w  o r   l d     ")]]></code>
-              <explanation>Outputs: "H   e ll     o w  o r   l d"</explanation>
-            </example>
-          </examples>
-          <arguments>
-            <argument token="S" description="string" valueNotes="string to modify"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="trimAllWhitespace"/>
-            <identifierReference identifier="parsestring"/>
-          </references>
-        </command>
-
         <command name="concat">
           <description>Concatenates multiple strings with spaces inbetween.</description>
           <examples>
@@ -1372,7 +1283,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <references>
             <identifierReference identifier="toupper"/>
-            <identifierReference identifier="convertcase"/>
           </references>
         </command>
 
@@ -1389,32 +1299,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <references>
             <identifierReference identifier="tolower"/>
-            <identifierReference identifier="convertcase"/>
-          </references>
-        </command>
-
-        <command name="convertcase">
-          <description>Converts a list of strings to lowercase or uppercase characters.</description>
-          <examples>
-            <example>
-              <code><![CDATA[echo (convertcase 0 ZERO ONE TWO THREE)]]></code>
-              <explanation>Output: zero one two three</explanation>
-            </example>
-            <example>
-              <code><![CDATA[echo (convertcase 1 zero one two three)]]></code>
-              <explanation>Output: ZERO ONE TWO THREE</explanation>
-            </example>
-          </examples>
-          <arguments>
-            <argument token="N" description="0 - use lowercase, 1 - use uppercase" valueNotes="min 0/max 1"/>
-            <argument token="..." description="a list of strings"/>
-          </arguments>
-          <remarks>
-            <remark>This command can handle up to 23 string arguments.</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="tolower"/>
-            <identifierReference identifier="toupper"/>
           </references>
         </command>
 
@@ -1621,14 +1505,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
         </command>
-
-        <variable name="compatibilitymode">
-          <description>Sets whether or not to enable compatibility settings for old scripts</description>
-          <value token="B" description="0: off, 1: on" minValue="0" maxValue="1" defaultValue="1" />
-          <remarks>
-            <remark>To see compatibility settings, look in config/compatibility.cfg</remark>
-          </remarks>
-        </variable>
 
         <command name="isolatecontext">
           <description>Isolates the given context. This disables access from this context to identifiers located in other contexts, also it removes all aliases created in this context once the running context changes</description>
@@ -1860,8 +1736,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="screenshot"/>
-            <identifierReference identifier="disablehud"/>
-            <identifierReference identifier="enablehud"/>
             <identifierReference identifier="blankouthud"/>
           </references>
         </command>
@@ -2405,6 +2279,40 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
+        <command name="demonameformat">
+          <description>Sets the formatstring for demo filenames.</description>
+          <arguments>
+            <argument token="S" description="string"/>
+          </arguments>
+          <remarks>
+            <remark>we use the following internal mapping of formatchars:</remark>
+            <remark>%g : gamemode (int) ; %G : gamemode (chr) ; %F : gamemode (full) ;</remark>
+            <remark>%m : minutes remaining ; %M : minutes played ;</remark>
+            <remark>%s : seconds remaining ; %S : seconds played ;</remark>
+            <remark>%h : IP of server ; %H : hostname of server (client only) ;</remark>
+            <remark>%n : mapname ;</remark>
+            <remark>%w : timestamp "when" (formatted by demotimeformat) .</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="demotimeformat"/>
+          </references>
+        </command>
+
+        <command name="demotimeformat">
+          <description>Sets the formatstring for demo timestamp.</description>
+          <arguments>
+            <argument token="S" description="string"/>
+          </arguments>
+          <remarks>
+            <remark>If the string starts with 'U', UTC is used - otherwise local time.</remark>
+            <remark>The same format options as in strftime() .</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="demonameformat"/>
+            <webReference url="http://www.cplusplus.com/reference/clibrary/ctime/strftime/" name="strftime() C++-Reference"/>
+          </references>
+        </command>
+
       </identifiers>
     </section>
     <!-- General Section Ends -->
@@ -2422,7 +2330,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
                 start_intermission = [
                 echo "INTERMISSION - STATISTICS TIME"
                 loop p 255 [
-                pn = (findpn $p)
+                pn = (player $p name)
                 if (strcmp $pn "") [ ] [
                 echo (concatword Player $p ":") (pstat_score $p) ":" (pstat_weap $p)
                 ]
@@ -2776,28 +2684,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </scriptalias>
 
-        <command name="pstat_score">
-          <description>Returns the score statistics for the player with the given clientnumber.</description>
-          <arguments>
-            <argument token="C" description="client" valueNotes="0..N"/>
-          </arguments>
-          <examples>
-            <example>
-              <code>
-                <![CDATA[
-                echo (pstat_score 0)
-                ]]>
-              </code>
-              <explanation>Output: 0 5 3 43 1 1 unarmed</explanation>
-              <explanation>The output is a list of FLAGS, FRAGS, DEATHS, POINTS, TEAM, TEAMKILLS, and NAME.</explanation>
-            </example>
-          </examples>
-          <references>
-            <identifierReference identifier="start_intermission"/>
-            <identifierReference identifier="pstat_weap"/>
-          </references>
-        </command>
-
         <command name="pstat_weap">
           <description>Returns the shot statistics for the player with the given clientnumber.</description>
           <arguments>
@@ -2970,16 +2856,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
-        <command name="alive">
-          <description>Returns 1 if the local player is alive.</description>
-          <examples>
-            <example>
-              <code><![CDATA[echo (alive)]]></code>
-              <explanation>Output: 1</explanation>
-            </example>
-          </examples>
-        </command>
-
         <command name="teaminfo">
           <description>Returns attributes of a team.</description>
           <arguments>
@@ -2990,29 +2866,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="curmap">
           <description>Returns the current map being played.</description>
-          <remarks>
-            <remark>If you pass it a non-zero value, the result will be path-less.</remark>
-          </remarks>
-          <examples>
-            <example>
-              <code><![CDATA[echo playing: (curmap) vote for: (curmap 1)]]></code>
-              <explanation>output: playing maps/ac_complex vote for: ac_complex</explanation>
-            </example>
-          </examples>
           <references>
-            <identifierReference identifier="curmode"/>
-            <identifierReference identifier="map"/>
-            <identifierReference identifier="mode"/>
-          </references>
-          <arguments>
-            <argument token="I" description="clean" valueNotes="0, 1"/>
-          </arguments>
-        </command>
-
-        <command name="curmode">
-          <description>Returns the mode number for the current game.</description>
-          <references>
-            <identifierReference identifier="curmap"/>
+            <identifierReference identifier="gamemode"/>
             <identifierReference identifier="map"/>
             <identifierReference identifier="mode"/>
           </references>
@@ -3051,10 +2906,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>Possible attributes are: team, arena, flag and bot.</remark>
           </remarks>
-        </command>
-
-        <command name="getclientmode">
-          <description>Returns the current game mode number.</description>
         </command>
 
         <command name="curmastermode">
@@ -3099,14 +2950,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
         </command>
 
-        <command name="currole">
-          <description>Returns 1 if the local player has admin privileges, 0 otherwise.</description>
-          <references>
-            <identifierReference identifier="setadmin"/>
-            <identifierReference identifier="connectadmin"/>
-          </references>
-        </command>
-
         <command name="curserver">
           <description>Returns information on the current server - if you're connected to one.</description>
           <remarks>
@@ -3135,24 +2978,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
               <explanation>This will either remember or retrieve the last server you pressed the PrintScreen-key on.</explanation>
             </example>
           </examples>
-        </command>
-
-        <command name="curteam">
-          <description>Returns an integer indicating what team a client is currently on.</description>
-          <arguments>
-            <argument token="C" description="client number" valueNotes="returns the specified client's team instead" optional="true"/>
-          </arguments>
-          <remarks>
-            <remark>Returns 0 for CLA, 1 for RVSF.</remark>
-            <remark>Returns 2 for CLA-spectator, 3 for RVSF-spectator.</remark>
-            <remark>Returns 4 for spectator.</remark>
-            <remark>By default this command returns what team *you* (player1) are currently on.</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="team"/>
-            <identifierReference identifier="forceteam"/>
-            <identifierReference identifier="skin"/>
-          </references>
         </command>
 
         <command name="curweapon">
@@ -3546,7 +3371,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <references>
-            <identifierReference identifier="currole"/>
             <identifierReference identifier="connect"/>
             <identifierReference identifier="disconnect"/>
             <identifierReference identifier="reconnect"/>
@@ -3797,7 +3621,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="spectatemode">
           <description>Sets the desired spectating mode.</description>
           <arguments>
-            <argument token="M" description="the mode" valueNotes="2 (1st-person), 3 (3rd-person), 4 (3rd-person transparent), 5 (free flying), 6 (overview)"/>
+            <argument token="M" description="the mode" valueNotes="2 (1st-person), 3 (3rd-person), 4 (3rd-person transparent), 5 (free flying)"/>
           </arguments>
           <defaultKeys>
             <key alias="SPACE" description="switch spectator mode"/>
@@ -4011,31 +3835,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>This does not work in multiplayer. For entertainment purposes only :)</remark>
           </remarks>
           <value token="N" description="the game speed" minValue="10" maxValue="1000" defaultValue="100"/>
-          <references>
-            <identifierReference identifier="changespeed"/>
-          </references>
         </variable>
-
-        <command name="changespeed">
-          <description>Smoothly changes your gamespeed to the specified value.</description>
-          <remarks>
-            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/survival" or start bot surival mode from menu.</remark>
-          </remarks>
-          <arguments>
-            <argument token="S" description="the gamespeed to change to"/>
-            <argument token="M" description="milliseconds between gamespeed changes"/>
-          </arguments>
-          <examples>
-            <example>
-              <code><![CDATA[changespeed 1000 30]]></code>
-              <explanation>Every 30 milliseconds your gamespeed is changed by 1 until it reaches its goal of gamespeed 1000.</explanation>
-            </example>
-          </examples>
-          <references>
-            <identifierReference identifier="gamespeed"/>
-            <identifierReference identifier="changegamma"/>
-          </references>
-        </command>
 
         <variable name="flyspeed">
           <description>Determines by how much to multiply the fly speeds by.</description>
@@ -4072,7 +3872,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>You can draw a few zones at a time. They will be reset (i.e. removed) once a new game starts.</remark>
             <remark>Note that the coordinates must be specified as integers, not as floating-point values.</remark>
-            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/survival" or start bot surival mode from menu.</remark>
           </remarks>
           <arguments>
             <argument token="X1" description="X-coordinate - top-left corner"/>
@@ -4089,9 +3888,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="resetzones">
           <description>Reset all drawn zones.</description>
-          <remarks>
-            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/survival" or start bot surival mode from menu.</remark>
-          </remarks>
           <references>
             <identifierReference identifier="drawzone"/>
             <identifierReference identifier="survival"/>
@@ -4140,13 +3936,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>find client number (cn)</description>
           <arguments>
             <argument token="N" description="NAME"/>
-          </arguments>
-        </command>
-
-        <command name="findpn">
-          <description>find player name</description>
-          <arguments>
-            <argument token="C" description="CLIENTNUM"/>
           </arguments>
         </command>
 
@@ -5210,6 +4999,40 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
+        <variable name="mapinfo_license">
+          <description>Sets the map license.</description>
+          <remarks>
+            <remark>
+            The name of license is stored withing the header of a map file. The license string is meant to hold
+            an abbreviated name of the license, picked from a list of known map licenses.
+            </remark>
+            <remark>You can get the type of map license with the $mapinfo_license variable.</remark>
+          </remarks>
+          <arguments>
+            <argument token="L" description="type of license" valueNotes="string"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapinfo_comment"/>
+          </references>
+        </variable>
+
+        <variable name="mapinfo_comment">
+          <description>Sets the map comment string.</description>
+          <remarks>
+            <remark>
+            The variable is stored withing the header of a map file.
+            The comment string is ignored, as long as no map license string is set.
+            </remark>
+            <remark>You can get the comment string with the $mapinfo_comment variable.</remark>
+          </remarks>
+          <arguments>
+            <argument token="C" description="comment" valueNotes="string"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapinfo_license"/>
+          </references>
+        </variable>
+
         <command name="entstats">
           <description>Print some map entity statistics to the console.</description>
         </command>
@@ -5303,6 +5126,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="showtagclips">
+          <description>Show ladder entities (as blue wireframes) in edit mode.</description>
+          <value token="N" description="-" minValue="0" maxValue="1" defaultValue="0" />
+        </variable>
+
+        <variable name="showladderentities">
           <description>Show tagclips/tagplclips in edit mode.</description>
           <value token="N" description="-" minValue="0" maxValue="1" defaultValue="1" />
         </variable>
@@ -5771,6 +5599,51 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
+        <command name="sortmapmodelslots">
+          <description>Sorts all mapmoodel slots alphabetically and merge identical slots.</description>
+          <remarks>
+            <remark>
+            By default, the list is sorted and only unused identical (with the same model and parameters) slots are merged.
+            The keywords can be combined in any order. "nomerge" takes priority over "mergeused".
+            </remark>
+          </remarks>
+          <examples>
+            <example>
+              <code><![CDATA[sortmapmodelslots]]></code>
+              <explanation>
+              - sorts the mapmodel slot list alphabetically and merge unused identical slots. Merging an unused slot is
+              pretty much the same as deleting it, so this command sorts the list and removes unneeded double entries
+              </explanation>
+            </example>
+            <example>
+              <code><![CDATA[sortmapmodelslots nosort]]></code>
+              <explanation>- merges (deletes) unused double entries in the mapmodel slot list</explanation>
+            </example>
+            <example>
+              <code><![CDATA[sortmapmodelslots nosort mergeused]]></code>
+              <explanation>
+              - merges double entries in the mapmodel slot list. If two identical entries are used in the map,
+              all uses are mapped to the new combined slot. This leaves no visual changes on the map.
+              Should be avoided, if mapmodel slots have been renamed manually - and the renaming isn't finished yet
+              </explanation>
+            </example>
+            <example>
+              <code><![CDATA[sortmapmodelslots mergeused]]></code>
+              <explanation>- sorts the mapmodel slot list and merges all double entries</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="nosort" description="do not sort the list alphabetically" optional="true"/>
+            <argument token="nomerge" description="do not merge any slots" optional="true"/>
+            <argument token="mergeused" description="merge used and unused (identical) slots freely" optional="true"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapmodel"/>
+            <identifierReference identifier="sorttextureslots"/>
+            <identifierReference identifier="sortmapsoundslots"/>
+          </references>
+        </command>
+
         <variable name="mapmodelchanged">
           <description>Set to "1" with every command that changes mapmodel slots.</description>
           <value token="N" description="0: not changed, 1: changed" minValue="0" maxValue="1" defaultValue="0"/>
@@ -5840,11 +5713,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </remark>
           </remarks>
           <arguments>
-            <argument token="N" description="list of attribute names" valueNotes="explodekeywords, sortby:, keywords, desc, defaults, usage, author, license, distribution, version"/>
+            <argument token="N" description="list of attribute names" valueNotes="explodekeywords, sortby: keywords, desc, defaults, usage, author, license, distribution, version"/>
           </arguments>
           <examples>
             <example>
-              <code><![CDATA[getmapmodelattributes sortby: author sortby: desc explodekeywords]]></code>
+              <code><![CDATA[listallmapmodelattributes sortby: author sortby: desc explodekeywords]]></code>
             </example>
           </examples>
           <references>
@@ -6065,6 +5938,33 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
+        <command name="sorttextureslots">
+          <description>Sorts all texture slots alphabetically and merge identical slots.</description>
+          <remarks>
+            <remark>
+            By default, the list is sorted (besides the first five) and only unused identical
+            (with the same texture and scale factor) slots are merged.
+            The keywords can be combined in any order. "nomerge" takes priority over "mergeused".
+            </remark>
+            <remark>
+            It allows to manually sort also the first few slots by adding the slot number to move to the slots #1, #2, #3, #4
+            (for example "sorttextureslots 11 12 13 14" will move slot #11 to slot #1, #12 to #2, #13 to #3 and #14 to #4,
+            and sort the rest texture slots).
+            </remark>
+            <remark>See examples in the "sortmapmodelslots" reference.</remark>
+          </remarks>
+          <arguments>
+            <argument token="nosort" description="do not sort the list alphabetically" optional="true"/>
+            <argument token="nomerge" description="do not merge any slots" optional="true"/>
+            <argument token="mergeused" description="merge used and unused (identical) slots freely" optional="true"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="texture"/>
+            <identifierReference identifier="sortmapmodelslots"/>
+            <identifierReference identifier="sortmapsoundslots"/>
+          </references>
+        </command>
+
         <command name="getmapsoundlist">
           <description>Returns a list of all *.wav and *.ogg files below packages/audio/ambience.</description>
           <references>
@@ -6163,6 +6063,27 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="mapsoundslotusage"/>
             <identifierReference identifier="editmapsoundslot"/>
             <identifierReference identifier="mapsoundchanged"/>
+          </references>
+        </command>
+
+        <command name="sortmapsoundslots">
+          <description>Sorts all mapsound slots alphabetically and merge identical slots.</description>
+          <remarks>
+            <remark>
+            By default, the list is sorted and only unused identical slots are merged.
+            The keywords can be combined in any order. "nomerge" takes priority over "mergeused".
+            </remark>
+            <remark>See examples in the "sortmapmodelslots" reference.</remark>
+          </remarks>
+          <arguments>
+            <argument token="nosort" description="do not sort the list alphabetically" optional="true"/>
+            <argument token="nomerge" description="do not merge any slots" optional="true"/>
+            <argument token="mergeused" description="merge used and unused (identical) slots freely" optional="true"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapsound"/>
+            <identifierReference identifier="sortmapmodelslots"/>
+            <identifierReference identifier="sorttextureslots"/>
           </references>
         </command>
 
@@ -6550,6 +6471,27 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="rereadtexturelists"/>
           </references>
         </variable>
+
+        <command name="mapareacheck">
+          <description>Calculates some key values to determine map geometry viability.</description>
+          <remarks>
+            <remark>It returns different sets of statistics, depending on the keyword "what":</remark>
+            <remark>
+            "vdelta" - returns table of numbers of cubes within a certain range of vdelta
+            differences (steepness). First entry is "0..2 cubes steep", next is "2..4" and so on.
+            </remark>
+            <remark>"steepest" - returns the coordinates of the steepest heightfield cube.</remark>
+            <remark>"total" - returns the number of non-solid cubes on the map.</remark>
+            <remark>"pprest" - returns the number of cubes _not_ visible from one of the probe positions.</remark>
+            <remark>
+            "pp" (default) - returns a table of all (currently 64) probe points of the map. Each probe point is listed with:
+            x-coordinate, y-coordinate, floor height, area visible, volume of visible area, average height in visible area.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="W" description="what" valueNotes="vdelta, steepest, total, pprest, pp (default)"/>
+          </arguments>
+        </command>
 
         </identifiers>
     </section>
@@ -7104,6 +7046,22 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="V" description="enable/disable flag icons" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
+        <variable name="hidektfindicator">
+          <description>Turns on or off the display of ktf flag direction indicator.</description>
+          <value token="V" description="enable/disable ktf indicator" minValue="0" maxValue="1" defaultValue="0"/>
+          <references>
+            <identifierReference identifier="ktfindicatoralpha"/>
+          </references>
+        </variable>
+
+        <variable name="ktfindicatoralpha">
+        <description>Sets the level of transparency of ktf flag direction indicator, 100 = totaly solid.</description>
+          <value token="V" description="ktf indicator alpha value" minValue="1" maxValue="100" defaultValue="70"/>
+          <references>
+            <identifierReference identifier="hidektfindicator"/>
+          </references>
+        </variable>
+
         <variable name="hideteam">
           <description>Turns on or off the display of local player team icons.</description>
           <value token="V" description="enable/disable team icons" minValue="0" maxValue="1" defaultValue="0"/>
@@ -7134,28 +7092,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="N" description="0: Show no stats, 1: Only show FPS stats, 2: Show all stats" minValue="0" maxValue="2" defaultValue="1"/>
         </variable>
 
-        <variable name="recoiltest">
-          <description></description>
-          <value token="V" description="" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <variable name="maxrecoil">
-          <description>.</description>
-          <value token="V" description="" minValue="0" maxValue="1000" defaultValue="1000"/>
-        </variable>
-
-        <variable name="recoilbackfade">
-          <value token="V" description="" minValue="0" maxValue="1000" defaultValue="100"/>
-        </variable>
-
-        <variable name="recoilbase">
-          <value token="V" description="" minValue="0" maxValue="1000" defaultValue="40"/>
-        </variable>
-
-        <variable name="recoilincrease">
-          <value token="V" description="" minValue="1" maxValue="10" defaultValue="2"/>
-        </variable>
-
         <variable name="swaymovediv">
           <value token="V" description="" minValue="1" maxValue="1000" defaultValue="200"/>
         </variable>
@@ -7178,7 +7114,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="damageindicatoralpha">
-          <description>Set the level of transparency of the damage indicator, 0 = is fully transparent, 100 = totaly solid.</description>
+          <description>Sets the level of transparency of the damage indicator, 100 = totaly solid.</description>
           <value token="V" description="damage indicator alpha value" minValue="1" maxValue="100" defaultValue="50"/>
         </variable>
 
@@ -7239,11 +7175,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           valueNotes="0 (green), 1 (blue), 2 (yellow), 3 (red), 4 (gray), 5 (white), 6 (dark brown), 7 (dark red), 8 (purple), 9 (orange)"/>
         </variable>
 
-        <variable name="orderscorecolumns">
-          <description>Show the client number column on the scoreboard first?</description>
-          <value token="N" description="cn column order" minValue="0" maxValue="1" defaultValue="0" valueNotes="0 (false), 1 (true)"/>
-        </variable>
-
         <variable name="radarheight">
           <description>change at what height you are floating in the radar-view</description>
           <value token="H" description="height" minValue="5" maxValue="500" defaultValue="150"/>
@@ -7259,24 +7190,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="N" description="0 off, 1 on" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
-        <command name="disablehud">
-          <description>Stores your current HUD configuration in a buffer and disables it entirely.</description>
-          <references>
-            <identifierReference identifier="cleanshot"/>
-            <identifierReference identifier="enablehud"/>
-            <identifierReference identifier="blankouthud"/>
-          </references>
-        </command>
-
-        <command name="enablehud">
-          <description>Restores your HUD configuration after using disablehud.</description>
-          <references>
-            <identifierReference identifier="cleanshot"/>
-            <identifierReference identifier="disablehud"/>
-            <identifierReference identifier="blankouthud"/>
-          </references>
-        </command>
-
         <variable name="blankouthud">
           <description>Hides most of elements on the HUD for X frames.</description>
           <value token="X" description="blank out the HUD" minValue="0" maxValue="10000" defaultValue="0"/>
@@ -7288,8 +7201,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="cleanshot"/>
-             <identifierReference identifier="enablehud"/>
-            <identifierReference identifier="disablehud"/>
           </references>
         </variable>
 
@@ -7793,31 +7704,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>May not work if your card/driver doesn't support it.</remark>
           </remarks>
           <value token="N" description="the gamma value" minValue="30" maxValue="300" defaultValue="100"/>
-          <references>
-            <identifierReference identifier="changegamma"/>
-          </references>
         </variable>
-
-        <command name="changegamma">
-          <description>Smoothly changes your gamma to the specified value.</description>
-          <remarks>
-            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/survival" or start bot surival mode from menu.</remark>
-          </remarks>
-          <arguments>
-            <argument token="G" description="the gamma to change to"/>
-            <argument token="M" description="milliseconds between gamma changes"/>
-          </arguments>
-          <examples>
-            <example>
-              <code><![CDATA[changegamma 300 30]]></code>
-              <explanation>Every 30 milliseconds your gamma is changed by 1 until it reaches its goal of gamma 300.</explanation>
-            </example>
-          </examples>
-          <references>
-            <identifierReference identifier="gamma"/>
-            <identifierReference identifier="changespeed"/>
-          </references>
-        </command>
 
         <scriptalias name="setgamma">
           <description>Sets a persistent gamma value for a map.</description>
@@ -8592,7 +8479,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Calls a vote to force the specified player to switch to the specified team.</description>
           <references>
             <identifierReference identifier="forceme"/>
-            <identifierReference identifier="curteam"/>
             <identifierReference identifier="setadmin"/>
           </references>
           <arguments>
@@ -8611,7 +8497,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="forceteam"/>
-            <identifierReference identifier="curteam"/>
           </references>
         </command>
 
@@ -9141,18 +9026,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
-        <command name="survival">
-          <description>Prepares a round of bot survival mode on the specified map.</description>
-          <remarks>
-            <remark>All official maps are compatible with survival, if you want to play survival on a custom map, prior edits/additions to the script are necessary, such as adding a zone for that specific map.</remark>
-            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/survival" or start bot surival mode from menu.</remark>
-          </remarks>
-          <arguments>
-            <argument token="M" description="the map to use"/>
-            <argument token="D" description="the difficulty" valueNotes="0 = easy, 1 = intermediate, 2 = hard, 3 = impossible" optional="true"/>
-          </arguments>
-        </command>
-
       </identifiers>
     </section>
     <!-- Game Modes Section Ends -->
@@ -9412,6 +9285,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="mapmodelslotusage"/>
             <identifierReference identifier="editmapmodelslot"/>
             <identifierReference identifier="deletemapmodelslot"/>
+            <identifierReference identifier="sortmapmodelslots"/>
             <identifierReference identifier="mapmodelchanged"/>
             <identifierReference identifier="listallmapmodelattributes"/>
             <identifierReference identifier="getmapmodelattributes"/>
@@ -9455,6 +9329,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="mapsoundslotusage"/>
             <identifierReference identifier="editmapsoundslot"/>
             <identifierReference identifier="deletemapsoundslot"/>
+            <identifierReference identifier="sortmapsoundslots"/>
             <identifierReference identifier="mapsoundchanged"/>
           </references>
           <arguments>
@@ -9511,6 +9386,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="deletetextureslot"/>
             <identifierReference identifier="edittextureslot"/>
             <identifierReference identifier="edittexturestack"/>
+            <identifierReference identifier="sorttextureslots"/>
           </references>
           <arguments>
             <argument token="S" description="Scale of the texture to load (should be a power of two)." valueNotes="Float"/>
@@ -9748,47 +9624,301 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
       </identifiers>
     </section>
     <!-- Bot mode Section Ends -->
+    <!-- Optional Section Starts -->
+    <section name="Optional" sortindex="14">
+      <description>This section describes optional identifiers from the files in config/opt/ folder and commands, which enable them.</description>
+      <identifiers sort="true">
+
+        <scriptalias name="load_autosave">
+          <description>Loads optional obsolete autosave settings.</description>
+          <remarks>
+            <remark>To see the obsolete autosave settings, look in config/opt/autosave.cfg</remark>
+          </remarks>
+        </scriptalias>
+
+        <scriptalias name="load_compatibility">
+          <description>Loads optional compatibility settings for old scripts.</description>
+          <remarks>
+            <remark>To see the compatibility settings, look in config/opt/compatibility.cfg</remark>
+          </remarks>
+        </scriptalias>
+
+        <scriptalias name="load_survival">
+          <description>Loads optional settings for bot survival mode.</description>
+          <remarks>
+            <remark>To see the settings for survival, look in config/opt/survival.cfg</remark>
+            <remark>The settings are loaded, when bot survival mode is started via menu.</remark>
+          </remarks>
+        </scriptalias>
+
+        <scriptalias name="load_parsestring">
+          <description>Loads optional settings for string parsing.</description>
+          <remarks>
+            <remark>To see the string parsing settings, look in config/opt/parsestring.cfg</remark>
+          </remarks>
+        </scriptalias>
+
+        <scriptalias name="load_faq">
+          <description>Loads optional FAQ settings.</description>
+          <remarks>
+            <remark>To see the FAQ settings, look in config/opt/faq.cfg</remark>
+            <remark>The settings are loaded, when FAQ is open in menu.</remark>
+          </remarks>
+        </scriptalias>
+
+        <command name="parsestring">
+          <description>Loops through every character in the given string and executes the given block of cubescript on each iteration.</description>
+          <examples>
+            <example>
+              <code><![CDATA[parsestring "Hello world" iter [echo $iter]]]></code>
+              <explanation>Uses echo on every character in the string: "Hello world"</explanation>
+            </example>
+            <example>
+              <code><![CDATA[parsestring "Hello world" iter [echo (concatword "Char #" $__iter ": " $iter)]]]></code>
+              <explanation>Uses echo on every character in the string: "Hello world" --- Also outputs the position of each character in the string.</explanation>
+            </example>
+            <example>
+              <code><![CDATA[backwardsstring = []; parsestring "This will look interesting backwards." iter [backwardsstring = (concatword $backwardsstring $iter); if (= $__iter 0) [echo $backwardsstring]] 1]]></code>
+              <explanation>Outputs: ".sdrawkcab gnitseretni kool lliw sihT"</explanation>
+            </example>
+            <example>
+              <code><![CDATA[parsestring "abcdefghijklmnopqrstuvwxyz" iter [if (> $__iter 4) breakparse [echo $iter]]]]></code>
+              <explanation>Example usage of the breakparse command. Uses echo on characters a through e, then breaks out of the parse.</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="S" description="string" valueNotes="string to parse"/>
+            <argument token="A" description="string" valueNotes="name of alias to use as iterator"/>
+            <argument token="C" description="string" valueNotes="cubescript to execute on each iteration"/>
+            <argument token="B" description="integer" valueNotes="non-zero to force backwards parse" optional="true"/>
+          </arguments>
+          <remarks>
+            <remark>Important: A secondary iterator alias (prefixed with a double underscore "__") is automatically created before each iteration that contains the character position data.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="load_parsestring"/>
+            <identifierReference identifier="breakparse"/>
+            <identifierReference identifier="substr"/>
+            <identifierReference identifier="trimAllWhitespace"/>
+            <identifierReference identifier="trimAllUnnecessaryWhitespace"/>
+          </references>
+        </command>
+
+        <command name="breakparse">
+          <description>Breaks out of a parsestring loop.</description>
+          <remarks>
+            <remark>Important: this command should only be used within the 3rd argument (the cubescript to execute) of parsestring.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="load_parsestring"/>
+            <identifierReference identifier="parsestring"/>
+          </references>
+        </command>
+
+        <command name="trimAllWhitespace">
+          <description>Removes all whitespace characters from the given string.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (trimAllWhitespace "    H   e ll     o w  o r   l d     ")]]></code>
+              <explanation>Outputs: Helloworld</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="S" description="string" valueNotes="string to modify"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="load_parsestring"/>
+            <identifierReference identifier="trimAllUnnecessaryWhitespace"/>
+            <identifierReference identifier="parsestring"/>
+          </references>
+        </command>
+
+        <command name="trimAllUnnecessaryWhitespace">
+          <description>Removes all unnecessary leading and trailing whitespace characters from the given string.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (trimAllUnnecessaryWhitespace "    H   e ll     o w  o r   l d     ")]]></code>
+              <explanation>Outputs: "H   e ll     o w  o r   l d"</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="S" description="string" valueNotes="string to modify"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="load_parsestring"/>
+            <identifierReference identifier="trimAllWhitespace"/>
+            <identifierReference identifier="parsestring"/>
+          </references>
+        </command>
+
+        <command name="survival">
+          <description>Prepares a round of bot survival mode on the specified map.</description>
+          <remarks>
+            <remark>
+            All official maps are compatible with survival, if you want to play survival on a custom map,
+            prior edits/additions to the script are necessary, such as adding a zone for that specific map.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="M" description="the map to use"/>
+            <argument token="D" description="the difficulty" valueNotes="0 = easy, 1 = intermediate, 2 = hard, 3 = impossible" optional="true"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="load_survival"/>
+          </references>
+        </command>
+
+        <command name="changegamma">
+          <description>Smoothly changes your gamma to the specified value.</description>
+          <remarks>
+            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/survival" or start bot surival mode from menu.</remark>
+          </remarks>
+          <arguments>
+            <argument token="G" description="the gamma to change to"/>
+            <argument token="M" description="milliseconds between gamma changes"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[changegamma 300 30]]></code>
+              <explanation>Every 30 milliseconds your gamma is changed by 1 until it reaches its goal of gamma 300.</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="load_survival"/>
+            <identifierReference identifier="gamma"/>
+            <identifierReference identifier="changespeed"/>
+          </references>
+        </command>
+
+        <command name="changespeed">
+          <description>Smoothly changes your gamespeed to the specified value.</description>
+          <remarks>
+            <remark>Remark: that's optional command, disabled by default, to enable it execute "run opt/survival" or start bot surival mode from menu.</remark>
+          </remarks>
+          <arguments>
+            <argument token="S" description="the gamespeed to change to"/>
+            <argument token="M" description="milliseconds between gamespeed changes"/>
+          </arguments>
+          <examples>
+            <example>
+              <code><![CDATA[changespeed 1000 30]]></code>
+              <explanation>Every 30 milliseconds your gamespeed is changed by 1 until it reaches its goal of gamespeed 1000.</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="load_survival"/>
+            <identifierReference identifier="gamespeed"/>
+            <identifierReference identifier="changegamma"/>
+          </references>
+        </command>
+
+        <command name="alive">
+          <description>Returns 1 if the local player is alive.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (alive)]]></code>
+              <explanation>Output: 1</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="load_compatibility"/>
+          </references>
+        </command>
+
+        <command name="curmode">
+          <description>Returns the mode number for the current game.</description>
+          <references>
+            <identifierReference identifier="load_compatibility"/>
+            <identifierReference identifier="gamemode"/>
+            <identifierReference identifier="curmap"/>
+            <identifierReference identifier="map"/>
+            <identifierReference identifier="mode"/>
+          </references>
+        </command>
+
+        <command name="currole">
+          <description>Returns 1 if the local player has admin privileges, 0 otherwise.</description>
+          <references>
+            <identifierReference identifier="load_compatibility"/>
+            <identifierReference identifier="setadmin"/>
+            <identifierReference identifier="connectadmin"/>
+          </references>
+        </command>
+
+        <command name="curteam">
+          <description>Returns an integer indicating what team a client is currently on.</description>
+          <arguments>
+            <argument token="C" description="client number" valueNotes="returns the specified client's team instead" optional="true"/>
+          </arguments>
+          <remarks>
+            <remark>Returns 0 for CLA, 1 for RVSF.</remark>
+            <remark>Returns 2 for CLA-spectator, 3 for RVSF-spectator.</remark>
+            <remark>Returns 4 for spectator.</remark>
+            <remark>By default this command returns what team *you* (player1) are currently on.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="load_compatibility"/>
+            <identifierReference identifier="team"/>
+            <identifierReference identifier="forceteam"/>
+            <identifierReference identifier="skin"/>
+          </references>
+        </command>
+
+        <command name="findpn">
+          <description>find player name</description>
+          <arguments>
+            <argument token="CN" description="client number"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="load_compatibility"/>
+          </references>
+        </command>
+
+        <command name="getclientmode">
+          <description>Returns the current game mode number.</description>
+          <references>
+            <identifierReference identifier="load_compatibility"/>
+          </references>
+        </command>
+
+        <variable name="orderscorecolumns">
+          <description>Show the client number column on the scoreboard first?</description>
+          <value token="N" description="CN column order" minValue="0" maxValue="1" defaultValue="0" valueNotes="0 (false), 1 (true)"/>
+          <references>
+            <identifierReference identifier="load_compatibility"/>
+          </references>
+        </variable>
+
+        <command name="pstat_score">
+          <description>Returns the score statistics for the player with the given client number.</description>
+          <arguments>
+            <argument token="CN" description="client number" valueNotes="0..N"/>
+          </arguments>
+          <examples>
+            <example>
+              <code>
+                <![CDATA[
+                echo (pstat_score 0)
+                ]]>
+              </code>
+              <explanation>Output: 0 5 3 43 1 1 unarmed</explanation>
+              <explanation>The output is a list of FLAGS, FRAGS, DEATHS, POINTS, TEAM, TEAMKILLS, and NAME.</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="load_compatibility"/>
+            <identifierReference identifier="start_intermission"/>
+            <identifierReference identifier="pstat_weap"/>
+          </references>
+        </command>
+
+      </identifiers>
+    </section>
+    <!-- Optional Section Ends -->
     <!-- TODO Section Starts -->
     <section name="TODO" sortindex="99">
       <description>This section describes identifiers that are not documented yet, but you may try to help us there.</description>
-      <identifiers sort="true">        
-
-        <command name="demonameformat">
-          <description>set the formatstring for demo filenames - default: TODO (when stable)</description>
-          <arguments>
-            <argument token="S" description="STRING"/>
-          </arguments>
-          <remarks>
-            <remark>we use the following internal mapping of formatchars:</remark>
-            <remark>%g : gamemode (int)      %G : gamemode (chr)             %F : gamemode (full)</remark>
-            <remark>%m : minutes remaining   %M : minutes played</remark>
-            <remark>%s : seconds remaining   %S : seconds played</remark>
-            <remark>%h : IP of server        %H : hostname of server         (%N : title of server (really???))</remark>
-            <remark>%n : mapName</remark>
-            <remark>%w : timestamp "when"</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="getdemotimeformat"/>
-            <identifierReference identifier="demotimeformat"/>
-            <identifierReference identifier="getdemonameformat"/>
-          </references>
-        </command>
-
-        <command name="demotimeformat">
-          <description>set the formatstring for demo timestamp - default: TODO (when stable)</description>
-          <arguments>
-            <argument token="S" description="STRING"/>
-          </arguments>
-          <remarks>
-            <remark>same as strftime() - see http://www.cplusplus.com/reference/clibrary/ctime/strftime/ for details</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="getdemotimeformat"/>
-            <identifierReference identifier="getdemonameformat"/>
-            <identifierReference identifier="demonameformat"/>
-            <webReference url="http://www.cplusplus.com/reference/clibrary/ctime/strftime/" name="C++-Reference"/>
-          </references>
-        </command>
+      <identifiers sort="true">
 
         <command name="musicpreload">
           <description>TODO: Description</description>
