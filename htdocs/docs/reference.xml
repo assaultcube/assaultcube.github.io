@@ -63,7 +63,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
   <sections sort="true">
   <!--
     Sections available: Cubescript, General, Gameplay, Keyboard and mouse, Game modes, Visuals, Heads-Up Display, Sound,
-                        Server commands, Editing, Editing configs, Menus, Ingame Reference, Bot mode, Optional, TODO
+                        Server commands, Authentication, Editing, Editing configs, Menus, Ingame Reference, Bot mode,
+                        Optional, TODO
   -->
     <!-- CubeScript language Section Starts -->
     <section name="CubeScript" sortindex="00">
@@ -135,7 +136,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
-        <!-- FIXME: Obviously incorrect? Bad copy/paste! -->
         <command name="return">
           <description>Sets the result value of a CubeScript block.</description>
           <arguments>
@@ -178,7 +178,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="getalias">
-          <description>return the value of the alias</description>
+          <description>Returns the value of the alias.</description>
           <arguments>
             <argument token="N" description="alias name"/>
           </arguments>
@@ -200,7 +200,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="isIdent">
-          <description>returns whether or not there is an identifier by that name</description>
+          <description>Returns whether or not there is an identifier by that name.</description>
           <arguments>
             <argument token="N" description="identifier name"/>
           </arguments>
@@ -259,7 +259,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="+">
-          <description>Performs an addition.</description>
+          <description>Performs an addition 2 or more numbers.</description>
           <remarks>
             <remark>
               Example: echo the sum of x and y is (+ $x $y)
@@ -267,7 +267,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <arguments>
             <argument token="A" description="the first summand"/>
-            <argument token="B" description="the second summand"/>
+            <argument token="B" description="the summand(s)"/>
           </arguments>
           <return token="N" description="the sum"/>
         </command>
@@ -282,10 +282,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="*">
-          <description>Performs a multiplication.</description>
+          <description>Performs a multiplication 2 or more numbers.</description>
           <arguments>
             <argument token="A" description="the multiplicand"/>
-            <argument token="B" description="the multiplier"/>
+            <argument token="B" description="the multiplier(s)"/>
           </arguments>
           <return token="N" description="the product"/>
         </command>
@@ -309,19 +309,19 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="+f">
-          <description>Adds up two floating-point numbers.</description>
+          <description>Adds up two or more floating-point numbers.</description>
           <arguments>
             <argument token="A" description="the first summand" valueNotes="float"/>
-            <argument token="B" description="the second summand" valueNotes="float"/>
+            <argument token="B" description="the summand(s)" valueNotes="float"/>
           </arguments>
           <return token="F" description="the sum"/>
         </command>
 
         <command name="*f">
-          <description>Performs a floating point multiplication.</description>
+          <description>Performs a floating point multiplication 2 or more numbers.</description>
           <arguments>
             <argument token="A" description="the multiplicand"/>
-            <argument token="B" description="the multiplier"/>
+            <argument token="B" description="the multiplier(s)"/>
           </arguments>
           <return token="N" description="the product"/>
         </command>
@@ -623,6 +623,105 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
+        <command name="&amp;b">
+          <description>Performs the operation AND using binary arithmetic on integer values (32-bit signed).</description>
+          <arguments>
+            <argument token="A" description="the first argument"/>
+            <argument token="A" description="the second argument"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="|b"/>
+            <identifierReference identifier="^b"/>
+            <identifierReference identifier="!b"/>
+          </references>
+        </command>
+
+        <command name="|b">
+          <description>Performs the operation OR using binary arithmetic on integer values (32-bit signed).</description>
+          <arguments>
+            <argument token="A" description="the first argument"/>
+            <argument token="A" description="the second argument"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="&amp;b"/>
+            <identifierReference identifier="^b"/>
+            <identifierReference identifier="!b"/>
+          </references>
+        </command>
+
+        <command name="^b">
+          <description>Performs the operation XOR using binary arithmetic on integer values (32-bit signed).</description>
+          <arguments>
+            <argument token="A" description="the first argument"/>
+            <argument token="A" description="the second argument"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="&amp;b"/>
+            <identifierReference identifier="|b"/>
+            <identifierReference identifier="!b"/>
+          </references>
+        </command>
+
+        <command name="!b">
+          <description>Performs the operation NOT using binary arithmetic on integer values (32-bit signed).</description>
+          <remarks>
+            <remark>Integer values are 32-bit signed values, so for example "echo (!b 1)" returns "-2".</remark>
+          </remarks>
+          <arguments>
+            <argument token="A" description="argument"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="&amp;b"/>
+            <identifierReference identifier="|b"/>
+            <identifierReference identifier="^b"/>
+          </references>
+        </command>
+
+        <command name="h0">
+          <description>Returns the given value as string of hexadecimal digits, padded with leading zeros to a given minimum length (precision).</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (h0 2 1024)]]></code>
+              <explanation>Output: 400</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (h0 4 1024)]]></code>
+              <explanation>Output: 0400</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (h0 6 1024)]]></code>
+              <explanation>Output: 000400</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (h0 0 (&b 0xe 0x3))]]></code>
+              <explanation>Output: 2</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (h0 0 (|b 0xe 0x3))]]></code>
+              <explanation>Output: f</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (h0 0 (^b 0xe 0x3))]]></code>
+              <explanation>Output: d</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (h0 0 (!b 0xe))]]></code>
+              <explanation>Output: fffffff1</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (h0 0 (* -1 0xe))]]></code>
+              <explanation>Output: fffffff2</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="P" description="precision"/>
+            <argument token="V" description="value"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="l0"/>
+          </references>
+        </command>
+
         <command name="rnd">
           <description>Random value</description>
           <arguments>
@@ -841,7 +940,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="looplist">
-          <description>Browses a list and executes a body for each element</description>
+          <description>Browses a list and executes a body for each element.</description>
            <remarks>
              <remark>It works optionally with several variables.</remark>
           </remarks>
@@ -862,6 +961,34 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="break"/>
             <identifierReference identifier="continue"/>
             <identifierReference identifier="loop"/>
+            <identifierReference identifier="looplisti"/>
+          </references>
+        </command>
+
+        <command name="looplisti">
+          <description>Browses a list and executes a body for each element.</description>
+          <remarks>
+            <remark>
+            The same as looplist, but it automatically counts the loops in "i", starting with 0.
+            It works optionally with several variables.
+            </remark>
+          </remarks>
+          <examples>
+            <example>
+              <code><![CDATA[a = [u v w]; b = [x y z]; looplisti $a m [echo $m (at $b $i) $i]]]></code>
+              <explanation>Output: u x 0 , v y 1 , w z 2</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="V" description="the list to browse"/>
+            <argument token="N" description="the alias(es) containing the current element value"/>
+            <argument token="body" description="the body to execute on each iteration"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="break"/>
+            <identifierReference identifier="continue"/>
+            <identifierReference identifier="loop"/>
+            <identifierReference identifier="looplist"/>
           </references>
         </command>
 
@@ -1013,7 +1140,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="l0">
-          <description>leading zeros for the number V to make it W chars wide. It may look like 10 - which might be considered a mnemonic - but it's lowercase-L and 0!</description>
+          <description>Leading zeros for the number V to make it W chars wide.</description>
+          <remarks>
+            <remark>It may look like 10 - which might be considered a mnemonic - but it's lowercase-L and 0!</remark>
+          </remarks>
           <examples>
             <example>
               <code><![CDATA[echo (l0 5 1000)]]></code>
@@ -1025,9 +1155,12 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <argument token="W" description="WIDTH"/>
-            <argument token="V" description="VALUE"/>
+            <argument token="W" description="width"/>
+            <argument token="V" description="value"/>
           </arguments>
+          <references>
+            <identifierReference identifier="h0"/>
+          </references>
         </command>
 
         <command name="storesets">
@@ -1089,6 +1222,16 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
               <explanation>Assigning a value to a const will throw you an error. Output: myalias is already defined as a constant</explanation>
             </example>
           </examples>
+        </command>
+
+        <command name="enumalias">
+          <description>Lists all persistent aliases that start with prefix.</description>
+          <remarks>
+            <remark>Returns a table with two entries per alias: 1) full name and 2) name without prefix.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="alias"/>
+          </references>
         </command>
 
         <command name="checkalias">
@@ -1425,7 +1568,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <examples>
             <example>
               <code><![CDATA[echo (listoptions)]]></code>
-              <explanation>Output: "entities ents weapons teamnames teamnames-abbrv punctuations crosshairnames"</explanation>
+              <explanation>
+              Output: "entities ents weapons teamnames teamnames-abbrv punctuations crosshairnames
+              menufilesortorders texturestacktypes cubetypes"
+              </explanation>
             </example>
             <example>
               <code><![CDATA[echo (listoptions teamnames)]]></code>
@@ -1746,6 +1892,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="exec">
           <description>Executes all commands in a specified config file.</description>
+          <remarks>
+            <remark>
+            It also allows to pass arguments to and deliver results from script files -
+            when a script file is executed, any additional arguments are passed as execarg1..execargX to the script.
+            The number of arguments is in execnumargs and if the script in the file sets the value of execresult,
+            the exec command returns that value.
+            </remark>
+            <remark>Example:</remark>
+            <remark>if there is a file testscript.cfg with this content: execresult = (* $execarg1 $execarg2)</remark>
+            <remark>then the command: "echo (exec testscript.cfg 6 7)" will output "42".</remark>
+          </remarks>
           <arguments>
             <argument token="C" description="the config file"/>
           </arguments>
@@ -2066,16 +2223,31 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="omitunchangeddefaults">
-          <description>If this value is 1, variables that are at their default values are omitted from saved.cfg. If 0, the variables are written to saved.cfg, but commented out.</description>
-          <value token="N" description="1 = Omit, 0 = Comment out" minValue="0" maxValue="1" defaultValue="1"/>
+          <description>Omit variables with unchanged default values from saved.cfg.</description>
+          <remarks>
+            <remark>
+            If this value is 1, variables that are at their default values are omitted from saved.cfg.
+            If 0, the variables are written to saved.cfg, but commented out.
+            </remark>
+          </remarks>
+          <value token="N" description="0 = print, but commented out; 1 = omit" minValue="0" maxValue="1" defaultValue="1"/>
           <references>
             <identifierReference identifier="groupvariables"/>
+            <identifierReference identifier="omitunchangeddefaultbinds"/>
           </references>
         </variable>
 
         <variable name="groupvariables">
           <description>Controls how many variables (with similar names) are grouped together on one line. This only pertains to commented variables in saved.cfg caused by omitunchangeddefaults being 0.</description>
           <value token="N" description="Variables per line" minValue="0" maxValue="10" defaultValue="4"/>
+          <references>
+            <identifierReference identifier="omitunchangeddefaults"/>
+          </references>
+        </variable>
+
+        <variable name="omitunchangeddefaultbinds">
+          <description>Omit unchanged default binds from saved.cfg.</description>
+          <value token="N" description="0 = print; 1 = print, but commented out; 2 = omit" minValue="0" maxValue="2" defaultValue="1"/>
           <references>
             <identifierReference identifier="omitunchangeddefaults"/>
           </references>
@@ -2301,11 +2473,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="demotimeformat">
           <description>Sets the formatstring for demo timestamp.</description>
           <arguments>
-            <argument token="S" description="string"/>
+            <argument token="S" description="string" valueNotes="strftime format"/>
           </arguments>
           <remarks>
             <remark>If the string starts with 'U', UTC is used - otherwise local time.</remark>
-            <remark>The same format options as in strftime() .</remark>
+            <remark>The same format options as in strftime().</remark>
           </remarks>
           <references>
             <identifierReference identifier="demonameformat"/>
@@ -2956,7 +3128,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>If I is 0 (omitted or any other value than the ones below) you will get a string with 'IP PORT'</remark>
             <remark>If I is 1,2 or 3 you will get the IP, HostName or port respectively.</remark>
             <remark>If I is 4 you get a string representing the current state of the peer - usually this should be 'connected'.</remark>
-            <remark>FIXME:TODO: 5=SERVERNAME, 6,7=description, 8=serverbrowser-line -- these are to be handled with caution, sometimes empty, #8 will be outdated w/o serverbrowser open.</remark>
+            <remark>If I is 5 you will get a server name.</remark>
+            <remark>If I is 6 or 7 you will get a server description.</remark>
+            <remark>If I is 8, you will get a serverbrowser-line with the server - this is handled with caution, sometimes empty, #8 will be outdated w/o serverbrowser open.</remark>
           </remarks>
           <arguments>
             <argument token="I" description="info" valueNotes="0, 1, 2, 3, 4, 5, 6, 7, 8"/>
@@ -3009,14 +3183,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="B" description="" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
-        <variable name="mdldyncache">
-          <value token="V" description="" minValue="1" maxValue="32" defaultValue="2"/>
-        </variable>
-
-        <variable name="mdlstatcache">
-          <value token="V" description="" minValue="1" maxValue="32" defaultValue="1"/>
-        </variable>
-
         <command name="map">
           <description>Loads up a map in the gamemode set previously by the 'mode' command.</description>
           <remarks>
@@ -3039,6 +3205,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="M" description="Name of the map to load" valueNotes="string"/>
           </arguments>
+          <references>
+            <identifierReference identifier="votemap"/>
+            <identifierReference identifier="loadmap"/>
+            <identifierReference identifier="mode"/>
+          </references>
         </command>
 
         <command name="votemap">
@@ -3047,6 +3218,23 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="I" description="mode id"/>
             <argument token="M" description="map name"/>
           </arguments>
+          <references>
+            <identifierReference identifier="map"/>
+            <identifierReference identifier="loadmap"/>
+            <identifierReference identifier="mode"/>
+          </references>
+        </command>
+
+        <command name="loadmap">
+          <description>Loads a map directly in the current gamemode (singleplayer only).</description>
+          <arguments>
+            <argument token="M" description="map name"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="map"/>
+            <identifierReference identifier="votemap"/>
+            <identifierReference identifier="mode"/>
+          </references>
         </command>
 
         <variable name="nextprimary">
@@ -4260,8 +4448,19 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="resetcfg"/>
+            <identifierReference identifier="_resetallbinds"/>
           </references>
         </variable>
+
+        <command name="_resetallbinds">
+          <description>Clears all binds for all keys and all modes, including self-assigned ones.</description>
+          <remarks>
+            <remark>Do not use the command manually.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="resetbinds"/>
+          </references>
+        </command>
 
         <command name="keymap">
           <description>Sets up the keymap for the specified key.</description>
@@ -4356,7 +4555,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
     </section>
     <!-- Keyboard and mouse Section Ends -->
     <!-- Editing Section Starts -->
-    <section name="Editing" sortindex="09">
+    <section name="Editing" sortindex="10">
       <identifiers sort="true">
 
         <command name="togglegrab">
@@ -4395,10 +4594,23 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
+        <command name="edittagclip">
+          <description>Sets tag clip type of all selected cubes.</description>
+          <remarks>
+            <remark>Type can be numeric or a keyword.</remark>
+          </remarks>
+          <arguments>
+            <argument token="T" description="type" valueNotes="0 (none), 64 (clip), 128 (plclip)"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="transformclipentities"/>
+          </references>
+        </command>
+
         <command name="transformclipentities">
           <description>Transforms all clip entities to tag clips, if they are big enough (so that no player could be above or below them).</description>
           <references>
-            <identifierReference identifier="edittag"/>
+            <identifierReference identifier="edittagclip"/>
           </references>
         </command>
 
@@ -4575,6 +4787,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </defaultKeys>
           <references>
             <identifierReference identifier="redo"/>
+            <identifierReference identifier="undolevel"/>
+            <identifierReference identifier="undomegs"/>
             <identifierReference identifier="editmeta"/>
           </references>
         </command>
@@ -4593,6 +4807,34 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
+        <command name="undolevel">
+          <description>Returns the number of undo steps that can be undone.</description>
+          <remarks>
+            <remark>If argument "level" is given, as many steps are undone, until "level" steps remain.</remark>
+            <remark>Unless memory limits delete states, undolevel commands can be undone with "redo".</remark>
+          </remarks>
+          <examples>
+            <example>
+              <code><![CDATA[echo (undolevel)]]></code>
+              <explanation> - prints number of previous editing steps, for example "55". Do some editing and:</explanation>
+            </example>
+            <example>
+              <code><![CDATA[undolevel 55]]></code>
+              <explanation>
+              - undoes all changes to restore the previous state (if that state is still in memory)
+              </explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="L" description="level" valueNotes="integer"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="undo"/>
+            <identifierReference identifier="redo"/>
+            <identifierReference identifier="undomegs"/>
+          </references>
+        </command>
+
         <variable name="undomegs">
           <description>Sets the number of megabytes used for the undo buffer.</description>
           <remarks>
@@ -4602,6 +4844,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </remark>
           </remarks>
           <value token="N" description="number of megabytes" valueNotes="integer" minValue="0" maxValue="50" defaultValue="5"/>
+          <references>
+            <identifierReference identifier="undo"/>
+            <identifierReference identifier="undolevel"/>
+          </references>
         </variable>
 
         <command name="copy">
@@ -4641,7 +4887,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
-        <command name="countwalls">
+        <scriptalias name="countwalls">
           <description>Returns the number of solid walls contained into the current selection.</description>
           <arguments>
             <argument token="T" description="the integer of type of the walls you want to count" valueNotes=" 0 (solid), 1 (corner), 2 (floor heightfield), 3 (ceil heightfield), 4 (empty cube), 5 (semi solid)"/>
@@ -4652,7 +4898,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
               <explanation>Output: The selection contains 3 solid wall(s)</explanation>
             </example>
           </examples>
-        </command>
+        </scriptalias>
 
         <command name="pasteent">
           <description>Pastes a previously copied entity.</description>
@@ -5126,13 +5372,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="showtagclips">
-          <description>Show ladder entities (as blue wireframes) in edit mode.</description>
-          <value token="N" description="-" minValue="0" maxValue="1" defaultValue="0" />
+          <description>Show tagclips/tagplclips in edit mode.</description>
+          <value token="N" description="-" minValue="0" maxValue="1" defaultValue="1" />
         </variable>
 
         <variable name="showladderentities">
-          <description>Show tagclips/tagplclips in edit mode.</description>
-          <value token="N" description="-" minValue="0" maxValue="1" defaultValue="1" />
+          <description>Show ladder entities (as blue wireframes) in edit mode.</description>
+          <value token="N" description="-" minValue="0" maxValue="1" defaultValue="0" />
         </variable>
 
         <command name="guidetoggle">
@@ -5161,6 +5407,44 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="watersubdiv"/>
           </references>
         </variable>
+
+        <command name="getwatercolour">
+          <description>Returns a string with the four components of the water colour: red, green, blue and alpha.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (getwatercolor)]]></code>
+              <explanation>Output: 20 25 20 178</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="watercolour"/>
+            <identifierReference identifier="setwatercolour"/>
+          </references>
+        </command>
+
+        <command name="setwatercolour">
+          <description>Allows setting the components of the water colour independently.</description>
+          <remarks>
+            <remark>
+            "what" is either a keyword "red|green|blue|alpha" or the index number 0..3 and determines,
+            which component is set to value.
+            </remark>
+          </remarks>
+          <examples>
+            <example>
+              <code><![CDATA[setwatercolour red 200]]></code>
+              <explanation>- sets the red component to 200</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="W" description="what" valueNotes="red (0), green (1), blue (2), alpha (3)"/>
+            <argument token="V" description="value" valueNotes="(0)1..255"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="watercolour"/>
+            <identifierReference identifier="getwatercolour"/>
+          </references>
+        </command>
 
         <variable name="ambient">
           <description>Controls the ambient lighting of the map, i.e. how bright areas not affected by any light entities will appear.</description>
@@ -5229,6 +5513,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="X" description="x delta step" valueNotes="integer"/>
             <argument token="Y" description="y delta step" valueNotes="integer"/>
           </arguments>
+          <references>
+            <identifierReference identifier="enlargearchslopeselections"/>
+          </references>
         </command>
 
         <command name="arch">
@@ -5245,11 +5532,16 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="S" description="side delta" optional="true"/>
           </arguments>
+          <references>
+            <identifierReference identifier="archvertex"/>
+            <identifierReference identifier="enlargearchslopeselections"/>
+          </references>
         </command>
 
         <command name="archvertex">
           <description>Defines a vertex delta for a specific arch span prefab, used by the 'arch' command.</description>
           <remarks>
+            <remark>It returns the old value of the vertex, and if the vertex argument is omitted, doesn't change it.</remark>
             <remark>See config/prefabs.cfg for an example on usage.</remark>
           </remarks>
           <arguments>
@@ -5258,6 +5550,25 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="D" description="delta value" valueNotes="integer"/>
           </arguments>
         </command>
+
+        <variable name="enlargearchslopeselections">
+          <description>Automatically enlarge selections after placing arches or slopes.</description>
+          <remarks>
+            <remark>
+            If the variable is set to 1, after placing an arch or a slope, the selection is enlarged, so that the arch
+            or slope can be changed by vdelta increments (for example, to raise an arch in 1/4 cube increments).
+            </remark>
+            <remark>
+            If the variable is set to 0 (which is default), the selection remains unchanged. This way, for example,
+            the arch can be raised or lowered by regular cube increments.
+            </remark>
+          </remarks>
+          <value token="N" description="0: don't enlarge selection, 1: enlarge selection" minValue="0" maxValue="1" defaultValue="0" />
+          <references>
+            <identifierReference identifier="arch"/>
+            <identifierReference identifier="slope"/>
+          </references>
+        </variable>
 
         <command name="perlin">
           <description>Generates a perlin noise landscape in the current selection.</description>
@@ -5283,11 +5594,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="addselection"/>
+            <identifierReference identifier="selectall"/>
             <identifierReference identifier="resetselections"/>
+            <identifierReference identifier="expandselection"/>
+            <identifierReference identifier="shrinkselection"/>
+            <identifierReference identifier="enlargevdeltaselections"/>
             <identifierReference identifier="selx"/>
             <identifierReference identifier="sely"/>
             <identifierReference identifier="selxs"/>
             <identifierReference identifier="selys"/>
+            <identifierReference identifier="selectionwalk"/>
+            <identifierReference identifier="pushselections"/>
           </references>
           <arguments>
             <argument token="X" description="the X coordinate"/>
@@ -5313,11 +5630,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="select"/>
+            <identifierReference identifier="selectall"/>
             <identifierReference identifier="resetselections"/>
+            <identifierReference identifier="expandselection"/>
+            <identifierReference identifier="shrinkselection"/>
+            <identifierReference identifier="enlargevdeltaselections"/>
             <identifierReference identifier="selx"/>
             <identifierReference identifier="sely"/>
             <identifierReference identifier="selxs"/>
             <identifierReference identifier="selys"/>
+            <identifierReference identifier="selectionwalk"/>
+            <identifierReference identifier="pushselections"/>
             <identifierReference identifier="editmeta"/>
           </references>
           <arguments>
@@ -5328,8 +5651,22 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
+        <command name="selectall">
+          <description>Selects the whole map (minus the two cubes wide border).</description>
+          <references>
+            <identifierReference identifier="select"/>
+            <identifierReference identifier="addselection"/>
+            <identifierReference identifier="resetselections"/>
+          </references>
+        </command>
+
         <command name="resetselections">
           <description>Resets all current selections.</description>
+          <references>
+            <identifierReference identifier="select"/>
+            <identifierReference identifier="selectall"/>
+            <identifierReference identifier="addselection"/>
+          </references>
         </command>
 
         <command name="expandselection">
@@ -5341,6 +5678,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>Instead of manually executing this command, you can bind "domodifier 11" to a key. While holding this key you can expand/shrink the current selection with the mouse wheel.</remark>
           </remarks>
           <references>
+            <identifierReference identifier="select"/>
+            <identifierReference identifier="addselection"/>
             <identifierReference identifier="shrinkselection"/>
           </references>
         </command>
@@ -5354,25 +5693,131 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>Instead of manually executing this command, you can bind "domodifier 11" to a key. While holding this key you can expand/shrink the current selection with the mouse wheel.</remark>
           </remarks>
           <references>
+            <identifierReference identifier="select"/>
+            <identifierReference identifier="addselection"/>
             <identifierReference identifier="expandselection"/>
+          </references>
+        </command>
+
+        <command name="enlargevdeltaselections">
+          <description>Enlarges all selections by one cube in x- and y- direction, to change a selection from the "cube area" to the "vdelta area".</description>
+          <remarks>
+            <remark>
+            If an argument is given, it is used as increment value, so, for example "enlargevdeltaselections -1" undoes
+            a previous enlargement.
+            </remark>
+           </remarks>
+          <arguments>
+            <argument token="I" description="incremente" optional="true"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="select"/>
+            <identifierReference identifier="addselection"/>
           </references>
         </command>
 
         <command name="selx">
           <description>Returns the x-coordinate of the westernmost (towards negative x) cube(s) in the current selection.</description>
+          <references>
+            <identifierReference identifier="select"/>
+            <identifierReference identifier="sely"/>
+            <identifierReference identifier="selxs"/>
+            <identifierReference identifier="selys"/>
+          </references>
         </command>
 
         <command name="selxs">
           <description>Returns the x-span (size on the x-axis) of the current selection.</description>
+          <references>
+            <identifierReference identifier="select"/>
+            <identifierReference identifier="selx"/>
+            <identifierReference identifier="sely"/>
+            <identifierReference identifier="selys"/>
+          </references>
         </command>
 
         <command name="sely">
           <description>Returns the y-coordinate of the northernmost (towards negative y) cube(s) in the current selection.</description>
+          <references>
+            <identifierReference identifier="select"/>
+            <identifierReference identifier="selx"/>
+            <identifierReference identifier="selxs"/>
+            <identifierReference identifier="selys"/>
+          </references>
         </command>
 
         <command name="selys">
           <description>Returns the y-span (size on the y-axis) of the current selection.</description>
+          <references>
+            <identifierReference identifier="select"/>
+            <identifierReference identifier="selx"/>
+            <identifierReference identifier="sely"/>
+            <identifierReference identifier="selxs"/>
+          </references>
         </command>
+
+        <command name="selectionwalk">
+          <description>Iterates over all cubes in all selections and executes "action" for each cube.</description>
+          <remarks>
+            <remark>
+            The cubes of every selection are framed by executions of "beginsel" and "endsel", i.e. for each new selection,
+            before executing "action" for the cubes of that selection, "beginsel" is executed, and then, after actions for all
+            cubes of that selection, "endsel" is executed. The action script is allowed to make changes to cube attributes,
+            and if it does, an undo point is automatically added. "beginsel" and "endsel" are optional.
+            </remark>
+            <remark>While the scripts are executed, several aliases provide further info:</remark>
+            <remark>
+            "sw_cursel" - position and size of the current selection. Valid in all three scripts.
+            Holds four integer values for x, y, xs, ys. See "select" command for details.
+            </remark>
+            <remark>
+            (all following aliases are only valid during the execution of the action
+            script and provide the attributes of one cube of the map)
+            </remark>
+            <remark>
+            "sw_abs_x", "sw_abs_y", "sw_rel_x", "sw_rel_y" - absolute and relative (within the current selection) coordinates
+            of the current cube. Read-only values.
+            </remark>
+            <remark>
+            "sw_type" - type of the current cube. Can be 0..4 for SOLID, CORNER, FHF, CHF and SPACE.
+            May be changed to other numerical value or keyword.
+            </remark>
+            <remark>"sw_floor", "sw_ceil" - floor and ceiling heights of the current cube. Range -128..127.</remark>
+            <remark>
+            "sw_wtex", "sw_ftex", "sw_ctex", "sw_utex" - texture slot indices for wall, floor, ceiling
+            and upper wall of the current cube.
+            </remark>
+            <remark>"sw_vdelta", "sw_tag" - vdelta and tag values of current cube.</remark>
+            <remark>
+            "sw_r", "sw_g", "sw_b" - current light values of current cube. Can be edited, but only with temporary effect.
+            Will be reset with the next light recalc.
+            </remark>
+            <remark>
+            The command is mostly useful for statistics scripts (like counting cubes with certain attributes), but is can also
+            be used for scripted editing, as the following (useless) example shows: selectionwalk [ += sw_floor (rnd 2) ]
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="action" description="action"/>
+            <argument token="beginsel" description="begin action before cubes action of each selection" optional="true"/>
+            <argument token="endsel" description="end action before cubes action of each selection" optional="true"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="select"/>
+            <identifierReference identifier="addselection"/>
+          </references>
+        </command>
+
+        <scriptalias name="pushselections">
+          <description>Stores the positions of all current selections.</description>
+          <remarks>
+            <remark>Can be used repeatedly. To restore the selections, type "popselections".</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="select"/>
+            <identifierReference identifier="addselection"/>
+          </references>
+        </scriptalias>
 
         <command name="scalelights">
           <description>Scales all lights in the map.</description>
@@ -5840,13 +6285,22 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <command name="textureslotusagelist">
           <description>Returns a list of 256 numbers representing the number of uses for every texture slot.</description>
           <remarks>
+            <remark>If "what" is "onlygeometry", the uses as map model skin do not count.</remark>
+            <remark>If "what" is "onlymodels", the uses in map geometry do not count.</remark>
+            <remark>It returns two values per slot: usage and visibility.</remark>
             <remark>
-            If "what" is "onlygeometry", the uses as map model skin do not count.
-            If "what" is "onlymodels", the uses in map geometry do not count.
+            If "what" is "onlymostvisible", instead of the regular list, a list of only the most used wall, floor,
+            ceiling and upper wall textures (alternating with the keywords) is returned.
             </remark>
           </remarks>
+          <examples>
+            <example>
+              <code><![CDATA[echo (textureslotusagelist onlymostvisible)]]></code>
+              <explanation>Output: wall 211 floor 45 ceiling 0 "upper wall" 79</explanation>
+            </example>
+          </examples>
           <arguments>
-            <argument token="W" description="what" valueNotes="onlygeometry, onlymodels"/>
+            <argument token="W" description="what" valueNotes="onlygeometry, onlymodels, onlymostvisible"/>
           </arguments>
           <references>
             <identifierReference identifier="texture"/>
@@ -6233,8 +6687,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             All actions, that would otherwise affect the closest entity, will affect the pinned entity instead.
             Deleting the locked entity will unlock it.
             </remark>
-            <remark>Bound to MOUSE3 (middle mouse button) by default.</remark>
           </remarks>
+          <defaultKeys>
+            <key alias="MOUSE3" name="middle mouse button" description="toggles the pin on the closest entity"/>
+          </defaultKeys>
           <references>
             <identifierReference identifier="getclosestent"/>
           </references>
@@ -6410,10 +6866,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="editmeta">
-          <description>First modifier key for editing mode (LCTRL by default).</description>
+          <description>First modifier key for editing mode.</description>
           <remarks>
             <remark>Go to references mentioned below to see the use.</remark>
           </remarks>
+          <defaultKeys>
+            <key alias="LCTRL" name="left Ctrl" description="first modifier key for editing mode"/>
+          </defaultKeys>
           <references>
             <identifierReference identifier="addselection"/>
             <identifierReference identifier="entproperty"/>
@@ -6423,10 +6882,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="editmeta2">
-          <description>Second modifier key for editing mode (LSHIFT by default).</description>
+          <description>Second modifier key for editing mode.</description>
           <remarks>
             <remark>Go to references mentioned below to see the use.</remark>
           </remarks>
+          <defaultKeys>
+            <key alias="LCTRL" name="left Shift" description="second modifier key for editing mode"/>
+          </defaultKeys>
           <references>
             <identifierReference identifier="entproperty"/>
             <identifierReference identifier="undelent"/>
@@ -6493,12 +6955,149 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
+        <command name="getmaptimestamp">
+          <description>Returns the "last written" timestamp of the current map in the requested format.</description>
+          <remarks>
+            <remark>
+            If "fmt" starts with "U", the time is given as UTC, otherwise as local time. If "fmt" is empty,
+            or not given or just the "U", the format defaults to "YYYYMMDD_hh.mm.ss". Use "%c" to get something nicer.
+            </remark>
+            <remark>The same format options as in strftime().</remark>
+          </remarks>
+          <arguments>
+            <argument token="fmt" description="format" valueNotes="strftime format"/>
+          </arguments>
+        </command>
+
+        <command name="mapoverride_nowaterreflect">
+          <description>Per-map override to disable water reflection on the client.</description>
+          <remarks>
+            <remark>Set by the mapper, for his map only. The overrides are stored in the map header.</remark>
+            <remark>
+            If "1", water reflection is disabled. Useful, when odd water colours are used to emulate other liquids
+            that are not supposed to be that reflective.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="0: off, 1: disable water reflection" valueNotes="0..1"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapoverride_limitwaveheight"/>
+            <identifierReference identifier="mapoverride_nostencilshadows"/>
+            <identifierReference identifier="ignoreoverride_nowaterreflect"/>
+          </references>
+        </command>
+
+        <command name="mapoverride_limitwaveheight">
+          <description>Per-map override to limit waveheight on the client.</description>
+          <remarks>
+            <remark>Set by the mapper, for his map only. The overrides are stored in the map header.</remark>
+            <remark>
+            If "1", waveheight is capped at 0.1 max. Useful for small water areas (like puddles),
+            where higher waves would look weird.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="0: off, 1: limit waveheight" valueNotes="0..1"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapoverride_nowaterreflect"/>
+            <identifierReference identifier="mapoverride_nostencilshadows"/>
+            <identifierReference identifier="ignoreoverride_limitwaveheight"/>
+          </references>
+        </command>
+
+        <command name="mapoverride_nostencilshadows">
+          <description>Per-map override to disable stencil shadows on the client.</description>
+          <remarks>
+            <remark>Set by the mapper, for his map only. The overrides are stored in the map header.</remark>
+            <remark>
+            If "1", stencil shadows are disabled. On clients, where stencil shadows are otherwise enabled,
+            blob shadows are used instead. If shadows are disabled anyway, they stay disabled.
+            Useful for dim maps, where hard shadows make no sense.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="0: off, 1: disable stencil shadows" valueNotes="0..1"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapoverride_nowaterreflect"/>
+            <identifierReference identifier="mapoverride_limitwaveheight"/>
+            <identifierReference identifier="ignoreoverride_nostencilshadows"/>
+          </references>
+        </command>
+
+        <command name="ignoreoverride_nowaterreflect">
+          <description>Ignores per-map overrides to disable water reflection on the client.</description>
+          <remarks>
+            <remark>
+            Ignores the overrides set by the mappers (for their maps only).
+            If "1", mapoverride_nowaterreflect is ignored and regular client settings are used.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="0: off, 1: ignore" valueNotes="0..1"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapoverride_nowaterreflect"/>
+            <identifierReference identifier="ignoreoverride_limitwaveheight"/>
+            <identifierReference identifier="ignoreoverride_nostencilshadows"/>
+          </references>
+        </command>
+
+        <command name="ignoreoverride_limitwaveheight">
+          <description>Ignores per-map overrides to limit waveheight on the client.</description>
+          <remarks>
+            <remark>
+            Ignores the overrides set by the mappers (for their maps only).
+            If "1", mapoverride_limitwaveheight is ignored, and "waveheight" is used unchanged.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="0: off, 1: ignore" valueNotes="0..1"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapoverride_limitwaveheight"/>
+            <identifierReference identifier="ignoreoverride_nowaterreflect"/>
+            <identifierReference identifier="ignoreoverride_nostencilshadows"/>
+          </references>
+        </command>
+
+        <command name="ignoreoverride_nostencilshadows">
+          <description>Ignores per-map overrides to disable stencil shadows on the client.</description>
+          <remarks>
+            <remark>
+            Ignores the overrides set by the mappers (for their maps only).
+            If "1", mapoverride_nostencilshadows is ignored.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="0: off, 1: ignore" valueNotes="0..1"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mapoverride_nostencilshadows"/>
+            <identifierReference identifier="ignoreoverride_nowaterreflect"/>
+            <identifierReference identifier="ignoreoverride_limitwaveheight"/>
+          </references>
+        </command>
+
+        <command name="stairs">
+          <description>Places stairs in all selections.</description>
+          <remarks>
+            <remark>"xs" and "ys" determine the step width in x- and y-direction.</remark>
+          </remarks>
+          <arguments>
+            <argument token="xs" description="step width in x-direction" valueNotes=""/>
+            <argument token="ys" description="step width in y-direction" valueNotes=""/>
+          </arguments>
+        </command>
+
         </identifiers>
     </section>
 
     <!-- Editing Section Ends -->
     <!-- Menus Section Starts -->
-    <section name="Menus" sortindex="11">
+    <section name="Menus" sortindex="12">
       <description>This section describes identifiers related to the menu gui.</description>
       <identifiers sort="true">
 
@@ -6664,10 +7263,39 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <command name="menuitemkeyinput">
+          <description>Menuitem which displays "text" and all keys, that bind "bindcmd"- in game mode.</description>
           <arguments>
             <argument token="T" description="text"/>
             <argument token="B" description="bind command"/>
           </arguments>
+          <references>
+            <identifierReference identifier="menuitemeditkeyinput"/>
+            <identifierReference identifier="menuitemspectkeyinput"/>
+          </references>
+        </command>
+
+        <command name="menuitemeditkeyinput">
+          <description>Menuitem which displays "text" and all keys, that bind "bindcmd"- in edit mode.</description>
+          <arguments>
+            <argument token="T" description="text"/>
+            <argument token="B" description="bind command"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="menuitemkeyinput"/>
+            <identifierReference identifier="menuitemspectkeyinput"/>
+          </references>
+        </command>
+
+        <command name="menuitemspectkeyinput">
+          <description>Menuitem which displays "text" and all keys, that bind "bindcmd"- in spectate mode.</description>
+          <arguments>
+            <argument token="T" description="text"/>
+            <argument token="B" description="bind command"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="menuitemkeyinput"/>
+            <identifierReference identifier="menuitemeditkeyinput"/>
+          </references>
         </command>
 
         <command name="menuitemmapload">
@@ -6691,6 +7319,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="menuitemtextinput">
+          <description>Creates a new menuitem with text input field.</description>
+          <remarks>
+            <remark>
+            If the last line of a menu is a text input item, pressing enter in that line will not only execute 
+            the assigned command, but also close the menu.
+            </remark>
+          </remarks>
           <arguments>
             <argument token="T" description="text"/>
             <argument token="V" description="value"/>
@@ -6880,6 +7515,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>If more than one menu is open, only the name of the topmost menu on the stack is returned.</remark>
           </remarks>
+          <references>
+            <identifierReference identifier="closecurmenu"/>
+            <identifierReference identifier="refreshcurmenu"/>
+            <identifierReference identifier="refreshcurmenudelayed"/>
+          </references>
         </command>
 
         <command name="closecurmenu">
@@ -6889,6 +7529,26 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="curmenu"/>
+            <identifierReference identifier="refreshcurmenu"/>
+            <identifierReference identifier="refreshcurmenudelayed"/>
+          </references>
+        </command>
+
+        <command name="refreshcurmenu">
+          <description>Refreshes (closes and opens again) the current menu.</description>
+          <references>
+            <identifierReference identifier="curmenu"/>
+            <identifierReference identifier="refreshcurmenudelayed"/>
+            <identifierReference identifier="closecurmenu"/>
+          </references>
+        </command>
+
+        <command name="refreshcurmenudelayed">
+          <description>Refreshes (closes and opens again, after very short delay) the current menu.</description>
+          <references>
+            <identifierReference identifier="curmenu"/>
+            <identifierReference identifier="refreshcurmenu"/>
+            <identifierReference identifier="closecurmenu"/>
           </references>
         </command>
 
@@ -7431,6 +8091,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="fontskip">
           <description>Specifies, at what char the font definition proceeds.</description>
+          <remarks>
+            <remark>
+            For example "fontskip 48" means the ascii code of the first char in defined font will be "48", which is '0';
+            "fontskip 65" would start at 'A'.</remark>
+          </remarks>
           <arguments>
             <argument token="A" description="the ascii code of the first char"/>
           </arguments>
@@ -7447,8 +8112,18 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <references>
             <identifierReference identifier="font"/>
+            <identifierReference identifier="curfont"/>
           </references>
         </command>
+
+        <variable name="curfont">
+          <description>Returns a name of the current font.</description>
+          <value token="N" description="name of font" valueNotes="default, mono, serif" defaultValue="default"/>
+          <references>
+            <identifierReference identifier="font"/>
+            <identifierReference identifier="setfont"/>
+          </references>
+        </variable>
 
         <variable name="scorefont">
           <description>Whether a special monospace font should be used to render the text on the scoreboard.</description>
@@ -7517,11 +8192,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="gibttl"/>
           </references>
           <value token="N" description="velocity" minValue="1" maxValue="100" defaultValue="30"/>
-        </variable>
-
-        <variable name="heartbeat">
-          <description>Defines the health level at or below which a heartbeat sound will be played. A value of 0 (which is the default) disables this feature.</description>
-          <value token="H" description="health value" minValue="0" maxValue="99" defaultValue="0"/>
         </variable>
 
         <variable name="teamdisplaymode">
@@ -7898,6 +8568,18 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
+        <variable name="mdldlist">
+          <value token="N" description="" minValue="0" maxValue="1" defaultValue="1"/>
+        </variable>
+
+        <variable name="mdldyncache">
+          <value token="V" description="" minValue="1" maxValue="32" defaultValue="2"/>
+        </variable>
+
+        <variable name="mdlstatcache">
+          <value token="V" description="" minValue="1" maxValue="32" defaultValue="1"/>
+        </variable>
+
       </identifiers>
     </section>
     <!-- Visuals Section Ends -->
@@ -8102,11 +8784,17 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="N" description="the volume" minValue="0" maxValue="255" defaultValue="128"/>
         </variable>
 
+        <variable name="heartbeat">
+          <description>Defines the health level at or below which a heartbeat sound will be played.</description>
+          <remark>A value of 0 (which is the default) disables this feature.</remark>
+          <value token="H" description="health value" minValue="0" maxValue="99" defaultValue="0"/>
+        </variable>
+
       </identifiers>
     </section>
     <!-- Sound Section Ends -->
     <!-- Ingame Reference Section Starts -->
-    <section name="Ingame Reference" sortindex="12">
+    <section name="Ingame Reference" sortindex="13">
       <description>This section describes all identifiers related to the ingame documentation reference.</description>
       <identifiers>
         <command name="docsection">
@@ -8419,13 +9107,18 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="showweights">
           <description>Show 'weights' in serverbrowser.</description>
-          <value token="N" description="" minValue="0" maxValue="1" defaultValue="0"/>
+          <value token="N" description="" minValue="0" maxValue="1" defaultValue="1"/>
           <remarks>
             <remark>
             'weights' are the sort criteria with the highest priority. Favourites categories can change the weights.
             Use 'showweights' to debug problems with serverbrowser sorting.
             </remark>
           </remarks>
+        </variable>
+
+        <variable name="showallplayersnumber">
+          <description>Shows on serverbrowser number of all players on the servers.</description>
+          <value token="N" description="" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
         <command name="searchnickname">
@@ -8629,6 +9322,169 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
       </identifiers>
     </section>
     <!-- Server commands Section ends -->
+    <!-- Authentication Section Starts -->
+    <section name="Authentication" sortindex="09">
+      <description>
+        This section describes identifiers related to player authentication.
+      </description>
+      <identifiers sort="true">
+
+        <command name="authsetup">
+          <description>Manages player authentication.</description>
+          <remarks>
+            <remark>
+            "authsetup" contains all the funtionality needed to generate, load and save private and public keys,
+            and to lock and unlock the private key with a password.
+            </remark>
+            <remark>
+            Private and public keys are used to authenticate the player to servers, and are loaded from config/authprivate.cfg.
+            Private keys can be stored in an "encrypted with password" version - in which case the player has to enter
+            the password after game start. To prevent brute-force cracking of the password, the key-derivation function uses
+            a constant time to encode (usually several seconds). Because of that, the decoding at game start can be done
+            in the background.
+            </remark>
+            <remark>
+            The private key is actually itself a public key generated from the prepriv key.
+            The prepriv key should be kept away from the computer, either as hardcopy or on a thumbdrive.
+            The prepriv key is not required to play the game. It can be used to prove ownership of the private key,
+            in case the private key gets stolen. It can also be used to regenerate private and public keys,
+            in case they are lost. The prepriv key can also be encrypted by its own password.
+            </remark>
+            <remark>----------</remark>
+            <remark>Options:</remark>
+            <remark>"authsetup" - checks private and public key and returns "1", if they match.</remark>
+            <remark>"authsetup pre preprivhex [psalthex pwdcfg]" - loads prepriv key into memory. Optionally supports encrypted keys.</remark>
+            <remark>"authsetup priv privhex [salthex pwdcfg]" - loads private key into memory. Optionally supports encrypted keys.</remark>
+            <remark>"authsetup pub pubhex" - loads public key into memory.</remark>
+            <remark>"authsetup ppass preprivpass" - decrypts prepriv key with password.</remark>
+            <remark>"authsetup pass privpass" - decrypts private key with password.</remark>
+            <remark>
+            "authsetup passd privpass [commandwhendone]" - decrypts private key with password in background.
+            Optionally executes cubescript command when done.
+            </remark>
+            <remark>"authsetup needpass" - returns "1", if the private key needs decryption.</remark>
+            <remark>"authsetup genpre [prelen]" - generates new prepriv key.</remark>
+            <remark>"authsetup genpriv" - generates private key from prepriv key.</remark>
+            <remark>"authsetup genpub" - generates public key from private key.</remark>
+            <remark>
+            "authsetup newppass preprivpass [preprivfilename]" - encrypts prepriv key with new password and saves the result to file.
+            The default filename is config/authpreprivate.cfg and an existing file gets overwritten - but the former file
+            content is kept and also written, each line commented out.
+            </remark>
+            <remark>
+            "authsetup newpass privpass [privatefilename]" - encrypts private key with new password and saves the encrypted
+            private key and the public key to file. The default filename is config/authprivate.cfg and an existing file 
+            gets overwritten - but the former file content is kept and also written, each line commented out.
+            </remark>
+            <remark>"authsetup unarmed" - sets private and public keys to a fixed value. For testing only. Can be used to "log out".</remark>
+            <remark>----------</remark>
+            <remark>
+            "authmemusage", "authrounds", "authmaxtime" are only used, when new passwords are created (authsetup new[p]pass).
+            "authmemusage" is the number of megabytes of RAM that are used for the password hash calculation. If "authrounds"
+            is zero (as is default), then the hash algorithm calculates as many rounds as possible in the number of milliseconds
+            specified in "authmaxtime". If "authrounds" is a positive number, then that is the number of rounds to be done,
+            regardless the required time. Note that, since the password hash algorithm is not endianness-aware, it is
+            not possible to move an encrypted password to a machine with different endianness. Moving between 32- and 64-bit
+            machines should be no problem.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="P" description="parameter" valueNotes="[empty], pre preprivhex [psalthex pwdcfg], 
+            priv privhex [salthex pwdcfg], pub pubhex, ppass preprivpass, pass privpass, passd privpass [commandwhendone], 
+            needpass, genpre [prelen], genpriv, genpub, newppass preprivpass [preprivfilename], 
+            newpass privpass [privatefilename], unarmed"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="authmemusage"/>
+            <identifierReference identifier="authrounds"/>
+            <identifierReference identifier="authmaxtime"/>
+            <identifierReference identifier="authkey"/>
+            <identifierReference identifier="mypubkey"/>
+            <identifierReference identifier="cryptodebug"/>
+          </references>
+        </command>
+
+        <variable name="authmemusage">
+          <description>Sets a number of megabytes of RAM that are used for the password hash calculation (when new passwords are created).</description>
+          <value token="N" description="number of RAM [MB]" minValue="2" maxValue="(1&lt;&lt;10)-1" defaultValue="24"/>
+          <references>
+            <identifierReference identifier="authsetup"/>
+            <identifierReference identifier="authrounds"/>
+            <identifierReference identifier="authmaxtime"/>
+          </references>
+        </variable>
+
+        <variable name="authrounds">
+          <description>Sets a number of rounds, if greater than 0, then new password hashes are created with this fixed number of rounds.</description>
+          <value token="N" description="number of rounds" minValue="0" maxValue="2^31-1" defaultValue="0"/>
+          <references>
+            <identifierReference identifier="authsetup"/>
+            <identifierReference identifier="authmemusage"/>
+            <identifierReference identifier="authmaxtime"/>
+          </references>
+        </variable>
+
+        <variable name="authmaxtime">
+          <description>Sets an amount of time (in ms), new password hashes are created with this fixed amount of time.</description>
+          <value token="N" description="amount of time [ms]" minValue="1&lt;&lt;9" maxValue="1&lt;&lt;16" defaultValue="1&lt;&lt;12"/>
+          <references>
+            <identifierReference identifier="authsetup"/>
+            <identifierReference identifier="authmemusage"/>
+            <identifierReference identifier="authrounds"/>
+          </references>
+        </variable>
+
+        <command name="authkey">
+          <description>Manages a list of keys other than the game key (which is managed by authsetup).</description>
+          <remarks>
+            <remark>For example, this can be server owner keys or clan boss keys. Options:</remark>
+            <remark>"authkey clear" - empties the list and comments out all lines in config/authkeys.cfg.</remark>
+            <remark>"authkey list" - lists all authkeys that are currently in memory.</remark>
+            <remark>"authkey delete keyname" - deletes the key "keyname" from memory.</remark>
+            <remark>
+            "authkey new keyname" - generates a new key with the name "keyname". If a key of that name already exists,
+            it is deleted. The key is added to the list in memory and also written to the file config/authkeys.cfg.
+            </remark>
+            <remark>
+            "authkey add keyname privkey" - adds a key with the name "keyname" to the list in memory.
+            The privkey is a 32-byte hexadecimal string, preferrably generated by authkey new. 
+            The matching public key is generated automatically from the private key.
+            </remark>
+            <remark>
+            "authkey selfcert keyname [comment]" - generates a self-signed certificate for the key "keyname". Being able to
+            create such a cert is proof, that you own the private key of a certain public key.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="P" description="parameter" valueNotes="clear, list, delete keyname, new keyname, 
+            add keyname privkey, selfcert keyname [comment]"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="authsetup"/>
+          </references>
+        </command>
+
+        <command name="mypubkey">
+          <description>Returns a public key of game account.</description>
+          <remarks>
+            <remark>It returns empty string, if no account exists or it is unusable (due to missing password, for example).</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="authsetup"/>
+          </references>
+        </command>
+
+        <variable name="cryptodebug">
+          <description>Enables some debug messages in crypto.cpp file.</description>
+          <value token="N" description="enable debugging" minValue="0" maxValue="1" defaultValue="1"/>
+          <references>
+            <identifierReference identifier="authsetup"/>
+          </references>
+        </variable>
+
+      </identifiers>
+    </section>
+    <!-- Authentication Section ends -->
     <!-- Game Modes Section Starts -->
     <section name="Game modes" sortindex="04">
       <identifiers sort="true">
@@ -8669,24 +9525,24 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument valueNotes="1" description="Co-op edit"/>
             <argument valueNotes="2" description="Deathmatch"/>
             <argument valueNotes="3" description="Survivor"/>
-            <argument valueNotes="4" description="Team survivor"/>
+            <argument valueNotes="4" description="Team Survivor"/>
             <argument valueNotes="5" description="Capture the Flag"/>
-            <argument valueNotes="6" description="Pistol frenzy"/>
-            <argument valueNotes="7" description="Bot team deathmatch"/>
-            <argument valueNotes="8" description="Bot deathmatch"/>
-            <argument valueNotes="9" description="Last swiss standing"/>
-            <argument valueNotes="10" description="One shot, One kill"/>
-            <argument valueNotes="11" description="Team One shot, One kill"/>
-            <argument valueNotes="12" description="Bot One shot, One kill"/>
+            <argument valueNotes="6" description="Pistol Frenzy"/>
+            <argument valueNotes="7" description="Bot Team Deathmatch"/>
+            <argument valueNotes="8" description="Bot Deathmatch"/>
+            <argument valueNotes="9" description="Last Swiss Standing"/>
+            <argument valueNotes="10" description="One Shot, One Kill"/>
+            <argument valueNotes="11" description="Team One Shot, One Kill"/>
+            <argument valueNotes="12" description="Bot One Shot, One Kill"/>
             <argument valueNotes="13" description="Hunt the Flag"/>
-            <argument valueNotes="14" description="Team keep the flag"/>
-            <argument valueNotes="15" description="Keep the flag"/>
+            <argument valueNotes="14" description="Team Keep the Flag"/>
+            <argument valueNotes="15" description="Keep the Flag"/>
             <argument valueNotes="16" description="Team Pistol Frenzy"/>
             <argument valueNotes="17" description="Team Last Swiss Standing"/>
             <argument valueNotes="18" description="Bot Pistol Frenzy"/>
             <argument valueNotes="19" description="Bot Last Swiss Standing"/>
             <argument valueNotes="20" description="Bot Team Survivor"/>
-            <argument valueNotes="21" description="Bot Team One shot, One kill"/>
+            <argument valueNotes="21" description="Bot Team One Shot, One Kill"/>
           </arguments>
           <remarks>
             <remark>You will need to define mode before loading the map or it will stay as the last mode played.</remark>
@@ -8806,7 +9662,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="osok">
-          <description>Starts a map with the mode "One shot, One kill"</description>
+          <description>Starts a map with the mode "One Shot, One Kill"</description>
           <examples>
             <example>
               <code><![CDATA[osok ac_complex]]></code>
@@ -8858,7 +9714,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="tosok">
-          <description>Starts a map with the mode "Team One shot, One kill"</description>
+          <description>Starts a map with the mode "Team One Shot, One Kill"</description>
           <examples>
             <example>
               <code><![CDATA[tosok ac_complex]]></code>
@@ -9001,7 +9857,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="bosok">
-          <description>Starts a map with the mode "Bot One shot, One kill"</description>
+          <description>Starts a map with the mode "Bot One Shot, One Kill"</description>
           <examples>
             <example>
               <code><![CDATA[bosok ac_complex]]></code>
@@ -9014,7 +9870,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="btosok">
-          <description>Starts a map with the mode "Bot Team One shot, One kill"</description>
+          <description>Starts a map with the mode "Bot Team One Shot, One Kill"</description>
           <examples>
             <example>
               <code><![CDATA[btosok ac_complex]]></code>
@@ -9030,7 +9886,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
     </section>
     <!-- Game Modes Section Ends -->
     <!-- Editing Configs Section Starts -->
-    <section name="Editing configs" sortindex="10">
+    <section name="Editing configs" sortindex="11">
       <description>
         All the below commands are used specifically in map configuration files.
         Some of these commands can also be used without the need of a map configuration file.
@@ -9406,27 +10262,30 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="watercolour">
           <description>Determines the water colour in a map.</description>
-          <references>
-            <identifierReference identifier="waterlevel"/>
-          </references>
           <remarks>
             <remark>
-            You must define all 3 values, otherwise this command may not work
+            You must define at least 3 first values, otherwise this command may not work
             correctly (use "1" as a placeholder if needed).
             </remark>
           </remarks>
           <arguments>
-            <argument token="R" description="Red colour intensity" valueNotes="Between 1 and 255"/>
-            <argument token="G" description="Green colour intensity" valueNotes="Between 1 and 255"/>
-            <argument token="B" description="Blue colour intensity" valueNotes="Between 1 and 255"/>
+            <argument token="R" description="red colour intensity" valueNotes="1..255"/>
+            <argument token="G" description="green colour intensity" valueNotes="1..255"/>
+            <argument token="B" description="blue colour intensity" valueNotes="1..255"/>
+            <argument token="A" description="alpha value (transparency)" valueNotes="0..255 (default 178)"/>
           </arguments>
+          <references>
+            <identifierReference identifier="getwatercolour"/>
+            <identifierReference identifier="setwatercolour"/>
+            <identifierReference identifier="waterlevel"/>
+          </references>
         </command>
 
       </identifiers>
     </section>
     <!-- Editing Configs Section Ends -->
     <!-- Bot mode Section Starts -->
-    <section name="Bot mode" sortindex="13">
+    <section name="Bot mode" sortindex="14">
       <description>This section describes bot mode related identifiers. See also "docs/cube_bot-readme.txt".</description>
       <identifiers sort="true">
 
@@ -9449,9 +10308,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="kickallbots">
           <description>Kicks all bots out of the current game.</description>
-          <arguments>
-            <argument token="" description="this command does not take any arguments" valueNotes="none"/>
-          </arguments>
         </command>
 
         <command name="kickbot">
@@ -9625,7 +10481,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
     </section>
     <!-- Bot mode Section Ends -->
     <!-- Optional Section Starts -->
-    <section name="Optional" sortindex="14">
+    <section name="Optional" sortindex="15">
       <description>This section describes optional identifiers from the files in config/opt/ folder and commands, which enable them.</description>
       <identifiers sort="true">
 
@@ -9935,11 +10791,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <variable name="scopesensfeel">
           <description>TODO</description>
           <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <variable name="mdldlist">
-          <description>TODO</description>
-          <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
 
         <command name="showedithide">
