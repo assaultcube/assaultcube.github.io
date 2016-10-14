@@ -1641,15 +1641,29 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="sortlist">
           <description>Returns a sorted version of a list.</description>
-          <arguments>
-            <argument token="c" description="List to sort"/>
-          </arguments>
           <examples>
             <example>
               <code><![CDATA[echo (sortlist [1 3 2])]]></code>
               <explanation>Output: 1 2 3</explanation>
             </example>
           </examples>
+          <arguments>
+            <argument token="L" description="list to sort"/>
+          </arguments>
+        </command>
+
+        <command name="swapelements">
+          <description>Returns a modified list swapping the positions of 2 elements.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (swapelements [0 1 2 3] [0 3])]]></code>
+              <explanation>Output: 3 1 2 0</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="L" description="list"/>
+            <argument token="S" description="positions of 2 elements in the list to swapping"/>
+          </arguments>
         </command>
 
         <command name="isolatecontext">
@@ -3814,11 +3828,33 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <defaultKeys>
             <key alias="SPACE" description="switch spectator mode"/>
           </defaultKeys>
+          <references>
+            <identifierReference identifier="spectate"/>
+          </references>
         </command>
 
         <command name="spectate">
           <description>Toggles spectator mode.</description>
+          <references>
+            <identifierReference identifier="spectatemode"/>
+            <identifierReference identifier="spectatepersistent"/>
+          </references>
         </command>
+
+        <variable name="spectatepersistent">
+          <description>Enables persistent spectating concrete player in multiplayer.</description>
+          <remarks>
+            <remark>
+            For "spectatepersistent" = 1 persistent spectating is enabled in all game modes in multiplayer (that means,
+            that spectated player isn't changed after his death), for "0" it is enabled only in non-arena modes in multiplayer.
+            </remark>
+            <remark>In demo mode persistent spectating is always enabled.</remark>
+          </remarks>
+          <value token="N" description="0: enabled in non-arena modes, 1: always enabled" minValue="0" maxValue="1" defaultValue="1"/>
+          <references>
+            <identifierReference identifier="spectate"/>
+          </references>
+        </variable>
 
         <command name="stopdemo">
           <description>Stops demo playback.</description>
@@ -5165,7 +5201,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Saves the current map.</description>
           <remarks>
             <remark>
-            savemap makes a versioned backup (mapname_N.BAK) if a map by that name already exists.
+            It makes a versioned backup (mapname_N.BAK) if a map by that name already exists.
             If the name argument is omitted, it is saved under the current map name.
             </remark>
             <remark>
@@ -5174,19 +5210,57 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             or a map with new media (textures etc.) its better to store it in its own package (a directory under "packages"),
             which makes distributing it less messy.
             </remark>
+            <remark>
+            For "savemap" to save different maps during editing with undo data, the variable "preserveundosonsave" has to be "1".
+            It is "0" by default. "savemap" when not editing saves optimised map, with no undo data.
+            </remark>
           </remarks>
           <references>
             <identifierReference identifier="map"/>
+            <identifierReference identifier="savemapoptimised"/>
+            <identifierReference identifier="preserveundosonsave"/>
           </references>
           <arguments>
             <argument token="M" description="file name of the map, see command 'map' for the naming scheme" valueNotes="string"/>
           </arguments>
         </command>
 
+        <command name="savemapoptimised">
+          <description>Saves optimised the current map, with no undo data.</description>
+          <remarks>
+            <remark>
+            It makes a versioned backup (mapname_N.BAK) if a map by that name already exists.
+            If the name argument is omitted, it is saved under the current map name.
+            </remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="map"/>
+            <identifierReference identifier="savemap"/>
+          </references>
+          <arguments>
+            <argument token="M" description="file name of the map, see command 'map' for the naming scheme" valueNotes="string"/>
+          </arguments>
+        </command>
+
+        <variable name="preserveundosonsave">
+          <description>Determines if undo data should be preserved on using "savemap" command.</description>
+          <remarks>
+           <remark>Undo data can be saved only in edit mode.</remark>
+          </remarks>
+          <value token="N" description="0: don't preserve undos, 1: preserve undos" minValue="0" maxValue="1" defaultValue="0"/>
+          <references>
+            <identifierReference identifier="savemap"/>
+          </references>
+        </variable>
+
         <variable name="mapbackupsonsave">
           <description>Determines if map backups (.bak) should be created when a map is saved.</description>
           <value token="N" description="0 off, 1 on" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
+
+        <command name="savemap9">
+          <description>Saves a map in old map format 9 (may lose some map details that are not possible with format 9).</description>
+        </command>
 
         <command name="newmap">
           <description>Creates a new map.</description>
@@ -6561,6 +6635,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="getautomapconfig"/>
+            <identifierReference identifier="embedconfigfile"/>
+            <identifierReference identifier="extractconfigfile"/>
+            <identifierReference identifier="listheaderextras"/>
           </references>
         </command>
 
@@ -6568,6 +6645,40 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Returns "1" if automapconfig is already enabled, "0" otherwise.</description>
           <references>
             <identifierReference identifier="automapconfig"/>
+          </references>
+        </command>
+
+        <command name="embedconfigfile">
+          <description>Loads the map config file, includes it in the map header and renames the original config file.</description>
+          <remarks>
+            <remark>Embedded config files take precedence over regular config files.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="automapconfig"/>
+            <identifierReference identifier="extractconfigfile"/>
+            <identifierReference identifier="listheaderextras"/>
+          </references>
+        </command>
+
+        <command name="extractconfigfile">
+          <description>Writes an embedded config file to a separate file and removes it from the map header.</description>
+          <references>
+            <identifierReference identifier="automapconfig"/>
+            <identifierReference identifier="embedconfigfile"/>
+          </references>
+        </command>
+
+        <command name="listheaderextras">
+          <description>Returns a list with additional data ("header extras") from current map header.</description>
+          <remarks>
+            <remark>
+            The header extras can be permanent, like the embedded config file, or can be used only once after map load,
+            like the undo/redo data. Additional extra data can be easily added and will not break backward compatibility.
+            </remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="automapconfig"/>
+            <identifierReference identifier="embedconfigfile"/>
           </references>
         </command>
 
@@ -7957,11 +8068,21 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="screenres">
-          <description>Changes the screen resolution</description>
+          <description>Changes the screen resolution.</description>
           <arguments>
             <argument token="W" description="width"/>
             <argument token="H" description="height"/>
           </arguments>
+          <references>
+            <identifierReference identifier="setdesktopres"/>
+          </references>
+        </command>
+
+        <command name="setdesktopres">
+          <description>Sets the screen resolution as in desktop.</description>
+          <references>
+            <identifierReference identifier="screenres"/>
+          </references>
         </command>
 
         <command name="glext">
@@ -8042,16 +8163,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Sets the level of brightness to use when using the command "/fullbright 1".</description>
           <value token="V" description="Light intensity level" minValue="0" maxValue="255" defaultValue="176"/>
         </variable>
-
-        <command name="fovcompat">
-          <description>Sets the field of view (fov) based on the rules of AC v0.93</description>
-          <remarks>
-            <remark>This command is supplied for backward compatibility.</remark>
-          </remarks>
-          <arguments>
-            <argument token="A" description="FOV degree" valueNotes=""/>
-          </arguments>
-        </command>
 
         <command name="font">
           <description>Loads a font texture to use as text within AssaultCube.</description>
@@ -8453,6 +8564,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <variable name="particlesize">
           <description>Scales all particles.</description>
           <value token="P" description="the scale percentage" minValue="20" maxValue="500" defaultValue="100"/>
+        </variable>
+
+        <variable name="maxtrail">
+          <description>Maximum number of smoke particles along shotline of sniper rifle.</description>
+          <value token="N" description="maximum number of smoke particles" minValue="1" maxValue="10000" defaultValue="500"/>
         </variable>
 
         <variable name="animationinterpolationtime">
@@ -9087,7 +9203,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="showminremain">
           <description>Show 'minutes remaining' in serverbrowser.</description>
-          <value token="N" description="" minValue="0" maxValue="1" defaultValue="0"/>
+          <value token="N" description="" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
 
         <variable name="shownamesinbrowser">
@@ -10791,6 +10907,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <variable name="scopesensfeel">
           <description>TODO</description>
           <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="0"/>
+        </variable>
+
+        <variable name="scopesens">
+          <description>TODO</description>
+          <value token="N" description="TODO" minValue="0" maxValue="1000" defaultValue="0"/>
         </variable>
 
         <command name="showedithide">
