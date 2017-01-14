@@ -62,8 +62,8 @@
 name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuberef.xsd">
   <sections sort="true">
   <!--
-    Sections available: Cubescript, General, Gameplay, Keyboard and mouse, Game modes, Visuals, Heads-Up Display, Sound,
-                        Server commands, Authentication, Editing, Editing configs, Menus, Ingame Reference, Bot mode,
+    Sections available: Cubescript, General, Gameplay, Game modes, Keyboard and mouse, Visuals, Heads-Up Display, Sound,
+                        Server commands, Authentication, Editing, Editing configs, Menus, Ingame reference, Bot mode,
                         Optional, TODO
   -->
     <!-- CubeScript language Section Starts -->
@@ -1722,7 +1722,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <references>
-            <identifierReference identifier="getmode"/>
             <identifierReference identifier="screenshottype"/>
           </references>
         </command>
@@ -1777,6 +1776,66 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </variable>
 
+       <command name="saycommand">
+          <description>Puts a prompt on screen.</description>
+          <remarks>
+            <remark>
+              This puts a prompt on screen that you can type into,
+              and will capture all keystrokes until you press return (or ESC to cancel).
+              If what you typed started with a "/", the rest of it will be executed as a command,
+              otherwise its something you "say" to all players.
+            </remark>
+          </remarks>
+          <defaultKeys>
+            <key alias="T" description="opens empty prompt"/>
+            <key alias="BACKQUOTE" name="`" description="opens a command prompt /"/>
+            <key alias="TAB" description="autocompletes commands/variables/aliases"/>
+            <key alias="UP" description="browse command history forwards"/>
+            <key alias="DOWN" description="browse command history backwards"/>
+          </defaultKeys>
+          <arguments>
+            <variableArgument token="S..." description="the text to display in the prompt" optional="true"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="complete"/>
+            <identifierReference identifier="listcomplete"/>
+            <identifierReference identifier="inputcommand"/>
+          </references>
+        </command>
+
+        <command name="complete">
+          <arguments>
+            <argument token="C" description="command" valueNotes="any command or alias"/>
+            <argument token="P" description="path" valueNotes="path to search"/>
+            <argument token="E" description="extension" valueNotes="extension to match"/>
+          </arguments>
+          <remarks>
+            <remark>The completion will work on the first word of your console input.</remark>
+          </remarks>
+          <examples>
+            <example>
+              <code><![CDATA[complete demo "demos" dmo]]></code>
+              <explanation>If you enter "/demo " and press TAB you will cycle through all available demos.</explanation>
+            </example>
+            <example>
+              <code><![CDATA[alias mapcomplete [complete $arg1 "packages/maps" cgz]]]></code>
+              <explanation>helper alias for quickly adding complete-definitions for all gamemodes - see config/script.cfg (below "Auto-Completions")</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="saycommand"/>
+            <identifierReference identifier="listcomplete"/>
+          </references>
+        </command>
+
+        <command name="listcomplete">
+          <argument token="A" description="" valueNotes="value"/>
+          <references>
+            <identifierReference identifier="saycommand"/>
+            <identifierReference identifier="complete"/>
+          </references>
+        </command>
+
         <command name="debugargs">
           <description>Dump all command arguments to STDOUT</description>
           <arguments>
@@ -1792,10 +1851,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Toggles physics interpolation.</description>
           <value token="B" description="" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
-
-        <command name="toggleconsole">
-          <description>Toggles the console.</description>
-        </command>
 
         <command name="updatefrommaster">
           <description>Contacts the masterserver and adds any new servers to the server list.</description>
@@ -2030,46 +2085,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="B" description="enable correction" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
-        <variable name="maxfps">
-          <description>Limits the FPS (frames per second) of AssaultCube's video output.</description>
-          <value token="V" description="maximum FPS" minValue="25 or 0" maxValue="1000" defaultValue="200" valueNotes="0 disables maxfps"/>
-        </variable>
-
-        <variable name="minlod">
-          <description>Minimal level of detail.</description>
-          <value token="V" description="" minValue="25" maxValue="250" defaultValue="60"/>
-        </variable>
-
-        <variable name="modeacronyms">
-          <description>Toggles use of acronyms instead of full modenames in the serverbrowser.</description>
-          <value token="B" description="" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <command name="getmode">
-          <description>Returns the current game mode.</description>
-          <examples>
-            <example>
-              <code><![CDATA[echo (getmode)]]></code>
-              <explanation>Example output: capture the flag</explanation>
-            </example>
-            <example>
-              <code><![CDATA[echo (getmode 1)]]></code>
-              <explanation>Example output: CTF</explanation>
-            </example>
-          </examples>
-          <arguments>
-            <argument token="N" description="0 = full mode name, 1 = mode acronym" valueNotes="min 0/max 1/default 0"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="getscrext"/>
-            <identifierReference identifier="modeacronyms"/>
-          </references>
-        </command>
-
-        <variable name="changeteam">
-          <description>Swaps your player to the enemy team.</description>
-        </variable>
-
         <variable name="resetcfg">
           <description>Determines if all settings should be reset when the game quits.</description>
           <remarks>
@@ -2083,16 +2098,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="quit"/>
           </references>
           <value token="B" description="enable reset" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <variable name="smoothdist">
-          <description>Determines the valid distance when extrapolating a players position.</description>
-          <value token="V" description="distance" minValue="0" maxValue="16" defaultValue="8"/>
-        </variable>
-
-        <variable name="smoothmove">
-          <description>Determines the speed when extrapolating a players position.</description>
-          <value token="V" description="movement speed" minValue="0" maxValue="100" defaultValue="75"/>
         </variable>
 
         <variable name="throttle_accel">
@@ -2139,19 +2144,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>As example, the protocol of version 1.2.0.2 is represented as value 1201.</remark>
           </remarks>
-        </variable>
-
-        <variable name="gamemode">
-          <description>Holds the current game mode. READ ONLY</description>
-          <examples>
-            <example>
-              <code><![CDATA[echo $gamemode]]></code>
-              <explanation>Output: 5</explanation>
-            </example>
-          </examples>
-          <references>
-            <identifierReference identifier="mode"/>
-          </references>
         </variable>
 
         <variable name="connected">
@@ -2465,6 +2457,92 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
+      <scriptalias name="modmdlweapN">
+          <description>Changes name of directory used for weapon model (hudgun) number N.</description>
+          <examples>
+            <example>
+              <code>
+                <![CDATA[
+                modmdlweap4 = my_subgun
+                ]]>
+              </code>
+              <explanation>This will make the subgun hudgun model use the data inside packages/models/weapon/my_subgun</explanation>
+            </example>
+          </examples>
+          <remarks>
+            <remark>These setting should be loaded from config/autoexec.cfg, but they work on-the-fly too.</remark>
+            <remark>If the model fails to load you will end up with nothing being displayed; use <b>delalias</b> to get back to default.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="modmdlvwepN"/>
+            <identifierReference identifier="modmdlpickupN"/>
+            <identifierReference identifier="modmdlbounceN"/>
+          </references>
+        </scriptalias>
+
+        <scriptalias name="modmdlvwepN">
+          <description>Changes name of directory used for weapon model (viewable/world) number N.</description>
+          <references>
+            <identifierReference identifier="modmdlweapN"/>
+            <identifierReference identifier="modmdlpickupN"/>
+            <identifierReference identifier="modmdlbounceN"/>
+          </references>
+        </scriptalias>
+
+        <scriptalias name="modmdlpickupN">
+          <description>Changes name of directory used for pickup model number N.</description>
+          <examples>
+            <example>
+              <code><![CDATA[modmdlpickup3 = health2]]></code>
+              <explanation>This will make the health pickup model use the data inside packages/models/pickups/health2</explanation>
+            </example>
+            <example>
+              <code><![CDATA[modmdlpickup1 = my_ammobox]]></code>
+              <explanation>This will make the ammobox pickup model use the data inside packages/models/pickups/my_ammobox</explanation>
+            </example>
+          </examples>
+          <remarks>
+            <remark>These setting should be loaded from config/autoexec.cfg, but they work on-the-fly too.</remark>
+            <remark>If the model fails to load you will end up with nothing being displayed; use <b>delalias</b> to get back to default.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="modmdlweapN"/>
+            <identifierReference identifier="modmdlvwepN"/>
+            <identifierReference identifier="modmdlbounceN"/>
+          </references>
+        </scriptalias>
+
+        <scriptalias name="modmdlbounceN">
+          <description>Changes name of directory used for bounce model number N.</description>
+          <examples>
+            <example>
+              <code><![CDATA[modmdlbounce0 = misc/my_gib1]]></code>
+              <explanation>This will make the gib 1 model use the data inside packages/models/misc/my_gib1</explanation>
+            </example>
+            <example>
+              <code><![CDATA[modmdlbounce1 = misc/my_gib2]]></code>
+              <explanation>This will make the gib 2 model use the data inside packages/models/misc/my_gib2</explanation>
+            </example>
+            <example>
+              <code><![CDATA[modmdlbounce2 = misc/my_gib3]]></code>
+              <explanation>This will make the gib 3 model use the data inside packages/models/misc/my_gib3</explanation>
+            </example>
+            <example>
+              <code><![CDATA[modmdlbounce3 = weapons/grenade2/static]]></code>
+              <explanation>This will make the grenade static model use the data inside packages/models/weapons/grenade2/static</explanation>
+            </example>
+          </examples>
+          <remarks>
+            <remark>These setting should be loaded from config/autoexec.cfg, but they work on-the-fly too.</remark>
+            <remark>If the model fails to load you will end up with nothing being displayed; use <b>delalias</b> to get back to default.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="modmdlweapN"/>
+            <identifierReference identifier="modmdlvwepN"/>
+            <identifierReference identifier="modmdlpickupN"/>
+          </references>
+        </scriptalias>
+
         <command name="demonameformat">
           <description>Sets the formatstring for demo filenames.</description>
           <arguments>
@@ -2758,118 +2836,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>If defined, this will be executed after saved.cfg is loaded.</description>
         </scriptalias>
 
-        <scriptalias name="modmdlweapN">
-          <description>Changes name of directory used for weapon model (hudgun) number N.</description>
-          <examples>
-            <example>
-              <code>
-                <![CDATA[
-                modmdlweap4 = my_subgun
-                ]]>
-              </code>
-              <explanation>This will make the subgun hudgun model use the data inside packages/models/weapon/my_subgun</explanation>
-            </example>
-          </examples>
-          <remarks>
-            <remark>These setting should be loaded from config/autoexec.cfg, but they work on-the-fly too.</remark>
-            <remark>If the model fails to load you will end up with nothing being displayed; use <b>delalias</b> to get back to default</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="modmdlvwepN"/>
-            <identifierReference identifier="modmdlpickupN"/>
-            <identifierReference identifier="modmdlbounceN"/>
-            <identifierReference identifier="delalias"/>
-          </references>
-        </scriptalias>
-
-        <scriptalias name="modmdlvwepN">
-          <description>Changes name of directory used for weapon model (viewable/world) number N.</description>
-          <references>
-            <identifierReference identifier="modmdlweapN"/>
-            <identifierReference identifier="modmdlpickupN"/>
-            <identifierReference identifier="modmdlbounceN"/>
-            <identifierReference identifier="delalias"/>
-          </references>
-        </scriptalias>
-        
-        <scriptalias name="modmdlpickupN">
-          <description>Change name of directory used for pickup model number N.</description>
-          <examples>
-            <example>
-              <code><![CDATA[modmdlpickup3 = health2]]></code>
-              <explanation>This will make the health pickup model use the data inside packages/models/pickups/health2</explanation>
-            </example>
-            <example>
-              <code><![CDATA[modmdlpickup1 = my_ammobox]]></code>
-              <explanation>This will make the ammobox pickup model use the data inside packages/models/pickups/my_ammobox</explanation>
-            </example>
-          </examples>
-          <remarks>
-            <remark>These setting should be loaded from config/autoexec.cfg, but they work on-the-fly too.</remark>
-            <remark>If the model fails to load you will end up with nothing being displayed; use <b>delalias</b> to get back to default</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="modmdlweapN"/>
-            <identifierReference identifier="modmdlvwepN"/>
-            <identifierReference identifier="modmdlbounceN"/>
-            <identifierReference identifier="delalias"/>
-            <identifierReference identifier="onPickup"/>
-          </references>
-        </scriptalias>
-        
-        <scriptalias name="modmdlbounceN">
-          <description>Changes name of directory used for bounce model number N.</description>
-          <examples>
-            <example>
-              <code><![CDATA[modmdlbounce0 = misc/my_gib1]]></code>
-              <explanation>This will make the gib 1 model use the data inside packages/models/misc/my_gib1</explanation>
-            </example>
-            <example>
-              <code><![CDATA[modmdlbounce1 = misc/my_gib2]]></code>
-              <explanation>This will make the gib 2 model use the data inside packages/models/misc/my_gib2</explanation>
-            </example>
-            <example>
-              <code><![CDATA[modmdlbounce2 = misc/my_gib3]]></code>
-              <explanation>This will make the gib 3 model use the data inside packages/models/misc/my_gib3</explanation>
-            </example>
-            <example>
-              <code><![CDATA[modmdlbounce3 = weapons/grenade2/static]]></code>
-              <explanation>This will make the grenade static model use the data inside packages/models/weapons/grenade2/static</explanation>
-            </example>
-          </examples>
-          <remarks>
-            <remark>These setting should be loaded from config/autoexec.cfg, but they work on-the-fly too.</remark>
-            <remark>If the model fails to load you will end up with nothing being displayed; use <b>delalias</b> to get back to default</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="modmdlweapN"/>
-            <identifierReference identifier="modmdlvwepN"/>
-            <identifierReference identifier="modmdlpickupN"/>
-            <identifierReference identifier="delalias"/>
-          </references>
-        </scriptalias>
-
-        <scriptalias name="mapmodelzoff">
-          <description>Allows negative z-offsets for mapmodels.</description>
-          <remarks>
-            <remark>
-            A mapmodel entity is placed at a z-coordinate that is based on the floor height of map geometry
-            and a z-offset. The z-offset is a sum of the entity attribute 3 and the third mapmodel slot parameter.
-            The entity z-offset can range from 0 to 255 while the mapmodel slot parameter can be any integer including negative numbers.
-            So, to place a mapmodel below floor height, the mapmodel slot parameter has to be negative.
-            </remark>
-            <remark>
-            "mapmodelzoff" script decreases the mapmodel slot parameter by one and increases the z-offset of every mapmodel
-            which uses that slot also by one. This means, that all mapmodel are exact in the same place afterwards
-            - but the entity z-offset now has room to lower the mapmodel by one more cube.
-            </remark>
-            <remark>If you need more z-offset available, run the script several times.</remark>
-          </remarks>
-          <arguments>
-            <argument token="N" description="mapmodel slot number"/>
-          </arguments>
-        </scriptalias>
-
         <command name="pstat_weap">
           <description>Returns the shot statistics for the player with the given clientnumber.</description>
           <arguments>
@@ -2960,10 +2926,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </variable>
 
-        <command name="mapsize">
-          <description>outputs the mapsize.</description>
-        </command>
-
         <command name="loadcrosshair">
           <description>Loads a crosshair for argument T.</description>
           <examples>
@@ -2994,7 +2956,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
-        <command name="lanconnect"/>
         <command name="listdemos">
           <description>Get the game demos listing from the server we are currently connected.</description>
           <references>
@@ -3034,12 +2995,26 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="D" description="delta" valueNotes="how many players to shift +/-"/>
           </arguments>
+          <references>
+            <identifierReference identifier="setfollowplayer"/>
+          </references>
         </command>
 
         <command name="setfollowplayer">
           <arguments>
             <argument token="C" description="clientnum" valueNotes="which player to follow"/>
           </arguments>
+          <references>
+            <identifierReference identifier="changefollowplayer"/>
+            <identifierReference identifier="spectatecn"/>
+          </references>
+        </command>
+
+        <command name="spectatecn">
+          <description>Returns client number of spectated player.</description>
+          <references>
+            <identifierReference identifier="setfollowplayer"/>
+          </references>
         </command>
 
         <command name="teaminfo">
@@ -3059,40 +3034,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
-        <command name="modenum">
-          <description>Returns the mode number for a specified mode acronym.</description>
-          <examples>
-            <example>
-              <code><![CDATA[echo (modenum ctf)]]></code>
-              <explanation>Output: 5</explanation>
-            </example>
-            <example>
-              <code><![CDATA[echo (modenum btosok)]]></code>
-              <explanation>Output: 21</explanation>
-            </example>
-          </examples>
-          <arguments>
-            <argument token="M" description="the mode acronym"/>
-          </arguments>
-          <remarks>
-            <remark>Returns -1 if not found.</remark>
-          </remarks>
-        </command>
-
         <variable name="curmaprevision">
           <description>Current map revision number.</description>
-          <value description="-" minValue="1" maxValue="0" defaultValue="1" readOnly="true"/>
         </variable>
-
-        <command name="curmodeattr">
-          <description>Checks the current game mode for certain attributes.</description>
-          <arguments>
-            <argument token="A" description="attribute name"/>
-          </arguments>
-          <remarks>
-            <remark>Possible attributes are: team, arena, flag and bot.</remark>
-          </remarks>
-        </command>
 
         <command name="curmastermode">
           <description>Returns the server's current mastermode state.</description>
@@ -3193,10 +3137,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
-        <variable name="hidecustomskins">
-          <value token="B" description="" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
         <command name="map">
           <description>Loads up a map in the gamemode set previously by the 'mode' command.</description>
           <remarks>
@@ -3262,30 +3202,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Reloads the weapon.</description>
           <arguments>
             <argument token="A" description="" valueNotes="value"/>
-          </arguments>
-        </command>
-
-        <command name="skin">
-          <description>Determines the skin of the current player.</description>
-          <remarks>
-            <remark>See the player model folder for the according skin-id.</remark>
-          </remarks>
-          <arguments>
-            <argument token="N" description="skin id" valueNotes="value"/>
-          </arguments>
-        </command>
-
-        <command name="skin_cla">
-          <description>Choose skin when playing for team CLA.</description>
-          <arguments>
-            <argument token="N" description="skin id"/>
-          </arguments>
-        </command>
-
-        <command name="skin_rvsf">
-          <description>Choose skin when playing for team RVSF.</description>
-          <arguments>
-            <argument token="N" description="skin id"/>
           </arguments>
         </command>
 
@@ -3445,71 +3361,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </command>
 
-        <command name="saycommand">
-          <description>Puts a prompt on screen.</description>
-          <remarks>
-            <remark>
-              This puts a prompt on screen that you can type into,
-              and will capture all keystrokes until you press return (or ESC to cancel).
-              If what you typed started with a "/", the rest of it will be executed as a command,
-              otherwise its something you "say" to all players.
-            </remark>
-          </remarks>
-          <defaultKeys>
-            <key alias="T" description="opens empty prompt"/>
-            <key alias="BACKQUOTE" name="`" description="opens a command prompt /"/>
-            <key alias="TAB" description="autocompletes commands/variables/aliases"/>
-            <key alias="UP" description="browse command history forwards"/>
-            <key alias="DOWN" description="browse command history backwards"/>
-          </defaultKeys>
-          <arguments>
-            <variableArgument token="S..." description="the text to display in the prompt" optional="true"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="complete"/>
-            <identifierReference identifier="listcomplete"/>
-            <identifierReference identifier="inputcommand"/>
-          </references>
-        </command>
-
-        <command name="complete">
-          <arguments>
-            <argument token="C" description="command" valueNotes="any command or alias"/>
-            <argument token="P" description="path" valueNotes="path to search"/>
-            <argument token="E" description="extension" valueNotes="extension to match"/>
-          </arguments>
-          <remarks>
-            <remark>The completion will work on the first word of your console input.</remark>
-          </remarks>
-          <examples>
-            <example>
-              <code><![CDATA[complete demo "demos" dmo]]></code>
-              <explanation>If you enter "/demo " and press TAB you will cycle through all available demos.</explanation>
-            </example>
-            <example>
-              <code><![CDATA[alias mapcomplete [complete $arg1 "packages/maps" cgz]]]></code>
-              <explanation>helper alias for quickly adding complete-definitions for all gamemodes - see config/script.cfg (below "Auto-Completions")</explanation>
-            </example>
-          </examples>
-          <references>
-            <identifierReference identifier="saycommand"/>
-            <identifierReference identifier="listcomplete"/>
-          </references>
-        </command>
-
-        <command name="listcomplete">
-          <argument token="A" description="" valueNotes="value"/>
-          <references>
-            <identifierReference identifier="saycommand"/>
-            <identifierReference identifier="complete"/>
-          </references>
-        </command>
-
         <command name="nickcomplete">
           <argument token="C" description="command" valueNotes="any command or alias"/>
-          <description>adds a command to complete nicknames on</description>
+          <description>Ads a command to complete nicknames on.</description>
           <remarks>
-            <remark>your own nick will be ignored</remark>
+            <remark>Your own nick will be ignored.</remark>
           </remarks>
           <examples>
             <example>
@@ -3605,6 +3461,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
+        <command name="lanconnect">
+          <description>Connect to a LAN server.</description>
+        </command>
+
         <command name="team">
           <description>Sets the team for the local player.</description>
           <examples>
@@ -3615,10 +3475,20 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="N" description="the team number or name" valueNotes="0 (CLA), 1 (RVSF), 2 (CLA-SPECT), 3 (RVSF-SPECT), 4 (SPECTATOR)"/>
           </arguments>
+          <references>
+            <identifierReference identifier="changeteam"/>
+          </references>
         </command>
 
+        <variable name="changeteam">
+          <description>Swaps your player to the enemy team.</description>
+          <references>
+            <identifierReference identifier="team"/>
+          </references>
+        </variable>
+
         <command name="benchme">
-          <description>Move from active team to spectator during match.</description>
+          <description>Moves from active team to spectator during match.</description>
         </command>
 
         <command name="modconnect">
@@ -3659,13 +3529,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
               will be the negated value of an unmodded server.
             </remark>
           </remarks>
-        </command>
-
-        <command name="showscores">
-          <description>Shows or hides the scores.</description>
-          <defaultKeys>
-            <key alias="TAB"/>
-          </defaultKeys>
         </command>
 
         <command name="weapon">
@@ -3842,13 +3705,12 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <variable name="spectatepersistent">
-          <description>Enables persistent spectating concrete player in multiplayer.</description>
+          <description>Enables persistent spectating concrete player.</description>
           <remarks>
             <remark>
             For "spectatepersistent" = 1 persistent spectating is enabled in all game modes in multiplayer (that means,
-            that spectated player isn't changed after his death), for "0" it is enabled only in non-arena modes in multiplayer.
+            that spectated player isn't changed after his death), for "0" it is enabled only in non-arena modes.
             </remark>
-            <remark>In demo mode persistent spectating is always enabled.</remark>
           </remarks>
           <value token="N" description="0: enabled in non-arena modes, 1: always enabled" minValue="0" maxValue="1" defaultValue="1"/>
           <references>
@@ -4006,51 +3868,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="fov"/>
           </references>
           <value token="V" description="" minValue="5" maxValue="60" defaultValue="50"/>
-        </variable>
-
-        <variable name="showmap">
-          <description>Determines if the mini-map should be shown on screen.</description>
-          <value token="B" description="show mini-map" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <variable name="showmapbackdrop">
-          <description>change wether to have a see-through map overview (0), or render it on a black backdrop (1) or a combination of both (2)</description>
-          <value token="B" description="backdrop-style" minValue="0" maxValue="2" defaultValue="0"/>
-        </variable>
-
-        <variable name="showmapbackdroptransparency">
-          <description>Transparency of the black map backdrop (in percent) rendered if showmapbackdrop is set to 2.</description>
-          <value token="T" description="transparency" minValue="0" maxValue="100" defaultValue="75"/>
-          <references>
-            <identifierReference identifier="showmapbackdrop"/>
-          </references>
-        </variable>
-
-        <variable name="showscoresondeath">
-          <description>Determines if scores should be shown on death.</description>
-          <value token="V" description="" minValue="0" maxValue="1" defaultValue="1"/>
-        </variable>
-
-        <variable name="footsteps">
-          <description>Indicates if the footsteps sound should be played</description>
-          <value token="B" description="enable footsteps" minValue="0" maxValue="1" defaultValue="1" valueNotes="1 (true), 0 (false)"/>
-        </variable>
-
-        <variable name="localfootsteps">
-          <description>Indicates if the footsteps sound for the local player should be played</description>
-          <value token="B" description="enable footsteps" minValue="0" maxValue="1" defaultValue="1" valueNotes="1 (true), 0 (false)"/>
-        </variable>
-
-        <variable name="hitsound">
-          <description>Plays a sound upon every successful hit if enabled.</description>
-           <remarks>
-            <remark>
-            If hitsound is set to 2, the sound will be played instantly rather than after server acknowledgment.
-            </remark>
-          </remarks>
-          <value token="B" description="off OR on" minValue="0" maxValue="2" defaultValue="0" valueNotes="0 (disabled), 1 (server), 2 (local)"/>
-          <identifierReference identifier="audio"/>
-          <identifierReference identifier="soundvol"/>
         </variable>
 
         <variable name="gamespeed">
@@ -4225,11 +4042,46 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Returns the team number with the highest score, or if in a non-team mode, returns the CN of the player with the highest score.</description>
         </command>
 
+        <command name="fragmessage">
+          <description>Sets the frag message corresponding to a weapon (appearing on the hud).</description>
+          <arguments>
+            <argument token="N" description="the weapon number or name" valueNotes="0 (knife), 1 (pistol), 2 (carbine), 3 (shotgun), 4 (subgun), 5 (sniper), 6 (assault), 7 (grenades), 8 (akimbo)"/>
+            <argument token="M" description="the message you want to appear" valueNotes="example: sniped"/>
+          </arguments>
+          <examples>
+            <example>
+              <code>fragmessage sniper sniped</code>
+              <explanation>It will display "you sniped unarmed" on the hud when you frag unarmed with sniper.</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="gibmessage"/>
+            <identifierReference identifier="weapon"/>
+          </references>
+        </command>
+
+        <command name="gibmessage">
+          <description>Sets the gib message corresponding to a weapon (appearing on the hud).</description>
+          <arguments>
+            <argument token="N" description="the weapon number or name" valueNotes="0 (knife), 1 (pistol), 2 (carbine), 3 (shotgun), 4 (subgun), 5 (sniper), 6 (assault), 7 (grenades), 8 (akimbo)"/>
+            <argument token="M" description="the message you want to appear" valueNotes="example: slashed"/>
+          </arguments>
+          <remarks>
+            <remark>
+              This command is identical to fragmessage, please see it.
+            </remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="fragmessage"/>
+            <identifierReference identifier="weapon"/>
+          </references>
+        </command>
+
       </identifiers>
     </section>
     <!-- Gameplay Section Ends -->
     <!-- Keyboard and mouse Section Starts -->
-    <section name="Keyboard and mouse" sortindex="03">
+    <section name="Keyboard and mouse" sortindex="04">
       <description>This section describes keyboard and mouse related identifiers.</description>
       <identifiers sort="true">
 
@@ -4587,16 +4439,23 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </variable>
 
+        <command name="togglegrab">
+          <description>Toggles grabbing of mouse and keyboard input in a game.</description>
+          <remarks>
+            <remark>
+            Grabbing means that the mouse is confined to the AC, and nearly all keyboard input is passed
+            directly to AC, and not interpreted by a window manager, if any.
+            This is only useful when you run AC windowed.
+            </remark>
+          </remarks>
+        </command>
+
       </identifiers>
     </section>
     <!-- Keyboard and mouse Section Ends -->
     <!-- Editing Section Starts -->
     <section name="Editing" sortindex="10">
       <identifiers sort="true">
-
-        <command name="togglegrab">
-          <description>Will toggle the focus of the mouse in game. Normally you can use your mouse to look around, when you type this command your mouse cursor is visible and can be used as normally. This is only useful when you run cube windowed.</description>
-        </command>
 
         <command name="getentattr">
           <description>Returns the value of the selected attribute of the nearest entity.</description>
@@ -5270,6 +5129,20 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="S" description="the size of the new map" valueNotes="6..9"/>
           </arguments>
+          <references>
+            <identifierReference identifier="mapsize"/>
+            <identifierReference identifier="mapenlarge"/>
+            <identifierReference identifier="mapshrink"/>
+          </references>
+        </command>
+
+        <command name="mapsize">
+          <description>Outputs the mapsize.</description>
+          <references>
+            <identifierReference identifier="newmap"/>
+            <identifierReference identifier="mapenlarge"/>
+            <identifierReference identifier="mapshrink"/>
+          </references>
         </command>
 
         <command name="mapenlarge">
@@ -5283,6 +5156,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="newmap"/>
+            <identifierReference identifier="mapsize"/>
+            <identifierReference identifier="mapshrink"/>
           </references>
         </command>
 
@@ -5295,6 +5170,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             The area to be removed needs to be empty (= all solid).
             </remark>
           </remarks>
+          <references>
+            <identifierReference identifier="newmap"/>
+            <identifierReference identifier="mapsize"/>
+            <identifierReference identifier="mapenlarge"/>
+          </references>
         </command>
 
         <variable name="mapmsg">
@@ -5535,6 +5415,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="B" description="sets fullbright on or off" valueNotes="0 (off), 1 (on)"/>
           </arguments>
         </command>
+
+        <variable name="fullbrightlevel">
+          <description>Sets the level of brightness to use when using the command "/fullbright 1".</description>
+          <value token="V" description="Light intensity level" minValue="0" maxValue="255" defaultValue="176"/>
+        </variable>
 
         <command name="showmip">
           <description>Toggles between showing what parts of the scenery are rendered.</description>
@@ -6044,6 +5929,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Returns a list of map entity indices which use a certain mapmodel slot.</description>
           <remarks>
             <remark>If the mapmodel is unused, it returns an empty string.</remark>
+            <remark>
+            It returns a single space, if the model slot is not used by any map entity,
+            but is required by another model (with entities).
+            </remark>
           </remarks>
           <arguments>
             <argument token="N" description="mapmodel slot number"/>
@@ -6261,6 +6150,27 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="mapmodel"/>
           </references>
         </command>
+
+        <scriptalias name="mapmodelzoff">
+          <description>Allows negative z-offsets for mapmodels.</description>
+          <remarks>
+            <remark>
+            A mapmodel entity is placed at a z-coordinate that is based on the floor height of map geometry
+            and a z-offset. The z-offset is a sum of the entity attribute 3 and the third mapmodel slot parameter.
+            The entity z-offset can range from 0 to 255 while the mapmodel slot parameter can be any integer including negative numbers.
+            So, to place a mapmodel below floor height, the mapmodel slot parameter has to be negative.
+            </remark>
+            <remark>
+            "mapmodelzoff" script decreases the mapmodel slot parameter by one and increases the z-offset of every mapmodel
+            which uses that slot also by one. This means, that all mapmodel are exact in the same place afterwards
+            - but the entity z-offset now has room to lower the mapmodel by one more cube.
+            </remark>
+            <remark>If you need more z-offset available, run the script several times.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="mapmodel slot number"/>
+          </arguments>
+        </scriptalias>
 
         <command name="gettexturelist">
           <description>Returns a table of all texture files fitting a certain description.</description>
@@ -6868,6 +6778,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="xmap_delete_backup"/>
             <identifierReference identifier="xmap_keep_backup"/>
             <identifierReference identifier="xmap_rename"/>
+            <identifierReference identifier="enumtodoentities"/>
           </references>
         </command>
 
@@ -6937,6 +6848,51 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="N" description="new nickname"/>
           </arguments>
           <references>
+            <identifierReference identifier="xmap_list"/>
+          </references>
+        </command>
+
+        <command name="addtodoentity">
+          <description>Adds the entity #index to the TODO list.</description>
+          <remarks>
+            <remark>
+            Entity errors during map load are automatically added to the list.
+            The list is saved and restored with xmaps.
+            </remark>
+          </remarks>
+          <arguments>
+            <argument token="I" description="index"/>
+            <argument token="C" description="comment" optional="true"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="cleartodoentities"/>
+            <identifierReference identifier="enumtodoentities"/>
+          </references>
+        </command>
+
+        <command name="cleartodoentities">
+          <description>Clears list of TODO entities.</description>
+          <remarks>
+            <remark>The list is also deleted, when a new map is loaded.</remark>
+            <remark>If an entity number is given as an argument, only entries for this entity are cleared.</remark>
+          </remarks>
+          <arguments>
+            <argument token="I" description="index" optional="true"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="addtodoentity"/>
+            <identifierReference identifier="enumtodoentities"/>
+          </references>
+        </command>
+
+        <command name="enumtodoentities">
+          <description>Returns a list of TODO entities.</description>
+          <remarks>
+            <remark>Returns entity index number and comment for every entry.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="addtodoentity"/>
+            <identifierReference identifier="cleartodoentities"/>
             <identifierReference identifier="xmap_list"/>
           </references>
         </command>
@@ -7415,7 +7371,18 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="M" description="map"/>
             <argument token="T" description="text"/>
           </arguments>
+          <references>
+            <identifierReference identifier="maploaditemlength"/>
+          </references>
         </command>
+
+        <variable name="maploaditemlength">
+          <description>Changes at what position to truncate the map title string.</description>
+          <value token="N" description="chars" minValue="0" maxValue="255" defaultValue="46"/>
+          <references>
+            <identifierReference identifier="menuitemmapload"/>
+          </references>
+        </variable>
 
         <command name="menuitemslider">
           <arguments>
@@ -7704,6 +7671,24 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </variable>
 
+        <variable name="showmap">
+          <description>Determines if the mini-map should be shown on screen.</description>
+          <value token="B" description="show mini-map" minValue="0" maxValue="1" defaultValue="0"/>
+        </variable>
+
+        <variable name="showmapbackdrop">
+          <description>Determines whether to have a see-through map overview (0), or render it on a black backdrop (1) or a combination of both (2).</description>
+          <value token="B" description="backdrop-style" minValue="0" maxValue="2" defaultValue="0"/>
+        </variable>
+
+        <variable name="showmapbackdroptransparency">
+          <description>Transparency of the black map backdrop (in percent) rendered if showmapbackdrop is set to 2.</description>
+          <value token="T" description="transparency" minValue="0" maxValue="100" defaultValue="75"/>
+          <references>
+            <identifierReference identifier="showmapbackdrop"/>
+          </references>
+        </variable>
+
         <command name="clearminimap">
           <description>Recreates the minimap for the current map.</description>
           <references>
@@ -7734,10 +7719,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="N" description="0: new, 1: old" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
-        <variable name="righthanded">
-          <description>Choose whether the players hand carrying the weapon appears as right or left handed.</description>
-          <value token="N" description="0: lefty, 1: righty" minValue="0" maxValue="1" defaultValue="1"/>
-        </variable>
+        <command name="toggleconsole">
+          <description>Toggles the console.</description>
+        </command>
 
         <variable name="confade">
           <description>Sets how many seconds before the console text rolls (disappears) up the screen.</description>
@@ -7769,11 +7753,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="consize"/>
             <identifierReference identifier="altconsize"/>
           </references>
-        </variable>
-
-        <variable name="aboveheadiconfadetime">
-          <description>Time in milliseconds before the abovehead icon dissapears.</description>
-          <value token="V" description="abovehead icon display time" minValue="1" maxValue="10000" defaultValue="2000"/>
         </variable>
 
         <variable name="hideconsole">
@@ -7863,20 +7842,12 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="N" description="0: Show no stats, 1: Only show FPS stats, 2: Show all stats" minValue="0" maxValue="2" defaultValue="1"/>
         </variable>
 
-        <variable name="swaymovediv">
-          <value token="V" description="" minValue="1" maxValue="1000" defaultValue="200"/>
-        </variable>
-
-        <variable name="swayspeeddiv">
-          <value token="V" description="" minValue="1" maxValue="1000" defaultValue="105"/>
-        </variable>
-
-        <variable name="swayupmovediv">
-          <value token="V" description="" minValue="1" maxValue="1000" defaultValue="200"/>
-        </variable>
-
-        <variable name="swayupspeeddiv">
-          <value token="V" description="" minValue="1" maxValue="1000" defaultValue="105"/>
+        <variable name="dbgpos">
+          <description>Displays local player's current x,y,z position in map, showstats 1 must be enabled.</description>
+          <value token="V" description="display current position" minValue="0" maxValue="1" defaultValue="0"/>
+          <references>
+            <identifierReference identifier="showstats"/>
+          </references>
         </variable>
 
         <variable name="crosshairteamsign">
@@ -7904,6 +7875,26 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="V" description="damage indicator display time" minValue="1" maxValue="10000" defaultValue="1000"/>
         </variable>
 
+        <variable name="damagescreen">
+          <description>Show the blood-spat overlay when receiving damage?</description>
+          <value token="N" description="damagescreen" minValue="0" maxValue="1" defaultValue="1" valueNotes="0 (false), 1 (true)"/>
+        </variable>
+
+        <variable name="damagescreenalpha">
+          <description>If overlay of blood-spat, at what blending (transparency) level?</description>
+          <value token="N" description="damagescreen transparency" minValue="1" maxValue="100" defaultValue="45"/>
+        </variable>
+
+        <variable name="damagescreenfactor">
+          <description>If overlay of blood-spat, use which factor?</description>
+          <value token="N" description="damagescreen factor" minValue="1" maxValue="100" defaultValue="7"/>
+        </variable>
+
+        <variable name="damagescreenfade">
+          <description>If overlay of blood-spat, at what speed does it fade?</description>
+          <value token="N" description="damagescreen fade" minValue="0" maxValue="1000" defaultValue="125"/>
+        </variable>
+
         <variable name="crosshairsize">
           <description>Sets the size of your crosshair.</description>
           <remarks>
@@ -7929,10 +7920,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument valueNotes="2" description="turn on color change/turn off size change"/>
             <argument valueNotes="3" description="turn off color change/turn on size change"/>
           </arguments>
-        </variable>
-
-        <variable name="nosway">
-          <value token="V" description="" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
         <variable name="radarentsize">
@@ -7975,9 +7962,16 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </variable>
 
-        <variable name="showmodedescriptions">
-          <description>enables or disables the showing of game mode descriptions on the console after map starts.</description>
-          <value token="B" description="0 off, 1 on" minValue="0" maxValue="1" defaultValue="1"/>
+        <command name="showscores">
+          <description>Shows or hides the scores.</description>
+          <defaultKeys>
+            <key alias="TAB"/>
+          </defaultKeys>
+        </command>
+
+        <variable name="showscoresondeath">
+          <description>Determines if scores should be shown on death.</description>
+          <value token="V" description="" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
 
         <variable name="sc_flags">
@@ -8074,19 +8068,37 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="H" description="height"/>
           </arguments>
           <references>
-            <identifierReference identifier="setdesktopres"/>
+            <identifierReference identifier="desktopw"/>
+            <identifierReference identifier="desktoph"/>
+            <identifierReference identifier="getdisplayresolutions"/>
           </references>
         </command>
 
-        <command name="setdesktopres">
-          <description>Sets the screen resolution as in desktop.</description>
+        <variable name="desktopw">
+          <description>Returns a width of the desktop resolution (or zero, if not available).</description>
+          <references>
+            <identifierReference identifier="desktoph"/>
+            <identifierReference identifier="screenres"/>
+          </references>
+        </variable>
+
+        <variable name="desktoph">
+          <description>Returns a height of the desktop resolution (or zero, if not available).</description>
+          <references>
+            <identifierReference identifier="desktopw"/>
+            <identifierReference identifier="screenres"/>
+          </references>
+        </variable>
+
+        <command name="getdisplayresolutions">
+          <description>Returns a list of available screen resolutions.</description>
           <references>
             <identifierReference identifier="screenres"/>
           </references>
         </command>
 
         <command name="glext">
-          <description>checks for the searchstring in all loaded extensions</description>
+          <description>Checks for the searchstring in all loaded extensions.</description>
           <arguments>
             <argument token="E" description="extension"/>
           </arguments>
@@ -8098,19 +8110,32 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="fpsrange">
-          <description>(descripton unavailable)</description>
+          <description>Sets the range of FPS (AC will adjust LOD to achieve it).</description>
           <arguments>
             <argument token="A" description="min" defaultValue="30"/>
             <argument token="B" description="max" defaultValue="40"/>
           </arguments>
+          <references>
+            <identifierReference identifier="maxfps"/>
+          </references>
         </command>
+
+        <variable name="maxfps">
+          <description>Limits the FPS (frames per second) of AssaultCube's video output.</description>
+          <remarks>
+            <remark>Remark: limit to '200' is optimal.</remark>
+          </remarks>
+          <value token="V" description="maximum FPS" minValue="25 or 0" maxValue="1000" defaultValue="200" valueNotes="0 disables maxfps"/>
+          <references>
+            <identifierReference identifier="maxfps"/>
+          </references>
+        </variable>
 
         <variable name="skyclip">
           <value token="V" description="" minValue="0" maxValue="1" defaultValue="1"/>
         </variable>
 
         <variable name="shadowcasters">
-          <value token="V" description="" minValue="1" maxValue="0" defaultValue="0"/>
         </variable>
 
         <variable name="shadowclip">
@@ -8123,11 +8148,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="ati_mda_bug">
           <value token="V" description="" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <variable name="dbgpos">
-          <description>Displays local player's current x,y,z position in map, showstats 1 must be enabled.</description>
-          <value token="V" description="display current position" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
         <variable name="stencilbits">
@@ -8157,11 +8177,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="dynshadowquad">
           <value token="V" description="" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <variable name="fullbrightlevel">
-          <description>Sets the level of brightness to use when using the command "/fullbright 1".</description>
-          <value token="V" description="Light intensity level" minValue="0" maxValue="255" defaultValue="176"/>
         </variable>
 
         <command name="font">
@@ -8254,6 +8269,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="V" description="Icon size" minValue="0" maxValue="1000" defaultValue="50"/>
         </variable>
 
+        <variable name="aboveheadiconfadetime">
+          <description>Time in milliseconds before the abovehead icon dissapears.</description>
+          <value token="V" description="abovehead icon display time" minValue="1" maxValue="10000" defaultValue="2000"/>
+        </variable>
+
         <variable name="bloodttl">
           <description>Sets the amount of time in milliseconds that blood is displayed on the ground.</description>
           <value token="V" description="Blood display time" minValue="0" maxValue="30000" defaultValue="10000"/>
@@ -8272,6 +8292,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="gibspeed"/>
             <identifierReference identifier="gibsgore"/>
             <identifierReference identifier="gibttl"/>
+            <identifierReference identifier="popdeadplayers"/>
           </references>
         </variable>
 
@@ -8508,6 +8529,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="E" description="the error value, 1 being the best quality" minValue="1" maxValue="100" defaultValue="8" readOnly="false"/>
         </variable>
 
+        <variable name="minlod">
+          <description>Minimal level of detail.</description>
+          <value token="V" description="" minValue="25" maxValue="250" defaultValue="60"/>
+        </variable>
+
         <variable name="spectfov">
           <description>Specifies the Field Of View when in spectating/ghost mode.</description>
           <value token="V" description="Spectate FOV size" minValue="5" maxValue="120" defaultValue="110"/>
@@ -8592,69 +8618,12 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
         </variable>
 
-        <variable name="damagescreen">
-          <description>show the blood-spat overlay when receiving damage?</description>
-          <value token="N" description="damagescreen" minValue="0" maxValue="1" defaultValue="1" valueNotes="0 (false), 1 (true)"/>
-        </variable>
-
-        <variable name="damagescreenalpha">
-          <description>if overlay of blood-spat, at what blending (transparency) level?</description>
-          <value token="N" description="damagescreen transparency" minValue="1" maxValue="100" defaultValue="45"/>
-        </variable>
-
-        <variable name="damagescreenfactor">
-          <description>if overlay of blood-spat, use which factor?</description>
-          <value token="N" description="damagescreen factor" minValue="1" maxValue="100" defaultValue="7"/>
-        </variable>
-
-        <variable name="damagescreenfade">
-          <description>if overlay of blood-spat, at what speed does it fade?</description>
-          <value token="N" description="damagescreen fade" minValue="0" maxValue="1000" defaultValue="125"/>
-        </variable>
-
         <variable name="popdeadplayers">
-          <description>make dead players instantly pop out of existence, instead of falling over and sinking into the ground.</description>
+          <description>Makes dead players instantly pop out of existence, instead of falling over and sinking into the ground.</description>
           <value token="B" description="BOOL" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <command name="fragmessage">
-          <description>set the frag message corresponding to a weapon (appearing on the hud).</description>
-          <arguments>
-            <argument token="N" description="the weapon number or name" valueNotes="0 (knife), 1 (pistol), 2 (carbine), 3 (shotgun), 4 (subgun), 5 (sniper), 6 (assault), 7 (grenades), 8 (akimbo)"/>
-            <argument token="M" description="the message you want to appear" valueNotes="example: sniped"/>
-          </arguments>
-          <examples>
-            <example>
-              <code>fragmessage sniper sniped</code>
-              <explanation>It will display "you sniped unarmed" on the hud when you frag unarmed with sniper.</explanation>
-            </example>
-          </examples>
           <references>
-            <identifierReference identifier="gibmessage"/>
-            <identifierReference identifier="weapon"/>
+            <identifierReference identifier="gib"/>
           </references>
-        </command>
-
-        <command name="gibmessage">
-          <description>set the gib message corresponding to a weapon (appearing on the hud).</description>
-          <arguments>
-            <argument token="N" description="the weapon number or name" valueNotes="0 (knife), 1 (pistol), 2 (carbine), 3 (shotgun), 4 (subgun), 5 (sniper), 6 (assault), 7 (grenades), 8 (akimbo)"/>
-            <argument token="M" description="the message you want to appear" valueNotes="example: slashed"/>
-          </arguments>
-          <remarks>
-            <remark>
-              This command is identical to fragmessage, please see it.
-            </remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="fragmessage"/>
-            <identifierReference identifier="weapon"/>
-          </references>
-        </command>
-
-        <variable name="maploaditemlength">
-          <description>change at what position to truncate the map title string</description>
-          <value token="N" description="chars" minValue="0" maxValue="255" defaultValue="46"/>
         </variable>
 
         <variable name="maxroll">
@@ -8676,8 +8645,33 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </variable>
 
+        <variable name="swaymovediv">
+          <value token="V" description="" minValue="1" maxValue="1000" defaultValue="200"/>
+        </variable>
+
+        <variable name="swayspeeddiv">
+          <value token="V" description="" minValue="1" maxValue="1000" defaultValue="105"/>
+        </variable>
+
+        <variable name="swayupmovediv">
+          <value token="V" description="" minValue="1" maxValue="1000" defaultValue="200"/>
+        </variable>
+
+        <variable name="swayupspeeddiv">
+          <value token="V" description="" minValue="1" maxValue="1000" defaultValue="105"/>
+        </variable>
+
+        <variable name="nosway">
+          <value token="V" description="" minValue="0" maxValue="1" defaultValue="0"/>
+        </variable>
+
+        <variable name="righthanded">
+          <description>Choose whether the players hand carrying the weapon appears as right or left handed.</description>
+          <value token="N" description="0: lefty, 1: righty" minValue="0" maxValue="1" defaultValue="1"/>
+        </variable>
+
         <command name="allowblinkingtext">
-          <description>for toggling on the ability for any text to have the blinking bit set.</description>
+          <description>For toggling on the ability for any text to have the blinking bit set.</description>
           <value token="T" description="0 = Off, 1 = On" minValue="0" maxValue="1" defaultValue="0"/>
           <references>
             <identifierReference identifier="menucanblink"/>
@@ -8694,6 +8688,44 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <variable name="mdlstatcache">
           <value token="V" description="" minValue="1" maxValue="32" defaultValue="1"/>
+        </variable>
+
+        <command name="skin">
+          <description>Determines the skin of the current player.</description>
+          <remarks>
+            <remark>See the player model folder for the according skin-id.</remark>
+          </remarks>
+          <arguments>
+            <argument token="N" description="skin id" valueNotes="value"/>
+          </arguments>
+        </command>
+
+        <command name="skin_cla">
+          <description>Choose skin when playing for team CLA.</description>
+          <arguments>
+            <argument token="N" description="skin id"/>
+          </arguments>
+        </command>
+
+        <command name="skin_rvsf">
+          <description>Choose skin when playing for team RVSF.</description>
+          <arguments>
+            <argument token="N" description="skin id"/>
+          </arguments>
+        </command>
+
+        <variable name="hidecustomskins">
+          <value token="B" description="" minValue="0" maxValue="1" defaultValue="0"/>
+        </variable>
+
+        <variable name="smoothdist">
+          <description>Determines the valid distance when extrapolating a players position.</description>
+          <value token="V" description="distance" minValue="0" maxValue="16" defaultValue="8"/>
+        </variable>
+
+        <variable name="smoothmove">
+          <description>Determines the speed when extrapolating a players position.</description>
+          <value token="V" description="movement speed" minValue="0" maxValue="100" defaultValue="75"/>
         </variable>
 
       </identifiers>
@@ -8827,7 +8859,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="registermusic">
-          <description>registers a track as music - the first three tracks have special meaning. Track #1 is for "flag grab" the second and third are used as "last minute" tracks.</description>
+          <description>Registers a track as music - the first three tracks have special meaning. Track #1 is for "flag grab" the second and third are used as "last minute" tracks.</description>
           <arguments>
             <argument token="M" description="music file"/>
           </arguments>
@@ -8865,6 +8897,32 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>AC will try to allocate that number of channels but it is not guaranteed to succeed.</remark>
           </remarks>
           <value description="number of channels" minValue="4" maxValue="1024" defaultValue="128"/>
+        </variable>
+
+        <variable name="footsteps">
+          <description>Indicates if the footsteps sound should be played.</description>
+          <value token="B" description="enable footsteps" minValue="0" maxValue="1" defaultValue="1" valueNotes="1 (true), 0 (false)"/>
+          <references>
+            <identifierReference identifier="localfootsteps"/>
+           </references>
+        </variable>
+
+        <variable name="localfootsteps">
+          <description>Indicates if the footsteps sound for the local player should be played.</description>
+          <value token="B" description="enable footsteps" minValue="0" maxValue="1" defaultValue="1" valueNotes="1 (true), 0 (false)"/>
+          <references>
+            <identifierReference identifier="footsteps"/>
+           </references>
+        </variable>
+
+        <variable name="hitsound">
+          <description>Plays a sound upon every successful hit if enabled.</description>
+           <remarks>
+            <remark>
+            If hitsound is set to 2, the sound will be played instantly rather than after server acknowledgment.
+            </remark>
+          </remarks>
+          <value token="B" description="off OR on" minValue="0" maxValue="2" defaultValue="0" valueNotes="0 (disabled), 1 (server), 2 (local)"/>
         </variable>
 
         <variable name="bulletairsounddestrad">
@@ -8909,8 +8967,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
       </identifiers>
     </section>
     <!-- Sound Section Ends -->
-    <!-- Ingame Reference Section Starts -->
-    <section name="Ingame Reference" sortindex="13">
+    <!-- Ingame reference Section Starts -->
+    <section name="Ingame reference" sortindex="13">
       <description>This section describes all identifiers related to the ingame documentation reference.</description>
       <identifiers>
         <command name="docsection">
@@ -9102,7 +9160,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
       </identifiers>
     </section>
-    <!-- Ingame Reference Section ends -->
+    <!-- Ingame reference Section ends -->
     <!-- Server Commands Section Starts -->
     <section name="Server commands" sortindex="08">
       <description>
@@ -9602,7 +9660,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
     </section>
     <!-- Authentication Section ends -->
     <!-- Game Modes Section Starts -->
-    <section name="Game modes" sortindex="04">
+    <section name="Game modes" sortindex="03">
       <identifiers sort="true">
 
         <command name="mode">
@@ -9611,6 +9669,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <wikiReference article="Gamemodes"/>
             <identifierReference identifier="map"/>
             <identifierReference identifier="gamemode"/>
+            <identifierReference identifier="getmode"/>
+            <identifierReference identifier="curmodeattr"/>
+            <identifierReference identifier="modeacronyms"/>
+            <identifierReference identifier="modenum"/>
             <identifierReference identifier="tdm"/>
             <identifierReference identifier="coop"/>
             <identifierReference identifier="dm"/>
@@ -9677,12 +9739,112 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </examples>
         </command>
 
+        <command name="getmode">
+          <description>Returns the name of current game mode.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (getmode)]]></code>
+              <explanation>Example output: capture the flag</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (getmode 1)]]></code>
+              <explanation>Example output: CTF</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="N" description="0 = full mode name, 1 = mode acronym" valueNotes="min 0/max 1/default 0"/>
+          </arguments>
+          <references>
+            <identifierReference identifier="mode"/>
+            <identifierReference identifier="modeacronyms"/>
+            <identifierReference identifier="gamemode"/>
+            <identifierReference identifier="curmodeattr"/>
+          </references>
+        </command>
+
+        <variable name="gamemode">
+          <description>Returns the number of current game mode.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo $gamemode]]></code>
+              <explanation>Output: 5</explanation>
+            </example>
+          </examples>
+          <references>
+            <identifierReference identifier="mode"/>
+            <identifierReference identifier="getmode"/>
+            <identifierReference identifier="curmodeattr"/>
+          </references>
+        </variable>
+
+        <command name="curmodeattr">
+          <description>Checks the current game mode for certain attributes.</description>
+          <arguments>
+            <argument token="A" description="attribute name"/>
+          </arguments>
+          <remarks>
+            <remark>Possible attributes are: team, arena, flag and bot.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="mode"/>
+            <identifierReference identifier="gamemode"/>
+            <identifierReference identifier="getmode"/>
+          </references>
+        </command>
+
+        <variable name="modeacronyms">
+          <description>Toggles use of acronyms instead of full modenames in the serverbrowser, scoreboard, voting info.</description>
+          <value token="B" description="" minValue="0" maxValue="1" defaultValue="0"/>
+          <references>
+            <identifierReference identifier="mode"/>
+            <identifierReference identifier="getmode"/>
+            <identifierReference identifier="modenum"/>
+          </references>
+        </variable>
+
+        <command name="modenum">
+          <description>Returns the mode number for a specified mode acronym.</description>
+          <examples>
+            <example>
+              <code><![CDATA[echo (modenum ctf)]]></code>
+              <explanation>Output: 5</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (modenum btosok)]]></code>
+              <explanation>Output: 21</explanation>
+            </example>
+          </examples>
+          <arguments>
+            <argument token="M" description="the mode acronym"/>
+          </arguments>
+          <remarks>
+            <remark>Returns -1 if not found.</remark>
+          </remarks>
+          <references>
+            <identifierReference identifier="mode"/>
+            <identifierReference identifier="modeacronyms"/>
+          </references>
+        </command>
+
         <command name="gamemodedesc">
           <arguments>
             <argument token="M" description="mode" valueNotes="integer"/>
             <argument token="D" description="description" valueNotes="string"/>
           </arguments>
+          <references>
+            <identifierReference identifier="mode"/>
+            <identifierReference identifier="showmodedescriptions"/>
+          </references>
         </command>
+
+        <variable name="showmodedescriptions">
+          <description>Enables or disables the showing of game mode descriptions on the console after map starts.</description>
+          <value token="B" description="0 off, 1 on" minValue="0" maxValue="1" defaultValue="1"/>
+          <references>
+            <identifierReference identifier="mode"/>
+            <identifierReference identifier="gamemodedesc"/>
+          </references>
+        </variable>
 
         <command name="coop">
           <description>Starts a map with the mode "Co-op edit"</description>
@@ -10135,8 +10297,18 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="mdlattribute">
           <description>Adds a value for a specified attribute to the model.</description>
+          <remarks>
+            <remark>
+            If used, specifies that the current model depends on parts of another custom model
+            (which therefore also has to be downloaded) can only be used once per model config.
+            </remark>
+            <remark>
+            Example: 'mdlattribute' requires 'makke/signs/exit' could be used in 'signs/loading-dock/md2.cfg'
+            to reuse 'makke/signs/exit/tris.md2' .
+            </remark>
+          </remarks>
           <arguments>
-            <argument token="A" description="attribute" valueNotes="keywords, desc, defaults, usage, author, license, distribution, version"/>
+            <argument token="A" description="attribute" valueNotes="keywords, desc, defaults, usage, author, license, distribution, version, requires"/>
             <argument token="V" description="value" valueNotes=""/>
           </arguments>
           <references>
@@ -10268,6 +10440,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="Z" description="The initial height offset from the ground." valueNotes="Integer"/>
             <argument token="0" description="This integer is redundant. Leave it at zero so you don't break the command." valueNotes="0"/>
             <argument token="N" description="The name of the map model" valueNotes="string"/>
+            <argument token="F" description="If '1', the model is preloaded, even if no entities use it" valueNotes="1 (optional)"/>
           </arguments>
         </command>
 
