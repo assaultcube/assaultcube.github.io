@@ -137,14 +137,10 @@
         </xsl:for-each>
 
         <!-- references -->
-        <xsl:for-each select="t:references/t:reference">
+        <xsl:for-each select="t:references/t:identifierReference">
           <xsl:text>docref </xsl:text>
           <xsl:text>[</xsl:text>
-          <xsl:value-of select="@name"/>
-          <xsl:text>] [</xsl:text>
           <xsl:value-of select="@identifier"/>
-          <xsl:text>] [</xsl:text>
-          <xsl:value-of select="@url"/>
           <xsl:text>];</xsl:text>
           <xsl:value-of select="$newline"/>
         </xsl:for-each>
