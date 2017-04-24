@@ -41,7 +41,7 @@
   Arguments
     * Use a single character token if possible.
     * Keep the argument description simple, write a remark for details.
-    * Write restricted integer values in the way of 0..3 (0 to 3) and 1..* (0 to 'infinite').
+    * Write restricted integer values in the way of 0..3 (0 to 3) and 1..* (1 to 'infinite').
     * If no restrictions apply to values, specify the pseudo data type.
     * If the meaning of the arguments depends on other arguments, create multiple identifiers
       with the name containing the depending argument. Example: 'newent type v1 v2 v3 v4' depends
@@ -627,7 +627,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Performs the operation AND using binary arithmetic on integer values (32-bit signed).</description>
           <arguments>
             <argument token="A" description="the first argument"/>
-            <argument token="A" description="the second argument"/>
+            <argument token="B" description="the second argument"/>
           </arguments>
           <references>
             <identifierReference identifier="|b"/>
@@ -640,7 +640,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Performs the operation OR using binary arithmetic on integer values (32-bit signed).</description>
           <arguments>
             <argument token="A" description="the first argument"/>
-            <argument token="A" description="the second argument"/>
+            <argument token="B" description="the second argument"/>
           </arguments>
           <references>
             <identifierReference identifier="&amp;b"/>
@@ -653,7 +653,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Performs the operation XOR using binary arithmetic on integer values (32-bit signed).</description>
           <arguments>
             <argument token="A" description="the first argument"/>
-            <argument token="A" description="the second argument"/>
+            <argument token="B" description="the second argument"/>
           </arguments>
           <references>
             <identifierReference identifier="&amp;b"/>
@@ -678,7 +678,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="h0">
-          <description>Returns the given value as string of hexadecimal digits, padded with leading zeros to a given minimum length (precision).</description>
+          <description>Returns value as string of hexadecimal digits, padded with leading zeros to a given minimum length (precision).</description>
           <examples>
             <example>
               <code><![CDATA[echo (h0 2 1024)]]></code>
@@ -1525,7 +1525,14 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <scriptalias name="add2alias">
-          <description>This will append the passed 2nd argument to any existing content of the alias named in the 1st argument. Several popular aliases have predefined shortcuts using this scriptalias: addOnLoadOnce, addOnLoadAlways. Check config/scripts.cfg for possible omissions in that list.</description>
+          <description>This will append the passed 2nd argument to any existing content of the alias named in the 1st argument.</description>
+          <arguments>
+            <argument token="A" description="the alias to add to"/>
+            <argument token="E" description="the new element to add"/>
+          </arguments>
+          <remarks>
+            <remark>Several popular aliases have predefined shortcuts using this scriptalias: addOnLoadOnce, addOnLoadAlways. Check config/scripts.cfg for possible omissions in that list.</remark>
+          </remarks>
           <examples>
             <example>
               <code>
@@ -1667,7 +1674,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="isolatecontext">
-          <description>Isolates the given context. This disables access from this context to identifiers located in other contexts, also it removes all aliases created in this context once the running context changes</description>
+          <description>Isolates the given context.</description>
+          <remarks>
+            <remark> This disables access from this context to identifiers located in other contexts, also it removes all aliases created in this context once the running context changes.</remark>
+          </remarks>
           <arguments>
             <argument token="C" description="the context"/>
           </arguments>
@@ -2244,8 +2254,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="groupvariables">
-          <description>Controls how many variables (with similar names) are grouped together on one line. This only pertains to commented variables in saved.cfg caused by omitunchangeddefaults being 0.</description>
+          <description>Controls how many variables (with similar names) are grouped together on one line in saved.cfg.</description>
           <value token="N" description="Variables per line" minValue="0" maxValue="10" defaultValue="4"/>
+          <remarks>
+            <remark> This only pertains to commented variables in saved.cfg caused by omitunchangeddefaults being 0.</remark>
+          </remarks>
           <references>
             <identifierReference identifier="omitunchangeddefaults"/>
           </references>
@@ -4503,7 +4516,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="transformclipentities">
-          <description>Transforms all clip entities to tag clips, if they are big enough (so that no player could be above or below them).</description>
+          <description>Transforms all full height clip entities to tag clips.</description>
           <references>
             <identifierReference identifier="edittagclip"/>
           </references>
@@ -5800,10 +5813,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <scriptalias name="onNewMap">
-          <description>
-            If this alias exists, it will automatically be executed when you create a new map via the "newmap" command
-            (not to be confused with loading an existing map).
-          </description>
+          <description>This alias will automatically be executed when a new map is created via the "newmap" command.</description>
+          <remarks>
+            <remark>Does not affect the loading of an existing map.</remark>
+          </remarks>
           <references>
             <identifierReference identifier="newmap"/>
             <identifierReference identifier="mapstartonce"/>
@@ -8547,11 +8560,14 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="maxtexsize">
-          <description>The maximum texture (if less than hwtexsize) that will actually be used by the engine, larger textures will be scaled down. 0 removes this limit.</description>
+          <description>The maximum texture size that will be used by the engine, larger textures will be scaled down.</description>
           <value token="V" description="maximum texture size" minValue="0" maxValue="4096" defaultValue="0"/>
           <references>
             <identifierReference identifier="hwtexsize"/>
           </references>
+          <remarks>
+            <remark>If this value is zero, hwtexsize will be used.</remark>
+          </remarks>
         </variable>
 
         <variable name="maxtmus">
@@ -8570,7 +8586,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </variable>
 
         <variable name="hirestextures">
-          <description>Controls whether textures with a scale higher than 1.0 will be scaled down while loading to increase performance (0) or stay at higher resolution (1).</description>
+          <description>Controls whether textures with a scale higher than 1.0 will be scaled down while loading (0) or not (1).</description>
           <value token="S" description="scale down?" minValue="0" maxValue="1" defaultValue="1"/>
           <references>
             <identifierReference identifier="texture"/>
@@ -8859,10 +8875,13 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="registermusic">
-          <description>Registers a track as music - the first three tracks have special meaning. Track #1 is for "flag grab" the second and third are used as "last minute" tracks.</description>
+          <description>Registers a track as music.</description>
           <arguments>
             <argument token="M" description="music file"/>
           </arguments>
+          <remarks>
+            <remark>The first three tracks have special meaning: Track #1 is for "flag grab" the second and third are used as "last minute" tracks.</remark>
+          </remarks>
         </command>
 
         <command name="registersound">
@@ -9170,15 +9189,16 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
       <identifiers sort="true">
 
         <command name="serverdesc">
-          <description>
-            If the server was run with -n1 and -n2 arguments (prefix and suffix of descriptive title)
-            a serveradmin can set a user-defined server description with this command, if it wasn't this command results
-            in "invalid vote". This title will only stay until the next map is loaded.
-          </description>
+          <description>Set user-define server description.</description>
           <arguments>
             <argument token="D" description="description"/>
           </arguments>
           <remarks>
+            <remark>
+            If the server was run with -n1 and -n2 arguments (prefix and suffix of descriptive title)
+            a serveradmin can set a user-defined server description with this command, if it wasn't this command results
+            in "invalid vote". This title will only stay until the next map is loaded.
+            </remark>
             <remark>
             If, for example, the server was run with -n"Fred's Server" -n1"Fred's " -n2" Server",
             then you could call "/serverdesc [pWn4g3 TOSOK]" and it would show up as "Fred's pWn4g3 TOSOK Server"
@@ -9368,10 +9388,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="shuffleteams">
-          <description>
-            Shuffles the teams. The server will attempt to restore balance, but the result may
-            be less that optimal, and there are certainly better ways to keep teams balanced.
-          </description>
+          <description>Shuffles the teams.</description>
+          <remarks>
+            <remark>The server will attempt to restore balance, but the result may be less that optimal, and there are certainly better ways to keep teams balanced.</remark>
+          </remarks>
           <references>
             <identifierReference identifier="forceteam"/>
             <identifierReference identifier="forceme"/>
@@ -10707,8 +10727,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         </command>
 
         <command name="setwptriggernr">
-          <description>Assigns a number to the nearest waypoint. This is only used for trigger waypoints, so that the bots go to triggers in the
-          right order. If you don't do this bots will search for every trigger, even when they are not reachable yet.</description>
+          <description>Assigns a number to the nearest waypoint.</description>
+          <remarks>
+            <remark>This is only used for trigger waypoints, so that the bots go to triggers in the right order. If you don't do this bots will search for every trigger, even when they are not reachable yet.</remark>
+          </remarks>
           <arguments>
             <argument token="N" description="number"/>
           </arguments>
