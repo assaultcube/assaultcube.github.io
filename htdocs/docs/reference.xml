@@ -1143,26 +1143,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
         </command>
 
-        <command name="c">
-          <description>Adds color to a string.</description>
-          <remarks>
-            <remark>The command "c" is obsolete, instead of it use "\f" to color the strings.</remark>
-          </remarks>
-          <examples>
-            <example>
-              <code><![CDATA[echo (c 3)Hello (c 0)world!]]></code>
-              <explanation>Output: a red "Hello" and a green "world!"</explanation>
-            </example>
-          </examples>
-          <arguments>
-            <argument token="N" description="color id" valueNotes="0-9, A-Z"/>
-          </arguments>
-          <references>
-            <identifierReference identifier="\f"/>
-            <identifierReference identifier="cncolumncolor"/>
-          </references>
-        </command>
-
         <command name="l0">
           <description>Leading zeros for the number V to make it W chars wide.</description>
           <remarks>
@@ -1532,7 +1512,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <argument token="N" description="the new sub-string to replace the target"/>
           </arguments>
           <references>
-            <identifierReference identifier="strins"/>
             <identifierReference identifier="strpos"/>
             <identifierReference identifier="substr"/>
           </references>
@@ -2146,7 +2125,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
         <variable name="throttle_accel">
           <description>Determines how fast network throttling accelerates.</description>
           <references>
-            <identifierReference identifier="throttle_accel"/>
+            <identifierReference identifier="throttle_interval"/>
             <identifierReference identifier="throttle_decel"/>
           </references>
           <value token="V" description="acceleration" minValue="0" maxValue="32" defaultValue="2"/>
@@ -2505,92 +2484,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="zipmodgetfiles"/>
           </references>
         </command>
-
-      <scriptalias name="modmdlweapN">
-          <description>Changes name of directory used for weapon model (hudgun) number N.</description>
-          <examples>
-            <example>
-              <code>
-                <![CDATA[
-                modmdlweap4 = my_subgun
-                ]]>
-              </code>
-              <explanation>This will make the subgun hudgun model use the data inside packages/models/weapon/my_subgun</explanation>
-            </example>
-          </examples>
-          <remarks>
-            <remark>These setting should be loaded from config/autoexec.cfg, but they work on-the-fly too.</remark>
-            <remark>If the model fails to load you will end up with nothing being displayed; use <b>delalias</b> to get back to default.</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="modmdlvwepN"/>
-            <identifierReference identifier="modmdlpickupN"/>
-            <identifierReference identifier="modmdlbounceN"/>
-          </references>
-        </scriptalias>
-
-        <scriptalias name="modmdlvwepN">
-          <description>Changes name of directory used for weapon model (viewable/world) number N.</description>
-          <references>
-            <identifierReference identifier="modmdlweapN"/>
-            <identifierReference identifier="modmdlpickupN"/>
-            <identifierReference identifier="modmdlbounceN"/>
-          </references>
-        </scriptalias>
-
-        <scriptalias name="modmdlpickupN">
-          <description>Changes name of directory used for pickup model number N.</description>
-          <examples>
-            <example>
-              <code><![CDATA[modmdlpickup3 = health2]]></code>
-              <explanation>This will make the health pickup model use the data inside packages/models/pickups/health2</explanation>
-            </example>
-            <example>
-              <code><![CDATA[modmdlpickup1 = my_ammobox]]></code>
-              <explanation>This will make the ammobox pickup model use the data inside packages/models/pickups/my_ammobox</explanation>
-            </example>
-          </examples>
-          <remarks>
-            <remark>These setting should be loaded from config/autoexec.cfg, but they work on-the-fly too.</remark>
-            <remark>If the model fails to load you will end up with nothing being displayed; use <b>delalias</b> to get back to default.</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="modmdlweapN"/>
-            <identifierReference identifier="modmdlvwepN"/>
-            <identifierReference identifier="modmdlbounceN"/>
-          </references>
-        </scriptalias>
-
-        <scriptalias name="modmdlbounceN">
-          <description>Changes name of directory used for bounce model number N.</description>
-          <examples>
-            <example>
-              <code><![CDATA[modmdlbounce0 = misc/my_gib1]]></code>
-              <explanation>This will make the gib 1 model use the data inside packages/models/misc/my_gib1</explanation>
-            </example>
-            <example>
-              <code><![CDATA[modmdlbounce1 = misc/my_gib2]]></code>
-              <explanation>This will make the gib 2 model use the data inside packages/models/misc/my_gib2</explanation>
-            </example>
-            <example>
-              <code><![CDATA[modmdlbounce2 = misc/my_gib3]]></code>
-              <explanation>This will make the gib 3 model use the data inside packages/models/misc/my_gib3</explanation>
-            </example>
-            <example>
-              <code><![CDATA[modmdlbounce3 = weapons/grenade2/static]]></code>
-              <explanation>This will make the grenade static model use the data inside packages/models/weapons/grenade2/static</explanation>
-            </example>
-          </examples>
-          <remarks>
-            <remark>These setting should be loaded from config/autoexec.cfg, but they work on-the-fly too.</remark>
-            <remark>If the model fails to load you will end up with nothing being displayed; use <b>delalias</b> to get back to default.</remark>
-          </remarks>
-          <references>
-            <identifierReference identifier="modmdlweapN"/>
-            <identifierReference identifier="modmdlvwepN"/>
-            <identifierReference identifier="modmdlpickupN"/>
-          </references>
-        </scriptalias>
 
         <command name="demonameformat">
           <description>Sets the formatstring for demo filenames.</description>
@@ -4455,7 +4348,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </examples>
           <references>
             <identifierReference identifier="KEYPRESS"/>
-            <identifierReference identifier="KEYPRESS"/>
             <identifierReference identifier="findkey"/>
           </references>
         </scriptalias>
@@ -4465,30 +4357,75 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="S" description="the sensitivity" valueNotes="floating-point"/>
           </arguments>
+          <references>
+            <identifierReference identifier="sensitivityscale"/>
+            <identifierReference identifier="scopesens"/>
+            <identifierReference identifier="autoscopesens"/>
+            <identifierReference identifier="scopesensscale"/>
+          </references>
         </command>
 
         <variable name="sensitivityscale">
-          <description>Scales the effect of an increase or decrease in the sensitivity value.</description>
+          <description>Scales all mouse sensitivity values.</description>
           <remarks>
-            <remark>The larger the value, the smaller the difference between sensitivity values.</remark>
+            <remark>Changes all sensitivity values. If unsure, keep this at "1".</remark>
           </remarks>
           <value token="N" description="the sensitivity scale" minValue="0.001" maxValue="1000.0" defaultValue="1.0"/>
+          <references>
+            <identifierReference identifier="sensitivity"/>
+            <identifierReference identifier="scopesens"/>
+            <identifierReference identifier="autoscopesens"/>
+            <identifierReference identifier="scopesensscale"/>
+          </references>
         </variable>
 
-        <command name="findsens">
-          <description>Initiate sensitivity training, to help you find what sensitivity setting you like.</description>
-        </command>
+        <variable name="scopesens">
+          <description>Mouse sensitivity while scoped.</description>
+          <remarks>
+            <remark>If zero, autoscopesens determines, how sensitivity is changed during scoping.</remark>
+          </remarks>
+          <value token="N" description="scoped sensitivity" minValue="0" maxValue="1000" defaultValue="0"/>
+          <references>
+            <identifierReference identifier="sensitivity"/>
+            <identifierReference identifier="sensitivityscale"/>
+            <identifierReference identifier="autoscopesens"/>
+            <identifierReference identifier="scopesensscale"/>
+          </references>
+        </variable>
+
+        <variable name="autoscopesens">
+          <description>Switches between scopesensscale and autoscopesensscale.</description>
+          <remarks>
+            <remark>Determines how to calculate scoped sensitivity if scopesens is zero. If enabled, derives scoped sensitivity from scopefov and fov.</remark>
+          </remarks>
+          <value token="N" description="auto on/off" minValue="0 (scopesensscale)" maxValue="1 (autoscopesens)" defaultValue="0"/>
+          <references>
+            <identifierReference identifier="sensitivity"/>
+            <identifierReference identifier="sensitivityscale"/>
+            <identifierReference identifier="scopesens"/>
+            <identifierReference identifier="scopesensscale"/>
+          </references>
+        </variable>
 
         <variable name="scopesensscale">
-          <description>Scales the effect of an increase or decrease in the sensitivity value when scoping.</description>
+          <description>Change sensitivity when scoping.</description>
           <remarks>
-            <remark>The larger the value, the smaller the difference between sensitivity values.</remark>
+            <remark>If used, scoped sens = sensitivity * scopesensscale (roughly). Ignored, if autoscopesens is set.</remark>
           </remarks>
-          <value token="N" description="the scope sensitivity scale" minValue="0.001" maxValue="1000.0" defaultValue="0.5"/>
+          <value token="N" description="factor to change sensitivity while scoped" minValue="0.001" maxValue="1000.0" defaultValue="0.5"/>
+          <references>
+            <identifierReference identifier="sensitivity"/>
+            <identifierReference identifier="sensitivityscale"/>
+            <identifierReference identifier="scopesens"/>
+            <identifierReference identifier="autoscopesens"/>
+          </references>
         </variable>
 
         <command name="invmouse">
           <description>Sets mouse to "flight sim" mode.</description>
+          <remarks>
+            <remark>Inverts movement on the y-axis.</remark>
+          </remarks>
           <arguments>
             <argument token="B" description="sets invmouse" valueNotes="0 (off), else (on)"/>
           </arguments>
@@ -7910,8 +7847,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="V" description="enable/disable spectator status" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
-        <variable name="hidectfhud">
-          <description>Turns on or off the display of flag icons.</description>
+        <variable name="hideteamscorehud">
+          <description>Turns on or off the display of team score icons.</description>
           <value token="V" description="enable/disable flag icons" minValue="0" maxValue="1" defaultValue="0"/>
         </variable>
 
@@ -8246,7 +8183,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <value token="V" description="maximum FPS" minValue="25 or 0" maxValue="1000" defaultValue="200" valueNotes="0 disables maxfps"/>
           <references>
-            <identifierReference identifier="maxfps"/>
+            <identifierReference identifier="fpsrange"/>
           </references>
         </variable>
 
@@ -9231,7 +9168,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <references>
             <identifierReference identifier="docident"/>
-            <identifierReference identifier="docinvalid"/>
+            <identifierReference identifier="docundone"/>
             <identifierReference identifier="docfind"/>
           </references>
         </command>
@@ -9834,8 +9771,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="bdm"/>
             <identifierReference identifier="bpf"/>
             <identifierReference identifier="blss"/>
-            <identifierReference identifier="btdm"/>
-            <identifierReference identifier="bdm"/>
             <identifierReference identifier="btsurv"/>
             <identifierReference identifier="bosok"/>
             <identifierReference identifier="btosok"/>
@@ -11215,20 +11150,6 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
       <description>This section describes identifiers that are not documented yet, but you may try to help us there.</description>
       <identifiers sort="true">
 
-        <variable name="autoscopesens">
-          <description>TODO</description>
-          <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <variable name="scopesensfeel">
-          <description>TODO</description>
-          <value token="N" description="TODO" minValue="0" maxValue="1" defaultValue="0"/>
-        </variable>
-
-        <variable name="scopesens">
-          <description>TODO</description>
-          <value token="N" description="TODO" minValue="0" maxValue="1000" defaultValue="0"/>
-        </variable>
 
       </identifiers>
     </section>
