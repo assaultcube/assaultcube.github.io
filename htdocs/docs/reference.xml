@@ -9937,7 +9937,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to edit"/>
+            <argument token="M" description="The name of the map you wish to edit"/>
           </arguments>
         </command>
 
@@ -9949,8 +9949,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -9962,8 +9962,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -9975,8 +9975,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -9988,8 +9988,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10001,8 +10001,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10014,8 +10014,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10027,8 +10027,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10040,8 +10040,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10053,8 +10053,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10066,8 +10066,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10079,8 +10079,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10092,8 +10092,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10105,8 +10105,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10118,8 +10118,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10131,8 +10131,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10144,8 +10144,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10157,8 +10157,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10170,8 +10170,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10183,8 +10183,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10196,8 +10196,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10209,8 +10209,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10222,8 +10222,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 10 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
@@ -10235,8 +10235,8 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <variableArgument token="M" description="The name of the map you wish to play"/>
-            <variableArgument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
+            <argument token="M" description="The name of the map you wish to play"/>
+            <argument token="T" valueNotes="1..60" description="The time limit, in minutes (default 15 minutes if T is 0 or not specified)"/>
           </arguments>
         </command>
 
