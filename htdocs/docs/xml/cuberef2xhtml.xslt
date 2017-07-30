@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:transform version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:t="http://assault.cubers.net/docs/xml">
+<xsl:transform version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:t="https://assault.cubers.net/docs/xml">
 <!-- 
   This file transforms the ../reference.xml document into an XHTML webpage.
 
@@ -9,7 +9,7 @@
 
   You may be able to redistribute this content under specific
   conditions. Please read the licensing information, available
-  at http://assault.cubers.net/docs/license.html for the
+  at https://assault.cubers.net/docs/license.html for the
   conditions that would apply to what you may be redistributing.
 -->
 
@@ -52,13 +52,13 @@
         <meta name="robots" content="NOODP" />
         <meta name="author" content="Rabid Viper Productions" />
         <meta name="copyright" content="You may be able to redistribute this content under specific conditions.
-        Please read the licensing information, available @ http://assault.cubers.net/docs/license.html for the
+        Please read the licensing information, available @ https://assault.cubers.net/docs/license.html for the
         conditions that would apply to what you may be redistributing." />
         <title>AssaultCube Documentation :: CubeScript</title>
         <link rel="stylesheet" href="css/main.css" />
         <link rel="stylesheet" href="css/docs.css" />
         <link rel="stylesheet" href="css/referencexml.css" />
-        <link rel="shortcut icon" href="images/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
       </head>
       <body>
         <div id="container">
@@ -391,7 +391,7 @@
                           <xsl:for-each select="t:references/t:wikiReference">
 						    <xsl:text>, </xsl:text><!-- we assume it's never the only entry! -->
                             <a>
-                              <xsl:attribute name="href">http://wiki.cubers.net/action/view/<xsl:value-of select="@article"/></xsl:attribute>
+                              <xsl:attribute name="href">https://wiki.cubers.net/action/view/<xsl:value-of select="@article"/></xsl:attribute>
                               <xsl:attribute name="class">external</xsl:attribute>
                               <xsl:attribute name="target">_blank</xsl:attribute>
                               <xsl:value-of select="@article"/>

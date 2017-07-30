@@ -9,7 +9,7 @@
 
 <!--
   You may be able to redistribute this content under specific conditions.
-  Please read the licensing information, available @ http://assault.cubers.net/docs/license.html for the
+  Please read the licensing information, available @ https://assault.cubers.net/docs/license.html for the
   conditions that would apply to what you may be redistributing.
 -->
 
@@ -58,7 +58,7 @@
 -->
 
 
-<cuberef xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://assault.cubers.net/docs/xml"
+<cuberef xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://assault.cubers.net/docs/xml"
 name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuberef.xsd">
   <sections sort="true">
   <!--

@@ -7,40 +7,42 @@
     Taking place in realistic environments, with fast, arcade gameplay, it's addictive and fun!">
     <meta name="author" content="Rabid Viper Productions">
     <meta name="copyright" content="You may be able to redistribute this content under specific conditions.
-    Please read the licensing information, available @ http://assault.cubers.net/docs/license.html for the
+    Please read the licensing information, available @ https://assault.cubers.net/docs/license.html for the
     conditions that would apply to what you may be redistributing.">
     <meta name="google-site-verification" content="67b0O0ml57CxwYYIBLQv1Ec6GUNk5pIrfKIieXlRb2o">
     <title>AssaultCube</title>
     <link rel="stylesheet" type="text/css" href="docs/css/main.css">
-    <link rel="shortcut icon" href="docs/images/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="Development Blog News (RSS 2.0)" href="http://forum.cubers.net/syndication.php?fid=8&amp;limit=5">
-    <link rel="alternate" type="application/atom+xml" title="Development Blog News (Atom 1.0)" href="http://forum.cubers.net/syndication.php?fid=8&amp;limit=5&amp;type=atom1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="Development Blog News (RSS 2.0)" href="https://forum.cubers.net/syndication.php?fid=8&amp;limit=5">
+    <link rel="alternate" type="application/atom+xml" title="Development Blog News (Atom 1.0)" href="https://forum.cubers.net/syndication.php?fid=8&amp;limit=5&amp;type=atom1.0">
     <!-- Start of head code for the feedreader -->
-    <script type="text/javascript" src="http://www.google.com/jsapi/?key=ABQIAAAAcf9w9ocxRzNub_baajkjOxRhU_DGqMH-fivkryqiqfFessbS2BTy6bSGgQGN1BKoj3oCaZdCniDyxg"></script>
-    <script type="text/javascript" src="http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.js"></script>
+    <script type="text/javascript" src="https://rss2json.com/gfapi.js"></script>
     <style type="text/css">
-      @import url("http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.css");
-      #feedControl { 
-        width : 620px;
+      #feed {
+        width: 620px;
         margin: auto auto;
         font-size: 16px;
         color: #909090;
       }
-      .gfc-resultsHeader {
-        border: none !important;
-      }
-      .gf-title {
-        font-size: 16px;
-      }
     </style>
     <script type="text/javascript">
     google.load("feeds", "1");
-    function OnLoad() {
-      var feedControl = new google.feeds.FeedControl();
-      feedControl.addFeed("http://forum.cubers.net/syndication.php?fid=8&amp;limit=5", "");
-      feedControl.draw(document.getElementById("content"));
+    function initialize() {
+      var feed = new google.feeds.Feed("https://forum.cubers.net/syndication.php?fid=8");
+      feed.setNumEntries(10);
+      feed.load(function(result) {
+        if (!result.error) {
+          var container = document.getElementById("feed");
+          var html = '';
+          for (var i = 0; i < result.feed.entries.length; i++) {
+            var entry = result.feed.entries[i];
+            html += '<p>' + entry.publishedDate.substr(0,10) + ': <a href=' + entry.link + '>' + entry.title + '</a>' + '</p>'; // + entry.content.substr(0, 500)
+          }
+          container.innerHTML = html;
+        }
+      });
     }
-    google.setOnLoadCallback(OnLoad);
+    google.setOnLoadCallback(initialize);
     </script>
     <!-- End of head code for the feedreader -->
   </head>
@@ -97,7 +99,7 @@
         </ul>
 	<div class="dottedline"></div>
 	<h2 style="padding-bottom: 10px;">News from the development blog...</h2>
-	<div id="content">Loading development blog...</div>
+	<div id="feed">Loading development blog...</div>
       </div>
       <!--#include virtual="/SSI-HTML/download_box.html" -->
       <!--#include virtual="/SSI-HTML/help_box.html" -->

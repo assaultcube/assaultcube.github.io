@@ -6,11 +6,11 @@
 
   You may be able to redistribute this content under specific
   conditions. Please read the licensing information, available
-  at http://assault.cubers.net/docs/license.html for the
+  at https://assault.cubers.net/docs/license.html for the
   conditions that would apply to what you may be redistributing.
 -->
 
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:t="http://assault.cubers.net/docs/xml">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:t="https://assault.cubers.net/docs/xml">
 
   <xsl:output method="text" encoding="ASCII"/>
   
