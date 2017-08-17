@@ -49,10 +49,10 @@
             <td>
               <b>The cube grid</b>
               <p>
-                This is shown as a white grid of squares drawn where ever you point. 
+                This is shown as a white grid of squares drawn where ever you point.
                 <br>Each of these small squares is a single cube. The cubes in AssaultCube are known as "geometry".
                 The bigger blue squares, indicate a selection of 8x8 cubes (to help make map editing easier).
-              </p>                        
+              </p>
             </td>
           </tr>
           <tr>
@@ -62,7 +62,7 @@
               <p>
                 These are the light green cubes in the grid.
                 <br>These cubes indicate heightfields, which will be explained later <a href="mapediting2.html#heightfield">here</a>.
-              </p>                        
+              </p>
             </td>
           </tr>
           <tr>
@@ -70,20 +70,20 @@
             <td>
               <b>Cube selector</b><br>
               <p>
-                This appears as a small white box with a red mini-square in the corner. 
+                This appears as a small white box with a red mini-square in the corner.
                 It will appear in the middle of the screen and you can use it to select geometry, a bit like a crosshair.
-                <br>The red mini-square indicates which corner of a cube you are manipulating if you're using 
-                <a href="mapediting2.html#heightfield">heightfields</a>, or where your <a href="mapediting3.html">entity</a> 
+                <br>The red mini-square indicates which corner of a cube you are manipulating if you're using
+                <a href="mapediting2.html#heightfield">heightfields</a>, or where your <a href="mapediting3.html">entity</a>
                 will be placed if you're creating an entity.
-              </p>                        
+              </p>
             </td>
           </tr>
           <tr>
-            <td><img src="images/editmode-entity.jpg" id="sparkles" alt="Entity sparkles"></td>
+            <td><img src="images/editmode-entity.jpg" id="sparklies" alt="Entity sparklies"></td>
             <td>
-              <b>Entity sparkles</b><br>
+              <b>Entity sparklies</b><br>
               <p>
-                These are shown as coloured sparkly dots. They are known as "entities", which will be explained later 
+                These are shown as coloured sparkly dots. They are known as "entities", which will be explained later
                 <a href="mapediting3.html">here</a>. Each entity is colour coded:
               </p>
               <ul>
@@ -91,19 +91,18 @@
                 <li><a href="mapediting3.html#light">Light entities</a> will be white.</li>
                 <li>
                   <a href="mapediting3.html#pickup">Item pickups</a> will be red
-                  (for weapons) or yellow (for armour/health).
+                  (for weapons) or yellow (for armour/health/akimbo).
                 </li>
                 <li><a href="mapediting3.html#spawn">Spawn points</a> will be green.</li>
                 <li>
-                  <a href="mapediting3.html#models">Mapmodels</a> and 
+                  <a href="mapediting3.html#models">Mapmodels</a> and
                   <a href="mapediting3.html#sounds">map sounds</a> will be magenta.
                 </li>
                 <li><a href="mapediting3.html#ctf">CTF flags</a> will be turquoise.</li>
                 <li>
-                  <a href="mapediting3.html#clips">Clip boxes</a> and 
+                  <a href="mapediting3.html#clips">Clip boxes</a> and
                   <a href="mapediting3.html#ladders">ladders</a> will be grey.
                 </li>
-                <li><a href="mapediting3.html#sounds">Map sounds</a> in magenta.</li>
               </ul>
             </td>
           </tr>
@@ -113,8 +112,8 @@
               <b>"Closest entity" text</b><br>
               <p>
                 This is the white writing along the bottom. It will tell you the location of the closest entity and its properties.
-                <b>Note:</b> The sparkly of the closest entity will show up blue.
-              </p>                        
+                <b>Note:</b> the sparkly of the closest entity will show up blue.
+              </p>
             </td>
           </tr>
           <tr>
@@ -151,22 +150,28 @@
           </tr>
         </table>
         <p>
-          To get a feel for editmode, press E and float around. Try clicking and dragging the small white box at your crosshair over 
+          To get a feel for editmode, press E and float around. Try clicking and dragging the small white box at your crosshair over
           some cubes (you will see a red box over what you are selecting). This is how you select geometry.
         </p>
         <h3 id="controls">Map editing controls</h3>
         <p>
-          Below are the controls that get used in map-editing, you will use most of these controls 
-          when creating a map, so it's good to learn them. Note: These controls can ONLY be used in map editing mode.
+          Below are the controls that get used in map-editing, you will use most of these controls
+          when creating a map, so it's good to learn them. Note: these controls can ONLY be used in map editing mode.
         </p>
-        <h4>Changing geometry</h4>
+        <h4 id="geometry">Changing geometry</h4>
         <table>
           <tr>
             <td style="width : 60px;" class="head01">Control</td>
             <td class="head01">Function</td>
-            <td rowspan="9" style="width : 10px; border-top : 1px solid #101010; border-bottom : 1px solid #101010;">&nbsp;</td>
+            <td rowspan="11" style="width : 10px; border-top : 1px solid #101010; border-bottom : 1px solid #101010;">&nbsp;</td>
             <td style="width : 60px;" class="head01">Control</td>
             <td class="head01">Function</td>
+          </tr>
+          <tr>
+            <td>Left-click</td>
+            <td>Allows you to select cubes. Hold CTRL for multiple selections.</td>
+            <td>Scrolling</td>
+            <td>Scrolling will move cubes up/down, depending on the direction you look.</td>
           </tr>
           <tr>
             <td>[</td>
@@ -181,54 +186,64 @@
             <td>Moves cubes in the ceiling upwards.</td>
           </tr>
           <tr>
-            <td>U</td>
-            <td>Undoes the last action (only applies to geometry).</td>
             <td>F</td>
             <td>Makes selected cubes a solid.</td>
-          </tr>
-          <tr>
             <td>G</td>
             <td>Makes selected cubes a space/non-heightfield.</td>
-            <td>K</td>
-            <td>Makes selected cubes a corner.</td>
-          </tr>
-          <tr>
-            <td>C</td>
-            <td>Copy selected cubes.</td>
-            <td>V</td>
-            <td>Pastes copied cubes. Note: It pastes from the upper corner of the red mini-square.</td>
-          </tr>
-          <tr>
-            <td>,</td>
-            <td>Equalize the floor.</td>
-            <td>.</td>
-            <td>Equalize the ceiling.</td>
           </tr>
           <tr>
             <td>H</td>
-            <td>Makes the floor a heightfield.</td>
+            <td>Makes the floor a <a href="reference.xml#identifier_heightfield">heightfield</a>.</td>
             <td>I</td>
-            <td>Makes the ceiling a heightfield.</td>
+            <td>Makes the ceiling a <a href="reference.xml#identifier_heightfield">heightfield</a>.</td>
           </tr>
           <tr>
-            <td>9</td>
+            <td>Hold <b>Q</b> and scroll</td>
             <td>
-              Manipulates upwards the corner of a cube where the red mini-square is positioned. 
-              This only works if the cube is a heightfield.
+              This will manipulate the corner of a cube where the red dot is positioned up/down.
+              Only works if the cube is a heightfield.
             </td>
+            <td>K</td>
+            <td>Makes selected cubes a <a href="reference.xml#identifier_heightfield">corner</a>.</td>
+          </tr>
+          <tr>
             <td>8</td>
             <td>
-              Manipulates downwards the corner of a cube where the red mini-square is positioned. 
+              Manipulates downwards the corner of a cube where the red mini-square is positioned.
+              This only works if the cube is a heightfield.
+            </td>
+            <td>9</td>
+            <td>
+              Manipulates upwards the corner of a cube where the red mini-square is positioned.
               This only works if the cube is a heightfield.
             </td>
           </tr>
+          <tr>
+            <td>,</td>
+            <td>Equalizes the floor.</td>
+            <td>.</td>
+            <td>Equalizes the ceiling.</td>
+          </tr>
+          <tr>
+            <td>C</td>
+            <td>Copies selected cubes.</td>
+            <td>V</td>
+            <td>Pastes copied cubes. Note: it pastes from the upper corner of the red mini-square.</td>
+          </tr>
+          <tr>
+            <td>U</td>
+            <td>Undoes the last action (only applies to geometry).</td>
+            <td>R</td>
+            <td>Redoes undone operations.</td>
+          </tr>
         </table>
-        <h4>Changing textures</h4>
+        <br/>
+        <h4 id="textures">Changing textures</h4>
         <table>
           <tr>
             <td style="width : 60px;" class="head01">Control</td>
             <td class="head01">Function</td>
-            <td rowspan="5" style="width : 10px; border-top : 1px solid #101010; border-bottom : 1px solid #101010;">&nbsp;</td>
+            <td rowspan="6" style="width : 10px; border-top : 1px solid #101010; border-bottom : 1px solid #101010;">&nbsp;</td>
             <td style="width : 60px;" class="head01">Control</td>
             <td class="head01">Function</td>
           </tr>
@@ -256,99 +271,141 @@
             <td>Page Down</td>
             <td>Browses backward through ceiling textures.</td>
           </tr>
+          <tr>
+            <td>Hold <b>X</b> and scroll</td>
+            <td>Scrolls forward/backwards through textures on the wall/upper-wall, depending on the direction you look.</td>
+            <td>Hold <b>Z</b> and scroll</td>
+            <td>Scrolls forward/backwards through textures on the floor/ceiling, depending on the direction you look.</td>
+          </tr>
         </table>
-        <h4 id="mouse">Mouse controls</h4>
+        <br/>
+        <h4 id="entities">Changing entities</h4>
         <table>
           <tr>
             <td style="width : 60px;" class="head01">Control</td>
             <td class="head01">Function</td>
-            <td rowspan="7" style="width : 10px; border-top : 1px solid #101010; border-bottom : 1px solid #101010;">&nbsp;</td>
+            <td rowspan="9" style="width : 10px; border-top : 1px solid #101010; border-bottom : 1px solid #101010;">&nbsp;</td>
             <td style="width : 60px;" class="head01">Control</td>
             <td class="head01">Function</td>
           </tr>
           <tr>
-            <td>Left-click</td>
-            <td>Allows you to select cubes. Hold CTRL for multiple selections.</td>
-            <td>Right-click</td>
-            <td>Show the editing menu.</td>
+            <td>Backspace</td>
+            <td>Deletes nearest entity.</td>
+            <td>Left Ctrl + Backspace</td>
+            <td>Undeletes the last deleted entity.</td>
           </tr>
           <tr>
-            <td>Scrolling</td>
-            <td>Scrolling will move cubes up/down, depending on the direction you look.</td>
-            <td>Hold <b>Q</b> and scroll</td>
-            <td>
-              This will manipulate the corner of a cube where the red dot is positioned up/down. 
-              Only works if the cube is a heightfield.
-            </td>
+            <td>Left Shift + Backspace</td>
+            <td>Shows "Deleted entities" menu.</td>
+            <td>-</td>
+            <td>Copies nearest entity into memory.</td>
+          <tr>
+            <td>=</td>
+            <td>Pastes nearest entity out of memory.</td>
+            <td>;</td>
+            <td><a href="reference.xml#identifier_entset">Edits entity</a></td>
           </tr>
           <tr>
-            <td>Hold <b>Z</b> and scroll</td>
-            <td>Scrolls forward/backwards through textures on the floor/ceiling, depending on the direction you look.</td>
-            <td>Hold <b>X</b> and scroll</td>
-            <td>Scrolls forward/backwards through textures on the wall/upper-wall, depending on the direction you look.</td>
+            <td>Middle-click</td>
+            <td>Pin/unpin closest entity.</td>
+            <td>Hold <b>M</b> and scroll</td>
+            <td>Moves the closest entity in the axis of the direction you look.</td>
           </tr>
           <tr>
             <td>Hold <b>1</b> and scroll</td>
-            <td>Change the first attribute value of the closest entity.</td>
+            <td>Changes the first attribute value of the closest entity.</td>
             <td>Hold <b>2</b> and scroll</td>
-            <td>Change the second attribute value of the closest entity.</td>
+            <td>Changes the second attribute value of the closest entity.</td>
           </tr>
           <tr>
             <td>Hold <b>3</b> and scroll</td>
-            <td>Change the third attribute value of the closest entity.</td>
+            <td>Changes the third attribute value of the closest entity.</td>
             <td>Hold <b>4</b> and scroll</td>
-            <td>Change the fourth attribute value of the closest entity.</td>
+            <td>Changes the fourth attribute value of the closest entity.</td>
           </tr>
           <tr>
-            <td>Hold <b>M</b> and scroll</td>
-            <td>Move the closest entity in the axis of the direction you look.</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>Hold <b>5</b> and scroll</td>
+            <td>Changes the fifth attribute value of the closest entity.</td>
+            <td>Hold <b>6</b> and scroll</td>
+            <td>Changes the sixth attribute value of the closest entity.</td>
+          </tr>
+          <tr>
+            <td>Hold <b>7</b> and scroll</td>
+            <td>Changes the seventh attribute value of the closest entity.</td>
+            <td></td>
+            <td></td>
           </tr>
         </table>
-        <h4>Misc</h4>
+        <p>
+          <b><u>Note:</u></b> pressing editmeta (first modifier key - left Ctrl by default) speeds up the scrolling,
+          and pressing editmeta2 (second modifier key - left Shift by default) enables unscaled editing of entity attributes.
+        </p>
+        <br/>
+        <h4 id="misc">Misc</h4>
         <table>
           <tr>
             <td style="width : 60px;" class="head01">Control</td>
             <td class="head01">Function</td>
-            <td rowspan="5" style="width : 10px; border-top : 1px solid #101010; border-bottom : 1px solid #101010;">&nbsp;</td>
+            <td rowspan="4" style="width : 10px; border-top : 1px solid #101010; border-bottom : 1px solid #101010;">&nbsp;</td>
             <td style="width : 60px;" class="head01">Control</td>
             <td class="head01">Function</td>
-            <td rowspan="5" style="width : 10px; border-top : 1px solid #101010; border-bottom : 1px solid #101010;">&nbsp;</td>
+            <td rowspan="4" style="width : 10px; border-top : 1px solid #101010; border-bottom : 1px solid #101010;">&nbsp;</td>
             <td style="width : 60px;" class="head01">Control</td>
             <td class="head01">Function</td>
           </tr>
           <tr>
             <td>E</td>
             <td>Toggle edit mode.</td>
-            <td>Backspace</td>
-            <td>Delete entity.</td>
-            <td>;</td>
-            <td><a href="reference.xml#identifier_entset">Entset</a></td>
-          </tr>
-          <tr>
+            <td>Right-click</td>
+            <td>Show the editing menu.</td>
             <td>L</td>
             <td>Shows the lighting menu.</td>
+          </tr>
+          <tr>
+            <td>Left Ctrl</td>
+            <td><a href="reference.xml#identifier_editmeta">First modifier key</a></td>
+            <td>Left Shift</td>
+            <td><a href="reference.xml#identifier_editmeta2">Second modifier key</a></td>
             <td>F5</td>
             <td>Toggle <a href="reference.xml#identifier_toggleocull">occlusion</a> on/off.</td>
+          </tr>
+          <tr>
             <td>F6</td>
             <td>Toggle <a href="reference.xml#identifier_showmip">showmip</a> on/off.</td>
-          </tr>
-          <tr>
-            <td>-</td>
-            <td>Copies nearest entity into memory.</td>
-            <td>=</td>
-            <td>Pastes nearest entity out of memory.</td>
-            <td>7</td>
-            <td>Selects the next closest entity, to the one currently selected.</td>
-          </tr>
-          <tr>
             <td>F7</td>
             <td>Toggle <a href="reference.xml#identifier_fullbright">fullbright</a> on/off.</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>F8</td>
+            <td>Toggle <a href="reference.xml#identifier_showfocuscubedetails">cube details</a> on/off.</td>
+          </tr>
+        </table>
+        </br>
+        <h4 id="tagclips">Tag clips</h4>
+        <table>
+          <tr>
+            <td style="width : 60px;" class="head01">Control</td>
+            <td class="head01">Function</td>
+            <td rowspan="3" style="width : 10px; border-top : 1px solid #101010; border-bottom : 1px solid #101010;">&nbsp;</td>
+            <td style="width : 60px;" class="head01">Control</td>
+            <td class="head01">Function</td>
+            <td rowspan="3" style="width : 10px; border-top : 1px solid #101010; border-bottom : 1px solid #101010;">&nbsp;</td>
+            <td style="width : 60px;" class="head01">Control</td>
+            <td class="head01">Function</td>
+          </tr>
+          <tr>
+            <td><span class="titletext" title="On the keypad only">1</span></td>
+            <td>Removes tag clip.</td>
+            <td><span class="titletext" title="On the keypad only">2</span></td>
+            <td>Creates tag 'playerclip'.</td>
+            <td><span class="titletext" title="On the keypad only">3</span></td>
+            <td>Creates tag 'clip'.</td>
+          </tr>
+          <tr>
+            <td>B</td>
+            <td>Shows tag clip volume.</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </table>
         <br><h4 style="text-align : right;">The next step? Go to <a href="mapediting2.html">Map editing: Begin!</a> &#8594;</h4>
