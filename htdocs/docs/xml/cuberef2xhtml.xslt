@@ -331,22 +331,21 @@
                       <!-- default keys -->
                       <xsl:if test="t:defaultKeys/*">
                         <div class="defaultKeys">
-                          <p>
-                            <xsl:choose>
-                              <xsl:when test="count(t:defaultKeys/*) = 1">
-                                <xsl:text>default key: </xsl:text>
-                                <xsl:apply-templates select="t:defaultKeys/*"/>
-                              </xsl:when>
-                              <xsl:otherwise>
-                                <xsl:text>default keys:</xsl:text>
+                          <br/>
+                          <xsl:choose>
+                            <xsl:when test="count(t:defaultKeys/*) = 1">
+                              <xsl:text>default key: </xsl:text>
+                              <xsl:apply-templates select="t:defaultKeys/*"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <xsl:text>default keys:</xsl:text>
+                              <br/>
+                              <xsl:for-each select="t:defaultKeys/*">
+                                <xsl:apply-templates select="."/>
                                 <br/>
-                                <xsl:for-each select="t:defaultKeys/*">
-                                  <xsl:apply-templates select="."/>
-                                  <br/>
-                                </xsl:for-each>
-                              </xsl:otherwise>
-                            </xsl:choose>
-                          </p>
+                              </xsl:for-each>
+                            </xsl:otherwise>
+                          </xsl:choose>
                         </div>
                       </xsl:if>
                       
