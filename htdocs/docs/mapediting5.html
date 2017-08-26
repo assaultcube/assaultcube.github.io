@@ -121,9 +121,9 @@
      This means that your texture, when lined up against itself in all directions, should match itself.
    </p>
 <p>
-     Preferably, textures should be 256x256 pixels. But, each cube in AssaultCube measures 32x32 pixels, so, as
-     long as the image is a multiple of 32 pixels and doesn't take up too much space, the texture should work fine. If 
-     the image is not a multiple of 32 pixels, it will not fit on the cube properly and will be unaligned and look strange.
+     Preferably, textures should be 256x256 pixels. But, one cube in AssaultCube is covered by 32x32 texture pixels (for texture scale 1.0),
+     so, as long as the image is a multiple of 32 pixels and doesn't take up too much space, the texture should work fine.
+     If the image is not a multiple of 32 pixels, it will not fit on the cube properly and will be unaligned and look strange.
      When creating/using custom textures, remember that too much detail/size could make that texture in the map too laggy!
    </p>
 <p>
@@ -266,7 +266,7 @@
 <h2 id="sounds">Ambient sounds</h2>
 <p>
      To enable custom ambient sounds in your map, all sound files must be either <i>.wav</i> or <i>.ogg</i> format.
-     All files need to be put in the <a href="../packages/audio/sounds" shape="rect">/packages/audio/sounds</a> folder. Be
+     All files need to be put in the <a href="../packages/audio/ambience" shape="rect">/packages/audio/ambience</a> folder. Be
      sure to put your sound files inside your own individual folder.
    </p>
    <p>
