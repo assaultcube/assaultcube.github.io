@@ -1,4 +1,4 @@
-The "htdocs" folder contains all of the files on the 
+The "htdocs" folder contains all of the files on the
 main-part of the AssaultCube website, except the following:
 
 	./schemas		(link)
@@ -14,8 +14,8 @@ This folder does/will not contain (at least, for now):
  * The wiki
  * The masterserver
 
-Any AssaultCube documentation should be added to ./htdocs/docs 
-from now on. Upon any AC releases, simply copy/paste 
+Any AssaultCube documentation should be added to ./htdocs/docs
+from now on. Upon any AC releases, simply copy/paste
 the ./htdocs/docs folder into the release. No changes necessary.
 
 
@@ -35,7 +35,7 @@ AC Developers:
 
    DO NOT TOUCH ANYTHING UNTIL YOU HAVE!
 
-   
+
 ## LIST OF FILES TO CHANGE UPON NEW RELEASES:
 
  * Update ./htdocs/SSI-HTML/download_box.html
@@ -43,6 +43,7 @@ AC Developers:
  * Update "docswarning" with the location of the new versions
    current docfiles at ./htdocs/SSI-HTML/docs/docswarn.html
  * Check/Update ./htdocs/index.html if any AC specifications have changed.
+ * Update ./htdocs/docs/history.html
  * Add new ./htdocs/uninstallnotes webpage.
  * Add new ./htdocs/releasenotes webpage.
 

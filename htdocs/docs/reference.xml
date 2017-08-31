@@ -1823,6 +1823,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <key alias="Y" description="opens a command prompt % (for team chat)"/>
             <key alias="TAB" name="Tab" description="autocompletes forwards commands/variables/aliases"/>
             <key alias="LSHIFT+TAB" name="left Shift + Tab" description="autocompletes backwards commands/variables/aliases"/>
+            <key alias="LSHIFT+ESCAPE" name="left Shift + Esc" description="resets the commandline to the state before using TAB-completion"/>
             <key alias="UP" name="Up Arrow" description="browse forwards command history"/>
             <key alias="DOWN" name="Down Arrow" description="browse backwards command history"/>
           </defaultKeys>
@@ -4966,7 +4967,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <arguments>
             <argument token="radius" description="the light radius" valueNotes="1..32"/>
-            <argument token="R" description="red colour component. see remarks below." valueNotes="1..255"/>
+            <argument token="R" description="red colour component, see remarks below" valueNotes="1..255"/>
             <argument token="G" description="green colour component" valueNotes="1..255"/>
             <argument token="B" description="blue colour component" valueNotes="1..255"/>
           </arguments>
@@ -6233,7 +6234,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Set to "1" with every command that changes mapmodel slots.</description>
           <value token="N" description="0: not changed, 1: changed" minValue="0" maxValue="1" defaultValue="0"/>
           <remarks>
-            <remark>Should be used to trigger a rebuild of mapsound menus.</remark>
+            <remark>Should be used to trigger a rebuild of mapmodel menus.</remark>
           </remarks>
           <references>
             <identifierReference identifier="mapmodel"/>
@@ -9266,18 +9267,19 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
 
         <command name="mutesound">
           <description>Mutes a specific game sound.</description>
+          <arguments>
+            <argument token="N" description="ID of the sound to mute" valueNotes="see 'enumsounds', starting at ID 0"/>
+            <argument token="A" description="audible?" valueNotes="(mute) 0 or 1 (unmute)"/>
+          </arguments>
           <references>
             <identifierReference identifier="soundmuted"/>
             <identifierReference identifier="unmuteallsounds"/>
+            <identifierReference identifier="enumsounds"/>
           </references>
-          <arguments>
-            <argument token="N" description="ID of the sound to mute" valueNotes="see config/sounds.cfg, starting at ID 0"/>
-            <argument token="A" description="audible?" valueNotes="(mute) 0 || 1 (unmute)"/>
-          </arguments>
         </command>
 
         <command name="soundmuted">
-          <description>Returns 1 if sound A is muted, else 0.</description>
+          <description>Returns 1 if sound N is muted, else 0.</description>
           <examples>
             <example>
               <code><![CDATA[mutesound 5; if (soundmuted 5) [echo Sound 5 is muted!] [echo Sound 5 is not muted!]]]></code>
@@ -9285,11 +9287,12 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </example>
           </examples>
           <arguments>
-            <argument token="A" description="sound ID" valueNotes="See /config/sounds.cfg for valid sound ID's."/>
+            <argument token="N" description="sound ID" valueNotes="see 'enumsounds' for valid sound ID"/>
           </arguments>
           <references>
             <identifierReference identifier="mutesound"/>
             <identifierReference identifier="unmuteallsounds"/>
+            <identifierReference identifier="enumsounds"/>
           </references>
         </command>
 
@@ -9370,19 +9373,24 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>
             This command returns the sound number, which is assigned from 0 onwards,
             and which can be used with "sound" command. If the sound was already registered,
-            its existing index is returned. registersound does not actually load the sound, this is done on first play.
+            its existing index is returned. "registersound" does not actually load the sound, this is done on first play.
             </remark>
-            <remark>See for example config/sounds.cfg.</remark>
           </remarks>
-          <references>
-            <identifierReference identifier="sound"/>
-          </references>
+          <examples>
+            <example>
+              <code><![CDATA[registersound "player/jump" 80]]></code>
+              <explanation>It registers packages/audio/player/jump.ogg sound with volume 80</explanation>
+            </example>
+          </examples>
           <arguments>
-            <argument token="N" description="sound name" valueNotes="string, see config/sounds.cfg"/>
+            <argument token="N" description="sound name" valueNotes="path below packages/audio/, without file extension"/>
             <argument token="V" description="volume" optional="true" valueNotes="0..255"/>
             <argument token="L" description="loop" optional="true" valueNotes="0 (off), 1 (on)"/>
             <argument token="R" description="audible radius" optional="true" valueNotes=""/>
           </arguments>
+          <references>
+            <identifierReference identifier="sound"/>
+          </references>
         </command>
 
         <command name="enumsounds">
@@ -9397,6 +9405,10 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <example>
               <code><![CDATA[echo (enumsounds "VOICECOM !PUBLIC")]]></code>
               <explanation>It will list all voicecom sounds that are for teams only</explanation>
+            </example>
+            <example>
+              <code><![CDATA[echo (enumsounds (listoptions soundcategories))]]></code>
+              <explanation>It will list all sounds</explanation>
             </example>
           </examples>
           <arguments>
