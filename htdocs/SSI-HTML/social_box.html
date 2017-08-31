@@ -1,21 +1,27 @@
 <!-- Start: Social Media box -->
       <div id="socialmedia">
         <h3>Social media</h3>
-        <div style="margin-left : 60px; padding-top : 5px;">
-          <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FAssaultCube&width=450&layout=button_count&action=like&send=false&size=small&show_faces=false&share=false&height=21&appId" width="450" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true">Facebook</iframe>
+        <div style="padding-top : 5px;">
+          <div id="fb-root"></div>
+          <script>
+            (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+          </script>
+          <div class="fb-like" data-href="https://www.facebook.com/AssaultCube" data-width="450" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
         </div>
-        <div style="margin-left : 10px;">
+        <div>
           <a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-dnt="true" data-lang="en" data-url="assault.cubers.net" data-text="#AssaultCube is an addictively fun #freetoplay multiplayer #FPS game! Only 50 Mb, #dialup &amp; #opensource! Download @ https://assault.cubers.net">Twitter</a>
           <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
-        <div style="margin-left : 25px;">
+        <div>
           <script type="text/javascript" src="https://apis.google.com/js/plusone.js">{lang: 'en-GB', parsetags: 'explicit'}</script>
           <div class="g-plusone" data-size="medium" data-href="https://assault.cubers.net">Google+</div>
           <script type="text/javascript">gapi.plusone.go();</script>
-        </div>
-        <div>
-          <script type="text/javascript">reddit_url = "https://assault.cubers.net"; reddit_title = "AssaultCube: A free, open-source lightweight FPS game!";</script>
-          <script type="text/javascript" src="https://www.reddit.com/static/button/button1.js"></script>
         </div>
       </div>
 <!-- End: Social Media box -->
