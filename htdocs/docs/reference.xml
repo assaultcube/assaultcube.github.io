@@ -237,7 +237,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <examples>
             <example>
-              <code><![CDATA[pop p; echo $p]]></code>
+              <code><![CDATA[p = 1; push p 2; pop p; echo $p]]></code>
               <explanation>Output: 1</explanation>
             </example>
           </examples>
@@ -1003,7 +1003,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <arguments>
             <argument token="N" description="the amount of milliseconds"/>
             <argument token="C" description="the command to execute"/>
-            <argument token="P" description="ignore map change (optional)"/>
+            <argument token="P" optional="true" description="ignore map change"/>
           </arguments>
         </command>
 
@@ -3981,7 +3981,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </remarks>
           <defaultKeys>
             <key alias="G" description="for all weapons"/>
-            <key alias="MOUSE2" name="right mouse button" description="for all weapons besides sniper rifle"/>
+            <key alias="MOUSE2" name="right mouse button" description="for all weapons except sniper rifle"/>
           </defaultKeys>
           <references>
             <identifierReference identifier="grenades"/>
@@ -4885,9 +4885,11 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Pastes a previously copied entity.</description>
           <remarks>
             <remark>It also works with the menu list of copied entities. It works only while in edit mode.</remark>
+            <remark>Pressing "editmeta" while using "pasteent" opens the menu with a list of copied entities.</remark>
           </remarks>
           <references>
             <identifierReference identifier="copyent"/>
+            <identifierReference identifier="editmeta"/>
           </references>
         </command>
 
@@ -5020,9 +5022,9 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             </remark>
           </remarks>
           <arguments>
-            <argument token="N" description="The mapmodel identifier" valueNotes="Integer"/>
-            <argument token="Z" description="Extra elevation above ground" valueNotes="Integer" optional="true"/>
-            <argument token="T" description="The map texture to use" valueNotes="Integer" optional="true"/>
+            <argument token="N" description="The mapmodel identifier" valueNotes="integer"/>
+            <argument token="Z" description="Extra elevation above ground" valueNotes="integer" optional="true"/>
+            <argument token="T" description="The map texture to use" valueNotes="integer" optional="true"/>
           </arguments>
         </command>
 
@@ -5313,7 +5315,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <remark>You can get the current map message with the $mapmsg variable.</remark>
           </remarks>
           <arguments>
-            <argument token="M" description="The map message" valueNotes="String"/>
+            <argument token="M" description="The map message" valueNotes="string"/>
           </arguments>
           <references>
             <identifierReference identifier="editmapmsg"/>
@@ -5794,6 +5796,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <remarks>
             <remark>Instead of manually executing this command, you can bind "domodifier 11" to a key. While holding this key you can expand/shrink the current selection with the mouse wheel.</remark>
+            <remark>It works also with multiple selections.</remark>
           </remarks>
           <references>
             <identifierReference identifier="select"/>
@@ -5809,6 +5812,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </arguments>
           <remarks>
             <remark>Instead of manually executing this command, you can bind "domodifier 11" to a key. While holding this key you can expand/shrink the current selection with the mouse wheel.</remark>
+            <remark>It works also with multiple selections.</remark>
           </remarks>
           <references>
             <identifierReference identifier="select"/>
@@ -6015,7 +6019,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <remarks>
             <remark>
             The vantage point is supposed to be a distinctive view on a map - like the angle from which the preview picture
-            was taken. It is allowed to use when editing or spectating in singleplayer mode.
+            was taken. It is allowed to use when editing offline or spectating offline.
             </remark>
             <remark>A map can only have one vantage point.</remark>
           </remarks>
@@ -6572,7 +6576,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <description>Sorts all texture slots alphabetically and merges identical slots.</description>
           <remarks>
             <remark>
-            By default, the list is sorted (besides the first five) and only unused identical
+            By default, the list is sorted (except the first five) and only unused identical
             (with the same texture and scale factor) slots are merged.
             The keywords can be combined in any order. "nomerge" takes priority over "mergeused".
             </remark>
@@ -7176,6 +7180,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="addselection"/>
             <identifierReference identifier="entproperty"/>
             <identifierReference identifier="undelent"/>
+            <identifierReference identifier="pasteent"/>
             <identifierReference identifier="editmetakeydown"/>
             <identifierReference identifier="editmeta2"/>
           </references>
@@ -8799,6 +8804,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value description="fullscreen" minValue="0" maxValue="1" defaultValue="1"/>
           <references>
             <identifierReference identifier="fullscreentoggle"/>
+            <identifierReference identifier="fullscreendesktop"/>
           </references>
         </variable>
 
@@ -8842,9 +8848,22 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           <value token="H" description="the screen height" minValue="200" maxValue="10000" defaultValue="768"/>
         </variable>
 
-        <variable name="colorbits">
-          <description>Sets the bits per pixel value.</description>
-          <value description="bits per pixel" minValue="0" maxValue="32" defaultValue="0"/>
+        <variable name="screenw">
+          <description>Returns the actual width of the screen/window.</description>
+          <value token="W" description="the screen/window width" readOnly="true"/>
+        </variable>
+
+        <variable name="screenh">
+          <description>Returns the actual height of the screen/window.</description>
+          <value token="H" description="the screen/window height" readOnly="true"/>
+        </variable>
+
+        <variable name="fullscreendesktop">
+          <description>Enables using always desktop resolution in fullscreen mode.</description>
+          <value token="V" description="Use desktop resolution for fullscreen" minValue="0" maxValue="1" defaultValue="1"/>
+          <references>
+            <identifierReference identifier="fullscreen"/>
+          </references>
         </variable>
 
         <variable name="depthbits">
@@ -11081,12 +11100,12 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
             <identifierReference identifier="getmapmodelattributes"/>
           </references>
           <arguments>
-            <argument token="R" description="The square radius of the bounding box." valueNotes="Integer"/>
-            <argument token="H" description="The height of the bounding box." valueNotes="Integer"/>
-            <argument token="Z" description="The initial height offset from the ground." valueNotes="Integer"/>
+            <argument token="R" description="The square radius of the bounding box." valueNotes="integer"/>
+            <argument token="H" description="The height of the bounding box." valueNotes="integer"/>
+            <argument token="Z" description="The initial height offset from the ground." valueNotes="integer"/>
             <argument token="0" description="This integer is redundant. Leave it at zero so you don't break the command." valueNotes="0"/>
             <argument token="N" description="The name of the map model" valueNotes="string"/>
-            <argument token="F" description="If '1', the model is preloaded, even if no entities use it" valueNotes="1 (optional)"/>
+            <argument token="F" description="If '1', the model is preloaded, even if no entities use it" optional="true" valueNotes="1"/>
           </arguments>
         </command>
 
@@ -11181,7 +11200,7 @@ name="AssaultCube Documentation" version="Current" xsi:schemaLocation="xml/cuber
           </references>
           <arguments>
             <argument token="S" description="Scale of the texture to load (should be a power of two)." valueNotes="Float"/>
-            <argument token="F" description="File name of the texture to bind" valueNotes="String"/>
+            <argument token="F" description="File name of the texture to bind" valueNotes="string"/>
           </arguments>
         </command>
 
