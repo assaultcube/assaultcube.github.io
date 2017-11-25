@@ -34,6 +34,18 @@
 	<h2>Known issues</h2>
 	<h4>General issues</h4>
         <ul>
+          <li>
+            Windows 10 users experience, after Fall Creators Update in the last quarter of 2017,
+            a mouse glitch (random camera movement) in AssaultCube 1.2.0.2.
+            In such case please copy "SDL.dll" file from:
+            <a href="https://github.com/assaultcube/AC/releases/download/v1.2.0.2/fix_mouse_glitch_in_AC_v1.2.0.2_on_Windows_10.zip">
+            fix_mouse_glitch_in_AC_v1.2.0.2_on_Windows_10.zip</a> to "bin_win32" folder in the directory, where AssaultCube is installed,
+            and replace existing file.</br>
+            AssaultCube is installed by default in C:\Program Files (x86)\AssaultCube\ ,
+            so in such case you have to copy "SDL.dll" to C:\Program Files (x86)\AssaultCube\bin_win32\ .</br>
+            The bug was introduced by Microsoft in the Fall Creators Update for Windows 10 (in the last quarter of 2017)
+            and affects SDL 1.2.14 library, which is used by AC 1.2.0.2. Downgrading SDL library to previous 1.2.13 version fixes the bug.
+          </li>
           <li>The bots are fairly dumbs.</li>
           <li><a href="https://github.com/assaultcube/AC/issues">Full list of recently reported issues...</a></li>
         </ul>
