@@ -42,17 +42,20 @@
         </p>
         <!-- Start: Google site search -->
         <div id="cse">Loading</div>
-        <script src="https://www.google.com/jsapi" type="text/javascript"></script>
-        <script type="text/javascript">
-          google.load('search', '1', {language : 'en'});
-          google.setOnLoadCallback(function() {
-            var customSearchControl = new google.search.CustomSearchControl('002115558306000528295:qtyxjvpm2xa');
-            customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
-            customSearchControl.draw('cse');
-          }, true);
-        </script>
-        <!-- End: Google site search -->
-      </div>
+          <script>
+            (function() {
+              var cx = '002115558306000528295:qtyxjvpm2xa';
+              var gcse = document.createElement('script');
+              gcse.type = 'text/javascript';
+              gcse.async = true;
+              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(gcse, s);
+            })();
+          </script>
+          <gcse:search></gcse:search>
+          <!-- End: Google site search -->
+        </div>
       <!--#include virtual="/SSI-HTML/adsense_footer.html" -->
     </div>
   </body>
