@@ -28,13 +28,6 @@ the ./htdocs/docs folder into the release. No changes necessary.
  * "DOCS_TEMPLATE.html" - This file should be used as a template for any new
     documentation webpage. Read this file for more info.
 
-AC Developers:
-   If you have NEVER changed ANY files within this repository before,
-   then PLEASE ensure you've asked RandumKiwi or other developer about
-   how things work, before you change files for the first time.
-
-   DO NOT TOUCH ANYTHING UNTIL YOU HAVE!
-
 
 ## LIST OF FILES TO CHANGE UPON NEW RELEASES:
 
