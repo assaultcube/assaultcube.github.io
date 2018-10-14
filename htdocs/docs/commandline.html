@@ -58,25 +58,25 @@
         alt="AssaultCube" width="193px" height="81px"></a>
       </div>
       <div id="menubar">
-	<!--#include virtual="/SSI-HTML/docs/navigation_box_docs.html" -->
-	&nbsp;
+        <!--#include virtual="/SSI-HTML/docs/navigation_box_docs.html" -->
+        &nbsp;
       </div>
       <!--#include virtual="/SSI-HTML/docs/docswarn.html" -->
       <div class="docsmain">
         <div id="gohome">
           <a href="index.html">Go to documentation index &#8629;</a>
         </div>
-	<h2>Command line arguments</h2>
-	<p>
-	  When you launch AssaultCube, you're able to pass what are known as "arguments" or "switches"
-	  to the launcher, which will force particular settings to occur when AssaultCube runs.
-	</p>
-	<p>
-	  Depending on your operating system, the way to pass these arguments will differ, see the following:
-	</p>
-	<table>
-	  <tr>
-	    <td style="text-align : center; width : 290px;" class="c2">
+        <h2>Command line arguments</h2>
+        <p>
+          When you launch AssaultCube, you're able to pass what are known as "arguments" or "switches"
+          to the launcher, which will force particular settings to occur when AssaultCube runs.
+        </p>
+        <p>
+          Depending on your operating system, the way to pass these arguments will differ, see the following:
+        </p>
+        <table>
+          <tr>
+            <td style="text-align : center; width : 290px;" class="c2">
               <img src="images/windows.png" alt="Microsoft Windows">
               <br><b>Microsoft Windows</b>
             </td>
@@ -125,6 +125,7 @@
               For the server, under the "Server" tab of the AssaultCube launcher is an "Advanced options" bar.
               You can type all the arguments you need for the server into there.
             </td>
+          </tr>
         </table>
         <h2 id="clientswitch" style="padding-top : 20px;">Arguments for the AssaultCube <span class="titletext"
         title="the client is what you use to play the game, i.e. NOT the server.">client</span></h2>
@@ -700,7 +701,7 @@
             </td>
           </tr>
           <tr>
-            <td rowspan="9" class="verttxt">
+            <td rowspan="8" class="verttxt">
               C<br>H<br>A<br>N<br>G<br>E<br><br>C<br>F<br>G<br><br>F<br>I<br>L<br>E<br>P<br>A<br>T<br>H<br>S
             </td>
             <td class="c1" id="server-C">-C<b>f</b></td>
@@ -749,23 +750,16 @@
             </td>
           </tr>
           <tr>
-            <td class="c1" id="server-E">-E<b>f</b></td>
+            <td class="c1" id="server-I">-I<b>f</b></td>
             <td class="c2">
-              Changes the location of the kill messages file.
-              <br>The default is: <span class="code">-gconfig/serverkillmessages.cfg</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="c3" id="server-I">-I<b>f</b></td>
-            <td>
               Changes the location of the "serverinfo text" filename prefix.
               The server automatically adds "_en.txt" as a suffix to complete the filename.
               <br>The default is: <span class="code">-Iconfig/serverinfo</span>
             </td>
           </tr>
           <tr>
-            <td class="c1" id="server-O">-O<b>f</b></td>
-            <td class="c2">
+            <td class="c3" id="server-O">-O<b>f</b></td>
+            <td>
               Changes the location of the MOTD (message of the day) filename prefix.
               The server automatically adds "_en.txt" as a suffix to complete the filename.
               <br>The default is: <span class="code">-Oconfig/motd</span>
@@ -777,16 +771,16 @@
             <td class="verttxt" rowspan="2">
               M<br>I<br>S<br>C
             </td>
-            <td class="c3" id="server-SW">-SW<b>r</b></td>
-            <td>
-              Starts the server as Microsoft Windows service and sets the name of the windows service
+            <td class="c1" id="server-SW">-SW<b>r</b></td>
+            <td class="c2">
+              Starts the server as Microsoft Windows service and sets the name of the Windows service
               that should be used to <span class="code">r</span>.
-              This will only work if the server is started directly from the windows service manager.
+              This will only work if the server is started directly from the Windows Service Manager.
             </td>
           </tr>
           <tr>
-            <td class="c1" id="server-u">-u<b>N</b></td>
-            <td class="c2">
+            <td class="c3" id="server-u">-u<b>N</b></td>
+            <td>
               Sets the up-stream bandwidth (per player) to <span class="code">N</span> bytes per second.
               Only set this argument if you know what you're doing, as specifying a incorrect value is
               worse than not specifying it.

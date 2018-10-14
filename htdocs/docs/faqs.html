@@ -36,15 +36,15 @@
         alt="AssaultCube" width="193px" height="81px"></a>
       </div>
       <div id="menubar">
-	<!--#include virtual="/SSI-HTML/docs/navigation_box_docs.html" -->
-	&nbsp;
+        <!--#include virtual="/SSI-HTML/docs/navigation_box_docs.html" -->
+        &nbsp;
       </div>
       <!--#include virtual="/SSI-HTML/docs/docswarn.html" -->
       <div class="docsmain">
         <div id="gohome">
           <a href="index.html">Go to documentation index &#8629;</a>
         </div>
-	<h2>F.A.Q'S</h2>
+        <h2>F.A.Q'S</h2>
         <p>
           Only frequently asked questions are answered on this page. If you've looked through the
           rest of the official documentation and still can't find the answer you need, you might like
@@ -84,7 +84,7 @@
           </li>
           <li class="ans">
             Try increasing your <b>Field of View</b> or resolution. You can change these settings through the
-            "<b>Settings</b>" &#187; "<b>Video settings</b>" menu.
+            <b>Settings</b> &#187; <b>Video settings...</b> menu.
           </li>
           <li id="n05">
             What's a good way to get a lot of points, fast?
@@ -95,7 +95,7 @@
             Using grenades are also a great way for gibbing more than one enemy at once, but are only worth 1 frag.
           </li>
           <li id="n06">
-	    I seem to get strange walls appear out of nowhere on maps with far-away areas. How do I fix this?
+            I seem to get strange walls appear out of nowhere on maps with far-away areas. How do I fix this?
           </li>
           <li class="ans">
             This is a graphics glitch caused by low "minlod". In AssaultCube, type: <b>/minlod 250</b> to set minlod
@@ -112,7 +112,7 @@
             Secondly, just because a feature is available in some other game, it does not mean we have to implement it
             here. There are several reasons we might not add it, it might not suit the game style that AssaultCube has,
             it might not fit-in with the CUBE engine, etc. The best thing to do, is to
-<a href="https://github.com/assaultcube/AC/issues" target="_new">create a new issue</a> with your feature request and we may consider it.
+            <a href="https://github.com/assaultcube/AC/issues" target="_new">create a new issue</a> with your feature request and we may consider it.
           </li>
           <li id="n08">
             I shoot at players/bots, but NONE of my shots seem to hit them. What's going on?
@@ -122,8 +122,7 @@
             occurs when buggy graphics cards aren't allowing OpenGL to do this properly. If you're able to, the best thing to
             do first is <a href="graphicsdrivers.html">update your graphics drivers</a> in an attempt to fix it permanently.
             <br>If this isn't possible or doesn't work, the next thing to try is changing your resolution <b>WITHIN</b>
-            AssaultCube. You can change the resolution through the "<b>Settings</b>" &#187; "<b>Video settings</b>"
-            menu.
+            AssaultCube. You can change the resolution through the <b>Settings</b> &#187; <b>Video settings...</b> menu.
             <br>In most cases, this should be enough to fix it. For the new resolutions, first try setting the resolution
             to be the same as your native resolution, if that doesn't work, next try 1024x768 (and then 800x600, then 640x480).
             <br>Sometimes turning off full-scene antialising can fix the problem, to do that type <b>/fsaa 0</b> in the console in AssaultCube.
@@ -145,16 +144,17 @@
             Where is my "AssaultCube home folder"?
           </li>
           <li class="ans">
-            The "AssaultCube home (profile) folder" is used to save all of your AssaultCube screenshots, settings and maps.
+            The "AssaultCube home (profile) folder" is used to save all of your AssaultCube screenshots, settings, maps, etc.
             You may also use this directory to add new content to the game found elsewhere, such as
             <a href="http://quadropolis.us/taxonomy/term/24">Quadropolis</a>.
             <br>Your home folder is either:
             <ul>
-              <li style="font-weight : normal;">On Linux or Mac based systems: <i>~/.assaultcube/</i>
               <li style="font-weight : normal;">On Windows based systems: <i>My Documents\My Games\AssaultCube\</i>
+              <li style="font-weight : normal;">On Linux based systems: <i>~/.assaultcube/</i>
+              <li style="font-weight : normal;">On Mac based systems: <i>~/Library/Application Support/assaultcube/</i>
             </ul>
             Note 1: There will always be a version number appended to the end of the folder name.
-            <br>Note 2: In Linux/Mac based systems, ~/ stands for "/home/YOUR_USERNAME".
+            <br>Note 2: On Linux ~/ stands for "/home/YOUR_USERNAME" and on Mac for "/Users/YOUR_USERNAME".
             <br>Tip: press F12 to take a screenshot and see the path to profile.
           </li>
           <li id="n11">
@@ -188,8 +188,7 @@
             When AssaultCube is run for the first time, it executes:
             <ul class="code">
               <li style="font-weight : normal;">./config/defaults.cfg</li>
-              <li style="font-weight : normal;">./config/firstrun.cfg</li>
-              <li style="font-weight : normal;">./config/autoexec.cfg</li>
+               <li style="font-weight : normal;">./config/autoexec.cfg</li>
             </ul>
             Once you quit AssaultCube, the settings in these files and your changes to them during the course of playing
             AssaultCube gets stored in <span class="code">./config/saved.cfg</span> and <span class="code">./config/init.cfg</span>
@@ -205,7 +204,7 @@
                 and <span class="code">./config/init.cfg</span>
               </li>
               <li style="font-weight : normal;">Type <span class="code">/resetcfg 1</span> while playing, then restart AssaultCube.</li>
-              <li style="font-weight : normal;">Press ESCAPE and go to Settings &#8658; Reset all settings.</li>
+              <li style="font-weight : normal;">Press ESCAPE and go to <b>Settings</b> &#8658; <b>Reset all settings</b> .</li>
             </ol>
           </li>
           <li id="n15">

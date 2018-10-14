@@ -43,32 +43,32 @@
         alt="AssaultCube" width="193px" height="81px"></a>
       </div>
       <div id="menubar">
-	<!--#include virtual="/SSI-HTML/docs/navigation_box_docs.html" -->
-	&nbsp;
+        <!--#include virtual="/SSI-HTML/docs/navigation_box_docs.html" -->
+        &nbsp;
       </div>
       <!--#include virtual="/SSI-HTML/docs/docswarn.html" -->
       <div class="docsmain">
         <div id="gohome">
           <a href="index.html">Go to documentation index &#8629;</a>
         </div>
-	<h2>AssaultCube's interface</h2>
-	<p>
-	  Simply, this is about how AssaultCube looks, feels and works. The interface should feel fairly familiar,
-	  echoing that of many other first-person shooters. Go ahead, jump right in!
-	</p>
-	<img style="float : right; margin-left : 20px; margin-bottom : 20px;" src="images/menus.jpg" alt="Main menu">
-	<h4>Menus</h4>
-	<p>
-	  While in-game, press ESC to access a menu. From there you can access almost anything and use all sorts of actions,
-	  like joining multiplayer games and changing settings, as well as using text inputs, checkboxes and menu sliders.
+        <h2>AssaultCube's interface</h2>
+        <p>
+          Simply, this is about how AssaultCube looks, feels and works. The interface should feel fairly familiar,
+          echoing that of many other first-person shooters. Go ahead, jump right in!
+        </p>
+        <img style="float : right; margin-left : 20px; margin-bottom : 20px;" src="images/menus.jpg" alt="Main menu">
+        <h4>Menus</h4>
+        <p>
+          While in-game, press ESC to access a menu. From there you can access almost anything and use all sorts of actions,
+          like joining multiplayer games and changing settings, as well as using text inputs, checkboxes and menu sliders.
         </p>
         <p>
           As an example, in multiplayer you can use the set mode/map submenu to vote on a new
           <a href="introduction.html#gamemodes">mode/map</a>. Further customizations and actions
-          can be done to these menus using <a href="cubescript.html">CubeScript</a>.
+          can be done to these menus using <a href="reference.xml">CubeScript</a>.
         </p>
         <p>
-          In some circumstances, there may be more on a menu than what can be shown. In these cases, small arrows will 
+          In some circumstances, there may be more on a menu than what can be shown. In these cases, small arrows will
           show at the top/bottom right-side of the menu. Pressing page-up/page-down will then show the next page.
         </p>
         <h4 id="console">The console</h4>
@@ -109,56 +109,39 @@
           Press TAB at any time to see the scoreboard, which will tell you (horizontally in this order):
         </p>
         <ul class="scrboardlst">
-          <li>          
-            CTF flags captured (if playing flag modes)
-          </li>
-          <li>
-            Death count
-          </li>
-          <li>
-            Ratio
-          </li>
-          <li>
-            The ping between the player and the server
-          </li>
-          <li>
-            The players name
-          </li>
+          <li>CTF flags captured (if playing flag modes)</li>
+          <li>Death count</li>
+          <li>Ratio</li>
+          <li>The ping between the player and the server</li>
+          <li>The players name</li>
         </ul>
         <ul class="scrboardlst">
-          <li>
-            Frag count
-          </li>
-          <li>
-            Score
-          </li>	
-          <li>
-            Packet jump (PJ)
-          </li>
-          <li>
-            CN (client number)
-          </li>
+          <li>Frag count</li>
+          <li>Score</li>
+          <li>Packet jump (PJ)</li>
+          <li>CN (client number)</li>
         </ul>
         <div style="text-align : center;">
           <img src="images/scoreboard.jpg" alt="The scoreboard">
         </div>
         <p>
-          You can customize your scoreboard (for example enable/disable ratio) in menu Settings->Head-Up Display settings->Customize your scoreboard... .
+          You can customize your scoreboard (for example enable/disable ratio) in menu
+          <b>Settings</b> &#8658; <b>Scoreboard settings...</b> .
           Pressing page-up/page-down on the scoreboard will show the next page on the scoreboard.
           You'll be able to tell if there is another page (this occurs when there are too many players to fit)
           by the arrow at the bottom of the screen.
         </p>
         <p>
-          Packet jump (PJ) is the amount of milliseconds that have passed since you have received updates from players. 
+          Packet jump (PJ) is the amount of milliseconds that have passed since you have received updates from players.
           A high (for example: 950) or variable (for example: The PJ is at 40 then jumps to 1000 and then 300 then 550) packet
           jump is bad for gameplay, because these players may become difficult targets and "warp" around the map (warp means
           they disappear, then reappear out of nowhere).<br>
-          If a players packet jump is bad enough, their PJ number will turn into the 
-          word LAG and they'll stand still and start saluting because they are lagging so badly. Special note: You cannot see 
+          If a players packet jump is bad enough, their PJ number will turn into the
+          word LAG and they'll stand still and start saluting because they are lagging so badly. Special note: You cannot see
           your own packet jump.
         </p>
         <p>
-          Ping is the amount of time in milliseconds that it takes for your packets of data to get back and forth from the 
+          Ping is the amount of time in milliseconds that it takes for your packets of data to get back and forth from the
           server.<br> The lower the ping, the better.
         </p>
         <p>
@@ -166,7 +149,7 @@
           other than allowing people to identify players easier.
         </p>
         <p>
-          If a player name is red, then they are an administrator of that server and have full control over it.<br> 
+          If a player name is red, then they are an administrator of that server and have full control over it.<br>
           Players names that are in grey, are currently in dead/spectate mode.
         </p>
         <h4 id="minimap">Mini-map</h4>
@@ -179,7 +162,7 @@
           X's mark dead team-mates, pulsating icons show team-mates that are attacking.
         </p>
         <p>
-          If you're playing CTF, then red and blue flags will show up in their respective locations on the mini-map, 
+          If you're playing CTF, then red and blue flags will show up in their respective locations on the mini-map,
           unless the enemy has your flag (then you won't be able to see it) OR if your team has the enemies flag (It will show
           which team-member is carrying the flag).
         </p>
