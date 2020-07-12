@@ -10,20 +10,20 @@
 #donate {
 margin-top : 15px;
 }
-#dllinks {
+.dllinks {
 padding : 15px 0;
 margin : auto auto;
 text-align : center;
 font-size : 14px;
 }
-#dllinks td {
+.dllinks td {
 padding : 0 30px;
 vertical-align : text-bottom;
 }
-#dllinks td a:link, #dllinks td a:visited {
+.dllinks td a:link, #dllinks td a:visited {
 text-decoration : none;
 }
-#dllinks td a:hover, #dllinks td a:active {
+.dllinks td a:hover, #dllinks td a:active {
 text-decoration : underline;
 }
 .dlstats {

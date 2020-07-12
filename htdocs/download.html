@@ -57,46 +57,66 @@
           Any questions, please consult the <a href="docs">README</a> contained with your installation first!
         </p>
         <h3>Download Now:</h3>
-        <table id="dllinks">
+        <table class="dllinks">
           <tr>
             <td>
               <a href="https://github.com/assaultcube/AC/releases/download/v1.2.0.2/AssaultCube_v1.2.0.2.exe">
                 <img src="docs/images/windows.png" alt="Windows" width="40px" height="40px" title="Supports Windows 2000/XP/Vista/7/8/10">
-              <br>
+                <br>
                 Microsoft<br>Windows
               </a>
             </td>
             <td>
               <a href="https://github.com/assaultcube/AC/releases/download/v1.2.0.2/AssaultCube_v1.2.0.2.tar.bz2">
                 <img src="docs/images/linux.png" alt="Linux" width="40px"height="40px" title="Linux">
-              <br>
+                <br>
                 Linux
               </a>
             </td>
             <td>
               <a href="https://github.com/assaultcube/AC/releases/download/v1.2.0.2/AssaultCube_v1.2.0.2.dmg">
                 <img src="docs/images/apple.png" alt="Mac OS X" width="40px" height="40px" title="Supports Mac OS X 10.6 - macOS 10.14">
-              <br>
+                <br>
                 Apple<br>Mac OS X 10.6<br>- macOS 10.14
               </a>
             </td>
             <td>
               <a href="https://github.com/assaultcube/AC/releases/download/v1.2.0.2/AssaultCube_v1.2.0.2_experimental_macOS10.15_hotfix_1.dmg">
                 <img src="docs/images/macos.png" alt="macOS" width="40px" height="40px" title="Supports macOS 10.15 (or higher)">
-              <br>
+                <br>
                 Apple<br>macOS 10.15+ only,<br>experimental 64-bit
               </a>
             </td>
           </tr>
         </table>
-        <table id="downloadlink">
+        <p>
+          <b>Note for Linux users:</b>
+          <br>
+          On older Linux systems with old libcurl3 library above default Linux package may not work. In such case please download below packages supporting libcurl3
+          (on the newest Linux systems with only libcurl4 library below clients won't run, with the error:
+          <span class="code">libcurl.so.4: version `CURL_OPENSSL_3' not found</span> - see more in release information on
+          <a href="https://github.com/assaultcube/AC/releases/tag/v1.2.0.2">GitHub</a>
+          ). First try
+          <a href="https://github.com/assaultcube/AC/releases/download/v1.2.0.2/AssaultCube_v1.2.0.2_libcurl4_depended_on_libcurl3.tar.bz2">Older but not the oldest Linux</a>
+          package, and if it won't work, then
+          <a href="https://github.com/assaultcube/AC/releases/download/v1.2.0.2/AssaultCube_v1.2.0.2_libcurl3.tar.bz2">The oldest Linux</a>
+          package:
+        </p>
+        <table class="dllinks">
           <tr>
             <td>
-              <br>
-              <b>Note:</b> on older Linux systems with old libcurl3 and without newer libcurl4 library please download this
-              <a href="https://github.com/assaultcube/AC/releases/download/v1.2.0.2/AssaultCube_v1.2.0.2_libcurl3.tar.bz2">Linux client</a>,
-              supporting libcurl3 (it doesn't support libcurl4, so on newer Linux systems this client won't run, with the error:
-              <span class="code">libcurl.so.4: version `CURL_OPENSSL_3' not found</span> ).
+              <a href="https://github.com/assaultcube/AC/releases/download/v1.2.0.2/AssaultCube_v1.2.0.2_libcurl4_depended_on_libcurl3.tar.bz2">
+                <img src="docs/images/linux.png" alt="Older Linux" width="40px"height="40px" title="Older Linux">
+                <br>
+                Older but not the oldest Linux
+              </a>
+            </td>
+            <td>
+              <a href="https://github.com/assaultcube/AC/releases/download/v1.2.0.2/AssaultCube_v1.2.0.2_libcurl3.tar.bz2">
+                <img src="docs/images/tux_mono.png" alt="Oldest Linux" width="33px"height="40px" title="Oldest Linux">
+                <br>
+                The oldest Linux
+              </a>
             </td>
           </tr>
         </table>
