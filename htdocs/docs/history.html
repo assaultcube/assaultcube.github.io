@@ -32,6 +32,223 @@
           <a href="index.html">Go to documentation index &#8629;</a>
         </div>
         <h2>AssaultCube's history</h2>
+        <h2>AssaultCube v1.3.0.0 - Lockdown Edition</h2>
+        <p>Released: 6th of June, 2021</p>
+        <p>The majority of contributions of this release were provided by Stef in the years 2014 to 2017. Also, Grenadier maintained the code base over the years. In Spring 2021 during the COVID-19 pandemic a group consisting of former contributors decided to go for a temporary comeback and to resume work with three primary goals:</p>
+        <ul>
+          <li>AssaultCube 1.3 - Lockdown Edition</li>
+          <li><a href="https://play.google.com/store/apps/details?id=net.cubers.assaultcube">AssaultCube Mobile (Android)</a></li>
+          <li>Getting new traction in the project</li>
+        </ul>
+
+        <h4>Artwork</h4>
+        <ul>
+          <li>8 new maps (ac_africa, ac_arctic2, ac_coal, ac_dusk, ac_kazemat, ac_nocturne, ac_origin, ac_rampart)</li>
+          <li>15 new textures</li>
+          <li>2 new map models</li>
+          <li>High resolution player skins (thanks protox aka PrimoTurbo)</li>
+        </ul>
+
+        <h4>Gameplay</h4>
+        <ul>
+          <li>Fixed crouching, jumping and doublejumping</li>
+          <li>Fixed roll effect when player gets damage (see maxrolleffect and maxrollremote in references)</li>
+          <li>Restored previous quicknadethrow behaviour</li>
+          <li>Added option to persistent spectating concrete player in multiplayer (spectatepersistent)</li>
+          <li>Support for match pause <a href="https://github.com/assaultcube/AC/pull/108">#108</a></li>
+          <li>Nade thrown above other players head should not bounce back <a href="https://github.com/assaultcube/AC/issues/223">#223</a></li>
+          <li>Prevent players from gaining advantage with specate modes 5 &amp; 6 <a href="https://github.com/assaultcube/AC/issues/259">#259</a></li>
+          <li>Prevent players from gaining advantage with audio settings (al_referencedistance, al_rollofffactor) <a href="https://github.com/assaultcube/AC/commit/162a078ee99efa4236b77c05ba2b5603b499023f">#162a078</a></li>
+          <li>Added dropflag closer to WASD keys <a href="https://github.com/assaultcube/AC/pull/176">#176</a></li>
+        </ul>
+
+        <h4>Head-Up-Display & Scoreboard</h4>
+        <ul>
+          <li>Improved order of drawing on the HUD</li>
+          <li>Added option to show a wall clock on the HUD</li>
+          <li>Added team frag counters on the HUD for non-flag modes</li>
+          <li>Added option to turn off flag score hud transparency (flagscorehudtransparency)</li>
+          <li>Added transparency options for console and votes</li>
+          <li>Added ktf flag direction indicator</li>
+          <li>Added additional options to crosshairfx</li>
+          <li>Added a clock to scoreboard</li>
+          <li>Added flag icon in scoreboard at flag carrier</li>
+          <li>Show accuracy only if scoreboard is open</li>
+          <li>Removed scoring system</li>
+          <li>Fix double nade icon for oldfashiongunstats</li>
+          <li>Fix grenade icon alignment for enabled oldfashionedgunstats</li>
+          <li>Fix flag icon displaying on the radar</li>
+          <li>Hide damage indicator when different spectated player is followed</li>
+          <li>Accuracy stats should not change when taking damage from your own grenade <a href="https://github.com/assaultcube/AC/issues/245">#245</a></li>
+        </ul>
+
+        <h4>Console</h4>
+        <ul>
+          <li>Added command line history (commands with leading whitespace are omitted from history)</li>
+          <li>Added backwards completion in console (LSHIFT+TAB) and undo TAB-completion (LSHIFT+ESC)</li>
+          <li>Added inlined images (animated) for console text and hardcoded images for menu (igraphs)</li>
+          <li>Rewrited docs command parser, added option to show more detailed docs (docidentverbose, see also "Misc" menu in settings)</li>
+          <li>Fixed pasting text from system clipboard into AC console</li>
+          <li>Added keybind to scroll the output console by mousewheel</li>
+          <li>Fully supported maps only with lowercase filenames</li>
+          <li>Fixed memory leak in console history <a href="https://github.com/assaultcube/AC/pull/208">#208</a></li>
+          
+        </ul>
+
+        <h4>Editing</h4>
+        <ul>
+           <li>Allowed more edit commands in coop edit</li>
+           <li>Changed map version from 9 to 10, with possibilty to save maps in previous 9 version</li>
+           <li>Added a map license and comment string to the map header (mapinfo_license, mapinfo_comment)</li>
+           <li>Added timestamp to map files</li>
+           <li>Added option for integrated automatic embedded map config files</li>
+           <li>New cleanup tool for hidden map attributes (mapmrproper)</li>
+           <li>Added map buffers for editing (xmaps)</li>
+           <li>Updated the editing menus and added new menus: Map settings, Map config operations, Map checks and statistics, Deleted entities, Mapmodels, Texture, Skymaps, Ambient sounds</li>
+           <li>Added preview of mapmodels and textures in menus</li>
+           <li>Added "redo" command</li>
+           <li>Added "stairs" command (available also in "Arches" menu)</li>
+           <li>Added undelete for entities</li>
+           <li>Added map vantage points</li>
+           <li>Added support for tag clips</li>
+           <li>Added attr5..7 for mapmodels, mapmodel pitch and roll</li>
+           <li>Added freely rotating the mapmodels</li>
+           <li>Added additional text attributes for mapmodels (see docs/reference.xml#identifier_mdlattribute)</li>
+           <li>Custom mapmodels can depend on other custom mapmodels</li>
+           <li>Added support for high resolution textures</li>
+           <li>Added higher resolution for entity attributes, waterlevel</li>
+           <li>Added tilted and rotated clip entities</li>
+           <li>Added todo list for entities</li>
+           <li>Added pin selection of closest entity in map editor (MOUSE3)</li>
+           <li>New edit info on the HUD</li>
+           <li>Added option to show all playerstarts in edit mode (showplayerstarts) as well as ladder entities (showladderentities)</li>
+           <li>Faulty playerstarts are displayed as yellow players</li>
+           <li>Added editmeta keys (LCTRL and LSHIFT)</li>
+           <li>Added new optional scripts in config/opt/mapeditscripts.cfg</li>
+           <li>Added creating map preview pictures during spectating for map menus (CTRL+F12)</li>
+           <li>Added Cleanedit mode <a href="https://github.com/assaultcube/AC/pull/61">#61</a></li>
+        </ul>
+
+        <h4>Technology &amp; OS Support</h4>
+        <ul>
+          <li>Various refactorings, cleanups and performance improvements</li>
+          <li>New authentication system</li>
+          <li>Migration from SDL1.2 to SDL2</li>
+          <li>Migration from SourceForge to GitHub</li>
+          <li>Improved Makefile and added Makefile_local to easier compiling customization</li>
+          <li>Updated AC projects for: Visual Studio, Code::Blocks, Xcode</li>
+          <li>Moved AC profile dir to "[...]\My Games\AssaultCube\v[AC_version]" on Windows, "~/.assaultcube/v[AC_version]" on Linux, [...]/assaultcube/v[AC_version]" on Mac</li>
+          <li>New assaultcube_portable.bat for portable use on Windows</li>
+          <li>Fixed AC installer on Windows</li>
+          <li>Dropped support for internalization and Curl library</li>
+          <li>Fixed mouse warping on Windows 10 after "Fall Creators Update"</li>
+          <li>Improved handling the system mouse and keyboard shortcuts</li>
+          <li>Fix required click into the window to grab the mouse</li>
+          <li>Resolved a variety of compile warnings on different platforms</li>
+          <li>Backported event handling from Cube 2 <a href="https://github.com/assaultcube/AC/commit/a0f653c18bb5608517f23149d7f9a73782cf4c9e">#a0f653c</a></li>
+          <li>Fixed crash on Linux due to buggy graphics driver <a href="https://github.com/assaultcube/AC/issues/219">#219</a></li>
+          <li>Fixed crash on Windows due to security constraints <a href="https://github.com/assaultcube/AC/commit/9dfdae3ba4fc40664e5f866f27a566506d2954b5">#9dfdae3</a></li>
+          <li>Fixed FreeBSD build problems <a href="https://github.com/assaultcube/AC/pull/215">#215</a></li>
+          <li>New vita tracking system <a href="https://github.com/assaultcube/AC/issues/263">#263</a></li>
+          <li>AssaultCube Mobile (Android) based on AssaultCube v1.2: <a href="https://github.com/assaultcube/AC/tree/acmobile#assaultcube-mobile">Github</a> / <a href="https://play.google.com/store/apps/details?id=net.cubers.assaultcube">Google Play</a></li>
+          <li>Prototype for AssaultCube Technology Renewal: <a href="https://github.com/drian0/ac_tech_prototype#assaultcube-tech-prototype">Github</a></li>
+        </ul>
+
+        <h4>User Interface</h4>
+        <ul>
+          <li>New "radaricons" font</li>
+          <li>Improved "Keyboard" menu, fixed binding the keys from menu </li>
+          <li>Improved "Customize crosshairs" menu</li>
+          <li>New "Display resolutions" menu to choose recommended resolution</li>
+          <li>Added alternative views in serverbrowser, "Search for servers" option (see docs/favourites.html)</li>
+          <li>Added customisable sort order for file lists (demos, maps) in menu</li>
+          <li>Added script command for menu items with alternate fonts (menuitemaltfont + \a)</li>
+          <li>Added tab char to richtext filter in menu items (\t)</li>
+          <li>Added menu output for reference searches</li>
+          <li>Added radio buttons</li>
+          <li>Added new settings in menus</li>
+          <li>Added on serverbrowser the number of all players on the servers</li>
+          <li>Changed gamma feature (see "Video" settings menu)</li>
+          <li>Added listing the demos from server in "Download demo" menu</li>
+          <li>Added custom description of demos</li>
+          <li>Added searching for map and demo in menu</li>
+          <li>Menu spacers should not be selectable <a href="https://github.com/assaultcube/AC/issues/241">#241</a></li>
+          <li>Added accuracy stats settings <a href="https://github.com/assaultcube/AC/commit/456dc060f4fbccb4fcdc3d3885a22af66f71cf31">#456dc06</a></li>
+          <li>Harmonized back-navigation <a href="https://github.com/assaultcube/AC/issues/243">#243</a></li>
+          <li>Improved welcome menu <a href="https://github.com/assaultcube/AC/issues/292">#292</a></li>
+          <li>Improved character model location <a href="https://github.com/assaultcube/AC/issues/276">#276</a></li>
+        </ul>
+
+        <h4>Misc</h4>
+        <ul>
+          <li>Increased speed of demo rewind</li>
+          <li>Added mandatory client log file (clientlog.txt)</li>
+          <li>Fixed scorch marks outside world</li>
+          <li>Rewriting autodownload feature for packages (much faster)</li>
+          <li>Added zipped mod packages (zip mods), support for downloadable zip mods</li>
+          <li>Fixed number of downloaded packages</li>
+          <li>Support for dynamically cheangeable server parameters</li>
+          <li>Server can keep track of submitted maps</li>
+          <li>Client must guarantee that data sent over the network complies to the network protocol <a href="https://github.com/assaultcube/AC/issues/221">#221</a></li>
+          <li>Updated documentation <a href="https://github.com/assaultcube/AC/issues/232">#232</a></li>
+          <li>Fixed security issue related to OOB check <a href="https://github.com/assaultcube/AC/pull/248">#248</a></li>
+        </ul>
+
+        <h4>Scripting</h4>
+        <ul>
+          <li>Added temporary aliases (tempalias)</li>
+          <li>Added about 200 built-in commands and variables (documented in https://assault.cubers.net/docs/reference.html)</li>
+          <li>New commands and variables of CubeScript engine: !b &b ^b |b h0 format2 tempalias looplisti escape enumalias enumfiles hexbinchunk listoptions getvarrange</li>
+          <li>New commands and variables for editing: redo undolevel editsvar editmeta editmetakeydown editing_sp
+            xmap_delete xmap_delete_backup xmap_keep_backup xmap_list xmap_rename xmap_restore xmap_store restorexmap persistentxmaps 
+            getxmaplist unsavededits
+            savemap9 savemapoptimised preserveundosonsave mapmrproper worldiodebug getmaptimestamp mapinfo_comment mapinfo_license
+            setvantagepoint getvantagepoint gotovantagepoint clearvantagepoint gotoposition
+            hideeditinfopanel updateeditinfopanel editinfopanelmillis hideeditslotinfo hudtexttl showfocuscubedetails calcmipstats
+            mapmodelslotbyname mapmodelslotname mapmodelslotusage sortmapmodelslots editmapmodelslot deletemapmodelslot mapmodelchanged 
+            loadallmapmodels mapmodelregister mapmodelregistryclear updatemapmodeldependencies
+            textureslotbyname textureslotusage textureslotusagelist sorttextureslots edittextureslot edittexturestack deletetextureslot 
+            gettexturelist rereadtexturelists gettextureorigin getnotexture
+            mapsoundslotbyname mapsoundslotusage sortmapsoundslots editmapsoundslot deletemapsoundslot getmapsoundlist rereadsoundlists  
+            mapsoundchanged getmapsoundorigin selectionwalk mapareacheck countwalls
+            addentity addtodoentity editentity deleteentity gotoentity undelent unlistdeletedentity getdeletedentities newent7
+            enumentities enumsounds enumtodoentities cleartodoentities
+            showladderentities showplayerstarts getwatercolour setwatercolour 
+            mdlattribute listallmapmodelattributes getmapmodelattributes 
+            mapoverride_limitwaveheight mapoverride_nostencilshadows mapoverride_nowaterreflect
+            automapconfig getautomapconfig embedconfigfile extractconfigfile listheaderextras
+            taglife tagnum tagnumfull tagcliplinewidth showtagclipfocus showtagclips edittagclip transformclipentities
+            pointatent pointatentmaxangle toggleclosestentpin getclosestent edithideentmask mapmodelzoff
+            selectall pushselections enlargevdeltaselections enlargearchslopeselections expandselection shrinkselection stairs</li>
+          <li>New commands and variables for visual effects: conalpha votealpha hidektfindicator ktfindicatoralpha flagscorehudtransparency hideteamscorehud blankouthud gametimedisplay
+            igraphanimate igraphdefaultframetime igraphsize igraphsizehardcoded hideigraphs updateigraphs getigraph
+            getdisplayresolutions desktoph desktopw screenh screenw fullscreendesktop curfont maxrolleffect</li>
+          <li> New commands and variables for menu: menuitemaltfont menuitemeditkeyinput menuitemgreyedout menuitemradio menuitemspectkeyinput menupicturesize menurenderoffset 
+            menuselectiondescbgcolor menuselectionpersistent menusynctabstops menutexturesize chmenutexture menudirlistsub
+            screenshotpreview curmenu closecurmenu refreshcurmenu refreshcurmenudelayed</li>
+          <li>New commands and variables for documentation: docidentverbose docrefvisible getdoc</li>
+          <li>New commands and variables for authentication: authmaxtime authmemusage authrounds authsetup mypubkey cryptodebug newcert listcerts</li>
+          <li>New commands and variables related to keyboard: modkeypressed, editmeta, editmetakeydown, _resetallbinds</li>
+          <li>New general commands and variables: addzipmod zipmodclear zipmodgetdesc zipmodgetfiles zipmodgetrevision zipmodlist zipmodremove
+            showallplayersnumber mastertype getpckserver getmod zipcachemaxsize spectatecn spectatepersistent accuracyinfo curname
+            omitunchangeddefaultbinds omitunchangeddefaults groupvariables debugevents serverdebug autodownloaddebug loadmap</li>
+          <li>Added many new aliases, scripts</li>
+          <li>Many existing commands and script upgraded and fixed</li>
+          <li>Renamed "fullscreenscript" to "fullscreentoggle"</li>
+          <li>Improved scripts execution at start (see config/autostart/0.cfg)</li>
+          <li>Created folder config/opt/ with optional scripts (not executed automatically at AC start)</li>
+          <li>Added backup of saved.cfg and init.cfg</li>
+          <li>Improved order in saved.cfg</li>
+          <li>"mastertype" is now in-game cubescript variable instead of a commandline switch</li>
+        </ul>
+
+        <h4>Organisational Changes</h4>
+        <ul>
+          <li>Introduction of AssaultCube committee (Mr.Floppy, Halo, X-Ray-Dog, Grenadier) to govern gameplay-related changes to the game (in place)</li>
+          <li>Introduction of <a href="https://github.com/assaultcube/AC/blob/release_1.3/GOVERNANCE.md">AssaultCube Pragmatic Governance Model (ACPGM)</a> to govern the future development of AssaultCube (in approval)</li>
+          <li>Founding of <i>AssaultCube Association</i> based in Z&uuml;rich, Switzerland governing AssaultCube Mobile to protect the team from liabilities and legal issues (in place)</li>
+        </ul>
+
         <h2>AssaultCube v1.2.0.2</h2>
         <p>Released: 10th of November, 2013</p>
         <h4>Bug fixes</h4>
