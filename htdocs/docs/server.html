@@ -34,7 +34,7 @@
         <h2 id="serverprocesses">Server process</h2>
         <p>
           The dedicated server runs in the shell only (no graphics), with increased priority.
-          However, it uses very little CPU time and memory, so you can run one in the shotsbackground,
+          However, it uses very little CPU time and memory, so you can run one in the background,
           or at the same time as the client if you want to host a game and play in it. The default
           server ports are UDP <b>28763</b> (game) and <b>28764</b> (info). If you choose to set
           your own port as X (with the <span class="code">-f</span> option) it will automatically
@@ -47,6 +47,18 @@
           The server scripts, <i>server.bat</i> on Windows or <i>server.sh</i> on Linux, use this method by default.
           All the possible command line options are documented in this file, and you simply have to uncomment
           (remove the //'s from the start of the line) and edit the ones you want to use.
+        </p>
+        <p>
+          With the 1.3 release servers (and players) have identity keys. You must provide your own key 
+          (via the <span class="code">-Y</span> option) for the server to register on the masterserver. 
+          Without any key the server will be LAN only.
+        </p>
+        <p>
+          A key must be 64 characters long and may contain all hexadecimal characters 0-9 and a-f. 
+          To generate a key you can run the client and issue the command <span class="code">authkey new server</span>.
+          The third argument is only a name given that key, use quotes if you want e.g. <span class="code">authkey new "server alpha three"</span>.
+          You can then copy your key from the file config/authkeys.cfg - there are five lines (4 of which are comments) for your named authkey. 
+          The line which starts with '//  priv ' or the one starting with 'authkey add ' contain the private key - do not include the name string.
         </p>
         <p>
           You can still assign the options on the command line if you have an existing server, or
